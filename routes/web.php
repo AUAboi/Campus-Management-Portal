@@ -1,5 +1,7 @@
 <?php
 
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::inertia('/dashboard', 'DashboardPage');
+Route::inertia('/dashboard', 'Students/DashboardPage');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::group(['middleware' => ['role:teacher']], function () {
+//   Route::prefix('teacher')->group(function () {
+//   });
+// });
