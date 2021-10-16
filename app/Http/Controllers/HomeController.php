@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -26,6 +27,7 @@ class HomeController extends Controller
     {
         $user = $request->user();
         $roles = $user->getRoleNames();
+
         return view('home', ['roles' => $roles]);
     }
 }

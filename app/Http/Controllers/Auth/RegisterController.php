@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
@@ -67,13 +68,27 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-        $role = Role::create(['name' => 'teacher']);
+        $role = $data['role'];
 
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+
+        if ($role === "student") {
+            $user->student->create(
+                [
+                    'session_duration' => '2020-2024',
+                    'session_type' => 'evening',
+                    'registration_number' => '2020-ACUF-04367',
+                    'roll_no' => 04367,
+                    'admission_year' => Carbon::now()->format('Y'),
+                    'cgpa' => 0.00
+                ]
+            );
+        };
 
         $user->assignRole($role);
 
