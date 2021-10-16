@@ -31,9 +31,13 @@ Vue.component(
  */
 
 import { createInertiaApp } from "@inertiajs/inertia-vue";
-
+import Layout from "./layouts/Layout.vue";
 createInertiaApp({
-    resolve: name => require(`./Pages/${name}`),
+    resolve: name => {
+        const page = require(`./Pages/${name}`).default;
+        page.layout = page.layout || Layout;
+        return page;
+    },
     setup({ el, App, props }) {
         new Vue({
             render: h => h(App, props)

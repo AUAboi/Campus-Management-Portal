@@ -3,6 +3,9 @@
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Student\StudentProfileController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,13 +19,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::inertia('/dashboard', 'Students/DashboardPage');
+
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-// Route::group(['middleware' => ['role:teacher']], function () {
-//   Route::prefix('teacher')->group(function () {
-//   });
-// });
+
+Route::group(['middleware' => ['role:teacher']], function () {
+  Route::prefix('teacher')->group(function () {
+    Route::inertia('/dashboard', 'Teacher/DashboardPage');
+  });
+});
+
+Route::group(['middleware' => ['role:student']], function () {
+  Route::prefix('student')->group(function () {
+    Route::inertia('/dashboard', 'Students/DashboardPage');
+    Route::get('/profile', [StudentProfileController::class, 'index']);
+  });
+});

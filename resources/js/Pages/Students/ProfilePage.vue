@@ -1,8 +1,8 @@
 <template>
 	<main>
-		<Head title="Student - Dashboard" />
+		<Head title="Student - Profile" />
 		<H1>Welcome, user!</H1>
-		<p>Hello welcome to your first Inertia app!</p>
+		<p>Hello welcome to your first Inertia profile!</p>
 	</main>
 </template>
 
