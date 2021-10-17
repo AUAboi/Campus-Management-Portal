@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Student;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
@@ -14,11 +15,12 @@ class StudentController extends Controller
     $this->middleware(['role:student']);
   }
 
-  public function index()
+  public function index(Request $request)
   {
+    $user = User::with('student')->findOrFail($request->user()->id);
 
     return  Inertia::render('Students/ProfilePage', [
-      'user' => Auth::user()
+      'user' => $user,
     ]);
   }
 }

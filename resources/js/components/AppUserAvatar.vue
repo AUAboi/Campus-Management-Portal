@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<img
-			class="rounded-full"
+			class=""
 			width="200"
 			height="200"
 			:src="'/storage/users/' + avatar"

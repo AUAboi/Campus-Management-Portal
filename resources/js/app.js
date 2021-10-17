@@ -35,6 +35,11 @@ files.keys().map(key =>
 
 import { createInertiaApp } from "@inertiajs/inertia-vue";
 import Layout from "./layouts/Layout.vue";
+
+import { InertiaProgress } from "@inertiajs/progress";
+
+InertiaProgress.init();
+
 createInertiaApp({
     resolve: name => {
         const page = require(`./Pages/${name}`).default;

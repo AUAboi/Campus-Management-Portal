@@ -1,10 +1,6 @@
 <template>
 	<main>
-		<Head title="Student - Profile" />
-		<H1>Welcome, user!</H1>
-		<p>Hello welcome to your first Inertia profile!</p>
-		<p>User: {{ user }}</p>
-		<AppUserAvatar :avatar="user.avatar" />
+		<AppStudentProfileCard :user="user" />
 	</main>
 </template>
 

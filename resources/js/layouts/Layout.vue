@@ -47,10 +47,25 @@
 			<nav
 				class="hidden md:block bg-indigo-800 text-white flex-shrink-0 w-56 p-12 overflow-y-auto"
 			>
-				<div class="flex flex-col">
-					<Link class="m-2" href="./dashboard">Dashboard</Link>
-					<Link class="m-2" href="./profile">Profile</Link>
-					<Link class="m-2" href="./course-details">Course Details</Link>
+				<div class="flex flex-col text-gray-200">
+					<Link
+						:class="{ 'text-white': $page.url === '/student/dashboard' }"
+						class="m-2"
+						href="./dashboard"
+						>Dashboard</Link
+					>
+					<Link
+						:class="{ 'text-white': $page.url === '/student/profile' }"
+						class="m-2"
+						href="./profile"
+						>Profile</Link
+					>
+					<Link
+						:class="{ 'text-white': $page.url === '/student/course-details' }"
+						class="m-2"
+						href="./course-details"
+						>Course Details</Link
+					>
 				</div>
 			</nav>
 			<article
@@ -79,3 +94,4 @@ export default {
 	}
 };
 </script>
+
