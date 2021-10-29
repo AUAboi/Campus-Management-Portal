@@ -17,7 +17,7 @@ class CreateProgramsTable extends Migration
             $table->id();
             $table->string("program_name");
             $table->smallInteger("program_duration");
-            $table->foreignId("department_id")->constrained()->onDelete('cascade');
+            $table->foreignId("department_id")->onDelete('cascade');
             $table->timestamps();
         });
     }
