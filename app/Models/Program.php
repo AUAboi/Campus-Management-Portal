@@ -9,6 +9,11 @@ class Program extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'program_name',
+        'program_duration'
+    ];
+
     public function department()
     {
         return $this->belongsTo(Department::class);

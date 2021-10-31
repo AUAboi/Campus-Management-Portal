@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\Student\StudentController;
 use App\Http\Controllers\TestController;
+use PHPUnit\Framework\Test;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,8 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // Route::inertia('/test', 'Test');
+
+Route::get('/programs', [TestController::class, 'page']);
 
 Route::get('/test', [TestController::class, 'index']);
 

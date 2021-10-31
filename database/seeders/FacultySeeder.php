@@ -5,9 +5,7 @@ namespace Database\Seeders;
 use App\Models\Faculty;
 use DOMXPath;
 use DOMDocument;
-use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class FacultySeeder extends Seeder
@@ -20,9 +18,11 @@ class FacultySeeder extends Seeder
     public function run()
     {
         list($faculties, $departments)  = $this->get_faculties_and_departments();
+        $url = $this->get_programs_urls();
         $i = 0;
+        $k = 0;
+        foreach ($faculties as $key => $faculty) {
 
-        foreach ($faculties as $faculty) {
             $faculty_model =  Faculty::create($faculty);
 
             //create array from string by slicing every new line
@@ -34,10 +34,16 @@ class FacultySeeder extends Seeder
             array_pop($department_array);
             array_shift($department_array);
 
+
+
             foreach ($department_array as $dept) {
                 //Check if empty 
                 if (trim($dept) != '') {
-                    $faculty_model->departments()->create(array("department_name" => $dept));
+                    $faculty_model->departments()->create([
+                        "department_name" => $dept,
+                        "department_link" => $url[$k]['department_url']
+                    ]);
+                    $k++;
                 }
             }
             $i++;
@@ -52,12 +58,12 @@ class FacultySeeder extends Seeder
         $list = '<a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">Faculties';
         $response = Http::get('https://gcuf.edu.pk/');
         $body = $response->body();
-        $table_first = explode($list, $body);
-        $table_second = explode('<li class="nav-item dropdown ">', $table_first[1]);
-        $table_second[0] = "<li>" . $table_second[0];
+        $list_first = explode($list, $body);
+        $list_second = explode('<li class="nav-item dropdown ">', $list_first[1]);
+        $list_second[0] = "<li>" . $list_second[0];
 
         $dom = new DOMDocument();
-        @$dom->loadHTML($table_second[0]);
+        @$dom->loadHTML($list_second[0]);
 
 
         $xpath = new DOMXPath($dom);
@@ -77,5 +83,33 @@ class FacultySeeder extends Seeder
         }
 
         return array($faculty_names, $department_names);
+    }
+
+    protected function get_programs_urls()
+    {
+        $list = '<a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">Faculties';
+        $response = Http::get('https://gcuf.edu.pk/');
+        $body = $response->body();
+        $list_first = explode($list, $body);
+        $list_second = explode('<li class="nav-item dropdown ">', $list_first[1]);
+        $list_second[0] = "<li>" . $list_second[0];
+
+        $dom = new DOMDocument();
+        @$dom->loadHTML($list_second[0]);
+
+
+        $xpath = new DOMXPath($dom);
+
+        $department_urls = $xpath->evaluate("/html/body/li/ul/li/ul//a");
+
+        for ($k = 0; $k <  $department_urls->length; $k++) {
+            $department_url_item = $department_urls->item($k);
+            $department_url_item = $department_url_item->getAttribute('href');
+
+
+            $url[$k]['department_url'] = $department_url_item;
+        }
+
+        return $url;
     }
 }
