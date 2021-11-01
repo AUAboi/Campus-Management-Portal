@@ -16,12 +16,18 @@ class Student extends Model
         'registration_number',
         'roll_no',
         'admission_year',
-        'cgpa'
+        'cgpa',
+        'program_id'
     ];
 
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function program()
+    {
+        return $this->belongsTo(Program::class);
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCnicAndPhoneNumberToUsersTable extends Migration
+class AddProgramIdToStudentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddCnicAndPhoneNumberToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->char('cnic', 13);
-            $table->string('phone');
+        Schema::table('students', function (Blueprint $table) {
+            $table->foreignId("program_id")->nullable();
         });
     }
 
@@ -26,9 +25,8 @@ class AddCnicAndPhoneNumberToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('cnic');
-            $table->dropColumn('phone');
+        Schema::table('students', function (Blueprint $table) {
+            $table->dropColumn("program_id");
         });
     }
 }

@@ -72,13 +72,16 @@ class RegisterController extends Controller
 
         $user = User::create([
             'name' => $data['name'],
+            'father_name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'phone' => '03214522363',
+            'cnic' => '3310035761605'
         ]);
 
 
         if ($role === "student") {
-            $user->student->create(
+            $user->student()->create(
                 [
                     'session_duration' => '2020-2024',
                     'session_type' => 'evening',

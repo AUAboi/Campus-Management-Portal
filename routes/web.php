@@ -43,6 +43,6 @@ Route::group(['middleware' => ['role:student']], function () {
   Route::prefix('student')->group(function () {
     Route::inertia('/dashboard', 'Students/DashboardPage');
     Route::get('/profile', [StudentController::class, 'index']);
-    Route::get('/course-details', [ProgramController::class]);
+    Route::get('/course-details', [ProgramController::class, 'index']);
   });
 });
