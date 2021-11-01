@@ -1,11 +1,10 @@
 <?php
 
-use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProgramController;
-use App\Http\Controllers\Student\StudentController;
+use App\Http\Controllers\Student\CourseDetailsController;
+use App\Http\Controllers\Student\StudentProfileController;
 use App\Http\Controllers\TestController;
 use PHPUnit\Framework\Test;
 
@@ -41,8 +40,8 @@ Route::group(['middleware' => ['role:teacher']], function () {
 
 Route::group(['middleware' => ['role:student']], function () {
   Route::prefix('student')->group(function () {
-    Route::inertia('/dashboard', 'Students/DashboardPage');
-    Route::get('/profile', [StudentController::class, 'index']);
-    Route::get('/course-details', [ProgramController::class, 'index']);
+    Route::get('/dashboard', [App\Http\Controllers\Student\DashboardController::class, "index"]);
+    Route::get('/profile', [StudentProfileController::class, 'index']);
+    Route::get('/course-details', [CourseDetailsController::class, 'index']);
   });
 });

@@ -15,9 +15,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $role = Role::create(['name' => 'teacher']);
-        $role = Role::create(['name' => 'student']);
-        // \App\Models\User::factory(10)->create();
+        Role::create(['name' => 'admin']);
+        Role::create(['name' => 'student']);
+        Role::create(['name' => 'teacher']);
         $this->call([
             FacultySeeder::class,
             ProgramSeeder::class,

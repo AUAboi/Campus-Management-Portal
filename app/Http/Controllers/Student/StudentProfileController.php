@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class StudentController extends Controller
+class StudentProfileController extends Controller
 {
   public function __construct()
   {
@@ -19,7 +19,7 @@ class StudentController extends Controller
   {
     $user = User::with('student')->findOrFail($request->user()->id);
 
-    return  Inertia::render('Students/ProfilePage', [
+    return  Inertia::render('Student/ProfilePage', [
       'user' => $user,
     ]);
   }

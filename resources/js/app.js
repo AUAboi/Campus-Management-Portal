@@ -33,9 +33,13 @@ files.keys().map(key =>
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 import { createInertiaApp } from "@inertiajs/inertia-vue";
-import Layout from "./layouts/Layout.vue";
+import Layout from "./components/shared/layouts/Layout";
+
+import PortalVue from "portal-vue";
 
 import { InertiaProgress } from "@inertiajs/progress";
+
+Vue.use(PortalVue);
 
 InertiaProgress.init();
 

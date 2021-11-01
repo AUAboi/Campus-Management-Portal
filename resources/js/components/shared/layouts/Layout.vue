@@ -1,21 +1,27 @@
 <template>
 	<main class="md:h-screen md:flex md:flex-col">
+		<portal-target name="dropdown" slim />
 		<header>
 			<div class="md:flex md:flex-shrink-0">
 				<div
 					class="bg-indigo-900 text-white md:flex-shrink-0 md:w-56 px-6 py-4 flex items-center justify-between md:justify-center"
 				>
 					<a href="./dashboard" class="mt-1 text-2xl">PORTAL</a>
-					<button type="button" class="md:hidden">
+					<AppDropdown class="md:hidden" placement="bottom-end">
 						<svg
+							class="fill-white w-6 h-6"
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 20 20"
-							class="fill-white w-6 h-6"
 						>
-							<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+							<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
 						</svg>
-						<!---->
-					</button>
+						<div
+							slot="dropdown"
+							class="mt-2 px-8 py-4 shadow-lg bg-indigo-800 rounded"
+						>
+							<AppMainMenu />
+						</div>
+					</AppDropdown>
 				</div>
 				<div
 					class="bg-white border-b w-full p-4 md:py-0 md:px-12 text-sm md:text-md flex justify-between items-center"
@@ -38,36 +44,14 @@
 								></path>
 							</svg>
 						</div>
-						<!---->
 					</button>
 				</div>
 			</div>
 		</header>
 		<div class="md:flex md:flex-grow md:overflow-hidden">
-			<nav
+			<AppMainMenu
 				class="hidden md:block bg-indigo-800 text-white flex-shrink-0 w-56 p-12 overflow-y-auto"
-			>
-				<div class="flex flex-col text-gray-200">
-					<Link
-						:class="{ 'text-white': $page.url === '/student/dashboard' }"
-						class="m-2"
-						href="./dashboard"
-						>Dashboard</Link
-					>
-					<Link
-						:class="{ 'text-white': $page.url === '/student/profile' }"
-						class="m-2"
-						href="./profile"
-						>Profile</Link
-					>
-					<Link
-						:class="{ 'text-white': $page.url === '/student/course-details' }"
-						class="m-2"
-						href="./course-details"
-						>Course Details</Link
-					>
-				</div>
-			</nav>
+			/>
 			<article
 				class="md:flex-1 px-4 py-8 md:p-12 md:overflow-y-auto bg-gray-100"
 			>
@@ -78,12 +62,7 @@
 </template>
 
 <script>
-import { Link } from "@inertiajs/inertia-vue";
-
 export default {
-	components: {
-		Link
-	},
 	computed: {
 		user() {
 			return this.$page.props.auth.user;
