@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Inertia\Inertia;
 
 class LoginController extends Controller
 {
@@ -26,12 +28,44 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = "/home";
+
+    /**
+     * 
+     * Redirects to dashboard of role
+     * 
+     */
+
+
+    protected function redirectTo()
+    {
+        if (auth()->user()->hasRole('student')) {
+            return '/student/dashboard';
+        }
+        return '/home';
+    }
+
+
+    protected function showLoginForm()
+    {
+        return Inertia::render("User/LoginPage");
+    }
+
+    /**
+     * 
+     * Overwriting loggedOut method
+     * 
+     * Redirects to login page
+     * 
+     */
+
+    protected function loggedOut()
+    {
+        return Inertia::render("User/LoginPage");
+    }
 
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {

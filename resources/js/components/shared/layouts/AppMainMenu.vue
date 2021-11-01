@@ -1,6 +1,6 @@
 <template>
 	<nav>
-		<div class="flex flex-col text-gray-200">
+		<div class="flex flex-col text-indigo-300">
 			<Link
 				:class="{ 'text-white': $page.url === '/student/dashboard' }"
 				class="m-2"

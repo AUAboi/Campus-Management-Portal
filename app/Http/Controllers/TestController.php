@@ -18,7 +18,6 @@ class TestController extends Controller
     public function index()
     {
 
-
         $programs = $this->get_programs_from_departments();
         $program_urls = Department::all();
 

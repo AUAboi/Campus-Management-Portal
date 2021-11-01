@@ -46,7 +46,9 @@ InertiaProgress.init();
 createInertiaApp({
     resolve: name => {
         const page = require(`./Pages/${name}`).default;
-        page.layout = page.layout || Layout;
+        if (page.layout === undefined) {
+            page.layout = Layout;
+        }
         return page;
     },
     setup({ el, App, props }) {

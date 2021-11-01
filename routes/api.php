@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\Student\CourseDetailsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,5 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/enroll', [ProgramController::class, 'enroll']);
+    Route::post('/enroll', [CourseDetailsController::class, 'enroll']);
 });
