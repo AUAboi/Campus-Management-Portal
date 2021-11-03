@@ -22,7 +22,7 @@
 							slot="dropdown"
 							class="mt-2 px-8 py-4 shadow-lg bg-indigo-800 rounded"
 						>
-							<AppMainMenu />
+							<slot />
 						</div>
 					</AppDropdown>
 				</div>
@@ -53,11 +53,11 @@
 			</div>
 		</header>
 		<div class="md:flex md:flex-grow md:overflow-hidden">
-			<AppMainMenu
+			<nav
 				class="hidden md:block bg-indigo-800 text-white flex-shrink-0 w-56 p-12 overflow-y-auto"
 			>
 				<slot />
-			</AppMainMenu>
+			</nav>
 
 			<article
 				class="md:flex-1 px-4 py-8 md:p-12 md:overflow-y-auto bg-gray-100"
