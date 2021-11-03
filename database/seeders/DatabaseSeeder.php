@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         Role::create(['name' => 'admin']);
         Role::create(['name' => 'student']);
         Role::create(['name' => 'teacher']);
+
         $this->call([
             FacultySeeder::class,
             ProgramSeeder::class,

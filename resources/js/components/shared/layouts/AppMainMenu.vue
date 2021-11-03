@@ -1,24 +1,32 @@
 <template>
 	<nav>
 		<div class="flex flex-col text-indigo-300">
-			<Link
-				:class="{ 'text-white': $page.url === '/student/dashboard' }"
-				class="m-2"
-				href="./dashboard"
-				>Dashboard</Link
-			>
-			<Link
-				:class="{ 'text-white': $page.url === '/student/profile' }"
-				class="m-2"
-				href="./profile"
-				>Profile</Link
-			>
-			<Link
-				:class="{ 'text-white': $page.url === '/student/course-details' }"
-				class="m-2"
-				href="./course-details"
-				>Course Details</Link
-			>
+			<div class="nav-item">
+				<Link
+					:class="{ 'text-white': $page.url.endsWith('dashboard') }"
+					class="m-2"
+					href="./dashboard"
+					>Dashboard</Link
+				>
+			</div>
+			<div class="nav-item">
+				<Link
+					:class="{ 'text-white': $page.url.endsWith('profile') }"
+					class="m-2"
+					href="./profile"
+					>Profile</Link
+				>
+			</div>
+			<div class="nav-item">
+				<Link
+					:class="{ 'text-white': $page.url.endsWith('course-details') }"
+					class="m-2"
+					href="./course-details"
+					>Course Details</Link
+				>
+			</div>
+
+			<slot />
 		</div>
 	</nav>
 </template>
@@ -32,3 +40,10 @@ export default {
 	}
 };
 </script>
+
+
+<style>
+.nav-item {
+	margin: 0.5rem;
+}
+</style>

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Inertia\Inertia;
 
 class LoginController extends Controller
 {
@@ -39,10 +41,8 @@ class LoginController extends Controller
 
     protected function redirectTo()
     {
-        if (auth()->user()->hasRole('student')) {
-            return '/student/dashboard';
-        }
-        return '/home';
+        $role = Auth::user()->roles->pluck('name');
+        return '/' . $role[0] . '/dashboard';
     }
 
 
@@ -61,7 +61,7 @@ class LoginController extends Controller
 
     protected function loggedOut()
     {
-        return Inertia::render("User/LoginPage");
+        return Redirect::route("login");
     }
 
     /**

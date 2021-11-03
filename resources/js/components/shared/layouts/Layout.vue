@@ -7,7 +7,10 @@
 					class="bg-indigo-900 text-white md:flex-shrink-0 md:w-56 px-6 py-4 flex items-center justify-between md:justify-center"
 				>
 					<a href="./dashboard" class="mt-1 text-2xl">PORTAL</a>
-					<AppDropdown class="md:hidden" placement="bottom-end">
+					<AppDropdown
+						class="md:hidden fill-current text-white"
+						placement="bottom-end"
+					>
 						<svg
 							class="fill-white w-6 h-6"
 							xmlns="http://www.w3.org/2000/svg"
@@ -52,11 +55,14 @@
 		<div class="md:flex md:flex-grow md:overflow-hidden">
 			<AppMainMenu
 				class="hidden md:block bg-indigo-800 text-white flex-shrink-0 w-56 p-12 overflow-y-auto"
-			/>
+			>
+				<slot />
+			</AppMainMenu>
+
 			<article
 				class="md:flex-1 px-4 py-8 md:p-12 md:overflow-y-auto bg-gray-100"
 			>
-				<slot />
+				<portal-target name="maincontent" />
 			</article>
 		</div>
 	</main>

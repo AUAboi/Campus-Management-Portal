@@ -7,6 +7,7 @@ use DOMDocument;
 use Inertia\Inertia;
 use App\Models\Department;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\View;
 
@@ -15,9 +16,11 @@ class TestController extends Controller
 
     // get database data here
 
-    public function index()
+    public function index(Request $request)
     {
 
+        $role = Auth::user()->roles->pluck('name');
+        dd($role[0]);
         $programs = $this->get_programs_from_departments();
         $program_urls = Department::all();
 

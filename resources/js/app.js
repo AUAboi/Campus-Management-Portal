@@ -34,6 +34,7 @@ files.keys().map(key =>
  */
 import { createInertiaApp } from "@inertiajs/inertia-vue";
 import Layout from "./components/shared/layouts/Layout";
+import AppAdminMenu from "./components/shared/layouts/AppAdminMenu";
 
 import PortalVue from "portal-vue";
 
@@ -47,7 +48,7 @@ createInertiaApp({
     resolve: name => {
         const page = require(`./Pages/${name}`).default;
         if (page.layout === undefined) {
-            page.layout = Layout;
+            page.layout = [Layout, AppAdminMenu];
         }
         return page;
     },
