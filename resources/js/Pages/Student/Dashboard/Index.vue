@@ -1,7 +1,7 @@
 <template>
-	<div>
+	<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl ">
 		<Head title="Student - Dashboard" />
-		<h1>Welcome, user!</h1>
+		<h1>Welcome, {{ user.name }}</h1>
 		<p>Hello welcome to your first Inertia app!</p>
 	</div>
 </template>
@@ -12,6 +12,11 @@ import { Head } from "@inertiajs/inertia-vue";
 export default {
 	components: {
 		Head
+	},
+	computed: {
+		user() {
+			return this.$page.props.auth.user;
+		}
 	}
 };
 </script>

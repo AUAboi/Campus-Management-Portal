@@ -1,0 +1,69 @@
+<template>
+	<div>
+		<h1 class="mb-8 font-bold text-3xl">
+			<Link class="text-indigo-400 hover:text-indigo-600" href=""
+				>Faculites</Link
+			>
+			<span class="text-indigo-400 font-medium">/</span> Create
+		</h1>
+		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
+			<form @submit.prevent="store">
+				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
+					<div class="pr-6 pb-8 w-full lg:w-1/2">
+						<label class="block">Faculty Name: </label>
+						<input
+							type="text"
+							v-model="form.name"
+							class="border-2 border-gray-300 w-full p-2 my-1"
+						/>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div
+			class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center"
+		>
+			<Link
+				as="button"
+				class="bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md"
+				href="./faculties/create"
+			>
+				Create Organization
+			</Link>
+		</div>
+	</div>
+</template>
+
+<script>
+import { Link } from "@inertiajs/inertia-vue";
+
+export default {
+	components: {
+		Link
+	},
+	data() {
+		return {
+			form: {
+				name: ""
+			}
+		};
+	},
+	methods: {
+		isUrl() {
+			let currentUrl = this.$page.url.substr(1);
+
+			currentUrl.split("/").forEach(function(part) {
+				if (part === "faculties") {
+					return true;
+				}
+			});
+
+			return false;
+		}
+	},
+	created() {}
+};
+</script>
+
+<style>
+</style>

@@ -43,6 +43,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 
     //Faculties
     Route::get('/faculties', [FacultyController::class, 'index']);
+    Route::get('/faculties/create', [FacultyController::class, 'create']);
   });
 });
 

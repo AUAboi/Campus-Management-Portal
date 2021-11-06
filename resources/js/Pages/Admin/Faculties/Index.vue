@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h1 class="mb-8 font-bold text-3xl">faculties</h1>
+		<h1 class="mb-8 font-bold text-3xl">Faculties</h1>
 		<div class="mb-6 flex justify-between items-center">
 			<!-- <search-filter
 				v-model="form.search"
@@ -16,8 +16,8 @@
 			</search-filter> -->
 			<Link
 				as="button"
-				class="bg-indigo-500 text-white inline px-4 py-2 cursor-pointer"
-				href="#"
+				class="bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md"
+				href="./faculties/create"
 			>
 				<span>Create</span>
 				<span class="hidden md:inline">faculty</span>
@@ -56,11 +56,16 @@
 </template>
 
 <script>
+import { Link } from "@inertiajs/inertia-vue";
+
 export default {
 	props: {
 		faculties: {
 			required: false
 		}
+	},
+	components: {
+		Link
 	}
 };
 </script>

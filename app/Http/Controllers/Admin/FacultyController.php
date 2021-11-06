@@ -20,4 +20,9 @@ class FacultyController extends Controller
 
         return Inertia::render("Admin/Faculties/Index", ['faculties' => $faculties]);
     }
+
+    public function create()
+    {
+        return Inertia::render("Admin/Faculties/Create");
+    }
 }

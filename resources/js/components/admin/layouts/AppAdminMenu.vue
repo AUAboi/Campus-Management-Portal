@@ -2,7 +2,7 @@
 	<div class="flex flex-col text-indigo-300">
 		<div class="nav-item">
 			<Link
-				:class="{ 'text-white': $page.url.endsWith('dashboard') }"
+				:class="{ 'text-white': isUrl('dashboard') }"
 				class="m-2"
 				href="./dashboard"
 				>Dashboard</Link
@@ -10,7 +10,7 @@
 		</div>
 		<div class="nav-item">
 			<Link
-				:class="{ 'text-white': $page.url.endsWith('profile') }"
+				:class="{ 'text-white': isUrl('profile') }"
 				class="m-2"
 				href="./profile"
 				>Profile</Link
@@ -18,15 +18,7 @@
 		</div>
 		<div class="nav-item">
 			<Link
-				:class="{ 'text-white': $page.url.endsWith('course-details') }"
-				class="m-2"
-				href="./course-details"
-				>Course Details</Link
-			>
-		</div>
-		<div class="nav-item">
-			<Link
-				:class="{ 'text-white': $page.url.endsWith('faculties') }"
+				:class="{ 'text-white': isUrl('faculties') }"
 				class="m-2"
 				href="./faculties"
 				>Faculties</Link
@@ -46,6 +38,22 @@ import { Link } from "@inertiajs/inertia-vue";
 export default {
 	components: {
 		Link
+	},
+	methods: {
+		isUrl(url) {
+			let currentUrl = this.$page.url.substr(1);
+			let arr = currentUrl.split("/");
+
+			let isCurrent = false;
+			arr.forEach(function(part) {
+				if (part === url) {
+					isCurrent = true;
+					return;
+				}
+			});
+
+			return isCurrent;
+		}
 	}
 };
 </script>
