@@ -27,6 +27,11 @@ class FacultyController extends Controller
         return Inertia::render("Admin/Faculties/Create");
     }
 
+    public function edit(Faculty $faculty)
+    {
+        return Inertia::render("Admin/Faculties/Edit", ['faculty' => $faculty]);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -34,6 +39,22 @@ class FacultyController extends Controller
         ]);
 
         Faculty::create($request->only('faculty_name'));
-        return Redirect::route('admin.faculties')->with('success', 'Organization created.');
+        return Redirect::route('admin.faculties')->with('success', 'Faculty created.');
+    }
+
+    public function update(Request $request, Faculty $faculty)
+    {
+        $request->validate([
+            'faculty_name' => 'required|unique:faculties,faculty_name,' . $faculty->id,
+        ]);
+
+        $faculty->update($request->only('faculty_name'));
+        return Redirect::route('admin.faculties')->with('success', 'Faculty updated.');
+    }
+
+    public function destroy(Faculty $faculty)
+    {
+        $faculty->delete();
+        return Redirect::route('admin.faculties')->with('success', 'Faculty deleted.');
     }
 }

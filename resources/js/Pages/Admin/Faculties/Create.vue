@@ -51,24 +51,9 @@ export default {
 		};
 	},
 	methods: {
-		isUrl() {
-			let currentUrl = this.$page.url.substr(1);
-
-			currentUrl.split("/").forEach(function(part) {
-				if (part === "faculties") {
-					return true;
-				}
-			});
-
-			return false;
-		},
 		store() {
 			this.form.post(this.$route("admin.faculties.store"));
 		}
-	},
-	created() {}
+	}
 };
 </script>
-
-<style>
-</style>
