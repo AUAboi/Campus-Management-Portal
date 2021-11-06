@@ -1,7 +1,9 @@
 <template>
 	<div>
 		<h1 class="mb-8 font-bold text-3xl">
-			<Link class="text-indigo-400 hover:text-indigo-600" :href="$route('admin.faculties')"
+			<Link
+				class="text-indigo-400 hover:text-indigo-600"
+				:href="$route('admin.faculties')"
 				>Faculites</Link
 			>
 			<span class="text-indigo-400 font-medium">/</span> Create
@@ -13,23 +15,23 @@
 						<label class="block">Faculty Name: </label>
 						<input
 							type="text"
-							v-model="form.name"
+							v-model="form.faculty_name"
 							class="border-2 border-gray-300 w-full p-2 my-1"
 						/>
 					</div>
 				</div>
+				<div
+					class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center"
+				>
+					<button
+						:disabled="form.processing"
+						type="submit"
+						class="bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md"
+					>
+						Create Organization
+					</button>
+				</div>
 			</form>
-		</div>
-		<div
-			class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center"
-		>
-			<Link
-				as="button"
-				class="bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md"
-				href="./faculties/create"
-			>
-				Create Organization
-			</Link>
 		</div>
 	</div>
 </template>
@@ -43,9 +45,9 @@ export default {
 	},
 	data() {
 		return {
-			form: {
-				name: ""
-			}
+			form: this.$inertia.form({
+				faculty_name: ""
+			})
 		};
 	},
 	methods: {
@@ -59,6 +61,9 @@ export default {
 			});
 
 			return false;
+		},
+		store() {
+			this.form.post(this.$route("admin.faculties.store"));
 		}
 	},
 	created() {}

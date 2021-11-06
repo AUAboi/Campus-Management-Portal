@@ -17,7 +17,7 @@
 			<Link
 				as="button"
 				class="bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md"
-				:href="$route('admin.faculties')"
+				:href="$route('admin.faculties.create')"
 			>
 				<span>Create</span>
 				<span class="hidden md:inline">faculty</span>

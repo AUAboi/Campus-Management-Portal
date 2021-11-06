@@ -2179,6 +2179,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2186,9 +2188,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      form: {
-        name: ""
-      }
+      form: this.$inertia.form({
+        faculty_name: ""
+      })
     };
   },
   methods: {
@@ -2200,6 +2202,9 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
       return false;
+    },
+    store: function store() {
+      this.form.post(this.$route("admin.faculties.store"));
     }
   },
   created: function created() {}
@@ -15872,47 +15877,46 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.form.name,
-                      expression: "form.name"
+                      value: _vm.form.faculty_name,
+                      expression: "form.faculty_name"
                     }
                   ],
                   staticClass: "border-2 border-gray-300 w-full p-2 my-1",
                   attrs: { type: "text" },
-                  domProps: { value: _vm.form.name },
+                  domProps: { value: _vm.form.faculty_name },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.form, "name", $event.target.value)
+                      _vm.$set(_vm.form, "faculty_name", $event.target.value)
                     }
                   }
                 })
               ])
-            ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center"
+              },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
+                    attrs: { disabled: _vm.form.processing, type: "submit" }
+                  },
+                  [_vm._v("\n\t\t\t\t\tCreate Organization\n\t\t\t\t")]
+                )
+              ]
+            )
           ]
         )
       ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass:
-          "px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center"
-      },
-      [
-        _c(
-          "Link",
-          {
-            staticClass:
-              "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
-            attrs: { as: "button", href: "./faculties/create" }
-          },
-          [_vm._v("\n\t\t\tCreate Organization\n\t\t")]
-        )
-      ],
-      1
     )
   ])
 }
@@ -15951,7 +15955,7 @@ var render = function() {
           {
             staticClass:
               "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
-            attrs: { as: "button", href: _vm.$route("admin.faculties") }
+            attrs: { as: "button", href: _vm.$route("admin.faculties.create") }
           },
           [
             _c("span", [_vm._v("Create")]),

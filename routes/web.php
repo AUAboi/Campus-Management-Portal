@@ -44,6 +44,8 @@ Route::group(['middleware' => ['role:admin']], function () {
     //Faculties
     Route::get('/faculties', [FacultyController::class, 'index'])->name('admin.faculties');
     Route::get('/faculties/create', [FacultyController::class, 'create'])->name('admin.faculties.create');
+
+    Route::post('/faculties/create', [FacultyController::class, 'store'])->name('admin.faculties.store');
   });
 });
 
@@ -55,8 +57,8 @@ Route::group(['middleware' => ['role:teacher']], function () {
 
 Route::group(['middleware' => ['role:student']], function () {
   Route::prefix('student')->group(function () {
-    Route::get('/dashboard', [App\Http\Controllers\Student\DashboardController::class, "index"]);
-    Route::get('/profile', [App\Http\Controllers\Student\ProfileController::class, 'index']);
-    Route::get('/course-details', [CourseDetailsController::class, 'index']);
+    Route::get('/dashboard', [App\Http\Controllers\Student\DashboardController::class, "index"])->name('student.dashboard');
+    Route::get('/profile', [App\Http\Controllers\Student\ProfileController::class, 'index'])->name('student.profile');
+    Route::get('/course-details', [CourseDetailsController::class, 'index'])->name('student.course-details');
   });
 });
