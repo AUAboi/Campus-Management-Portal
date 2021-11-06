@@ -44,11 +44,6 @@ export default {
 				remember: false
 			})
 		};
-	},
-	methods: {
-		submit() {
-			this.$inertia.post("/users", this.form);
-		}
 	}
 };
 </script>

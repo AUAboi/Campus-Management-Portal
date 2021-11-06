@@ -31,7 +31,7 @@ class CourseDetailsController extends Controller
         }
 
 
-        return Inertia::render("Student/CourseDetailsPage", [
+        return Inertia::render("Student/CourseDetails/Index", [
             'student' => $student,
             'programs' => $programs
         ]);

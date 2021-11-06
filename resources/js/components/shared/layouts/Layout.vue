@@ -81,3 +81,8 @@ export default {
 };
 </script>
 
+<style>
+.nav-item {
+	@apply my-2;
+}
+</style>

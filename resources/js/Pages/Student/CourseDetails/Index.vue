@@ -1,8 +1,6 @@
 <template>
 	<main>
-		<section
-			class="bg-white rounded-md shadow overflow-hidden max-w-3xl flex p-4"
-		>
+		<section>
 			<div v-if="student.program">
 				<p>Currently Enrolled in: {{ student.program.program_name }}</p>
 			</div>

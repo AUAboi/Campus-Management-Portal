@@ -33,8 +33,11 @@ files.keys().map(key =>
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 import { createInertiaApp } from "@inertiajs/inertia-vue";
+
+//Layouts
 import Layout from "./components/shared/layouts/Layout";
 import AppAdminMenu from "./components/admin/layouts/AppAdminMenu";
+import AppStudentMenu from "./components/student/layouts/AppStudentMenu";
 
 import PortalVue from "portal-vue";
 
@@ -51,7 +54,7 @@ createInertiaApp({
             if (name.startsWith("Admin")) {
                 page.layout = [Layout, AppAdminMenu];
             } else if (name.startsWith("Student")) {
-                page.layout = [Layout];
+                page.layout = [Layout, AppStudentMenu];
             }
         }
 

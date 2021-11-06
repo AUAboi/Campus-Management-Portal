@@ -1,9 +1,9 @@
 <template>
-	<main>
+	<div>
 		<Head title="Student - Dashboard" />
-		<H1>Welcome, user!</H1>
+		<h1>Welcome, user!</h1>
 		<p>Hello welcome to your first Inertia app!</p>
-	</main>
+	</div>
 </template>
 
 <script>

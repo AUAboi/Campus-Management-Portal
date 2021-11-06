@@ -18,7 +18,7 @@ class ProfileController extends Controller
     {
         $user = User::with('student')->findOrFail($request->user()->id);
 
-        return  Inertia::render('Student/ProfilePage', [
+        return  Inertia::render('Student/Profile/Index', [
             'user' => $user,
         ]);
     }

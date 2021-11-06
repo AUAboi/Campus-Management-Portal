@@ -1,11 +1,20 @@
 <template>
 	<div>
-		This is dashboard admin!
+		<Head title="Admin - Dashboard" />
+		<p>
+			This is dashboard admin!
+		</p>
 	</div>
 </template>
 
 <script>
-export default {};
+import { Head } from "@inertiajs/inertia-vue";
+
+export default {
+	components: {
+		Head
+	}
+};
 </script>
 
 <style>
