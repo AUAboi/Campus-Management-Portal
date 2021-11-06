@@ -36,14 +36,14 @@ Route::get('/test', [TestController::class, 'index']);
 Route::group(['middleware' => ['role:admin']], function () {
   Route::prefix('admin')->group(function () {
     //Dashboard
-    Route::inertia('/dashboard', 'Admin/Dashboard/Index');
+    Route::inertia('/dashboard', 'Admin/Dashboard/Index')->name('admin.dashboard');
 
     //Profile
-    Route::get('/profile', [App\Http\Controllers\Admin\ProfileController::class, 'index']);
+    Route::get('/profile', [App\Http\Controllers\Admin\ProfileController::class, 'index'])->name('admin.profile');
 
     //Faculties
-    Route::get('/faculties', [FacultyController::class, 'index']);
-    Route::get('/faculties/create', [FacultyController::class, 'create']);
+    Route::get('/faculties', [FacultyController::class, 'index'])->name('admin.faculties');
+    Route::get('/faculties/create', [FacultyController::class, 'create'])->name('admin.faculties.create');
   });
 });
 

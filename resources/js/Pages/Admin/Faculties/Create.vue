@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<h1 class="mb-8 font-bold text-3xl">
-			<Link class="text-indigo-400 hover:text-indigo-600" href=""
+			<Link class="text-indigo-400 hover:text-indigo-600" :href="$route('admin.faculties')"
 				>Faculites</Link
 			>
 			<span class="text-indigo-400 font-medium">/</span> Create

@@ -4,7 +4,7 @@
 			<Link
 				:class="{ 'text-white': isUrl('dashboard') }"
 				class="m-2"
-				href="./dashboard"
+				:href="$route('admin.dashboard')"
 				>Dashboard</Link
 			>
 		</div>
@@ -12,7 +12,7 @@
 			<Link
 				:class="{ 'text-white': isUrl('profile') }"
 				class="m-2"
-				href="./profile"
+				:href="$route('admin.profile')"
 				>Profile</Link
 			>
 		</div>
@@ -20,7 +20,7 @@
 			<Link
 				:class="{ 'text-white': isUrl('faculties') }"
 				class="m-2"
-				href="./faculties"
+				:href="$route('admin.faculties')"
 				>Faculties</Link
 			>
 		</div>

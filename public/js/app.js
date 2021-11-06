@@ -15833,7 +15833,7 @@ var render = function() {
           "Link",
           {
             staticClass: "text-indigo-400 hover:text-indigo-600",
-            attrs: { href: "" }
+            attrs: { href: _vm.$route("admin.faculties") }
           },
           [_vm._v("Faculites")]
         ),
@@ -15951,7 +15951,7 @@ var render = function() {
           {
             staticClass:
               "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
-            attrs: { as: "button", href: "./faculties/create" }
+            attrs: { as: "button", href: _vm.$route("admin.faculties") }
           },
           [
             _c("span", [_vm._v("Create")]),
@@ -16499,7 +16499,7 @@ var render = function() {
             {
               staticClass: "m-2",
               class: { "text-white": _vm.isUrl("dashboard") },
-              attrs: { href: "./dashboard" }
+              attrs: { href: _vm.$route("admin.dashboard") }
             },
             [_vm._v("Dashboard")]
           )
@@ -16516,7 +16516,7 @@ var render = function() {
             {
               staticClass: "m-2",
               class: { "text-white": _vm.isUrl("profile") },
-              attrs: { href: "./profile" }
+              attrs: { href: _vm.$route("admin.profile") }
             },
             [_vm._v("Profile")]
           )
@@ -16533,7 +16533,7 @@ var render = function() {
             {
               staticClass: "m-2",
               class: { "text-white": _vm.isUrl("faculties") },
-              attrs: { href: "./faculties" }
+              attrs: { href: _vm.$route("admin.faculties") }
             },
             [_vm._v("Faculties")]
           )
