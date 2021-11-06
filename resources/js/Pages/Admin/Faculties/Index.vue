@@ -36,13 +36,19 @@
 					<td class="border-t">
 						<Link
 							class="px-6 py-4 flex items-center focus:text-indigo-500"
-							href="#"
+							:href="$route('admin.faculties.edit', faculty.id)"
 						>
 							{{ faculty.faculty_name }}
 						</Link>
 					</td>
 					<td class="border-t w-px">
-						<Link class="px-4 flex items-center" href="#" tabindex="-1"> </Link>
+						<Link
+							class="px-4 flex items-center"
+							:href="$route('admin.faculties.edit', faculty.id)"
+							tabindex="-1"
+						>
+							<i class="fas fa-angle-right"></i
+						></Link>
 					</td>
 				</tr>
 				<tr v-if="faculties.length === 0">

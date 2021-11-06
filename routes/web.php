@@ -44,6 +44,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     //Faculties
     Route::get('/faculties', [FacultyController::class, 'index'])->name('admin.faculties');
     Route::get('/faculties/create', [FacultyController::class, 'create'])->name('admin.faculties.create');
+    Route::get('/faculties/{faculty}/edit', [FacultyController::class, 'edit'])->name('admin.faculties.edit');
 
     Route::post('/faculties/create', [FacultyController::class, 'store'])->name('admin.faculties.store');
   });
