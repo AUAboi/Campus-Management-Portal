@@ -1,5 +1,7 @@
 <template>
 	<div>
+		<AppAdminHead title="Create Faculty" />
+
 		<h1 class="mb-8 font-bold text-3xl">
 			<Link
 				class="text-indigo-400 hover:text-indigo-600"
@@ -9,7 +11,7 @@
 			<span class="text-indigo-400 font-medium">/</span> Create
 		</h1>
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
-			<form @submit.prevent="store">
+			<form class="m-0" @submit.prevent="store">
 				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block">Faculty Name: </label>

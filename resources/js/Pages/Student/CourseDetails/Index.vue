@@ -1,5 +1,7 @@
 <template>
 	<main>
+		<AppAdminHead title="Course Details - Student" />
+
 		<section>
 			<div v-if="student.program">
 				<p>Currently Enrolled in: {{ student.program.program_name }}</p>

@@ -2181,6 +2181,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2265,14 +2267,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  metaInfo: function metaInfo() {
-    return {
-      title: this.faculty.faculty_name
-    };
-  },
   components: {
+    Head: _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.Head,
     Link: _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.Link
   },
   props: {
@@ -2314,6 +2313,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
+//
+//
 //
 //
 //
@@ -2490,6 +2491,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -2562,6 +2565,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2588,6 +2592,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
+//
+//
 //
 //
 //
@@ -2692,6 +2698,37 @@ __webpack_require__.r(__webpack_exports__);
         remember: false
       })
     };
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/layouts/AppAdminHead.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/layouts/AppAdminHead.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    Head: _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.Head
+  },
+  props: {
+    title: String
   }
 });
 
@@ -15072,6 +15109,45 @@ component.options.__file = "resources/js/Pages/User/LoginPage.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/layouts/AppAdminHead.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/admin/layouts/AppAdminHead.vue ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _AppAdminHead_vue_vue_type_template_id_069919df___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AppAdminHead.vue?vue&type=template&id=069919df& */ "./resources/js/components/admin/layouts/AppAdminHead.vue?vue&type=template&id=069919df&");
+/* harmony import */ var _AppAdminHead_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AppAdminHead.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/layouts/AppAdminHead.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AppAdminHead_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AppAdminHead_vue_vue_type_template_id_069919df___WEBPACK_IMPORTED_MODULE_0__.render,
+  _AppAdminHead_vue_vue_type_template_id_069919df___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/layouts/AppAdminHead.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/layouts/AppAdminMenu.vue":
 /*!****************************************************************!*\
   !*** ./resources/js/components/admin/layouts/AppAdminMenu.vue ***!
@@ -15619,6 +15695,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/layouts/AppAdminHead.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/admin/layouts/AppAdminHead.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AppAdminHead_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AppAdminHead.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/layouts/AppAdminHead.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AppAdminHead_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/layouts/AppAdminMenu.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************!*\
   !*** ./resources/js/components/admin/layouts/AppAdminMenu.vue?vue&type=script&lang=js& ***!
@@ -15946,6 +16038,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/layouts/AppAdminHead.vue?vue&type=template&id=069919df&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/admin/layouts/AppAdminHead.vue?vue&type=template&id=069919df& ***!
+  \***********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AppAdminHead_vue_vue_type_template_id_069919df___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AppAdminHead_vue_vue_type_template_id_069919df___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AppAdminHead_vue_vue_type_template_id_069919df___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AppAdminHead.vue?vue&type=template&id=069919df& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/layouts/AppAdminHead.vue?vue&type=template&id=069919df&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/layouts/AppAdminMenu.vue?vue&type=template&id=251d89de&":
 /*!***********************************************************************************************!*\
   !*** ./resources/js/components/admin/layouts/AppAdminMenu.vue?vue&type=template&id=251d89de& ***!
@@ -16118,7 +16227,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("Head", { attrs: { title: "Admin - Dashboard" } }),
+      _c("Head", { attrs: { title: "Dashboard - Admin" } }),
       _vm._v(" "),
       _c("p", [_vm._v("\n\t\tThis is dashboard admin!\n\t")])
     ],
@@ -16148,96 +16257,103 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "h1",
-      { staticClass: "mb-8 font-bold text-3xl" },
-      [
-        _c(
-          "Link",
-          {
-            staticClass: "text-indigo-400 hover:text-indigo-600",
-            attrs: { href: _vm.$route("admin.faculties") }
-          },
-          [_vm._v("Faculites")]
-        ),
-        _vm._v(" "),
-        _c("span", { staticClass: "text-indigo-400 font-medium" }, [
-          _vm._v("/")
-        ]),
-        _vm._v(" Create\n\t")
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "bg-white rounded-md shadow overflow-hidden max-w-3xl" },
-      [
-        _c(
-          "form",
-          {
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.store.apply(null, arguments)
+  return _c(
+    "div",
+    [
+      _c("AppAdminHead", { attrs: { title: "Create Faculty" } }),
+      _vm._v(" "),
+      _c(
+        "h1",
+        { staticClass: "mb-8 font-bold text-3xl" },
+        [
+          _c(
+            "Link",
+            {
+              staticClass: "text-indigo-400 hover:text-indigo-600",
+              attrs: { href: _vm.$route("admin.faculties") }
+            },
+            [_vm._v("Faculites")]
+          ),
+          _vm._v(" "),
+          _c("span", { staticClass: "text-indigo-400 font-medium" }, [
+            _vm._v("/")
+          ]),
+          _vm._v(" Create\n\t")
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "bg-white rounded-md shadow overflow-hidden max-w-3xl" },
+        [
+          _c(
+            "form",
+            {
+              staticClass: "m-0",
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.store.apply(null, arguments)
+                }
               }
-            }
-          },
-          [
-            _c("div", { staticClass: "p-8 -mr-6 -mb-8 flex flex-wrap" }, [
-              _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
-                _c("label", { staticClass: "block" }, [
-                  _vm._v("Faculty Name: ")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.faculty_name,
-                      expression: "form.faculty_name"
-                    }
-                  ],
-                  staticClass: "border-2 border-gray-300 w-full p-2 my-1",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.form.faculty_name },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+            },
+            [
+              _c("div", { staticClass: "p-8 -mr-6 -mb-8 flex flex-wrap" }, [
+                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
+                  _c("label", { staticClass: "block" }, [
+                    _vm._v("Faculty Name: ")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.faculty_name,
+                        expression: "form.faculty_name"
                       }
-                      _vm.$set(_vm.form, "faculty_name", $event.target.value)
+                    ],
+                    staticClass: "border-2 border-gray-300 w-full p-2 my-1",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.form.faculty_name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "faculty_name", $event.target.value)
+                      }
                     }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center"
-              },
-              [
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
-                    attrs: { disabled: _vm.form.processing, type: "submit" }
-                  },
-                  [_vm._v("\n\t\t\t\t\tCreate Organization\n\t\t\t\t")]
-                )
-              ]
-            )
-          ]
-        )
-      ]
-    )
-  ])
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center"
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
+                      attrs: { disabled: _vm.form.processing, type: "submit" }
+                    },
+                    [_vm._v("\n\t\t\t\t\tCreate Organization\n\t\t\t\t")]
+                  )
+                ]
+              )
+            ]
+          )
+        ]
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -16262,128 +16378,137 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "h1",
-      { staticClass: "mb-8 font-bold text-3xl" },
-      [
-        _c(
-          "Link",
-          {
-            staticClass: "text-indigo-400 hover:text-indigo-600",
-            attrs: { href: _vm.$route("admin.faculties") }
-          },
-          [_vm._v("Faculites")]
-        ),
-        _vm._v(" "),
-        _c("span", { staticClass: "text-indigo-400 font-medium" }, [
-          _vm._v("/")
-        ]),
-        _vm._v("\n\t\t" + _vm._s(_vm.faculty.faculty_name) + "\n\t")
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "bg-white rounded-md shadow overflow-hidden max-w-3xl" },
-      [
-        _c(
-          "form",
-          {
-            attrs: { id: "update-form" },
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.update.apply(null, arguments)
+  return _c(
+    "div",
+    [
+      _c("AppAdminHead", { attrs: { title: _vm.faculty.faculty_name } }),
+      _vm._v(" "),
+      _c(
+        "h1",
+        { staticClass: "mb-8 font-bold text-3xl" },
+        [
+          _c(
+            "Link",
+            {
+              staticClass: "text-indigo-400 hover:text-indigo-600",
+              attrs: { href: _vm.$route("admin.faculties") }
+            },
+            [_vm._v("Faculites")]
+          ),
+          _vm._v(" "),
+          _c("span", { staticClass: "text-indigo-400 font-medium" }, [
+            _vm._v("/")
+          ]),
+          _vm._v("\n\t\t" + _vm._s(_vm.faculty.faculty_name) + "\n\t")
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "bg-white rounded-md shadow overflow-hidden max-w-3xl" },
+        [
+          _c(
+            "form",
+            {
+              staticClass: "m-0",
+              attrs: { id: "update-form" },
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.update.apply(null, arguments)
+                }
               }
-            }
-          },
-          [
-            _c("div", { staticClass: "p-8 -mr-6 -mb-8 flex flex-wrap" }, [
-              _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
-                _c("label", { staticClass: "block" }, [
-                  _vm._v("Faculty Name: ")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.faculty_name,
-                      expression: "form.faculty_name"
-                    }
-                  ],
-                  staticClass: "border-2 border-gray-300 w-full p-2 my-1",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.form.faculty_name },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.form, "faculty_name", $event.target.value)
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center"
-              },
-              [
-                _c(
-                  "form",
-                  {
-                    attrs: { id: "delete-from" },
-                    on: {
-                      submit: function($event) {
-                        $event.preventDefault()
-                        return _vm.destroy.apply(null, arguments)
-                      }
-                    }
-                  },
-                  [
-                    _c(
-                      "button",
+            },
+            [
+              _c("div", { staticClass: "p-8 -mr-6 -mb-8 flex flex-wrap" }, [
+                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
+                  _c("label", { staticClass: "block" }, [
+                    _vm._v("Faculty Name: ")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
                       {
-                        staticClass: "hover:underline text-red-600 ",
-                        attrs: {
-                          form: "delete-from",
-                          disabled: _vm.form.processing,
-                          type: "submit"
-                        }
-                      },
-                      [_vm._v("\n\t\t\t\t\t\tDelete Faculty\n\t\t\t\t\t")]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.faculty_name,
+                        expression: "form.faculty_name"
+                      }
+                    ],
                     staticClass:
-                      "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
-                    attrs: {
-                      form: "update-form",
-                      disabled: _vm.form.processing,
-                      type: "submit"
+                      "border border-gray-300 w-full p-2 my-1 rounded-sm",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.form.faculty_name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "faculty_name", $event.target.value)
+                      }
                     }
-                  },
-                  [_vm._v("\n\t\t\t\t\tUpdate Organization\n\t\t\t\t")]
-                )
-              ]
-            )
-          ]
-        )
-      ]
-    )
-  ])
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center"
+                },
+                [
+                  _c(
+                    "form",
+                    {
+                      staticClass: "m-0",
+                      attrs: { id: "delete-from" },
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          return _vm.destroy.apply(null, arguments)
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "hover:underline text-red-600 ",
+                          attrs: {
+                            form: "delete-from",
+                            disabled: _vm.form.processing,
+                            type: "submit"
+                          }
+                        },
+                        [_vm._v("\n\t\t\t\t\t\tDelete Faculty\n\t\t\t\t\t")]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
+                      attrs: {
+                        form: "update-form",
+                        disabled: _vm.form.processing,
+                        type: "submit"
+                      }
+                    },
+                    [_vm._v("\n\t\t\t\t\tUpdate Organization\n\t\t\t\t")]
+                  )
+                ]
+              )
+            ]
+          )
+        ]
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -16408,109 +16533,125 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h1", { staticClass: "mb-8 font-bold text-3xl" }, [_vm._v("Faculties")]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "mb-6 flex justify-between items-center" },
-      [
-        _c(
-          "Link",
-          {
-            staticClass:
-              "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
-            attrs: { as: "button", href: _vm.$route("admin.faculties.create") }
-          },
-          [
-            _c("span", [_vm._v("Create")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "hidden md:inline" }, [_vm._v("faculty")])
-          ]
-        )
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "bg-white rounded-md shadow overflow-x-auto" }, [
+  return _c(
+    "div",
+    [
+      _c("AppAdminHead", { attrs: { title: "Faculties" } }),
+      _vm._v(" "),
+      _c("h1", { staticClass: "mb-8 font-bold text-3xl" }, [
+        _vm._v("Faculties")
+      ]),
+      _vm._v(" "),
       _c(
-        "table",
-        { staticClass: "w-full whitespace-nowrap" },
+        "div",
+        { staticClass: "mb-6 flex justify-between items-center" },
         [
-          _vm._m(0),
-          _vm._v(" "),
-          _vm._l(_vm.faculties, function(faculty) {
-            return _c(
-              "tr",
-              {
-                key: faculty.id,
-                staticClass: "hover:bg-gray-100 focus-within:bg-gray-100"
-              },
-              [
-                _c(
-                  "td",
-                  { staticClass: "border-t" },
-                  [
-                    _c(
-                      "Link",
-                      {
-                        staticClass:
-                          "px-6 py-4 flex items-center focus:text-indigo-500",
-                        attrs: {
-                          href: _vm.$route("admin.faculties.edit", faculty.id)
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t" +
-                            _vm._s(faculty.faculty_name) +
-                            "\n\t\t\t\t\t"
-                        )
-                      ]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "td",
-                  { staticClass: "border-t w-px" },
-                  [
-                    _c(
-                      "Link",
-                      {
-                        staticClass: "px-4 flex items-center",
-                        attrs: {
-                          href: _vm.$route("admin.faculties.edit", faculty.id),
-                          tabindex: "-1"
-                        }
-                      },
-                      [_c("i", { staticClass: "fas fa-angle-right" })]
-                    )
-                  ],
-                  1
-                )
-              ]
-            )
-          }),
-          _vm._v(" "),
-          _vm.faculties.length === 0
-            ? _c("tr", [
-                _c(
-                  "td",
-                  {
-                    staticClass: "border-t px-6 py-4",
-                    attrs: { colspan: "4" }
-                  },
-                  [_vm._v("\n\t\t\t\t\tNo faculties found.\n\t\t\t\t")]
-                )
+          _c(
+            "Link",
+            {
+              staticClass:
+                "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
+              attrs: {
+                as: "button",
+                href: _vm.$route("admin.faculties.create")
+              }
+            },
+            [
+              _c("span", [_vm._v("Create")]),
+              _vm._v(" "),
+              _c("span", { staticClass: "hidden md:inline" }, [
+                _vm._v("faculty")
               ])
-            : _vm._e()
+            ]
+          )
         ],
-        2
-      )
-    ])
-  ])
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "bg-white rounded-md shadow overflow-x-auto" }, [
+        _c(
+          "table",
+          { staticClass: "w-full whitespace-nowrap" },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._l(_vm.faculties, function(faculty) {
+              return _c(
+                "tr",
+                {
+                  key: faculty.id,
+                  staticClass: "hover:bg-gray-100 focus-within:bg-gray-100"
+                },
+                [
+                  _c(
+                    "td",
+                    { staticClass: "border-t" },
+                    [
+                      _c(
+                        "Link",
+                        {
+                          staticClass:
+                            "px-6 py-4 flex items-center focus:text-indigo-500",
+                          attrs: {
+                            href: _vm.$route("admin.faculties.edit", faculty.id)
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n\t\t\t\t\t\t" +
+                              _vm._s(faculty.faculty_name) +
+                              "\n\t\t\t\t\t"
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    { staticClass: "border-t w-px" },
+                    [
+                      _c(
+                        "Link",
+                        {
+                          staticClass: "px-4 flex items-center",
+                          attrs: {
+                            href: _vm.$route(
+                              "admin.faculties.edit",
+                              faculty.id
+                            ),
+                            tabindex: "-1"
+                          }
+                        },
+                        [_c("i", { staticClass: "fas fa-angle-right" })]
+                      )
+                    ],
+                    1
+                  )
+                ]
+              )
+            }),
+            _vm._v(" "),
+            _vm.faculties.length === 0
+              ? _c("tr", [
+                  _c(
+                    "td",
+                    {
+                      staticClass: "border-t px-6 py-4",
+                      attrs: { colspan: "4" }
+                    },
+                    [_vm._v("\n\t\t\t\t\tNo faculties found.\n\t\t\t\t")]
+                  )
+                ])
+              : _vm._e()
+          ],
+          2
+        )
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -16547,7 +16688,7 @@ var render = function() {
   return _c(
     "main",
     [
-      _c("Head", { attrs: { title: "Admin - Profile" } }),
+      _c("Head", { attrs: { title: "Profile - Admin" } }),
       _vm._v(" "),
       _c(
         "section",
@@ -16623,75 +16764,81 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main", [
-    _c("section", [
-      _vm.student.program
-        ? _c("div", [
-            _c("p", [
-              _vm._v(
-                "Currently Enrolled in: " +
-                  _vm._s(_vm.student.program.program_name)
+  return _c(
+    "main",
+    [
+      _c("AppAdminHead", { attrs: { title: "Course Details - Student" } }),
+      _vm._v(" "),
+      _c("section", [
+        _vm.student.program
+          ? _c("div", [
+              _c("p", [
+                _vm._v(
+                  "Currently Enrolled in: " +
+                    _vm._s(_vm.student.program.program_name)
+                )
+              ])
+            ])
+          : _c("div", [
+              _c("h1", [_vm._v("Enroll Now")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.selectedProgram,
+                      expression: "selectedProgram"
+                    }
+                  ],
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.selectedProgram = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [
+                    _vm._v("Select any program")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.programs, function(program) {
+                    return _c(
+                      "option",
+                      { key: program.id, domProps: { value: program.id } },
+                      [_vm._v(_vm._s(program.program_name))]
+                    )
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "border-2 border-black p-2 m-2",
+                  attrs: { type: "submit" },
+                  on: { click: _vm.enrollInProgram }
+                },
+                [_vm._v("\n\t\t\t\tEnroll\n\t\t\t")]
               )
             ])
-          ])
-        : _c("div", [
-            _c("h1", [_vm._v("Enroll Now")]),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.selectedProgram,
-                    expression: "selectedProgram"
-                  }
-                ],
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.selectedProgram = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  }
-                }
-              },
-              [
-                _c("option", { attrs: { value: "" } }, [
-                  _vm._v("Select any program")
-                ]),
-                _vm._v(" "),
-                _vm._l(_vm.programs, function(program) {
-                  return _c(
-                    "option",
-                    { key: program.id, domProps: { value: program.id } },
-                    [_vm._v(_vm._s(program.program_name))]
-                  )
-                })
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "border-2 border-black p-2 m-2",
-                attrs: { type: "submit" },
-                on: { click: _vm.enrollInProgram }
-              },
-              [_vm._v("\n\t\t\t\tEnroll\n\t\t\t")]
-            )
-          ])
-    ])
-  ])
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -16720,7 +16867,7 @@ var render = function() {
     "div",
     { staticClass: "bg-white rounded-md shadow overflow-hidden max-w-3xl " },
     [
-      _c("Head", { attrs: { title: "Student - Dashboard" } }),
+      _c("AppAdminHead", { attrs: { title: "Dashboard - Student" } }),
       _vm._v(" "),
       _c("h1", [_vm._v("Welcome, " + _vm._s(_vm.user.name))]),
       _vm._v(" "),
@@ -16754,7 +16901,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "main",
-    [_c("AppStudentProfileCard", { attrs: { user: _vm.user } })],
+    [
+      _c("AppAdminHead", { attrs: { title: "Profile - Student" } }),
+      _vm._v(" "),
+      _c("AppStudentProfileCard", { attrs: { user: _vm.user } })
+    ],
     1
   )
 }
@@ -16939,6 +17090,36 @@ var render = function() {
         ]
       )
     ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/layouts/AppAdminHead.vue?vue&type=template&id=069919df&":
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/layouts/AppAdminHead.vue?vue&type=template&id=069919df& ***!
+  \**************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "Head",
+    { attrs: { title: _vm.title ? _vm.title + " - Admin" : "CMS - Admin" } },
+    [_vm._t("default")],
+    2
   )
 }
 var staticRenderFns = []
@@ -30210,6 +30391,7 @@ var map = {
 	"./Pages/Student/Profile/Index.vue": "./resources/js/Pages/Student/Profile/Index.vue",
 	"./Pages/Test.vue": "./resources/js/Pages/Test.vue",
 	"./Pages/User/LoginPage.vue": "./resources/js/Pages/User/LoginPage.vue",
+	"./components/admin/layouts/AppAdminHead.vue": "./resources/js/components/admin/layouts/AppAdminHead.vue",
 	"./components/admin/layouts/AppAdminMenu.vue": "./resources/js/components/admin/layouts/AppAdminMenu.vue",
 	"./components/shared/AppDataTable.vue": "./resources/js/components/shared/AppDataTable.vue",
 	"./components/shared/AppDropdown.vue": "./resources/js/components/shared/AppDropdown.vue",

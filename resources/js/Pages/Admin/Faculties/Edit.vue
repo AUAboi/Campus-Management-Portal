@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<AppAdminHead :title="faculty.faculty_name" />
 		<h1 class="mb-8 font-bold text-3xl">
 			<Link
 				class="text-indigo-400 hover:text-indigo-600"
@@ -10,21 +11,21 @@
 			{{ faculty.faculty_name }}
 		</h1>
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
-			<form @submit.prevent="update" id="update-form">
+			<form @submit.prevent="update" id="update-form" class="m-0">
 				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block">Faculty Name: </label>
 						<input
 							type="text"
 							v-model="form.faculty_name"
-							class="border-2 border-gray-300 w-full p-2 my-1"
+							class="border border-gray-300 w-full p-2 my-1 rounded-sm"
 						/>
 					</div>
 				</div>
 				<div
 					class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center"
 				>
-					<form @submit.prevent="destroy" id="delete-from">
+					<form @submit.prevent="destroy" id="delete-from" class="m-0">
 						<button
 							form="delete-from"
 							:disabled="form.processing"
@@ -50,13 +51,11 @@
 </template>
 
 <script>
-import { Link } from "@inertiajs/inertia-vue";
+import { Head, Link } from "@inertiajs/inertia-vue";
 
 export default {
-	metaInfo() {
-		return { title: this.faculty.faculty_name };
-	},
 	components: {
+		Head,
 		Link
 	},
 	props: {

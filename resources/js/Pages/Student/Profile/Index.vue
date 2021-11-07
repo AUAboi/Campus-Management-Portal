@@ -1,5 +1,7 @@
 <template>
 	<main>
+		<AppAdminHead title="Profile - Student" />
+
 		<AppStudentProfileCard :user="user" />
 	</main>
 </template>

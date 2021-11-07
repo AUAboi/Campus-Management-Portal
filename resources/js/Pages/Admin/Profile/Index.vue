@@ -1,6 +1,6 @@
 <template>
 	<main>
-		<Head title="Admin - Profile" />
+		<Head title="Profile - Admin" />
 		<section class="bg-white rounded-md shadow overflow-hidden max-w-3xl flex">
 			<AppUserAvatar :avatar="user.avatar" />
 			<div class="p-4">
