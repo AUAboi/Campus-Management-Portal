@@ -15,11 +15,12 @@ class FacultyController extends Controller
         $this->middleware(['role:admin']);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $faculties = Faculty::all()->sortBy('faculty_name');
+        $filters = $request->all('search');
+        $faculties = Faculty::where('faculty_name', 'LIKE', '%' . $request->search . "%")->orderBy('faculty_name')->paginate(5)->withQueryString();
 
-        return Inertia::render("Admin/Faculties/Index", ['faculties' => $faculties]);
+        return Inertia::render("Admin/Faculties/Index", ['faculties' => $faculties, 'filters' => $filters]);
     }
 
     public function create()

@@ -15,11 +15,7 @@
 				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block">Faculty Name: </label>
-						<input
-							type="text"
-							v-model="form.faculty_name"
-							class="border-2 border-gray-300 w-full p-2 my-1"
-						/>
+						<input type="text" v-model="form.faculty_name" class="form_input" />
 					</div>
 				</div>
 				<div
@@ -30,7 +26,7 @@
 						type="submit"
 						class="bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md"
 					>
-						Create Organization
+						Create Faculty
 					</button>
 				</div>
 			</form>

@@ -15,11 +15,7 @@
 				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block">Faculty Name: </label>
-						<input
-							type="text"
-							v-model="form.faculty_name"
-							class="border border-gray-300 w-full p-2 my-1 rounded-sm"
-						/>
+						<input type="text" v-model="form.faculty_name" class="form_input" />
 					</div>
 				</div>
 				<div
