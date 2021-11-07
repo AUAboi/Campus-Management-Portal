@@ -40,19 +40,13 @@ export default {
 		Link
 	},
 	methods: {
-		isUrl(url) {
+		isUrl(...urls) {
 			let currentUrl = this.$page.url.substr(1);
-			let arr = currentUrl.split("/");
-
-			let isCurrent = false;
-			arr.forEach(function(part) {
-				if (part === url) {
-					isCurrent = true;
-					return;
-				}
-			});
-
-			return isCurrent;
+			currentUrl = currentUrl.replace("admin/", "");
+			if (urls[0] === "") {
+				return currentUrl === "";
+			}
+			return urls.filter(url => currentUrl.startsWith(url)).length;
 		}
 	}
 };

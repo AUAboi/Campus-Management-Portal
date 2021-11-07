@@ -2309,6 +2309,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash_throttle__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_throttle__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var lodash_pickBy__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash/pickBy */ "./node_modules/lodash/pickBy.js");
 /* harmony import */ var lodash_pickBy__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_pickBy__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var lodash_mapValues__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash/mapValues */ "./node_modules/lodash/mapValues.js");
+/* harmony import */ var lodash_mapValues__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash_mapValues__WEBPACK_IMPORTED_MODULE_3__);
 //
 //
 //
@@ -2366,6 +2368,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
 
 
 
@@ -2377,12 +2383,22 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
+  components: {
+    Link: _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.Link
+  },
   props: {
     filters: {
       type: Object
     },
     faculties: {
       required: false
+    }
+  },
+  methods: {
+    reset: function reset() {
+      this.form = lodash_mapValues__WEBPACK_IMPORTED_MODULE_3___default()(this.form, function () {
+        return null;
+      });
     }
   },
   watch: {
@@ -2394,9 +2410,6 @@ __webpack_require__.r(__webpack_exports__);
         });
       }, 150)
     }
-  },
-  components: {
-    Link: _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.Link
   }
 });
 
@@ -2796,17 +2809,21 @@ __webpack_require__.r(__webpack_exports__);
     Link: _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.Link
   },
   methods: {
-    isUrl: function isUrl(url) {
+    isUrl: function isUrl() {
       var currentUrl = this.$page.url.substr(1);
-      var arr = currentUrl.split("/");
-      var isCurrent = false;
-      arr.forEach(function (part) {
-        if (part === url) {
-          isCurrent = true;
-          return;
-        }
-      });
-      return isCurrent;
+      currentUrl = currentUrl.replace("admin/", "");
+
+      for (var _len = arguments.length, urls = new Array(_len), _key = 0; _key < _len; _key++) {
+        urls[_key] = arguments[_key];
+      }
+
+      if (urls[0] === "") {
+        return currentUrl === "";
+      }
+
+      return urls.filter(function (url) {
+        return currentUrl.startsWith(url);
+      }).length;
     }
   }
 });
@@ -3379,8 +3396,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
 //
 //
 //
@@ -8700,6 +8715,58 @@ module.exports = baseAssignValue;
 
 /***/ }),
 
+/***/ "./node_modules/lodash/_baseFor.js":
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/_baseFor.js ***!
+  \*****************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var createBaseFor = __webpack_require__(/*! ./_createBaseFor */ "./node_modules/lodash/_createBaseFor.js");
+
+/**
+ * The base implementation of `baseForOwn` which iterates over `object`
+ * properties returned by `keysFunc` and invokes `iteratee` for each property.
+ * Iteratee functions may exit iteration early by explicitly returning `false`.
+ *
+ * @private
+ * @param {Object} object The object to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @param {Function} keysFunc The function to get the keys of `object`.
+ * @returns {Object} Returns `object`.
+ */
+var baseFor = createBaseFor();
+
+module.exports = baseFor;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_baseForOwn.js":
+/*!********************************************!*\
+  !*** ./node_modules/lodash/_baseForOwn.js ***!
+  \********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var baseFor = __webpack_require__(/*! ./_baseFor */ "./node_modules/lodash/_baseFor.js"),
+    keys = __webpack_require__(/*! ./keys */ "./node_modules/lodash/keys.js");
+
+/**
+ * The base implementation of `_.forOwn` without support for iteratee shorthands.
+ *
+ * @private
+ * @param {Object} object The object to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Object} Returns `object`.
+ */
+function baseForOwn(object, iteratee) {
+  return object && baseFor(object, iteratee, keys);
+}
+
+module.exports = baseForOwn;
+
+
+/***/ }),
+
 /***/ "./node_modules/lodash/_baseGet.js":
 /*!*****************************************!*\
   !*** ./node_modules/lodash/_baseGet.js ***!
@@ -9729,6 +9796,41 @@ var root = __webpack_require__(/*! ./_root */ "./node_modules/lodash/_root.js");
 var coreJsData = root['__core-js_shared__'];
 
 module.exports = coreJsData;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_createBaseFor.js":
+/*!***********************************************!*\
+  !*** ./node_modules/lodash/_createBaseFor.js ***!
+  \***********************************************/
+/***/ ((module) => {
+
+/**
+ * Creates a base function for methods like `_.forIn` and `_.forOwn`.
+ *
+ * @private
+ * @param {boolean} [fromRight] Specify iterating from right to left.
+ * @returns {Function} Returns the new base function.
+ */
+function createBaseFor(fromRight) {
+  return function(object, iteratee, keysFunc) {
+    var index = -1,
+        iterable = Object(object),
+        props = keysFunc(object),
+        length = props.length;
+
+    while (length--) {
+      var key = props[fromRight ? length : ++index];
+      if (iteratee(iterable[key], key, iterable) === false) {
+        break;
+      }
+    }
+    return object;
+  };
+}
+
+module.exports = createBaseFor;
 
 
 /***/ }),
@@ -12660,6 +12762,59 @@ function keysIn(object) {
 }
 
 module.exports = keysIn;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/mapValues.js":
+/*!******************************************!*\
+  !*** ./node_modules/lodash/mapValues.js ***!
+  \******************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var baseAssignValue = __webpack_require__(/*! ./_baseAssignValue */ "./node_modules/lodash/_baseAssignValue.js"),
+    baseForOwn = __webpack_require__(/*! ./_baseForOwn */ "./node_modules/lodash/_baseForOwn.js"),
+    baseIteratee = __webpack_require__(/*! ./_baseIteratee */ "./node_modules/lodash/_baseIteratee.js");
+
+/**
+ * Creates an object with the same keys as `object` and values generated
+ * by running each own enumerable string keyed property of `object` thru
+ * `iteratee`. The iteratee is invoked with three arguments:
+ * (value, key, object).
+ *
+ * @static
+ * @memberOf _
+ * @since 2.4.0
+ * @category Object
+ * @param {Object} object The object to iterate over.
+ * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+ * @returns {Object} Returns the new mapped object.
+ * @see _.mapKeys
+ * @example
+ *
+ * var users = {
+ *   'fred':    { 'user': 'fred',    'age': 40 },
+ *   'pebbles': { 'user': 'pebbles', 'age': 1 }
+ * };
+ *
+ * _.mapValues(users, function(o) { return o.age; });
+ * // => { 'fred': 40, 'pebbles': 1 } (iteration order is not guaranteed)
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.mapValues(users, 'age');
+ * // => { 'fred': 40, 'pebbles': 1 } (iteration order is not guaranteed)
+ */
+function mapValues(object, iteratee) {
+  var result = {};
+  iteratee = baseIteratee(iteratee, 3);
+
+  baseForOwn(object, function(value, key, object) {
+    baseAssignValue(result, key, iteratee(value, key, object));
+  });
+  return result;
+}
+
+module.exports = mapValues;
 
 
 /***/ }),
@@ -21827,6 +21982,7 @@ var render = function() {
         [
           _c("AppTableSearch", {
             staticClass: "w-full max-w-md mr-4",
+            on: { reset: _vm.reset },
             model: {
               value: _vm.form.search,
               callback: function($$v) {
@@ -21858,100 +22014,92 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "bg-white rounded-md shadow overflow-x-auto" },
-        [
-          _c(
-            "table",
-            { staticClass: "w-full whitespace-nowrap" },
-            [
-              _vm._m(0),
-              _vm._v(" "),
-              _vm._l(_vm.faculties.data, function(faculty) {
-                return _c(
-                  "tr",
-                  {
-                    key: faculty.id,
-                    staticClass: "hover:bg-gray-100 focus-within:bg-gray-100"
-                  },
-                  [
-                    _c(
-                      "td",
-                      { staticClass: "border-t" },
-                      [
-                        _c(
-                          "Link",
-                          {
-                            staticClass:
-                              "px-6 py-4 flex items-center focus:text-indigo-500",
-                            attrs: {
-                              href: _vm.$route(
-                                "admin.faculties.edit",
-                                faculty.id
-                              )
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n\t\t\t\t\t\t" +
-                                _vm._s(faculty.faculty_name) +
-                                "\n\t\t\t\t\t"
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "td",
-                      { staticClass: "border-t w-px" },
-                      [
-                        _c(
-                          "Link",
-                          {
-                            staticClass: "px-4 flex items-center",
-                            attrs: {
-                              href: _vm.$route(
-                                "admin.faculties.edit",
-                                faculty.id
-                              ),
-                              tabindex: "-1"
-                            }
-                          },
-                          [_c("i", { staticClass: "fas fa-angle-right" })]
-                        )
-                      ],
-                      1
-                    )
-                  ]
-                )
-              }),
-              _vm._v(" "),
-              _vm.faculties.data.length === 0
-                ? _c("tr", [
-                    _c(
-                      "td",
-                      {
-                        staticClass: "border-t px-6 py-4",
-                        attrs: { colspan: "4" }
-                      },
-                      [_vm._v("\n\t\t\t\t\tNo faculties found.\n\t\t\t\t")]
-                    )
-                  ])
-                : _vm._e()
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c("AppTablePagination", {
-            staticClass: "mt-6",
-            attrs: { links: _vm.faculties.links }
-          })
-        ],
-        1
-      )
+      _c("div", { staticClass: "bg-white rounded-md shadow overflow-x-auto" }, [
+        _c(
+          "table",
+          { staticClass: "w-full whitespace-nowrap" },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._l(_vm.faculties.data, function(faculty) {
+              return _c(
+                "tr",
+                {
+                  key: faculty.id,
+                  staticClass: "hover:bg-gray-100 focus-within:bg-gray-100"
+                },
+                [
+                  _c(
+                    "td",
+                    { staticClass: "border-t" },
+                    [
+                      _c(
+                        "Link",
+                        {
+                          staticClass:
+                            "px-6 py-4 flex items-center focus:text-indigo-500",
+                          attrs: {
+                            href: _vm.$route("admin.faculties.edit", faculty.id)
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n\t\t\t\t\t\t" +
+                              _vm._s(faculty.faculty_name) +
+                              "\n\t\t\t\t\t"
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    { staticClass: "border-t w-px" },
+                    [
+                      _c(
+                        "Link",
+                        {
+                          staticClass: "px-4 flex items-center",
+                          attrs: {
+                            href: _vm.$route(
+                              "admin.faculties.edit",
+                              faculty.id
+                            ),
+                            tabindex: "-1"
+                          }
+                        },
+                        [_c("i", { staticClass: "fas fa-angle-right" })]
+                      )
+                    ],
+                    1
+                  )
+                ]
+              )
+            }),
+            _vm._v(" "),
+            _vm.faculties.data.length === 0
+              ? _c("tr", [
+                  _c(
+                    "td",
+                    {
+                      staticClass: "border-t px-6 py-4",
+                      attrs: { colspan: "4" }
+                    },
+                    [_vm._v("\n\t\t\t\t\tNo faculties found.\n\t\t\t\t")]
+                  )
+                ])
+              : _vm._e()
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _c("AppTablePagination", {
+        staticClass: "mt-6",
+        attrs: { links: _vm.faculties.links }
+      })
     ],
     1
   )
@@ -23302,7 +23450,7 @@ var render = function() {
     ? _c("div", [
         _c(
           "div",
-          { staticClass: "flex flex-wrap -mb-1" },
+          { staticClass: "flex flex-wrap my-2 mx-4" },
           [
             _vm._l(_vm.links, function(link, key) {
               return [
@@ -23353,19 +23501,17 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "flex items-center" }, [
-    _c("div", { staticClass: "flex w-full bg-white shadow rounded" }, [
-      _c("input", {
-        staticClass: "relative w-full px-6 py-3 rounded-r focus:ring",
-        attrs: {
-          autocomplete: "off",
-          type: "text",
-          name: "search",
-          placeholder: "Search…"
-        },
-        domProps: { value: _vm.keyword },
-        on: { input: _vm.search }
-      })
-    ]),
+    _c("input", {
+      staticClass: "relative w-full px-6 py-3 rounded focus:ring",
+      attrs: {
+        autocomplete: "off",
+        type: "text",
+        name: "search",
+        placeholder: "Search…"
+      },
+      domProps: { value: _vm.keyword },
+      on: { input: _vm.search }
+    }),
     _vm._v(" "),
     _c(
       "button",
