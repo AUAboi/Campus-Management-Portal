@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    @apply bg-gray-100 h-full;
+}
+
 .form_input {
     @apply border border-gray-300 w-full p-2 my-1
         rounded;

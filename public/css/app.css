@@ -32220,6 +32220,12 @@ video {
   content: none;
 }
 
+html {
+  height: 100%;
+  --tw-bg-opacity: 1;
+  background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
+}
+
 .form_input {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;

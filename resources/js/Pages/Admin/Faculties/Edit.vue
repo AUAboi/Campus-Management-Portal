@@ -8,7 +8,7 @@
 				>Faculites</Link
 			>
 			<span class="text-indigo-400 font-medium">/</span>
-			{{ faculty.faculty_name }}
+			{{ form.faculty_name }}
 		</h1>
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form @submit.prevent="update" id="update-form" class="m-0">
@@ -16,6 +16,9 @@
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block">Faculty Name: </label>
 						<input type="text" v-model="form.faculty_name" class="form_input" />
+						<div class="text-red-600" v-if="form.errors.faculty_name">
+							{{ form.errors.faculty_name }}
+						</div>
 					</div>
 				</div>
 				<div
@@ -42,6 +45,44 @@
 					</button>
 				</div>
 			</form>
+		</div>
+		<h1 class="my-8 font-bold text-3xl">
+			Departments
+		</h1>
+		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
+			<table class="w-full whitespace-nowrap">
+				<tr class="text-left font-bold">
+					<th class="px-6 pt-6 pb-4">Name</th>
+				</tr>
+				<tr
+					v-for="department in faculty.departments"
+					:key="department.id"
+					class="hover:bg-gray-100 focus-within:bg-gray-100"
+				>
+					<td class="border-t">
+						<Link
+							class="px-6 py-4 flex items-center focus:text-indigo-500"
+							:href="$route('admin.departments.edit', department.id)"
+						>
+							{{ department.department_name }}
+						</Link>
+					</td>
+					<td class="border-t w-px">
+						<Link
+							class="px-4 flex items-center"
+							:href="$route('admin.departments.edit', department.id)"
+							tabindex="-1"
+						>
+							<i class="fas fa-angle-right text-gray-600"></i
+						></Link>
+					</td>
+				</tr>
+				<tr v-if="faculty.departments.length === 0">
+					<td class="border-t px-6 py-4" colspan="4">
+						No departments found.
+					</td>
+				</tr>
+			</table>
 		</div>
 	</div>
 </template>

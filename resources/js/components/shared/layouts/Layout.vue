@@ -59,9 +59,7 @@
 				<slot />
 			</nav>
 
-			<article
-				class="md:flex-1 px-4 py-8 md:p-12 md:overflow-y-auto bg-gray-100"
-			>
+			<article class="md:flex-1 px-4 py-8 md:p-12 md:overflow-y-auto ">
 				<AppFlashMessage />
 				<portal-target name="maincontent" />
 			</article>

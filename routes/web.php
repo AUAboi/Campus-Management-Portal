@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\FacultyController;
+use App\Http\Controllers\DepartmentController;
 use PHPUnit\Framework\Test;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -49,6 +50,11 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::post('/faculties/create', [FacultyController::class, 'store'])->name('admin.faculties.store');
     Route::put('/faculties/{faculty}/update', [FacultyController::class, 'update'])->name('admin.faculties.update');
     Route::delete('/faculties/{faculty}/delete', [FacultyController::class, 'destroy'])->name('admin.faculties.destroy');
+
+    //Departments
+    Route::get('/departments', [DepartmentController::class, 'index'])->name('admin.departments');
+    Route::get('/departments/create', [DepartmentController::class, 'create'])->name('admin.departments.create');
+    Route::get('/departments/{department}/edit', [DepartmentController::class, 'edit'])->name('admin.departments.edit');
   });
 });
 

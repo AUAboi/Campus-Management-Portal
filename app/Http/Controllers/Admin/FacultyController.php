@@ -30,7 +30,13 @@ class FacultyController extends Controller
 
     public function edit(Faculty $faculty)
     {
-        return Inertia::render("Admin/Faculties/Edit", ['faculty' => $faculty]);
+        return Inertia::render("Admin/Faculties/Edit", [
+            'faculty' => [
+                'id' => $faculty->id,
+                'faculty_name' => $faculty->faculty_name,
+                'departments' => $faculty->departments()->orderBy('department_name')->get()->map->only('id', 'department_name'),
+            ],
+        ]);
     }
 
     public function store(Request $request)

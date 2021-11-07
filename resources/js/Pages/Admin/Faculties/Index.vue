@@ -43,7 +43,7 @@
 							:href="$route('admin.faculties.edit', faculty.id)"
 							tabindex="-1"
 						>
-							<i class="fas fa-angle-right"></i
+							<i class="fas fa-angle-right text-gray-600"></i
 						></Link>
 					</td>
 				</tr>

@@ -16,6 +16,9 @@
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block">Faculty Name: </label>
 						<input type="text" v-model="form.faculty_name" class="form_input" />
+						<div class="text-red-600" v-if="form.errors.faculty_name">
+							{{ form.errors.faculty_name }}
+						</div>
 					</div>
 				</div>
 				<div
