@@ -1,6 +1,9 @@
 <template>
 	<main>
-		<Head title="Profile - Admin" />
+		<AppAdminHead title="Profile" />
+
+				<h1 class="mb-8 font-bold text-3xl">{{ user.name }}</h1>
+
 		<section class="bg-white rounded-md shadow overflow-hidden max-w-3xl flex">
 			<AppUserAvatar :avatar="user.avatar" />
 			<div class="p-4">
@@ -22,11 +25,7 @@
 </template>
 
 <script>
-import { Head } from "@inertiajs/inertia-vue";
 export default {
-	components: {
-		Head
-	},
 	props: {
 		user: {
 			required: true,
