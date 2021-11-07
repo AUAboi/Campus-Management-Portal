@@ -10,7 +10,7 @@
 			{{ faculty.faculty_name }}
 		</h1>
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
-			<form @submit.prevent="update">
+			<form @submit.prevent="update" id="update-form">
 				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block">Faculty Name: </label>
@@ -24,10 +24,19 @@
 				<div
 					class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center"
 				>
-					<button class="hover:underline text-red-600 " @click="destroy">
-						Delete Faculty
-					</button>
+					<form @submit.prevent="destroy" id="delete-from">
+						<button
+							form="delete-from"
+							:disabled="form.processing"
+							type="submit"
+							class="hover:underline text-red-600 "
+						>
+							Delete Faculty
+						</button>
+					</form>
+
 					<button
+						form="update-form"
 						:disabled="form.processing"
 						type="submit"
 						class="bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md"
@@ -45,7 +54,7 @@ import { Link } from "@inertiajs/inertia-vue";
 
 export default {
 	metaInfo() {
-		return { title: this.form.faculty_name };
+		return { title: this.faculty.faculty_name };
 	},
 	components: {
 		Link

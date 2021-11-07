@@ -2256,11 +2256,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   metaInfo: function metaInfo() {
     return {
-      title: this.form.faculty_name
+      title: this.faculty.faculty_name
     };
   },
   components: {
@@ -16282,6 +16291,7 @@ var render = function() {
         _c(
           "form",
           {
+            attrs: { id: "update-form" },
             on: {
               submit: function($event) {
                 $event.preventDefault()
@@ -16328,12 +16338,30 @@ var render = function() {
               },
               [
                 _c(
-                  "button",
+                  "form",
                   {
-                    staticClass: "hover:underline text-red-600 ",
-                    on: { click: _vm.destroy }
+                    attrs: { id: "delete-from" },
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.destroy.apply(null, arguments)
+                      }
+                    }
                   },
-                  [_vm._v("\n\t\t\t\t\tDelete Faculty\n\t\t\t\t")]
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "hover:underline text-red-600 ",
+                        attrs: {
+                          form: "delete-from",
+                          disabled: _vm.form.processing,
+                          type: "submit"
+                        }
+                      },
+                      [_vm._v("\n\t\t\t\t\t\tDelete Faculty\n\t\t\t\t\t")]
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 _c(
@@ -16341,7 +16369,11 @@ var render = function() {
                   {
                     staticClass:
                       "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
-                    attrs: { disabled: _vm.form.processing, type: "submit" }
+                    attrs: {
+                      form: "update-form",
+                      disabled: _vm.form.processing,
+                      type: "submit"
+                    }
                   },
                   [_vm._v("\n\t\t\t\t\tUpdate Organization\n\t\t\t\t")]
                 )
