@@ -57,6 +57,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/departments/{department}/edit', [DepartmentController::class, 'edit'])->name('admin.departments.edit');
 
     Route::post('/departments/create', [DepartmentController::class, 'store'])->name('admin.departments.store');
+    Route::put('/departments/{department}/update', [DepartmentController::class, 'update'])->name('admin.departments.update');
   });
 });
 

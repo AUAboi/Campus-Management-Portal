@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<AppAdminHead :title="faculty.faculty_name" />
+		<AppAdminHead :title="form.faculty_name" />
 		<h1 class="mb-8 font-bold text-3xl">
 			<Link
 				class="text-indigo-400 hover:text-indigo-600"
@@ -41,7 +41,7 @@
 						type="submit"
 						class="bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md"
 					>
-						Update Organization
+						Update Faculty
 					</button>
 				</div>
 			</form>
