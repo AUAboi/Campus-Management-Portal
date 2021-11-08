@@ -55,6 +55,8 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/departments', [DepartmentController::class, 'index'])->name('admin.departments');
     Route::get('/departments/create', [DepartmentController::class, 'create'])->name('admin.departments.create');
     Route::get('/departments/{department}/edit', [DepartmentController::class, 'edit'])->name('admin.departments.edit');
+
+    Route::post('/departments/create', [DepartmentController::class, 'store'])->name('admin.departments.store');
   });
 });
 

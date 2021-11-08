@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\Department;
+use App\Models\Faculty;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -24,7 +25,10 @@ class DepartmentController extends Controller
 
     public function create()
     {
-        return Inertia::render("Admin/Departments/Create");
+        $faculties = Faculty::select('faculty_name', 'id')->get();
+        return Inertia::render("Admin/Departments/Create", [
+            'faculties' => $faculties
+        ]);
     }
 
     public function edit(Department $department)
@@ -40,11 +44,15 @@ class DepartmentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'Department_name' => 'required|unique:Departments,Department_name',
+            'department_name' => 'required|unique:departments,department_name',
+            'faculty_id' => 'required'
         ]);
 
-        Department::create($request->only('Department_name'));
-        return Redirect::route('admin.Departments')->with('success', 'Department created.');
+        $faculty = Faculty::find($request->faculty_id);
+
+
+        $faculty->departments()->create($request->only('department_name'));
+        return Redirect::route('admin.departments')->with('success', 'Department created.');
     }
 
     public function update(Request $request, Department $department)
