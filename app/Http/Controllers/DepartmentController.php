@@ -19,7 +19,12 @@ class DepartmentController extends Controller
     {
         $filters = $request->all('search');
         $search = $request->search;
-        $departments = Department::where('department_name', 'LIKE', '%' . $search . "%")->with('faculty')->orderBy('department_name')->paginate(10)->withQueryString();
+        $departments =
+            Department::where('department_name', 'LIKE', '%' . $search . "%")
+            ->with('faculty')
+            ->orderBy('department_name')
+            ->paginate(10)
+            ->withQueryString();
 
 
         //To get result by faculty

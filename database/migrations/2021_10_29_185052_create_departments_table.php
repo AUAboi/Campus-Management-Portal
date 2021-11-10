@@ -15,9 +15,10 @@ class CreateDepartmentsTable extends Migration
     {
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('faculty_id')->references('id')->on('faculties')->constrained()->onDelete('cascade');
+
             $table->string("department_name");
             $table->string("department_link")->nullable();
-            $table->foreignId("faculty_id")->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -2346,7 +2346,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     destroy: function destroy() {
       if (confirm("Are you sure you want to delete this department?")) {
-        this.$inertia["delete"](this.$route("admin.departments.destroy", this.department.id));
+        this.$inertia["delete"](this.$route("admin.departments.destory", this.department.id));
       }
     }
   }
@@ -22725,7 +22725,11 @@ var render = function() {
                         [
                           _vm._v(
                             "\n\t\t\t\t\t\t" +
-                              _vm._s(department.faculty.faculty_name) +
+                              _vm._s(
+                                department.faculty
+                                  ? department.faculty.faculty_name
+                                  : "NA"
+                              ) +
                               "\n\t\t\t\t\t"
                           )
                         ]

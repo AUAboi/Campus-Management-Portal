@@ -43,7 +43,7 @@
 							class="px-6 py-4 flex items-center focus:text-indigo-500"
 							:href="$route('admin.departments.edit', department.id)"
 						>
-							{{ department.faculty.faculty_name }}
+							{{ department.faculty ? department.faculty.faculty_name : "NA" }}
 						</Link>
 					</td>
 					<td class="border-t w-px">
