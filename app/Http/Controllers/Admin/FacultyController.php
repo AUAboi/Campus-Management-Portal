@@ -7,20 +7,40 @@ use App\Models\Faculty;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
+use Spatie\Permission\Models\Permission;
 
 class FacultyController extends Controller
 {
     public function __construct()
     {
         $this->middleware(['auth', 'role:admin']);
+        $this->middleware('can:create faculties')->only(['create', 'store']);
+        $this->middleware('can:update,faculty')->only(['edit', 'update']);
+        $this->middleware('can:delete,faculty')->only(['destroy']);
     }
 
     public function index(Request $request)
     {
-        $filters = $request->all('search');
-        $faculties = Faculty::where('faculty_name', 'LIKE', '%' . $request->search . "%")->orderBy('faculty_name')->paginate(5)->withQueryString();
 
-        return Inertia::render("Admin/Faculties/Index", ['faculties' => $faculties, 'filters' => $filters]);
+        $user = auth()->user();
+
+        $filters = $request->all('search');
+
+        if ($user->hasRole('super admin')) {
+            $faculties = Faculty::orderBy('faculty_name')
+                ->filter($request->only('search'))
+                ->paginate(5)
+                ->withQueryString();
+        } else {
+            $faculties = $user->admin->faculties()->orderBy('faculty_name')
+                ->filter($request->only('search'))
+                ->paginate(5)
+                ->withQueryString();
+        }
+
+        return Inertia::render("Admin/Faculties/Index", ['faculties' => $faculties, 'filters' => $filters, 'permissions' => [
+            'create' => $user->can('create faculties'),
+        ]]);
     }
 
     public function create()
@@ -30,11 +50,15 @@ class FacultyController extends Controller
 
     public function edit(Faculty $faculty)
     {
+
         return Inertia::render("Admin/Faculties/Edit", [
             'faculty' => [
                 'id' => $faculty->id,
                 'faculty_name' => $faculty->faculty_name,
                 'departments' => $faculty->departments()->orderBy('department_name')->get()->map->only('id', 'department_name'),
+            ],
+            'permissions' => [
+                'delete' => auth()->user()->can('delete', 'faculty'),
             ],
         ]);
     }

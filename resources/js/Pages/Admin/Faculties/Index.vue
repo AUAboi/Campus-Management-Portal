@@ -11,6 +11,7 @@
 			/>
 
 			<Link
+				v-if="permissions.create"
 				as="button"
 				class="bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md"
 				:href="$route('admin.faculties.create')"
@@ -81,6 +82,13 @@ export default {
 		},
 		faculties: {
 			required: false
+		},
+		permissions: {
+			type: Object,
+			required: false,
+			default: () => ({
+				create: false
+			})
 		}
 	},
 	methods: {

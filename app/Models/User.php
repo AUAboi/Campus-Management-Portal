@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Admin;
+use App\Models\Student;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -51,5 +53,10 @@ class User extends Authenticatable
     public function student()
     {
         return $this->hasOne(Student::class);
+    }
+
+    public function admin()
+    {
+        return $this->hasOne(Admin::class);
     }
 }
