@@ -42,7 +42,7 @@ class FacultyPolicy
      */
     public function create(User $user)
     {
-        //  
+        return $user->hasPermissionTo('create faculties');
     }
 
     /**
@@ -66,7 +66,7 @@ class FacultyPolicy
      */
     public function delete(User $user, Faculty $faculty)
     {
-        return $user->hasPermissionTo('delete faculty');
+        return $user->hasPermissionTo('delete faculties');
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Faculty;
 use Illuminate\Http\Request;
@@ -14,9 +15,6 @@ class FacultyController extends Controller
     public function __construct()
     {
         $this->middleware(['auth', 'role:admin']);
-        $this->middleware('can:create faculties')->only(['create', 'store']);
-        $this->middleware('can:update,faculty')->only(['edit', 'update']);
-        $this->middleware('can:delete,faculty')->only(['destroy']);
     }
 
     public function index(Request $request)
@@ -39,17 +37,19 @@ class FacultyController extends Controller
         }
 
         return Inertia::render("Admin/Faculties/Index", ['faculties' => $faculties, 'filters' => $filters, 'permissions' => [
-            'create' => $user->can('create faculties'),
+            'create' => $user->can('create', Faculty::class),
         ]]);
     }
 
     public function create()
     {
+        $this->authorize('create', Faculty::class);
         return Inertia::render("Admin/Faculties/Create");
     }
 
-    public function edit(Faculty $faculty)
+    public function edit(User $user, Faculty $faculty)
     {
+        $this->authorize('update', $user, Faculty::class);
 
         return Inertia::render("Admin/Faculties/Edit", [
             'faculty' => [
@@ -58,13 +58,15 @@ class FacultyController extends Controller
                 'departments' => $faculty->departments()->orderBy('department_name')->get()->map->only('id', 'department_name'),
             ],
             'permissions' => [
-                'delete' => auth()->user()->can('delete', 'faculty'),
+                'delete' => auth()->user()->can('delete faculties'),
             ],
         ]);
     }
 
     public function store(Request $request)
     {
+        $this->authorize('create', Faculty::class);
+
         $request->validate([
             'faculty_name' => 'required|unique:faculties,faculty_name',
         ]);
@@ -75,6 +77,8 @@ class FacultyController extends Controller
 
     public function update(Request $request, Faculty $faculty)
     {
+        $this->authorize('update', Faculty::class);
+
         $request->validate([
             'faculty_name' => 'required|unique:faculties,faculty_name,' . $faculty->id,
         ]);
@@ -85,6 +89,8 @@ class FacultyController extends Controller
 
     public function destroy(Faculty $faculty)
     {
+        $this->authorize('delete', Faculty::class);
+
         $faculty->delete();
         return Redirect::route('admin.faculties')->with('success', 'Faculty deleted.');
     }
