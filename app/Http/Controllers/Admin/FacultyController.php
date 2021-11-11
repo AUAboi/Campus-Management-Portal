@@ -8,8 +8,9 @@ use App\Models\Faculty;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
-use Spatie\Permission\Models\Permission;
 
+
+//Permissions are for edit, delete, and create only. Every admin can view every faculty. Super admin can access every permission
 class FacultyController extends Controller
 {
     public function __construct()
@@ -24,17 +25,10 @@ class FacultyController extends Controller
 
         $filters = $request->all('search');
 
-        if ($user->hasRole('super admin')) {
-            $faculties = Faculty::orderBy('faculty_name')
-                ->filter($request->only('search'))
-                ->paginate(5)
-                ->withQueryString();
-        } else {
-            $faculties = $user->admin->faculties()->orderBy('faculty_name')
-                ->filter($request->only('search'))
-                ->paginate(5)
-                ->withQueryString();
-        }
+        $faculties = Faculty::orderBy('faculty_name')
+            ->filter($request->only('search'))
+            ->paginate(5)
+            ->withQueryString();
 
         return Inertia::render("Admin/Faculties/Index", ['faculties' => $faculties, 'filters' => $filters, 'permissions' => [
             'create' => $user->can('create', Faculty::class),
@@ -47,9 +41,8 @@ class FacultyController extends Controller
         return Inertia::render("Admin/Faculties/Create");
     }
 
-    public function edit(User $user, Faculty $faculty)
+    public function edit(Faculty $faculty)
     {
-        $this->authorize('update', $user, Faculty::class);
 
         return Inertia::render("Admin/Faculties/Edit", [
             'faculty' => [
@@ -77,7 +70,7 @@ class FacultyController extends Controller
 
     public function update(Request $request, Faculty $faculty)
     {
-        $this->authorize('update', Faculty::class);
+        $this->authorize('update', $faculty);
 
         $request->validate([
             'faculty_name' => 'required|unique:faculties,faculty_name,' . $faculty->id,

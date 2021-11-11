@@ -27,6 +27,8 @@ class Faculty extends Model
     }
 
 
+    //->filter scope
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {

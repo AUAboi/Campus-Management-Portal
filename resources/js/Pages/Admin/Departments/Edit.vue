@@ -50,7 +50,12 @@
 				<div
 					class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center"
 				>
-					<form @submit.prevent="destroy" id="delete-from" class="m-0">
+					<form
+						v-if="permissions.delete"
+						@submit.prevent="destroy"
+						id="delete-from"
+						class="m-0"
+					>
 						<button
 							form="delete-from"
 							:disabled="form.processing"
@@ -91,6 +96,14 @@ export default {
 		faculties: {
 			type: Array,
 			required: true
+		},
+		permissions: {
+			type: Object,
+			default: () => {
+				return {
+					delete: false
+				};
+			}
 		}
 	},
 	data() {

@@ -19,26 +19,19 @@ class DepartmentController extends Controller
     public function index(Request $request)
     {
         $filters = $request->all('search');
-        $search = $request->search;
-        $departments =
-            Department::where('department_name', 'LIKE', '%' . $search . "%")
+
+        $departments =  Department::orderBy('department_name')
+            ->filter($request->only('search'))
             ->with('faculty')
-            ->orderBy('department_name')
             ->paginate(10)
             ->withQueryString();
-
-
-        //To get result by faculty
-
-        // $departments = Department::with('faculty')->whereHas('faculty', function ($q) use ($search) {
-        //     $q->where('faculty_name', 'like', '%' . $search . '%');
-        // })->orderBy('department_name')->paginate(10)->withQueryString();
 
         return Inertia::render("Admin/Departments/Index", ['departments' => $departments, 'filters' => $filters]);
     }
 
     public function create()
     {
+        $this->authorize('create', Faculty::class);
         $faculties = Faculty::select('faculty_name', 'id')->get();
         return Inertia::render("Admin/Departments/Create", [
             'faculties' => $faculties
@@ -55,11 +48,17 @@ class DepartmentController extends Controller
                 'faculty_id' => $department->faculty->id,
             ],
             'faculties' => Faculty::select('faculty_name', 'id')->get(),
+            'permissions' => [
+                //right now we only have one permission delete faculty to manage everything
+                'delete' => auth()->user()->can('delete faculties'),
+            ],
         ]);
     }
 
     public function store(Request $request)
     {
+        $this->authorize('create', Faculty::class);
+
         $request->validate([
             'department_name' => 'required|unique:departments,department_name',
             'faculty_id' => 'required|exists:faculties,id'
@@ -74,6 +73,8 @@ class DepartmentController extends Controller
 
     public function update(Request $request, Department $department)
     {
+        $this->authorize('update', $department);
+
         $request->validate([
             'department_name' => 'required|unique:departments,department_name,' . $department->id,
             'faculty_id' => 'required|exists:faculties,id'
@@ -86,6 +87,7 @@ class DepartmentController extends Controller
 
     public function destroy(Department $department)
     {
+        $this->authorize('delete', $department);
         $department->delete();
         return Redirect::route('admin.departments')->with('success', 'Department deleted.');
     }

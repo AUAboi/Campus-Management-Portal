@@ -2316,6 +2316,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2330,6 +2335,14 @@ __webpack_require__.r(__webpack_exports__);
     faculties: {
       type: Array,
       required: true
+    },
+    permissions: {
+      type: Object,
+      "default": function _default() {
+        return {
+          "delete": false
+        };
+      }
     }
   },
   data: function data() {
@@ -22565,33 +22578,39 @@ var render = function() {
                     "px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center"
                 },
                 [
-                  _c(
-                    "form",
-                    {
-                      staticClass: "m-0",
-                      attrs: { id: "delete-from" },
-                      on: {
-                        submit: function($event) {
-                          $event.preventDefault()
-                          return _vm.destroy.apply(null, arguments)
-                        }
-                      }
-                    },
-                    [
-                      _c(
-                        "button",
+                  _vm.permissions.delete
+                    ? _c(
+                        "form",
                         {
-                          staticClass: "hover:underline text-red-600 ",
-                          attrs: {
-                            form: "delete-from",
-                            disabled: _vm.form.processing,
-                            type: "submit"
+                          staticClass: "m-0",
+                          attrs: { id: "delete-from" },
+                          on: {
+                            submit: function($event) {
+                              $event.preventDefault()
+                              return _vm.destroy.apply(null, arguments)
+                            }
                           }
                         },
-                        [_vm._v("\n\t\t\t\t\t\tDelete Department\n\t\t\t\t\t")]
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "hover:underline text-red-600 ",
+                              attrs: {
+                                form: "delete-from",
+                                disabled: _vm.form.processing,
+                                type: "submit"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n\t\t\t\t\t\tDelete Department\n\t\t\t\t\t"
+                              )
+                            ]
+                          )
+                        ]
                       )
-                    ]
-                  ),
+                    : _vm._e(),
                   _vm._v(" "),
                   _c(
                     "button",
