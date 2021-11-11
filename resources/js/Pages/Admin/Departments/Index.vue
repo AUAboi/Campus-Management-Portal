@@ -90,6 +90,13 @@ export default {
 		},
 		departments: {
 			required: false
+		},
+		permissions: {
+			type: Object,
+			required: false,
+			default: () => ({
+				create: false
+			})
 		}
 	},
 	methods: {

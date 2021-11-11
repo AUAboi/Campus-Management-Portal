@@ -2475,6 +2475,15 @@ __webpack_require__.r(__webpack_exports__);
     },
     departments: {
       required: false
+    },
+    permissions: {
+      type: Object,
+      required: false,
+      "default": function _default() {
+        return {
+          create: false
+        };
+      }
     }
   },
   methods: {
