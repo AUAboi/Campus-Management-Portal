@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\FacultyController;
 use App\Http\Controllers\Admin\DepartmentController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -58,6 +59,10 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::post('/departments/create', [DepartmentController::class, 'store'])->name('admin.departments.store');
     Route::put('/departments/{department}/update', [DepartmentController::class, 'update'])->name('admin.departments.update');
     Route::delete('/departments/{department}/delete', [DepartmentController::class, 'destroy'])->name('admin.departments.destory');
+
+    //Users
+    Route::get('/users', [UserController::class, 'index'])->name('admin.users');
+    Route::get('/users/{user}/edit', [FacultyController::class, 'edit'])->name('admin.users.edit');
   });
 });
 
