@@ -101,7 +101,9 @@ class RegisterController extends Controller
                     'cgpa' => 0.00
                 ]
             );
-        };
+        } else if ($role === "admin") {
+            $user->admin()->create();
+        }
 
         $user->assignRole($role);
 

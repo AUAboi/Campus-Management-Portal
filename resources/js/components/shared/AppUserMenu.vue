@@ -6,6 +6,7 @@
 			>My Profile</Link
 		>
 		<Link class="block px-6 py-2 hover:bg-indigo-500 hover:text-white"
+		:href="$route('admin.users')"
 			>Manage Users</Link
 		>
 

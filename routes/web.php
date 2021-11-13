@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\FacultyController;
-use App\Http\Controllers\DepartmentController;
-use PHPUnit\Framework\Test;
+use App\Http\Controllers\Admin\DepartmentController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -55,6 +55,16 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/departments', [DepartmentController::class, 'index'])->name('admin.departments');
     Route::get('/departments/create', [DepartmentController::class, 'create'])->name('admin.departments.create');
     Route::get('/departments/{department}/edit', [DepartmentController::class, 'edit'])->name('admin.departments.edit');
+
+    Route::post('/departments/create', [DepartmentController::class, 'store'])->name('admin.departments.store');
+    Route::put('/departments/{department}/update', [DepartmentController::class, 'update'])->name('admin.departments.update');
+    Route::delete('/departments/{department}/delete', [DepartmentController::class, 'destroy'])->name('admin.departments.destory');
+
+    //Users
+    Route::get('/users', [UserController::class, 'index'])->name('admin.users');
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+
+    Route::put('/users/{user}/update', [UserController::class, 'update'])->name('admin.users.update');
   });
 });
 

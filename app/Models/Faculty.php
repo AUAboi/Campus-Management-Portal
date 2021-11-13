@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Admin;
+use App\Models\Department;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Faculty extends Model
 {
@@ -16,5 +18,21 @@ class Faculty extends Model
     public function departments()
     {
         return $this->hasMany(Department::class);
+    }
+
+
+    public function admins()
+    {
+        return $this->belongsToMany(Admin::class);
+    }
+
+
+    //->filter scope
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? null, function ($query, $search) {
+            $query->where('faculty_name', 'like', '%' . $search . '%');
+        });
     }
 }
