@@ -80,11 +80,15 @@
 </template>
 
 <script>
-import pickBy from "lodash/pickBy";
+import { Link } from "@inertiajs/inertia-vue";
 
+import pickBy from "lodash/pickBy";
 import throttle from "lodash/throttle";
 import mapValues from "lodash/mapValues";
 export default {
+	components: {
+		Link
+	},
 	props: {
 		filters: Object,
 		users: Array,

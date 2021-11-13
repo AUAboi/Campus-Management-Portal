@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
@@ -34,7 +35,7 @@ class UserController extends Controller
                 'name' => $user->name,
                 'email' => $user->email,
                 'avatar' => $user->avatar,
-                'role' => $user->role,
+                'role' => $user->roles->pluck('name')->implode(', '),
             ]);
 
 
@@ -81,9 +82,22 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        if ($user->hasAnyRole(['student', 'teacher'])) {
+            dd($user);
+        }
+        return Inertia::render("Admin/Users/Edit", [
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'roles' => $user->roles->pluck('name'),
+            ],
+            'permissions_all' => Permission::select('id', 'name')->get(),
+            'permissions' => [
+                'delete' => auth()->user()->can('delete faculties'),
+            ],
+        ]);
     }
 
     /**
@@ -93,9 +107,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $user->update($request->only('name'));
+
+        return Redirect::route('admin.users')->with('success', 'User updated.');
     }
 
     /**
@@ -104,8 +124,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return Redirect::route('admin.users')->with('success', 'User deleted.');
     }
 }
