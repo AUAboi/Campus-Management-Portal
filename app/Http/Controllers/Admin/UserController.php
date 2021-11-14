@@ -26,9 +26,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $filters = $request->all('search');
-
-
+        $filters = $request->only('search');
 
         $users = User::orderBy('name')
             ->filter($request->only('search', 'role'))->get()->transform(fn ($user) => [

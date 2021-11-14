@@ -23,7 +23,8 @@ class FacultyController extends Controller
 
         $user = auth()->user();
 
-        $filters = $request->all('search');
+        $filters = $request->only('search');
+
 
         $faculties = Faculty::orderBy('faculty_name')
             ->filter($request->only('search'))
@@ -51,7 +52,7 @@ class FacultyController extends Controller
                 'departments' => $faculty->departments()->orderBy('department_name')->get()->map->only('id', 'department_name'),
             ],
             'permissions' => [
-                'delete' => auth()->user()->can('delete faculties'),
+                'delete' => auth()->user()->can('delete_faculties'),
             ],
         ]);
     }

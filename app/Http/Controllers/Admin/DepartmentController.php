@@ -8,6 +8,8 @@ use App\Models\Faculty;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
+use Spatie\Permission\Contracts\Permission;
+use Spatie\Permission\Contracts\Role;
 
 class DepartmentController extends Controller
 {
@@ -18,7 +20,7 @@ class DepartmentController extends Controller
 
     public function index(Request $request)
     {
-        $filters = $request->all('search');
+        $filters = $request->only('search');
 
         $departments =  Department::orderBy('department_name')
             ->filter($request->only('search'))
@@ -52,7 +54,7 @@ class DepartmentController extends Controller
             'faculties' => Faculty::select('faculty_name', 'id')->get(),
             'permissions' => [
                 //right now we only have one permission delete faculty to manage everything
-                'delete' => auth()->user()->can('delete faculties'),
+                'delete' => auth()->user()->can('delete_faculties'),
             ],
         ]);
     }

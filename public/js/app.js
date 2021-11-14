@@ -4171,6 +4171,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     keyword: {
@@ -26094,89 +26096,93 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "flex items-center" },
-    [
-      _vm.filter
-        ? _c(
-            "AppDropdown",
-            {
-              staticClass:
-                "px-4 md:px-6 rounded-l border-r hover:bg-gray-100 focus:border-white focus:ring focus:z-10",
-              attrs: { "auto-close": false, placement: "bottom-start" }
-            },
-            [
-              _c("div", { staticClass: "flex items-baseline" }, [
-                _c("span", { staticClass: "text-gray-700 hidden md:inline" }, [
-                  _vm._v("Filter")
+  return _c("div", { staticClass: "flex items-center bg-white" }, [
+    _c(
+      "div",
+      { staticClass: "flex w-full bg-white shadow rounded" },
+      [
+        _vm.filter
+          ? _c(
+              "AppDropdown",
+              {
+                staticClass:
+                  "px-4 md:px-6 rounded-l border-r hover:bg-gray-100 focus:border-white focus:ring focus:z-10",
+                attrs: { "auto-close": false, placement: "bottom-start" }
+              },
+              [
+                _c("div", { staticClass: "flex items-baseline" }, [
+                  _c(
+                    "span",
+                    { staticClass: "text-gray-700 hidden md:inline" },
+                    [_vm._v("Filter")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "w-2 h-2 fill-gray-700 md:ml-2",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 961.243 599.998"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          d:
+                            "M239.998 239.999L0 0h961.243L721.246 240c-131.999 132-240.28 240-240.624 239.999-.345-.001-108.625-108.001-240.624-240z"
+                        }
+                      })
+                    ]
+                  )
                 ]),
                 _vm._v(" "),
                 _c(
-                  "svg",
+                  "div",
                   {
-                    staticClass: "w-2 h-2 fill-gray-700 md:ml-2",
-                    attrs: {
-                      xmlns: "http://www.w3.org/2000/svg",
-                      viewBox: "0 0 961.243 599.998"
-                    }
+                    staticClass:
+                      "mt-2 px-4 py-6 w-screen shadow-xl bg-white rounded",
+                    style: { maxWidth: _vm.maxWidth + "px" },
+                    attrs: { slot: "dropdown" },
+                    slot: "dropdown"
                   },
-                  [
-                    _c("path", {
-                      attrs: {
-                        d:
-                          "M239.998 239.999L0 0h961.243L721.246 240c-131.999 132-240.28 240-240.624 239.999-.345-.001-108.625-108.001-240.624-240z"
-                      }
-                    })
-                  ]
+                  [_vm._t("default")],
+                  2
                 )
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "mt-2 px-4 py-6 w-screen shadow-xl bg-white rounded",
-                  style: { maxWidth: _vm.maxWidth + "px" },
-                  attrs: { slot: "dropdown" },
-                  slot: "dropdown"
-                },
-                [_vm._t("default")],
-                2
-              )
-            ]
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "relative w-full px-6 py-3 rounded focus:ring",
-        attrs: {
-          autocomplete: "off",
-          type: "text",
-          name: "search",
-          placeholder: "Search…"
-        },
-        domProps: { value: _vm.keyword },
-        on: { input: _vm.search }
-      }),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass:
-            "ml-3 text-sm text-gray-500 hover:text-gray-700 focus:text-indigo-500",
-          attrs: { type: "button" },
-          on: {
-            click: function($event) {
-              return _vm.$emit("reset")
-            }
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "relative w-full px-6 py-3 rounded border-r",
+          attrs: {
+            autocomplete: "off",
+            type: "text",
+            name: "search",
+            placeholder: "Search…"
+          },
+          domProps: { value: _vm.keyword },
+          on: { input: _vm.search }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass:
+          "ml-3 text-sm text-gray-500 hover:text-gray-700 focus:text-indigo-500",
+        attrs: { type: "button" },
+        on: {
+          click: function($event) {
+            return _vm.$emit("reset")
           }
-        },
-        [_vm._v("\n\t\tReset\n\t")]
-      )
-    ],
-    1
-  )
+        }
+      },
+      [_vm._v("\n\t\tReset\n\t")]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
