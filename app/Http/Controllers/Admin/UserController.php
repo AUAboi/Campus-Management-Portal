@@ -98,16 +98,12 @@ class UserController extends Controller
             ],
             'permissions' => [
                 'create_faculties' => $user->can('create_faculties'),
-                'edit_faculties' => $user->can('edit_faculties'),
+                'update_faculties' => $user->can('update_faculties'),
                 'delete_faculties' => $user->can('delete_faculties'),
                 'create_users' => $user->can('create_users'),
-                'edit_users' => $user->can('edit_users'),
+                'update_users' => $user->can('update_users'),
                 'delete_users' => $user->can('delete_users'),
             ],
-
-
-
-
         ]);
     }
 
@@ -121,7 +117,12 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
 
-        dd($request->all());
+        //Grab all permissions from the request and store in $permissions
+        $selected_permissions = $request->only('permissions');
+        $permissions = array_keys(array_filter($selected_permissions['permissions']));
+
+        //delete all permissions from the user and set the new permissions
+        $user->syncPermissions($permissions);
 
         $user->update($request->only('name'));
 

@@ -3031,7 +3031,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -24172,7 +24171,6 @@ var render = function() {
         "div",
         { staticClass: "bg-white rounded-md shadow overflow-hidden max-w-3xl" },
         [
-          _vm._v("\n\t\t" + _vm._s(_vm.permissions) + "\n\t\t"),
           _c("table", { staticClass: "w-full whitespace-nowrap" }, [
             _vm._m(0),
             _vm._v(" "),
@@ -24254,19 +24252,22 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.permissions.edit_faculties,
-                            expression: "permissions.edit_faculties"
+                            value: _vm.permissions.update_faculties,
+                            expression: "permissions.update_faculties"
                           }
                         ],
                         attrs: { type: "checkbox" },
                         domProps: {
-                          checked: Array.isArray(_vm.permissions.edit_faculties)
-                            ? _vm._i(_vm.permissions.edit_faculties, null) > -1
-                            : _vm.permissions.edit_faculties
+                          checked: Array.isArray(
+                            _vm.permissions.update_faculties
+                          )
+                            ? _vm._i(_vm.permissions.update_faculties, null) >
+                              -1
+                            : _vm.permissions.update_faculties
                         },
                         on: {
                           change: function($event) {
-                            var $$a = _vm.permissions.edit_faculties,
+                            var $$a = _vm.permissions.update_faculties,
                               $$el = $event.target,
                               $$c = $$el.checked ? true : false
                             if (Array.isArray($$a)) {
@@ -24276,19 +24277,19 @@ var render = function() {
                                 $$i < 0 &&
                                   _vm.$set(
                                     _vm.permissions,
-                                    "edit_faculties",
+                                    "update_faculties",
                                     $$a.concat([$$v])
                                   )
                               } else {
                                 $$i > -1 &&
                                   _vm.$set(
                                     _vm.permissions,
-                                    "edit_faculties",
+                                    "update_faculties",
                                     $$a.slice(0, $$i).concat($$a.slice($$i + 1))
                                   )
                               }
                             } else {
-                              _vm.$set(_vm.permissions, "edit_faculties", $$c)
+                              _vm.$set(_vm.permissions, "update_faculties", $$c)
                             }
                           }
                         }
@@ -24433,19 +24434,19 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.permissions.edit_users,
-                            expression: "permissions.edit_users"
+                            value: _vm.permissions.update_users,
+                            expression: "permissions.update_users"
                           }
                         ],
                         attrs: { type: "checkbox" },
                         domProps: {
-                          checked: Array.isArray(_vm.permissions.edit_users)
-                            ? _vm._i(_vm.permissions.edit_users, null) > -1
-                            : _vm.permissions.edit_users
+                          checked: Array.isArray(_vm.permissions.update_users)
+                            ? _vm._i(_vm.permissions.update_users, null) > -1
+                            : _vm.permissions.update_users
                         },
                         on: {
                           change: function($event) {
-                            var $$a = _vm.permissions.edit_users,
+                            var $$a = _vm.permissions.update_users,
                               $$el = $event.target,
                               $$c = $$el.checked ? true : false
                             if (Array.isArray($$a)) {
@@ -24455,19 +24456,19 @@ var render = function() {
                                 $$i < 0 &&
                                   _vm.$set(
                                     _vm.permissions,
-                                    "edit_users",
+                                    "update_users",
                                     $$a.concat([$$v])
                                   )
                               } else {
                                 $$i > -1 &&
                                   _vm.$set(
                                     _vm.permissions,
-                                    "edit_users",
+                                    "update_users",
                                     $$a.slice(0, $$i).concat($$a.slice($$i + 1))
                                   )
                               }
                             } else {
-                              _vm.$set(_vm.permissions, "edit_users", $$c)
+                              _vm.$set(_vm.permissions, "update_users", $$c)
                             }
                           }
                         }

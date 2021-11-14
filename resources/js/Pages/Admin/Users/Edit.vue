@@ -55,7 +55,6 @@
 			Permissions
 		</h1>
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
-			{{ permissions }}
 			<table class="w-full whitespace-nowrap">
 				<tr class="text-left font-bold">
 					<th class="px-6 pt-6 pb-4">Name</th>
@@ -76,7 +75,7 @@
 					</td>
 					<td class="border-t">
 						<span class="px-6 py-4 flex items-center" tabindex="-1">
-							<input type="checkbox" v-model="permissions.edit_faculties" />
+							<input type="checkbox" v-model="permissions.update_faculties" />
 						</span>
 					</td>
 					<td class="border-t">
@@ -98,7 +97,7 @@
 					</td>
 					<td class="border-t">
 						<span class="px-6 py-4 flex items-center" tabindex="-1">
-							<input type="checkbox" v-model="permissions.edit_users" />
+							<input type="checkbox" v-model="permissions.update_users" />
 						</span>
 					</td>
 					<td class="border-t">
