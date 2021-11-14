@@ -55,29 +55,56 @@
 			Permissions
 		</h1>
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
+			{{ permissions }}
 			<table class="w-full whitespace-nowrap">
 				<tr class="text-left font-bold">
 					<th class="px-6 pt-6 pb-4">Name</th>
+					<th class="px-6 pt-6 pb-4">Create</th>
+					<th class="px-6 pt-6 pb-4">Edit</th>
+					<th class="px-6 pt-6 pb-4">Delete</th>
 				</tr>
-				<tr
-					v-for="permission in permissions_all"
-					:key="permission.id"
-					class="hover:bg-gray-100 focus-within:bg-gray-100"
-				>
+				<tr class="hover:bg-gray-100 focus-within:bg-gray-100">
 					<td class="border-t">
-						<span class="px-6 py-4 flex items-center focus:text-indigo-500">
-							{{ permission.name }}
+						<span class="px-6 py-4 flex items-center" tabindex="-1">
+							Faculty
 						</span>
 					</td>
 					<td class="border-t">
-						<span class="px-6 py-4 flex items-center focus:text-indigo-500">
-							<input type="radio" />
+						<span class="px-6 py-4 flex items-center" tabindex="-1">
+							<input type="checkbox" v-model="permissions.create_faculties" />
+						</span>
+					</td>
+					<td class="border-t">
+						<span class="px-6 py-4 flex items-center" tabindex="-1">
+							<input type="checkbox" v-model="permissions.edit_faculties" />
+						</span>
+					</td>
+					<td class="border-t">
+						<span class="px-6 py-4 flex items-center" tabindex="-1">
+							<input type="checkbox" v-model="permissions.delete_faculties" />
 						</span>
 					</td>
 				</tr>
-				<tr v-if="permissions_all.length === 0">
-					<td class="border-t px-6 py-4" colspan="4">
-						No permissions found.
+				<tr class="hover:bg-gray-100 focus-within:bg-gray-100">
+					<td class="border-t">
+						<span class="px-6 py-4 flex items-center" tabindex="-1">
+							User
+						</span>
+					</td>
+					<td class="border-t">
+						<span class="px-6 py-4 flex items-center" tabindex="-1">
+							<input type="checkbox" v-model="permissions.create_users" />
+						</span>
+					</td>
+					<td class="border-t">
+						<span class="px-6 py-4 flex items-center" tabindex="-1">
+							<input type="checkbox" v-model="permissions.edit_users" />
+						</span>
+					</td>
+					<td class="border-t">
+						<span class="px-6 py-4 flex items-center" tabindex="-1">
+							<input type="checkbox" v-model="permissions.delete_users" />
+						</span>
 					</td>
 				</tr>
 			</table>
@@ -100,20 +127,14 @@ export default {
 		},
 		permissions: {
 			type: Object,
-			default: () => {
-				return {
-					delete: false
-				};
-			}
-		},
-		permissions_all: {
-			type: Array
+			required: true
 		}
 	},
 	data() {
 		return {
 			form: this.$inertia.form({
-				name: this.user.name
+				name: this.user.name,
+				permissions: this.permissions
 			})
 		};
 	},

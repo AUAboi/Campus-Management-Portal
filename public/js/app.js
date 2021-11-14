@@ -3005,6 +3005,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -3018,20 +3045,14 @@ __webpack_require__.r(__webpack_exports__);
     },
     permissions: {
       type: Object,
-      "default": function _default() {
-        return {
-          "delete": false
-        };
-      }
-    },
-    permissions_all: {
-      type: Array
+      required: true
     }
   },
   data: function data() {
     return {
       form: this.$inertia.form({
-        name: this.user.name
+        name: this.user.name,
+        permissions: this.permissions
       })
     };
   },
@@ -3067,6 +3088,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash_throttle__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_throttle__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var lodash_mapValues__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash/mapValues */ "./node_modules/lodash/mapValues.js");
 /* harmony import */ var lodash_mapValues__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash_mapValues__WEBPACK_IMPORTED_MODULE_3__);
+//
+//
 //
 //
 //
@@ -24149,57 +24172,368 @@ var render = function() {
         "div",
         { staticClass: "bg-white rounded-md shadow overflow-hidden max-w-3xl" },
         [
-          _c(
-            "table",
-            { staticClass: "w-full whitespace-nowrap" },
-            [
-              _vm._m(0),
-              _vm._v(" "),
-              _vm._l(_vm.permissions_all, function(permission) {
-                return _c(
-                  "tr",
-                  {
-                    key: permission.id,
-                    staticClass: "hover:bg-gray-100 focus-within:bg-gray-100"
-                  },
-                  [
-                    _c("td", { staticClass: "border-t" }, [
-                      _c(
-                        "span",
-                        {
-                          staticClass:
-                            "px-6 py-4 flex items-center focus:text-indigo-500"
-                        },
-                        [
-                          _vm._v(
-                            "\n\t\t\t\t\t\t" +
-                              _vm._s(permission.name) +
-                              "\n\t\t\t\t\t"
+          _vm._v("\n\t\t" + _vm._s(_vm.permissions) + "\n\t\t"),
+          _c("table", { staticClass: "w-full whitespace-nowrap" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "tr",
+              { staticClass: "hover:bg-gray-100 focus-within:bg-gray-100" },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("td", { staticClass: "border-t" }, [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "px-6 py-4 flex items-center",
+                      attrs: { tabindex: "-1" }
+                    },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.permissions.create_faculties,
+                            expression: "permissions.create_faculties"
+                          }
+                        ],
+                        attrs: { type: "checkbox" },
+                        domProps: {
+                          checked: Array.isArray(
+                            _vm.permissions.create_faculties
                           )
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(1, true)
-                  ]
-                )
-              }),
-              _vm._v(" "),
-              _vm.permissions_all.length === 0
-                ? _c("tr", [
-                    _c(
-                      "td",
-                      {
-                        staticClass: "border-t px-6 py-4",
-                        attrs: { colspan: "4" }
-                      },
-                      [_vm._v("\n\t\t\t\t\tNo permissions found.\n\t\t\t\t")]
-                    )
-                  ])
-                : _vm._e()
-            ],
-            2
-          )
+                            ? _vm._i(_vm.permissions.create_faculties, null) >
+                              -1
+                            : _vm.permissions.create_faculties
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.permissions.create_faculties,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.permissions,
+                                    "create_faculties",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.permissions,
+                                    "create_faculties",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.permissions, "create_faculties", $$c)
+                            }
+                          }
+                        }
+                      })
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "border-t" }, [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "px-6 py-4 flex items-center",
+                      attrs: { tabindex: "-1" }
+                    },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.permissions.edit_faculties,
+                            expression: "permissions.edit_faculties"
+                          }
+                        ],
+                        attrs: { type: "checkbox" },
+                        domProps: {
+                          checked: Array.isArray(_vm.permissions.edit_faculties)
+                            ? _vm._i(_vm.permissions.edit_faculties, null) > -1
+                            : _vm.permissions.edit_faculties
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.permissions.edit_faculties,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.permissions,
+                                    "edit_faculties",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.permissions,
+                                    "edit_faculties",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.permissions, "edit_faculties", $$c)
+                            }
+                          }
+                        }
+                      })
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "border-t" }, [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "px-6 py-4 flex items-center",
+                      attrs: { tabindex: "-1" }
+                    },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.permissions.delete_faculties,
+                            expression: "permissions.delete_faculties"
+                          }
+                        ],
+                        attrs: { type: "checkbox" },
+                        domProps: {
+                          checked: Array.isArray(
+                            _vm.permissions.delete_faculties
+                          )
+                            ? _vm._i(_vm.permissions.delete_faculties, null) >
+                              -1
+                            : _vm.permissions.delete_faculties
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.permissions.delete_faculties,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.permissions,
+                                    "delete_faculties",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.permissions,
+                                    "delete_faculties",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.permissions, "delete_faculties", $$c)
+                            }
+                          }
+                        }
+                      })
+                    ]
+                  )
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "tr",
+              { staticClass: "hover:bg-gray-100 focus-within:bg-gray-100" },
+              [
+                _vm._m(2),
+                _vm._v(" "),
+                _c("td", { staticClass: "border-t" }, [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "px-6 py-4 flex items-center",
+                      attrs: { tabindex: "-1" }
+                    },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.permissions.create_users,
+                            expression: "permissions.create_users"
+                          }
+                        ],
+                        attrs: { type: "checkbox" },
+                        domProps: {
+                          checked: Array.isArray(_vm.permissions.create_users)
+                            ? _vm._i(_vm.permissions.create_users, null) > -1
+                            : _vm.permissions.create_users
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.permissions.create_users,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.permissions,
+                                    "create_users",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.permissions,
+                                    "create_users",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.permissions, "create_users", $$c)
+                            }
+                          }
+                        }
+                      })
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "border-t" }, [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "px-6 py-4 flex items-center",
+                      attrs: { tabindex: "-1" }
+                    },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.permissions.edit_users,
+                            expression: "permissions.edit_users"
+                          }
+                        ],
+                        attrs: { type: "checkbox" },
+                        domProps: {
+                          checked: Array.isArray(_vm.permissions.edit_users)
+                            ? _vm._i(_vm.permissions.edit_users, null) > -1
+                            : _vm.permissions.edit_users
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.permissions.edit_users,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.permissions,
+                                    "edit_users",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.permissions,
+                                    "edit_users",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.permissions, "edit_users", $$c)
+                            }
+                          }
+                        }
+                      })
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "border-t" }, [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "px-6 py-4 flex items-center",
+                      attrs: { tabindex: "-1" }
+                    },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.permissions.delete_users,
+                            expression: "permissions.delete_users"
+                          }
+                        ],
+                        attrs: { type: "checkbox" },
+                        domProps: {
+                          checked: Array.isArray(_vm.permissions.delete_users)
+                            ? _vm._i(_vm.permissions.delete_users, null) > -1
+                            : _vm.permissions.delete_users
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.permissions.delete_users,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.permissions,
+                                    "delete_users",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.permissions,
+                                    "delete_users",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.permissions, "delete_users", $$c)
+                            }
+                          }
+                        }
+                      })
+                    ]
+                  )
+                ])
+              ]
+            )
+          ])
         ]
       )
     ],
@@ -24212,7 +24546,13 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", { staticClass: "text-left font-bold" }, [
-      _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Name")])
+      _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Name")]),
+      _vm._v(" "),
+      _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Create")]),
+      _vm._v(" "),
+      _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Edit")]),
+      _vm._v(" "),
+      _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Delete")])
     ])
   },
   function() {
@@ -24222,8 +24562,26 @@ var staticRenderFns = [
     return _c("td", { staticClass: "border-t" }, [
       _c(
         "span",
-        { staticClass: "px-6 py-4 flex items-center focus:text-indigo-500" },
-        [_c("input", { attrs: { type: "radio" } })]
+        {
+          staticClass: "px-6 py-4 flex items-center",
+          attrs: { tabindex: "-1" }
+        },
+        [_vm._v("\n\t\t\t\t\t\tFaculty\n\t\t\t\t\t")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "border-t" }, [
+      _c(
+        "span",
+        {
+          staticClass: "px-6 py-4 flex items-center",
+          attrs: { tabindex: "-1" }
+        },
+        [_vm._v("\n\t\t\t\t\t\tUser\n\t\t\t\t\t")]
       )
     ])
   }
@@ -24250,212 +24608,229 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h1", { staticClass: "mb-8 font-bold text-3xl" }, [_vm._v("Users")]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "mb-6 flex justify-between items-center" },
-      [
-        _c(
-          "AppTableSearch",
-          {
-            staticClass: "w-full max-w-md mr-4",
-            attrs: { filter: true },
-            on: { reset: _vm.reset },
-            model: {
-              value: _vm.form.search,
-              callback: function($$v) {
-                _vm.$set(_vm.form, "search", $$v)
-              },
-              expression: "form.search"
-            }
-          },
-          [
-            _c("label", { staticClass: "block text-gray-700" }, [
-              _vm._v("Role:")
-            ]),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.form.role,
-                    expression: "form.role"
-                  }
-                ],
-                staticClass: "mt-1 w-full form-select",
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.$set(
-                      _vm.form,
-                      "role",
-                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                    )
-                  }
-                }
-              },
-              [
-                _c("option", { domProps: { value: null } }),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "student" } }, [
-                  _vm._v("Student")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "teacher" } }, [
-                  _vm._v("Teacher")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "admin" } }, [_vm._v("Admin")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "super admin" } }, [
-                  _vm._v("Super Admin")
-                ])
-              ]
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _vm.permissions.create
-          ? _c(
-              "Link",
-              {
-                staticClass:
-                  "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
-                attrs: { as: "button", href: _vm.$route("admin.users.create") }
-              },
-              [
-                _c("span", [_vm._v("Create")]),
-                _vm._v(" "),
-                _c("span", { staticClass: "hidden md:inline" }, [
-                  _vm._v("User")
-                ])
-              ]
-            )
-          : _vm._e()
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "bg-white rounded-md shadow overflow-x-auto" }, [
+  return _c(
+    "div",
+    [
+      _c("AppAdminHead", { attrs: { title: "Profile" } }),
+      _vm._v(" "),
+      _c("h1", { staticClass: "mb-8 font-bold text-3xl" }, [_vm._v("Users")]),
+      _vm._v(" "),
       _c(
-        "table",
-        { staticClass: "w-full whitespace-nowrap" },
+        "div",
+        { staticClass: "mb-6 flex justify-between items-center" },
         [
-          _vm._m(0),
-          _vm._v(" "),
-          _vm._l(_vm.users, function(user) {
-            return _c(
-              "tr",
-              {
-                key: user.id,
-                staticClass: "hover:bg-gray-100 focus-within:bg-gray-100"
-              },
-              [
-                _c(
-                  "td",
-                  { staticClass: "border-t" },
-                  [
-                    _c(
-                      "Link",
-                      {
-                        staticClass: "px-6 py-4 flex items-center",
-                        attrs: {
-                          href: _vm.$route("admin.users.edit", user.id),
-                          tabindex: "-1"
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t" + _vm._s(user.name) + "\n\t\t\t\t\t"
-                        )
-                      ]
-                    )
+          _c(
+            "AppTableSearch",
+            {
+              staticClass: "w-full max-w-md mr-4",
+              attrs: { filter: true },
+              on: { reset: _vm.reset },
+              model: {
+                value: _vm.form.search,
+                callback: function($$v) {
+                  _vm.$set(_vm.form, "search", $$v)
+                },
+                expression: "form.search"
+              }
+            },
+            [
+              _c("label", { staticClass: "block text-gray-700" }, [
+                _vm._v("Role:")
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.role,
+                      expression: "form.role"
+                    }
                   ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "td",
-                  { staticClass: "border-t" },
-                  [
-                    _c(
-                      "Link",
-                      {
-                        staticClass: "px-6 py-4 flex items-center",
-                        attrs: {
-                          href: _vm.$route("admin.users.edit", user.id),
-                          tabindex: "-1"
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t" + _vm._s(user.email) + "\n\t\t\t\t\t"
-                        )
-                      ]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("td", { staticClass: "border-t" }, [
-                  _vm._v("\n\t\t\t\t\t" + _vm._s(user.role) + "\n\t\t\t\t")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "td",
-                  { staticClass: "border-t w-px" },
-                  [
-                    _c(
-                      "Link",
-                      {
-                        staticClass: "px-4 flex items-center",
-                        attrs: {
-                          href: _vm.$route("admin.users.edit", user.id),
-                          tabindex: "-1"
-                        }
-                      },
-                      [
-                        _c("i", {
-                          staticClass: "fas fa-angle-right text-gray-600"
+                  staticClass: "mt-1 w-full form-select",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
                         })
-                      ]
-                    )
-                  ],
-                  1
-                )
-              ]
-            )
-          }),
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.form,
+                        "role",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", { domProps: { value: null } }),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "student" } }, [
+                    _vm._v("Student")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "teacher" } }, [
+                    _vm._v("Teacher")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "admin" } }, [
+                    _vm._v("Admin")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "super admin" } }, [
+                    _vm._v("Super Admin")
+                  ])
+                ]
+              )
+            ]
+          ),
           _vm._v(" "),
-          _vm.users.length === 0
-            ? _c("tr", [
-                _c(
-                  "td",
-                  {
-                    staticClass: "border-t px-6 py-4",
-                    attrs: { colspan: "4" }
-                  },
-                  [_vm._v("No users found.")]
-                )
-              ])
+          _vm.permissions.create
+            ? _c(
+                "Link",
+                {
+                  staticClass:
+                    "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
+                  attrs: {
+                    as: "button",
+                    href: _vm.$route("admin.users.create")
+                  }
+                },
+                [
+                  _c("span", [_vm._v("Create")]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "hidden md:inline" }, [
+                    _vm._v("User")
+                  ])
+                ]
+              )
             : _vm._e()
         ],
-        2
-      )
-    ])
-  ])
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "bg-white rounded-md shadow overflow-x-auto" }, [
+        _c(
+          "table",
+          { staticClass: "w-full whitespace-nowrap" },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._l(_vm.users, function(user) {
+              return _c(
+                "tr",
+                {
+                  key: user.id,
+                  staticClass: "hover:bg-gray-100 focus-within:bg-gray-100"
+                },
+                [
+                  _c(
+                    "td",
+                    { staticClass: "border-t" },
+                    [
+                      _c(
+                        "Link",
+                        {
+                          staticClass: "px-6 py-4 flex items-center",
+                          attrs: {
+                            href: _vm.$route("admin.users.edit", user.id),
+                            tabindex: "-1"
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n\t\t\t\t\t\t" +
+                              _vm._s(user.name) +
+                              "\n\t\t\t\t\t"
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    { staticClass: "border-t" },
+                    [
+                      _c(
+                        "Link",
+                        {
+                          staticClass: "px-6 py-4 flex items-center",
+                          attrs: {
+                            href: _vm.$route("admin.users.edit", user.id),
+                            tabindex: "-1"
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n\t\t\t\t\t\t" +
+                              _vm._s(user.email) +
+                              "\n\t\t\t\t\t"
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "border-t" }, [
+                    _vm._v("\n\t\t\t\t\t" + _vm._s(user.role) + "\n\t\t\t\t")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    { staticClass: "border-t w-px" },
+                    [
+                      _c(
+                        "Link",
+                        {
+                          staticClass: "px-4 flex items-center",
+                          attrs: {
+                            href: _vm.$route("admin.users.edit", user.id),
+                            tabindex: "-1"
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fas fa-angle-right text-gray-600"
+                          })
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]
+              )
+            }),
+            _vm._v(" "),
+            _vm.users.length === 0
+              ? _c("tr", [
+                  _c(
+                    "td",
+                    {
+                      staticClass: "border-t px-6 py-4",
+                      attrs: { colspan: "4" }
+                    },
+                    [_vm._v("No users found.")]
+                  )
+                ])
+              : _vm._e()
+          ],
+          2
+        )
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {

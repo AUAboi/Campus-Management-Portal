@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
+use App\Models\Faculty;
 use Illuminate\Support\Facades\Redirect;
 use Spatie\Permission\Models\Permission;
 
@@ -84,19 +85,29 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+
         if ($user->hasAnyRole(['student', 'teacher'])) {
             dd($user);
         }
+
         return Inertia::render("Admin/Users/Edit", [
             'user' => [
                 'id' => $user->id,
                 'name' => $user->name,
                 'roles' => $user->roles->pluck('name'),
             ],
-            'permissions_all' => Permission::select('id', 'name')->get(),
             'permissions' => [
-                'delete' => auth()->user()->can('delete faculties'),
+                'create_faculties' => $user->can('create_faculties'),
+                'edit_faculties' => $user->can('edit_faculties'),
+                'delete_faculties' => $user->can('delete_faculties'),
+                'create_users' => $user->can('create_users'),
+                'edit_users' => $user->can('edit_users'),
+                'delete_users' => $user->can('delete_users'),
             ],
+
+
+
+
         ]);
     }
 
@@ -109,9 +120,8 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
+
+        dd($request->all());
 
         $user->update($request->only('name'));
 

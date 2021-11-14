@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\FacultyController;
 use App\Http\Controllers\Admin\DepartmentController;
+use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -62,6 +63,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 
     //Users
     Route::get('/users', [UserController::class, 'index'])->name('admin.users');
+    Route::get('/users/create', [UserController::class, 'create'])->name('admin.users.create');
     Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
 
     Route::put('/users/{user}/update', [UserController::class, 'update'])->name('admin.users.update');
