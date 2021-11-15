@@ -23,7 +23,7 @@ class FacultyController extends Controller
 
         $user = auth()->user();
 
-        $filters = $request->only('search');
+        $filters = $request->all('search');
 
 
         $faculties = Faculty::orderBy('faculty_name')

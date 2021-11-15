@@ -20,7 +20,7 @@ class DepartmentController extends Controller
 
     public function index(Request $request)
     {
-        $filters = $request->only('search');
+        $filters = $request->all('search');
 
         $departments =  Department::orderBy('department_name')
             ->filter($request->only('search'))

@@ -26,7 +26,8 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $filters = $request->only('search');
+        $filters = $request->all('search', 'role');
+
 
         $users = User::orderBy('name')
             ->filter($request->only('search', 'role'))->get()->transform(fn ($user) => [
@@ -39,7 +40,7 @@ class UserController extends Controller
 
 
         return Inertia::render("Admin/Users/Index", ['users' => $users, 'filters' => $filters, 'permissions' => [
-            'create' => auth()->user()->can('create', User::class),
+            'create' => auth()->user()->can('create users'),
         ]]);
     }
 

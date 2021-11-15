@@ -1,12 +1,11 @@
 <template>
 	<div>
 		<AppAdminHead title="Profile" />
-		
+
 		<h1 class="mb-8 font-bold text-3xl">Users</h1>
 		<div class="mb-6 flex justify-between items-center">
 			<AppTableSearch
 				v-model="form.search"
-				:filter="true"
 				class="w-full max-w-md mr-4"
 				@reset="reset"
 			>
@@ -61,7 +60,9 @@
 						</Link>
 					</td>
 					<td class="border-t">
-						{{ user.role }}
+						<span class="px-4 flex items-center">
+							{{ user.role }}
+						</span>
 					</td>
 					<td class="border-t w-px">
 						<Link
@@ -87,6 +88,7 @@ import { Link } from "@inertiajs/inertia-vue";
 import pickBy from "lodash/pickBy";
 import throttle from "lodash/throttle";
 import mapValues from "lodash/mapValues";
+
 export default {
 	components: {
 		Link

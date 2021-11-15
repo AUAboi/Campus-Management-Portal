@@ -1,8 +1,7 @@
 <template>
-	<div class="flex items-center bg-white">
+	<div class="flex items-center">
 		<div class="flex w-full bg-white shadow rounded">
 			<AppDropdown
-				v-if="filter"
 				:auto-close="false"
 				class="px-4 md:px-6 rounded-l border-r hover:bg-gray-100 focus:border-white focus:ring focus:z-10"
 				placement="bottom-start"
@@ -28,13 +27,13 @@
 				</div>
 			</AppDropdown>
 			<input
-				class="relative w-full px-6 py-3 rounded border-r"
+				class="relative w-full px-6 py-3 rounded-r focus:ring"
 				autocomplete="off"
 				type="text"
 				name="search"
 				placeholder="Search…"
-				:value="keyword"
-				@input="search"
+				:value="value"
+				@input="$emit('input', $event.target.value)"
 			/>
 		</div>
 		<button
@@ -50,21 +49,10 @@
 <script>
 export default {
 	props: {
-		keyword: {
-			type: String
-		},
-		filter: {
-			type: Boolean,
-			default: false
-		},
+		value: String,
 		maxWidth: {
 			type: Number,
 			default: 300
-		}
-	},
-	methods: {
-		search(keyword) {
-			this.$emit("input", keyword.target.value);
 		}
 	}
 };
