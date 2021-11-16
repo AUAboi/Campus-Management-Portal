@@ -174,9 +174,6 @@ export default {
 				this.$inertia.delete(this.$route("admin.users.destory", this.user.id));
 			}
 		}
-	},
-	created() {
-		console.log(this.faculties);
 	}
 };
 </script>

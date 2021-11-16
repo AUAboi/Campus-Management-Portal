@@ -3092,9 +3092,6 @@ __webpack_require__.r(__webpack_exports__);
         this.$inertia["delete"](this.$route("admin.users.destory", this.user.id));
       }
     }
-  },
-  created: function created() {
-    console.log(this.faculties);
   }
 });
 
