@@ -8,7 +8,7 @@ use App\Models\Faculty;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
-
+use Spatie\Permission\Contracts\Role;
 
 //Permissions are for edit, delete, and create only. Every admin can view every faculty. Super admin can access every permission
 class FacultyController extends Controller
@@ -21,15 +21,25 @@ class FacultyController extends Controller
     public function index(Request $request)
     {
 
+
         $user = auth()->user();
+
 
         $filters = $request->all('search');
 
+        if ($user->hasRole('super admin')) {
+            $faculties = Faculty::orderBy('faculty_name')
+                ->filter($request->only('search'))
+                ->paginate(10)
+                ->withQueryString();
+        } else {
+            $faculties = $user->admin->faculties()
+                ->filter($request->only('search'))
+                ->paginate(10)
+                ->withQueryString();
+        }
 
-        $faculties = Faculty::orderBy('faculty_name')
-            ->filter($request->only('search'))
-            ->paginate(5)
-            ->withQueryString();
+
 
         return Inertia::render("Admin/Faculties/Index", ['faculties' => $faculties, 'filters' => $filters, 'permissions' => [
             'create' => $user->can('create', Faculty::class),
@@ -44,6 +54,7 @@ class FacultyController extends Controller
 
     public function edit(Faculty $faculty)
     {
+        $this->authorize('update', $faculty);
 
         return Inertia::render("Admin/Faculties/Edit", [
             'faculty' => [
@@ -83,7 +94,7 @@ class FacultyController extends Controller
 
     public function destroy(Faculty $faculty)
     {
-        $this->authorize('delete', Faculty::class);
+        $this->authorize('delete', $faculty);
 
         $faculty->delete();
         return Redirect::route('admin.faculties')->with('success', 'Faculty deleted.');

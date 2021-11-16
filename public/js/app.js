@@ -3031,6 +3031,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -3045,13 +3071,15 @@ __webpack_require__.r(__webpack_exports__);
     permissions: {
       type: Object,
       required: true
-    }
+    },
+    faculties: Array
   },
   data: function data() {
     return {
       form: this.$inertia.form({
         name: this.user.name,
-        permissions: this.permissions
+        permissions: this.permissions,
+        faculties: this.faculties
       })
     };
   },
@@ -3064,6 +3092,9 @@ __webpack_require__.r(__webpack_exports__);
         this.$inertia["delete"](this.$route("admin.users.destory", this.user.id));
       }
     }
+  },
+  created: function created() {
+    console.log(this.faculties);
   }
 });
 
@@ -3087,6 +3118,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash_throttle__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_throttle__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var lodash_mapValues__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash/mapValues */ "./node_modules/lodash/mapValues.js");
 /* harmony import */ var lodash_mapValues__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash_mapValues__WEBPACK_IMPORTED_MODULE_3__);
+//
 //
 //
 //
@@ -4173,12 +4205,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     value: String,
     maxWidth: {
       type: Number,
       "default": 300
+    },
+    filterable: {
+      type: Boolean,
+      "default": false
     }
   }
 });
@@ -24155,6 +24192,111 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("h1", { staticClass: "my-8 font-bold text-3xl" }, [
+        _vm._v("\n\t\tFaculties\n\t")
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "bg-white rounded-md shadow overflow-hidden max-w-3xl" },
+        [
+          _c(
+            "table",
+            { staticClass: "w-full whitespace-nowrap" },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _vm._l(_vm.faculties, function(faculty) {
+                return _c(
+                  "tr",
+                  {
+                    key: faculty.id,
+                    staticClass: "hover:bg-gray-100 focus-within:bg-gray-100"
+                  },
+                  [
+                    _c("td", { staticClass: "border-t" }, [
+                      _c(
+                        "span",
+                        {
+                          staticClass: "px-6 py-4 flex items-center",
+                          attrs: { tabindex: "-1" }
+                        },
+                        [
+                          _vm._v(
+                            "\n\t\t\t\t\t\t" +
+                              _vm._s(faculty.faculty_name) +
+                              "\n\t\t\t\t\t"
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "border-t" }, [
+                      _c(
+                        "span",
+                        {
+                          staticClass: "px-6 py-4 flex items-center",
+                          attrs: { tabindex: "-1" }
+                        },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: faculty.owns_faculty,
+                                expression: "faculty.owns_faculty"
+                              }
+                            ],
+                            attrs: { type: "checkbox" },
+                            domProps: {
+                              checked: Array.isArray(faculty.owns_faculty)
+                                ? _vm._i(faculty.owns_faculty, null) > -1
+                                : faculty.owns_faculty
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$a = faculty.owns_faculty,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = null,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 &&
+                                      _vm.$set(
+                                        faculty,
+                                        "owns_faculty",
+                                        $$a.concat([$$v])
+                                      )
+                                  } else {
+                                    $$i > -1 &&
+                                      _vm.$set(
+                                        faculty,
+                                        "owns_faculty",
+                                        $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1))
+                                      )
+                                  }
+                                } else {
+                                  _vm.$set(faculty, "owns_faculty", $$c)
+                                }
+                              }
+                            }
+                          })
+                        ]
+                      )
+                    ])
+                  ]
+                )
+              })
+            ],
+            2
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c("h1", { staticClass: "my-8 font-bold text-3xl" }, [
         _vm._v("\n\t\tPermissions\n\t")
       ]),
       _vm._v(" "),
@@ -24163,13 +24305,13 @@ var render = function() {
         { staticClass: "bg-white rounded-md shadow overflow-hidden max-w-3xl" },
         [
           _c("table", { staticClass: "w-full whitespace-nowrap" }, [
-            _vm._m(0),
+            _vm._m(1),
             _vm._v(" "),
             _c(
               "tr",
               { staticClass: "hover:bg-gray-100 focus-within:bg-gray-100" },
               [
-                _vm._m(1),
+                _vm._m(2),
                 _vm._v(" "),
                 _c("td", { staticClass: "border-t" }, [
                   _c(
@@ -24354,7 +24496,7 @@ var render = function() {
               "tr",
               { staticClass: "hover:bg-gray-100 focus-within:bg-gray-100" },
               [
-                _vm._m(2),
+                _vm._m(3),
                 _vm._v(" "),
                 _c("td", { staticClass: "border-t" }, [
                   _c(
@@ -24538,6 +24680,14 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", { staticClass: "text-left font-bold" }, [
+      _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Faculty")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", { staticClass: "text-left font-bold" }, [
       _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Name")]),
       _vm._v(" "),
       _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Create")]),
@@ -24615,6 +24765,7 @@ var render = function() {
             "AppTableSearch",
             {
               staticClass: "w-full max-w-md mr-4",
+              attrs: { filterable: true },
               on: { reset: _vm.reset },
               model: {
                 value: _vm.form.search,
@@ -26093,53 +26244,57 @@ var render = function() {
       "div",
       { staticClass: "flex w-full bg-white shadow rounded" },
       [
-        _c(
-          "AppDropdown",
-          {
-            staticClass:
-              "px-4 md:px-6 rounded-l border-r hover:bg-gray-100 focus:border-white focus:ring focus:z-10",
-            attrs: { "auto-close": false, placement: "bottom-start" }
-          },
-          [
-            _c("div", { staticClass: "flex items-baseline" }, [
-              _c("span", { staticClass: "text-gray-700 hidden md:inline" }, [
-                _vm._v("Filter")
-              ]),
-              _vm._v(" "),
-              _c(
-                "svg",
-                {
-                  staticClass: "w-2 h-2 fill-gray-700 md:ml-2",
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    viewBox: "0 0 961.243 599.998"
-                  }
-                },
-                [
-                  _c("path", {
-                    attrs: {
-                      d:
-                        "M239.998 239.999L0 0h961.243L721.246 240c-131.999 132-240.28 240-240.624 239.999-.345-.001-108.625-108.001-240.624-240z"
-                    }
-                  })
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
+        _vm.filterable
+          ? _c(
+              "AppDropdown",
               {
                 staticClass:
-                  "mt-2 px-4 py-6 w-screen shadow-xl bg-white rounded",
-                style: { maxWidth: _vm.maxWidth + "px" },
-                attrs: { slot: "dropdown" },
-                slot: "dropdown"
+                  "px-4 md:px-6 rounded-l border-r hover:bg-gray-100 focus:border-white focus:ring focus:z-10",
+                attrs: { "auto-close": false, placement: "bottom-start" }
               },
-              [_vm._t("default")],
-              2
+              [
+                _c("div", { staticClass: "flex items-baseline" }, [
+                  _c(
+                    "span",
+                    { staticClass: "text-gray-700 hidden md:inline" },
+                    [_vm._v("Filter")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "w-2 h-2 fill-gray-700 md:ml-2",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 961.243 599.998"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          d:
+                            "M239.998 239.999L0 0h961.243L721.246 240c-131.999 132-240.28 240-240.624 239.999-.345-.001-108.625-108.001-240.624-240z"
+                        }
+                      })
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "mt-2 px-4 py-6 w-screen shadow-xl bg-white rounded",
+                    style: { maxWidth: _vm.maxWidth + "px" },
+                    attrs: { slot: "dropdown" },
+                    slot: "dropdown"
+                  },
+                  [_vm._t("default")],
+                  2
+                )
+              ]
             )
-          ]
-        ),
+          : _vm._e(),
         _vm._v(" "),
         _c("input", {
           staticClass: "relative w-full px-6 py-3 rounded-r focus:ring",
@@ -38655,7 +38810,7 @@ webpackContext.id = "./resources/js sync recursive \\.vue$/";
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_args":[["axios@0.21.4","E:\\\\Lapto-Projects\\\\portal_cms"]],"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/","/@inertiajs/inertia"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"E:\\\\Lapto-Projects\\\\portal_cms","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","G:\\\\WebProjects\\\\Campus-Management-Portal"]],"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/","/@inertiajs/inertia"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"G:\\\\WebProjects\\\\Campus-Management-Portal","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

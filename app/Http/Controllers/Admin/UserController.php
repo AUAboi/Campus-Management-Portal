@@ -39,8 +39,8 @@ class UserController extends Controller
             ]);
 
 
-        return Inertia::render("Admin/Users/Index", ['users' => $users, 'filters' => $filters, 'permissions' => [
-            'create' => auth()->user()->can('create users'),
+        return Inertia::render("Admin/Users/Index", ['users' => $users, 'filters' => $filters,  'permissions' => [
+            'create' => auth()->user()->can('create_users'),
         ]]);
     }
 
@@ -95,6 +95,11 @@ class UserController extends Controller
                 'name' => $user->name,
                 'roles' => $user->roles->pluck('name'),
             ],
+            'faculties' => Faculty::select('id', 'faculty_name')->get()->transform(fn ($faculty) => [
+                'id' => $faculty->id,
+                'faculty_name' => $faculty->faculty_name,
+                'owns_faculty' => $user->admin->faculties->contains($faculty->id),
+            ]),
             'permissions' => [
                 'create_faculties' => $user->can('create_faculties'),
                 'update_faculties' => $user->can('update_faculties'),
@@ -122,6 +127,17 @@ class UserController extends Controller
 
         //delete all permissions from the user and set the new permissions
         $user->syncPermissions($permissions);
+
+        //Grab all faculties for admin from the request and store in admin_faculties
+        $faculties = $request->only('faculties');
+        foreach ($faculties['faculties'] as $faculty) {
+
+            if ($faculty['owns_faculty']) {
+                $user->admin->faculties()->attach($faculty['id']);
+            } else {
+                $user->admin->faculties()->detach($faculty['id']);
+            }
+        }
 
         $user->update($request->only('name'));
 

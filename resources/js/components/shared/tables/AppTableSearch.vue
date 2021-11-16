@@ -2,6 +2,7 @@
 	<div class="flex items-center">
 		<div class="flex w-full bg-white shadow rounded">
 			<AppDropdown
+				v-if="filterable"
 				:auto-close="false"
 				class="px-4 md:px-6 rounded-l border-r hover:bg-gray-100 focus:border-white focus:ring focus:z-10"
 				placement="bottom-start"
@@ -53,6 +54,10 @@ export default {
 		maxWidth: {
 			type: Number,
 			default: 300
+		},
+		filterable: {
+			type: Boolean,
+			default: false
 		}
 	}
 };

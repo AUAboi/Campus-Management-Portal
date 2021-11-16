@@ -52,6 +52,32 @@
 			</form>
 		</div>
 		<h1 class="my-8 font-bold text-3xl">
+			Faculties
+		</h1>
+		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
+			<table class="w-full whitespace-nowrap">
+				<tr class="text-left font-bold">
+					<th class="px-6 pt-6 pb-4">Faculty</th>
+				</tr>
+				<tr
+					v-for="faculty in faculties"
+					:key="faculty.id"
+					class="hover:bg-gray-100 focus-within:bg-gray-100"
+				>
+					<td class="border-t">
+						<span class="px-6 py-4 flex items-center" tabindex="-1">
+							{{ faculty.faculty_name }}
+						</span>
+					</td>
+					<td class="border-t">
+						<span class="px-6 py-4 flex items-center" tabindex="-1">
+							<input type="checkbox" v-model="faculty.owns_faculty" />
+						</span>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<h1 class="my-8 font-bold text-3xl">
 			Permissions
 		</h1>
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
@@ -127,13 +153,15 @@ export default {
 		permissions: {
 			type: Object,
 			required: true
-		}
+		},
+		faculties: Array
 	},
 	data() {
 		return {
 			form: this.$inertia.form({
 				name: this.user.name,
-				permissions: this.permissions
+				permissions: this.permissions,
+				faculties: this.faculties
 			})
 		};
 	},
@@ -146,6 +174,9 @@ export default {
 				this.$inertia.delete(this.$route("admin.users.destory", this.user.id));
 			}
 		}
+	},
+	created() {
+		console.log(this.faculties);
 	}
 };
 </script>

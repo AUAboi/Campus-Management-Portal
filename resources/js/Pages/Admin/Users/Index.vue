@@ -5,6 +5,7 @@
 		<h1 class="mb-8 font-bold text-3xl">Users</h1>
 		<div class="mb-6 flex justify-between items-center">
 			<AppTableSearch
+				:filterable="true"
 				v-model="form.search"
 				class="w-full max-w-md mr-4"
 				@reset="reset"
