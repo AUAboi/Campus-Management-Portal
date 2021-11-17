@@ -6,11 +6,11 @@
 			<p><span class="font-bold">Father Name:</span> {{ user.father_name }}</p>
 			<p>
 				<span class="font-bold">Gender: </span>
-				{{ user.gender ? user.gender : "NA" }}
+				{{ user.gender ? user.gender : "N/A" }}
 			</p>
 			<p>
 				<span class="font-bold">Date of birth:</span>
-				{{ user.date_of_birth ? user.date_of_birth : "NA" }}
+				{{ user.date_of_birth ? user.date_of_birth : "N/A" }}
 			</p>
 		</div>
 	</section>
