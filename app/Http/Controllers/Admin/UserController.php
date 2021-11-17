@@ -40,7 +40,7 @@ class UserController extends Controller
 
 
         return Inertia::render("Admin/Users/Index", ['users' => $users, 'filters' => $filters,  'permissions' => [
-            'create' => auth()->user()->can('create_users'),
+            'create' => auth()->user()->can('create', User::class),
         ]]);
     }
 
@@ -71,9 +71,22 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+
+        return Inertia::render("Admin/Users/Show", [
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'avatar' => $user->avatar,
+                'role' => $user->roles->pluck('name')[0],
+            ],
+            'permissions' => [
+                'edit' => auth()->user()->can('update', $user),
+                'delete' => auth()->user()->can('delete', $user),
+            ],
+        ]);
     }
 
     /**
@@ -84,6 +97,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $this->authorize('update', $user);
 
         if ($user->hasAnyRole(['student', 'teacher'])) {
             dd($user);
@@ -120,6 +134,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $this->authorize('update', $user);
 
         //Grab all permissions from the request and store in $permissions
         $selected_permissions = $request->only('permissions');
@@ -152,6 +167,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        $this->authorize('delete', $user);
+
         $user->delete();
 
         return Redirect::route('admin.users')->with('success', 'User deleted.');

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<AppAdminHead title="Profile" />
+		<AppAdminHead title="Users" />
 
 		<h1 class="mb-8 font-bold text-3xl">Users</h1>
 		<div class="mb-6 flex justify-between items-center">
@@ -45,7 +45,7 @@
 					<td class="border-t">
 						<Link
 							class="px-6 py-4 flex items-center"
-							:href="$route('admin.users.edit', user.id)"
+							:href="$route('admin.users.show', user.id)"
 							tabindex="-1"
 						>
 							{{ user.name }}
@@ -54,7 +54,7 @@
 					<td class="border-t">
 						<Link
 							class="px-6 py-4 flex items-center"
-							:href="$route('admin.users.edit', user.id)"
+							:href="$route('admin.users.show', user.id)"
 							tabindex="-1"
 						>
 							{{ user.email }}
@@ -68,7 +68,7 @@
 					<td class="border-t w-px">
 						<Link
 							class="px-4 flex items-center"
-							:href="$route('admin.users.edit', user.id)"
+							:href="$route('admin.users.show', user.id)"
 							tabindex="-1"
 						>
 							<i class="fas fa-angle-right text-gray-600"></i>
