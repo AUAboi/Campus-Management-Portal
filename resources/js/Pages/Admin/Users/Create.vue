@@ -97,6 +97,33 @@ export default {
 		store() {
 			this.form.post(this.$route("admin.users.create"));
 		}
+	},
+	watch: {
+		form: {
+			deep: true,
+			handler: function() {
+				if (this.form.password.length === 0) {
+					this.form.errors.password = "";
+					return;
+				} else if (this.form.password.length < 8) {
+					this.form.errors.password = "Password must be at least 8 characters";
+					return;
+				} else if (this.form.password.search(/[0-9]/) < 0) {
+					this.form.errors.password =
+						"Password must contain at least one number";
+					return;
+				} else if (this.form.password.search(/[a-z]/) < 0) {
+					this.form.errors.password =
+						"Password must contain at least one lowercase letter";
+					return;
+				} else if (this.form.password.search(/[A-Z]/) < 0) {
+					this.form.errors.password =
+						"Password must contain at least one uppercase letter";
+					return;
+				}
+				this.form.errors.password = "";
+			}
+		}
 	}
 };
 </script>
