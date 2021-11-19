@@ -12,5 +12,5 @@
 
 This will generate a User model with admin and super admin roles.
 **Credentials:**
-Email: admin#mail.com
+Email: admin@mail.com
 Password: password
