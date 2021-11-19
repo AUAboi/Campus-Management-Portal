@@ -11,67 +11,108 @@
 			<span class="text-indigo-400 font-medium">/</span> Create
 		</h1>
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
-			<form class="m-0" @submit.prevent="store">
-				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
-					<div class="pr-6 pb-8 w-full lg:w-1/2">
-						<label class="block">User Name: </label>
-						<input type="text" v-model="form.name" class="form_input" />
-						<div class="text-red-600" v-if="form.errors.name">
-							{{ form.errors.name }}
+			<form id="create-form" class="m-0" @submit.prevent="store">
+				<div v-if="formStep === 1">
+					<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
+						<div class="pr-6 pb-8 w-full lg:w-1/2">
+							<label class="block">User Name: </label>
+							<input type="text" v-model="form.name" class="form_input" />
+							<div class="text-red-600" v-if="form.errors.name">
+								{{ form.errors.name }}
+							</div>
+						</div>
+						<div class="pr-6 pb-8 w-full lg:w-1/2">
+							<label class="block">Email: </label>
+							<input type="text" v-model="form.email" class="form_input" />
+							<div class="text-red-600" v-if="form.errors.email">
+								{{ form.errors.email }}
+							</div>
 						</div>
 					</div>
-					<div class="pr-6 pb-8 w-full lg:w-1/2">
-						<label class="block">Email: </label>
-						<input type="text" v-model="form.email" class="form_input" />
-						<div class="text-red-600" v-if="form.errors.email">
-							{{ form.errors.email }}
+					<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
+						<div class="pr-6 pb-8 w-full lg:w-1/2">
+							<label class="block">Phone Number: </label>
+							<input type="text" v-model="form.phone" class="form_input" />
+							<div class="text-red-600" v-if="form.errors.phone">
+								{{ form.errors.phone }}
+							</div>
+						</div>
+						<div class="pr-6 pb-8 w-full lg:w-1/2">
+							<label class="block">CNIC: </label>
+							<input
+								type="text"
+								maxlength="13"
+								v-model="form.cnic"
+								placeholder="XXXXX-XXXXXXX-X"
+								autofocus=""
+								class="form_input"
+							/>
+							<div class="text-red-600" v-if="form.errors.cnic">
+								{{ form.errors.cnic }}
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
-					<div class="pr-6 pb-8 w-full lg:w-1/2">
-						<label class="block">Password: </label>
-						<input type="text" v-model="form.password" class="form_input" />
-						<div class="text-red-600" v-if="form.errors.password">
-							{{ form.errors.password }}
+					<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
+						<div class="pr-6 pb-8 w-full lg:w-1/2">
+							<label class="block">Password: </label>
+							<input type="text" v-model="form.password" class="form_input" />
+							<div class="text-red-600" v-if="form.errors.password">
+								{{ form.errors.password }}
+							</div>
 						</div>
-					</div>
-					<div class="pr-6 pb-8 w-full lg:w-1/2">
-						<label class="block">Role: </label>
-						<select v-model="form.role" class="form_input">
-							<option value="student">student</option>
-							<option value="teacher">teacher</option>
-							<option value="admin">admin</option>
-						</select>
-						<div class="text-red-600" v-if="form.errors.role">
-							{{ form.errors.role }}
+						<div class="pr-6 pb-8 w-full lg:w-1/2">
+							<label class="block">Role: </label>
+							<select v-model="form.role" class="form_input">
+								<option value="student">student</option>
+								<option value="teacher">teacher</option>
+								<option value="admin">admin</option>
+							</select>
+							<div class="text-red-600" v-if="form.errors.role">
+								{{ form.errors.role }}
+							</div>
 						</div>
 					</div>
 				</div>
 
 				<div
-					class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center"
+					class="mt-2 px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center"
 				>
 					<button
-						:disabled="form.processing"
-						type="submit"
-						class="bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md"
+						class=" inline px-4 py-2 cursor-pointer rounded-md"
+						:class="
+							formStep <= 1
+								? 'bg-indigo-200 text-gray-200 cursor-not-allowed'
+								: 'bg-indigo-500 text-white'
+						"
+						:disabled="formStep <= 1"
+						@click.prevent="formStep--"
 					>
-						Create User
+						<i class="fa fa-chevron-left" aria-hidden="true"></i> Go Back
+					</button>
+					<button
+						class=" inline px-4 py-2 cursor-pointer rounded-md"
+						:class="
+							formStep >= 2 || !form.role
+								? 'bg-indigo-200 text-gray-200 cursor-not-allowed'
+								: 'bg-indigo-500 text-white'
+						"
+						:disabled="formStep >= 2 || !form.role"
+						@click.prevent="formStep++"
+					>
+						Add Details <i class="fa fa-chevron-right" aria-hidden="true"></i>
 					</button>
 				</div>
 			</form>
 		</div>
-		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl mt-4">
-			<div v-if="form.role === 'student'">
-				<h1>Student</h1>
-			</div>
-			<div v-else-if="form.role === 'admin'">
-				<h1>Admin</h1>
-			</div>
-			<div v-else-if="form.role === 'teacher'">
-				<h1>Teacher</h1>
-			</div>
+		<div class="mt-2 pr-8 py-4 bg-gray-50 border-t border-gray-100 ">
+			<button
+				:disabled="form.processing"
+				type="submit"
+				class="bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md"
+				form="create-form"
+			>
+				Create User
+			</button>
 		</div>
 	</div>
 </template>
@@ -85,10 +126,13 @@ export default {
 	},
 	data() {
 		return {
+			formStep: 1,
 			form: this.$inertia.form({
 				name: "",
 				email: "",
 				password: "",
+				cnic: "",
+				phone: "",
 				role: ""
 			})
 		};
@@ -99,31 +143,37 @@ export default {
 		}
 	},
 	watch: {
-		form: {
-			deep: true,
-			handler: function() {
-				if (this.form.password.length === 0) {
-					this.form.errors.password = "";
-					return;
-				} else if (this.form.password.length < 8) {
-					this.form.errors.password = "Password must be at least 8 characters";
-					return;
-				} else if (this.form.password.search(/[0-9]/) < 0) {
-					this.form.errors.password =
-						"Password must contain at least one number";
-					return;
-				} else if (this.form.password.search(/[a-z]/) < 0) {
-					this.form.errors.password =
-						"Password must contain at least one lowercase letter";
-					return;
-				} else if (this.form.password.search(/[A-Z]/) < 0) {
-					this.form.errors.password =
-						"Password must contain at least one uppercase letter";
-					return;
-				}
-				this.form.errors.password = "";
-			}
+		"form.role": function() {
+			//Reset role form
 		}
 	}
+
+	// watch: {
+	// 	form: {
+	// 		deep: true,
+	// 		handler: function() {
+	// 			if (!this.form.password.length) {
+	// 				this.form.errors.password = "";
+	// 				return;
+	// 			} else if (this.form.password.length < 8) {
+	// 				this.form.errors.password = "Password must be at least 8 characters";
+	// 				return;
+	// 			} else if (this.form.password.search(/[0-9]/) < 0) {
+	// 				this.form.errors.password =
+	// 					"Password must contain at least one number";
+	// 				return;
+	// 			} else if (this.form.password.search(/[a-z]/) < 0) {
+	// 				this.form.errors.password =
+	// 					"Password must contain at least one lowercase letter";
+	// 				return;
+	// 			} else if (this.form.password.search(/[A-Z]/) < 0) {
+	// 				this.form.errors.password =
+	// 					"Password must contain at least one uppercase letter";
+	// 				return;
+	// 			}
+	// 			this.form.errors.password = "";
+	// 		}
+	// 	}
+	// }
 };
 </script>

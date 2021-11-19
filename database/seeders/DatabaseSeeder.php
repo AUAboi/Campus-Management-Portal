@@ -2,10 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Faculty;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
+use Database\Seeders\RoleSeeder;
+use Database\Seeders\AdminSeeder;
+use Database\Seeders\FacultySeeder;
+use Database\Seeders\ProgramSeeder;
+use Database\Seeders\PermissionSeeder;
+use Database\Seeders\SuperAdminSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,7 +22,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             FacultySeeder::class,
             ProgramSeeder::class,
-
+            RoleSeeder::class,
+            PermissionSeeder::class,
+            AdminSeeder::class,
+            AdminFacultySeeder::class,
+            SuperAdminSeeder::class,
         ]);
     }
 }

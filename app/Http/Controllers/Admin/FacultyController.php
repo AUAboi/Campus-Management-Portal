@@ -27,7 +27,7 @@ class FacultyController extends Controller
 
         $filters = $request->all('search');
 
-        if ($user->hasRole('super admin')) {
+        if ($user->hasRole('super-admin')) {
             $faculties = Faculty::orderBy('faculty_name')
                 ->filter($request->only('search'))
                 ->paginate(10)

@@ -16,9 +16,8 @@ class CreateStudentsTable extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->constrained()->onDelete('cascade');
-            $table->text('session_duration');
             $table->text('session_type');
-            $table->text('registration_number');
+            $table->integer('registration_number');
             $table->integer('roll_no');
             $table->year("admission_year");
             $table->decimal('cgpa', 3, 2);

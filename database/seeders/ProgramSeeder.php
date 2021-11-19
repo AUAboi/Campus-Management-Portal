@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use DOMXPath;
 use DOMDocument;
 use App\Models\Department;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\View;
@@ -28,7 +29,7 @@ class ProgramSeeder extends Seeder
                     $program = $program['program_name'];
 
                     //Match urls with program names
-                    similar_text($this->replace_dashes($url->department_link),  $this->remove_extra_text(strtolower($program)), $percentage);
+                    similar_text($this->replace_dashes($url->slug),  $this->remove_extra_text(strtolower($program)), $percentage);
 
                     if ($percentage > 74) {
                         $duration = 4;
@@ -37,6 +38,7 @@ class ProgramSeeder extends Seeder
                         }
                         $url->programs()->create([
                             'program_name' => $program,
+                            'slug' => Str::slug($program),
                             'program_duration' => $duration
                         ]);
                     }

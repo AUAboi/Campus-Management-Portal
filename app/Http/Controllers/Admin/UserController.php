@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Inertia\Inertia;
+use App\Models\Faculty;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
-use App\Models\Faculty;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Spatie\Permission\Models\Permission;
 
@@ -51,7 +54,7 @@ class UserController extends Controller
      */
     public function create()
     {
-
+        dd(Carbon::now()->year);
         return Inertia::render("Admin/Users/Create");
     }
 
@@ -64,16 +67,39 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->authorize('create', User::class);
-
-        User::create($request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
+            'password' => 'required|string|min:8',
+            'cnic' => 'required|string|min:13|max:13',
+            'phone' => 'required|string|max:11',
             'role' => 'required|string|exists:roles,name',
-        ]));
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'cnic' => $request->cnic,
+            'phone' => $request->phone,
+        ]);
+
+
+        $user->student()->create([
+            'registration_number' => $this->generateRegNumber(),
+            'session_duration' => Carbon::now()->year . '-' . Carbon::now()->addYears(4)->year,
+            'session_type' => $request->session_type,
+            'roll_no' => $user->id + 1000,
+            'admission_year' => Carbon::now()->year,
+            'cgpa' => 0.00
+
+        ]);
+
+
 
         return Redirect::route('admin.users.index')->with('success', 'User created successfully');
     }
+
 
     /**
      * Display the specified resource.
@@ -182,5 +208,17 @@ class UserController extends Controller
         $user->delete();
 
         return Redirect::route('admin.users')->with('success', 'User deleted.');
+    }
+
+    private function generateRegNumber()
+    {
+        //Format is like this:
+        //RANDOM_5_DIGITS
+
+        $reg_number = rand(1, 9)  . rand(1, 9)   . rand(1, 9)  . rand(1, 9) .  rand(1, 9);
+        if (Student::where('registration_number', $reg_number)->exists()) {
+            $reg_number = $this->generateRegNumber();
+        }
+        return $reg_number;
     }
 }

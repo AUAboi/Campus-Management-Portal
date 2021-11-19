@@ -16,7 +16,7 @@
 					<option value="student">Student</option>
 					<option value="teacher">Teacher</option>
 					<option value="admin">Admin</option>
-					<option value="super admin">Super Admin</option>
+					<option value="super-admin">Super Admin</option>
 				</select>
 			</AppTableSearch>
 

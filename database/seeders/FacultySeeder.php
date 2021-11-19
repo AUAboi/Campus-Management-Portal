@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Faculty;
 use DOMXPath;
 use DOMDocument;
+use App\Models\Faculty;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Http;
 
@@ -41,7 +42,7 @@ class FacultySeeder extends Seeder
                 if (trim($dept) != '') {
                     $faculty_model->departments()->create([
                         "department_name" => $dept,
-                        "department_link" => $url[$k]['department_url']
+                        "slug" => $url[$k]['department_url'] ? $url[$k]['department_url'] : Str::slug($dept),
                     ]);
                     $k++;
                 }
@@ -79,6 +80,7 @@ class FacultySeeder extends Seeder
             $department_item_text = $department_item->nodeValue;
 
             $faculty_names[$i]['faculty_name'] = $faculty_item_text;
+            $faculty_names[$i]['slug'] = Str::slug($faculty_item_text);
             $department_names[$i]['department_name'] = $department_item_text;
         }
 

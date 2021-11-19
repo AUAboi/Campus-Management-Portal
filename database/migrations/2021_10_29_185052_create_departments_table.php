@@ -18,7 +18,7 @@ class CreateDepartmentsTable extends Migration
             $table->foreignId('faculty_id')->references('id')->on('faculties')->constrained()->onDelete('cascade');
 
             $table->string("department_name");
-            $table->string("department_link")->nullable();
+            $table->string("slug", 100);
             $table->timestamps();
         });
     }
