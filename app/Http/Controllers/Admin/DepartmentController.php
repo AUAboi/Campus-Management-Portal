@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use Inertia\Inertia;
-use App\Models\Department;
 use App\Models\Faculty;
+use App\Models\Department;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
-use Spatie\Permission\Contracts\Permission;
 use Spatie\Permission\Contracts\Role;
+use Illuminate\Support\Facades\Redirect;
+use Spatie\Permission\Contracts\Permission;
 
 class DepartmentController extends Controller
 {
@@ -48,6 +49,7 @@ class DepartmentController extends Controller
             'department' => [
                 'id' => $department->id,
                 'department_name' => $department->department_name,
+                'slug' => $department->slug,
                 'faculty_name' => $department->faculty->faculty_name,
                 'faculty_id' => $department->faculty->id,
             ],
@@ -67,11 +69,17 @@ class DepartmentController extends Controller
             'department_name' => 'required|unique:departments,department_name',
             'faculty_id' => 'required|exists:faculties,id'
         ]);
-
         $faculty = Faculty::find($request->faculty_id);
 
 
-        $faculty->departments()->create($request->only('department_name'));
+        $faculty->departments()->create(
+            [
+                'department_name' => $request->department_name,
+                'slug' => Str::slug($request->department_name),
+            ]
+        );
+
+
         return Redirect::route('admin.departments')->with('success', 'Department created.');
     }
 

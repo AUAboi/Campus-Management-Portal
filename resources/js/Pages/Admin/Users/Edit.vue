@@ -14,7 +14,7 @@
 			<form @submit.prevent="update" id="update-form" class="m-0">
 				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
-						<label class="block">user Name: </label>
+						<label class="block">User Name: </label>
 						<input type="text" v-model="form.name" class="form_input" />
 						<div class="text-red-600" v-if="form.errors.name">
 							{{ form.errors.name }}
@@ -60,7 +60,7 @@
 					<th class="px-6 pt-6 pb-4">Faculty</th>
 				</tr>
 				<tr
-					v-for="faculty in faculties"
+					v-for="faculty in user.faculties"
 					:key="faculty.id"
 					class="hover:bg-gray-100 focus-within:bg-gray-100"
 				>
@@ -96,17 +96,26 @@
 					</td>
 					<td class="border-t">
 						<span class="px-6 py-4 flex items-center" tabindex="-1">
-							<input type="checkbox" v-model="permissions.create_faculties" />
+							<input
+								type="checkbox"
+								v-model="user.permissions.create_faculties"
+							/>
 						</span>
 					</td>
 					<td class="border-t">
 						<span class="px-6 py-4 flex items-center" tabindex="-1">
-							<input type="checkbox" v-model="permissions.update_faculties" />
+							<input
+								type="checkbox"
+								v-model="user.permissions.update_faculties"
+							/>
 						</span>
 					</td>
 					<td class="border-t">
 						<span class="px-6 py-4 flex items-center" tabindex="-1">
-							<input type="checkbox" v-model="permissions.delete_faculties" />
+							<input
+								type="checkbox"
+								v-model="user.permissions.delete_faculties"
+							/>
 						</span>
 					</td>
 				</tr>
@@ -118,17 +127,17 @@
 					</td>
 					<td class="border-t">
 						<span class="px-6 py-4 flex items-center" tabindex="-1">
-							<input type="checkbox" v-model="permissions.create_users" />
+							<input type="checkbox" v-model="user.permissions.create_users" />
 						</span>
 					</td>
 					<td class="border-t">
 						<span class="px-6 py-4 flex items-center" tabindex="-1">
-							<input type="checkbox" v-model="permissions.update_users" />
+							<input type="checkbox" v-model="user.permissions.update_users" />
 						</span>
 					</td>
 					<td class="border-t">
 						<span class="px-6 py-4 flex items-center" tabindex="-1">
-							<input type="checkbox" v-model="permissions.delete_users" />
+							<input type="checkbox" v-model="user.permissions.delete_users" />
 						</span>
 					</td>
 				</tr>
@@ -160,8 +169,8 @@ export default {
 		return {
 			form: this.$inertia.form({
 				name: this.user.name,
-				permissions: this.permissions,
-				faculties: this.faculties
+				permissions: this.user.permissions,
+				faculties: this.user.faculties
 			})
 		};
 	},
@@ -171,7 +180,7 @@ export default {
 		},
 		destroy() {
 			if (confirm("Are you sure you want to delete this user?")) {
-				this.$inertia.delete(this.$route("admin.users.destory", this.user.id));
+				this.$inertia.delete(this.$route("admin.users.destroy", this.user.id));
 			}
 		}
 	}

@@ -12,8 +12,14 @@ class Faculty extends Model
     use HasFactory;
 
     protected $fillable = [
-        'faculty_name'
+        'faculty_name',
+        'slug'
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function departments()
     {

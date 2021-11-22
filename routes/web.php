@@ -7,9 +7,11 @@ use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\TestController;
 
 use App\Http\Controllers\Student\CourseDetailsController;
+use App\Models\Program;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,7 +61,12 @@ Route::group(['middleware' => ['role:admin']], function () {
 
     Route::post('/departments/create', [DepartmentController::class, 'store'])->name('admin.departments.store');
     Route::put('/departments/{department}/update', [DepartmentController::class, 'update'])->name('admin.departments.update');
-    Route::delete('/departments/{department}/delete', [DepartmentController::class, 'destroy'])->name('admin.departments.destory');
+    Route::delete('/departments/{department}/delete', [DepartmentController::class, 'destroy'])->name('admin.departments.destroy');
+
+    //Programs
+    Route::get('/programs', [ProgramController::class, 'index'])->name('admin.programs');
+    Route::get('/programs/create', [ProgramController::class, 'create'])->name('admin.programs.create');
+    Route::get('/programs/{program}/edit', [ProgramController::class, 'edit'])->name('admin.programs.edit');
 
     //Users
     Route::get('/users', [UserController::class, 'index'])->name('admin.users');
@@ -69,6 +76,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 
     Route::post('/users/create', [UserController::class, 'store'])->name('admin.users.store');
     Route::put('/users/{user}/update', [UserController::class, 'update'])->name('admin.users.update');
+    Route::delete('/users/{user}/delete', [UserController::class, 'destroy'])->name('admin.users.destroy');
   });
 });
 

@@ -30,7 +30,7 @@ export default {
 			required: true,
 			type: Object
 		},
-		permissions: Array
+		permissions: Object
 	},
 	computed: {
 		role() {

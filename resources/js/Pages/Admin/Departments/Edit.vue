@@ -117,13 +117,13 @@ export default {
 	methods: {
 		update() {
 			this.form.put(
-				this.$route("admin.departments.update", this.department.id)
+				this.$route("admin.departments.update", this.department.slug)
 			);
 		},
 		destroy() {
 			if (confirm("Are you sure you want to delete this department?")) {
 				this.$inertia.delete(
-					this.$route("admin.departments.destory", this.department.id)
+					this.$route("admin.departments.destroy", this.department.slug)
 				);
 			}
 		}

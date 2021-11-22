@@ -33,7 +33,7 @@
 					<td class="border-t">
 						<Link
 							class="px-6 py-4 flex items-center focus:text-indigo-500"
-							:href="$route('admin.departments.edit', department.id)"
+							:href="$route('admin.departments.edit', department.slug)"
 						>
 							{{ department.department_name }}
 						</Link>
@@ -41,7 +41,7 @@
 					<td class="border-t">
 						<Link
 							class="px-6 py-4 flex items-center focus:text-indigo-500"
-							:href="$route('admin.departments.edit', department.id)"
+							:href="$route('admin.departments.edit', department.slug)"
 						>
 							{{ department.faculty ? department.faculty.faculty_name : "NA" }}
 						</Link>
@@ -49,7 +49,7 @@
 					<td class="border-t w-px">
 						<Link
 							class="px-4 flex items-center"
-							:href="$route('admin.departments.edit', department.id)"
+							:href="$route('admin.departments.edit', department.slug)"
 							tabindex="-1"
 						>
 							<i class="fas fa-angle-right text-gray-600"></i

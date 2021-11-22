@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Faculty;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Redirect;
 use Spatie\Permission\Contracts\Role;
+use Illuminate\Support\Facades\Redirect;
 
 //Permissions are for edit, delete, and create only. Every admin can view every faculty. Super admin can access every permission
 class FacultyController extends Controller
@@ -60,6 +61,7 @@ class FacultyController extends Controller
             'faculty' => [
                 'id' => $faculty->id,
                 'faculty_name' => $faculty->faculty_name,
+                'slug' => $faculty->slug,
                 'departments' => $faculty->departments()->orderBy('department_name')->get()->map->only('id', 'department_name'),
             ],
             'permissions' => [
@@ -76,7 +78,10 @@ class FacultyController extends Controller
             'faculty_name' => 'required|unique:faculties,faculty_name',
         ]);
 
-        Faculty::create($request->only('faculty_name'));
+        Faculty::create([
+            'faculty_name' => $request->faculty_name,
+            'slug' => Str::slug($request->faculty_name),
+        ]);
         return Redirect::route('admin.faculties')->with('success', 'Faculty created.');
     }
 

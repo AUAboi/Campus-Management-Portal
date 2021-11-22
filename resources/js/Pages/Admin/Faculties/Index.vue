@@ -33,7 +33,7 @@
 					<td class="border-t">
 						<Link
 							class="px-6 py-4 flex items-center focus:text-indigo-500"
-							:href="$route('admin.faculties.edit', faculty.id)"
+							:href="$route('admin.faculties.edit', faculty.slug)"
 						>
 							{{ faculty.faculty_name }}
 						</Link>
@@ -41,7 +41,7 @@
 					<td class="border-t w-px">
 						<Link
 							class="px-4 flex items-center"
-							:href="$route('admin.faculties.edit', faculty.id)"
+							:href="$route('admin.faculties.edit', faculty.slug)"
 							tabindex="-1"
 						>
 							<i class="fas fa-angle-right text-gray-600"></i

@@ -15,10 +15,10 @@ class CreateProgramsTable extends Migration
     {
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
-            $table->string("program_name");
-            $table->smallInteger("program_duration")->nullable();
+            $table->foreignId("degree_id")->constrained()->onDelete('cascade');
+            $table->smallInteger("credit_hour");
             $table->string("slug", 100);
-            $table->foreignId("department_id")->onDelete('cascade');
+            $table->foreignId("department_id")->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

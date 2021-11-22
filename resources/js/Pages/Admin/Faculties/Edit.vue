@@ -67,7 +67,7 @@
 					<td class="border-t">
 						<Link
 							class="px-6 py-4 flex items-center focus:text-indigo-500"
-							:href="$route('admin.departments.edit', department.id)"
+							:href="$route('admin.departments.edit', department.slug)"
 						>
 							{{ department.department_name }}
 						</Link>
@@ -75,7 +75,7 @@
 					<td class="border-t w-px">
 						<Link
 							class="px-4 flex items-center"
-							:href="$route('admin.departments.edit', department.id)"
+							:href="$route('admin.departments.edit', department.slug)"
 							tabindex="-1"
 						>
 							<i class="fas fa-angle-right text-gray-600"></i
@@ -123,12 +123,12 @@ export default {
 	},
 	methods: {
 		update() {
-			this.form.put(this.$route("admin.faculties.update", this.faculty.id));
+			this.form.put(this.$route("admin.faculties.update", this.faculty.slug));
 		},
 		destroy() {
 			if (confirm("Are you sure you want to delete this faculty?")) {
 				this.$inertia.delete(
-					this.$route("admin.faculties.destroy", this.faculty.id)
+					this.$route("admin.faculties.destroy", this.faculty.slug)
 				);
 			}
 		}

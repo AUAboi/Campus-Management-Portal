@@ -7,6 +7,7 @@ use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Faculty;
 use App\Models\Student;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
@@ -54,7 +55,6 @@ class UserController extends Controller
      */
     public function create()
     {
-        dd(Carbon::now()->year);
         return Inertia::render("Admin/Users/Create");
     }
 
@@ -144,20 +144,24 @@ class UserController extends Controller
                 'id' => $user->id,
                 'name' => $user->name,
                 'roles' => $user->roles->pluck('name'),
+                'faculties' => Faculty::select('id', 'faculty_name')->get()->transform(fn ($faculty) => [
+                    'id' => $faculty->id,
+                    'faculty_name' => $faculty->faculty_name,
+                    'owns_faculty' => $user->admin->faculties->contains($faculty->id),
+                ]),
+                'permissions' => [
+                    'create_faculties' => $user->can('create_faculties'),
+                    'update_faculties' => $user->can('update_faculties'),
+                    'delete_faculties' => $user->can('delete_faculties'),
+                    'create_users' => $user->can('create_users'),
+                    'update_users' => $user->can('update_users'),
+                    'delete_users' => $user->can('delete_users'),
+                ],
             ],
-            'faculties' => Faculty::select('id', 'faculty_name')->get()->transform(fn ($faculty) => [
-                'id' => $faculty->id,
-                'faculty_name' => $faculty->faculty_name,
-                'owns_faculty' => $user->admin->faculties->contains($faculty->id),
-            ]),
             'permissions' => [
-                'create_faculties' => $user->can('create_faculties'),
-                'update_faculties' => $user->can('update_faculties'),
-                'delete_faculties' => $user->can('delete_faculties'),
-                'create_users' => $user->can('create_users'),
-                'update_users' => $user->can('update_users'),
-                'delete_users' => $user->can('delete_users'),
-            ],
+                'delete' => auth()->user()->can('delete', $user),
+            ]
+
         ]);
     }
 

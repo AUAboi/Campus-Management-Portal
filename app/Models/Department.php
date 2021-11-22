@@ -11,8 +11,14 @@ class Department extends Model
 
     protected $fillable = [
         'department_name',
+        'slug',
         'faculty_id'
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function faculty()
     {
