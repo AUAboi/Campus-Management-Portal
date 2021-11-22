@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Degree;
 use DOMXPath;
 use DOMDocument;
 use App\Models\Department;
@@ -19,6 +20,21 @@ class ProgramSeeder extends Seeder
      */
     public function run()
     {
+
+        Degree::create([
+            'degree_name' => 'BS',
+            'semesters' => 8,
+        ]);
+        Degree::create([
+            'degree_name' => 'Associate Degree',
+            'semesters' => 4,
+        ]);
+        Degree::create([
+            'degree_name' => 'BBA',
+            'semesters' => 8,
+
+        ]);
+
         $programs = $this->get_programs_from_departments();
         $program_urls = Department::all();
 
@@ -32,14 +48,14 @@ class ProgramSeeder extends Seeder
                     similar_text($this->replace_dashes($url->slug),  $this->remove_extra_text(strtolower($program)), $percentage);
 
                     if ($percentage > 74) {
-                        $duration = 4;
+                        $degree = 1;
                         if (str_contains($program, "Associate")) {
-                            $duration = 2;
+                            $degree = 2;
                         }
                         $url->programs()->create([
-                            'program_name' => $program,
+                            'degree_id' => $degree,
                             'slug' => Str::slug($program),
-                            'program_duration' => $duration
+                            'credit_hours' => 130
                         ]);
                     }
                 }
