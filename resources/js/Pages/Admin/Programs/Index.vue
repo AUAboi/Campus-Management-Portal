@@ -35,7 +35,8 @@
 							class="px-6 py-4 flex items-center focus:text-indigo-500"
 							:href="$route('admin.programs.edit', program.slug)"
 						>
-							{{ program.program_name }}
+							{{ program.degree.degree_name }}
+							{{ program.department.department_name }}
 						</Link>
 					</td>
 					<td class="border-t">

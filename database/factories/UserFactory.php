@@ -30,7 +30,6 @@ class UserFactory extends Factory
             'phone' => 1234567891011,
             'father_name' => $this->faker->name(),
             'gender' => $this->faker->randomElement(['male', 'female']),
-            'slug' => Str::slug($this->faker->name()),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),

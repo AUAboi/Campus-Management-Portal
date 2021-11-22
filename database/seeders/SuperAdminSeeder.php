@@ -16,7 +16,6 @@ class SuperAdminSeeder extends Seeder
     {
         $user = User::create([
             'name' => 'Super Admin',
-            'slug' => 'super-admin',
             'father_name' => 'test',
             'email' => 'admin@mail.com',
             'cnic' => '1234567890123',

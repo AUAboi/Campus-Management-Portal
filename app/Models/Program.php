@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Degree;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Program extends Model
 {
@@ -25,10 +26,19 @@ class Program extends Model
         return $this->belongsTo(Department::class);
     }
 
+    public function degree()
+    {
+        return $this->belongsTo(Degree::class);
+    }
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
-            $query->where('program_name', 'like', '%' . $search . '%');
+            $query->whereHas('degree', function ($query) use ($search) {
+                $query->where('degree_name', 'like', "%{$search}%");
+            })->orWhereHas('department', function ($query) use ($search) {
+                $query->where('department_name', 'like', "%{$search}%");
+            });
         });
     }
 }

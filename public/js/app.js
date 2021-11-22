@@ -3115,6 +3115,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -25182,7 +25183,9 @@ var render = function() {
                         [
                           _vm._v(
                             "\n\t\t\t\t\t\t" +
-                              _vm._s(program.program_name) +
+                              _vm._s(program.degree.degree_name) +
+                              "\n\t\t\t\t\t\t" +
+                              _vm._s(program.department.department_name) +
                               "\n\t\t\t\t\t"
                           )
                         ]

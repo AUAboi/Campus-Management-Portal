@@ -16,9 +16,9 @@ class ProgramController extends Controller
   {
     $filters = $request->all('search');
 
-    $programs =  Program::orderBy('program_name')
+    $programs =  Program::orderBy('id')
       ->filter($request->only('search'))
-      ->with('department')
+      ->with(['department', 'degree'])
       ->paginate(10)
       ->withQueryString();
 
