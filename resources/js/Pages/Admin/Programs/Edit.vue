@@ -15,16 +15,24 @@
 				>Program</Link
 			>
 			<span class="text-indigo-400 font-medium">/</span>
-			{{ form.program_name }}
+			{{ program.degree_name }} {{ program.department_name }}
 		</h1>
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form @submit.prevent="update" id="update-form" class="m-0">
 				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
-						<label class="block">Program Name: </label>
-						<input type="text" v-model="form.program_name" class="form_input" />
-						<div class="text-red-600" v-if="form.errors.program_name">
-							{{ form.errors.program_name }}
+						<label class="block">Degree: </label>
+						<select class="form_input" v-model="form.degree_id">
+							<option
+								v-for="degree in degrees"
+								:key="degree.id"
+								:value="degree.id"
+							>
+								{{ degree.degree_name }}
+							</option>
+						</select>
+						<div class="text-red-600" v-if="form.errors.department_name">
+							{{ form.errors.department_name }}
 						</div>
 					</div>
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
@@ -38,8 +46,17 @@
 								{{ department.department_name }}
 							</option>
 						</select>
-						<div class="text-red-600" v-if="form.errors.program_name">
-							{{ form.errors.program_name }}
+						<div class="text-red-600" v-if="form.errors.department_name">
+							{{ form.errors.department_name }}
+						</div>
+					</div>
+				</div>
+				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
+					<div class="pr-6 pb-8 w-full lg:w-1/2">
+						<label class="block">Credit Hours: </label>
+						<input type="text" v-model="form.credit_hours" class="form_input" />
+						<div class="text-red-600" v-if="form.errors.credit_hours">
+							{{ form.errors.credit_hours }}
 						</div>
 					</div>
 				</div>
@@ -93,6 +110,10 @@ export default {
 			type: Array,
 			required: true
 		},
+		degrees: {
+			type: Array,
+			required: true
+		},
 		permissions: {
 			type: Object,
 			default: () => {
@@ -105,8 +126,9 @@ export default {
 	data() {
 		return {
 			form: this.$inertia.form({
-				program_name: this.program.program_name,
-				department_id: this.program.department_id
+				degree_id: this.program.degree_id,
+				department_id: this.program.department_id,
+				credit_hours: this.program.credit_hours
 			})
 		};
 	},
@@ -117,7 +139,7 @@ export default {
 		destroy() {
 			if (confirm("Are you sure you want to delete this program?")) {
 				this.$inertia.delete(
-					this.$route("admin.programs.destory", this.program.slug)
+					this.$route("admin.programs.destroy", this.program.slug)
 				);
 			}
 		}

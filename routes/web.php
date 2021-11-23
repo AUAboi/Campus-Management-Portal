@@ -68,6 +68,10 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/programs/create', [ProgramController::class, 'create'])->name('admin.programs.create');
     Route::get('/programs/{program}/edit', [ProgramController::class, 'edit'])->name('admin.programs.edit');
 
+    Route::post('/programs/create', [ProgramController::class, 'store'])->name('admin.programs.store');
+    Route::put('/programs/{program}/update', [ProgramController::class, 'update'])->name('admin.programs.update');
+    Route::delete('/programs/{program}/delete', [ProgramController::class, 'destroy'])->name('admin.programs.destroy');
+
     //Users
     Route::get('/users', [UserController::class, 'index'])->name('admin.users');
     Route::get('/users/create', [UserController::class, 'create'])->name('admin.users.create');

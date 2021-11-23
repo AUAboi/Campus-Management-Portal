@@ -24,6 +24,7 @@
 				<tr class="text-left font-bold">
 					<th class="px-6 pt-6 pb-4">Name</th>
 					<th class="px-6 pt-6 pb-4">Department</th>
+					<th class="px-6 pt-6 pb-4">Credit Hours</th>
 				</tr>
 				<tr
 					v-for="program in programs.data"
@@ -47,6 +48,14 @@
 							{{
 								program.department ? program.department.department_name : "NA"
 							}}
+						</Link>
+					</td>
+					<td class="border-t">
+						<Link
+							class="px-6 py-4 flex items-center focus:text-indigo-500"
+							:href="$route('admin.programs.edit', program.slug)"
+						>
+							{{ program.credit_hours }}
 						</Link>
 					</td>
 					<td class="border-t w-px">

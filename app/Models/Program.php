@@ -11,8 +11,9 @@ class Program extends Model
     use HasFactory;
 
     protected $fillable = [
-        'program_name',
-        'program_duration',
+        'department_id',
+        'degree_id',
+        'credit_hours',
         'slug'
     ];
 
