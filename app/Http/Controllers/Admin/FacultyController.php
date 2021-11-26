@@ -28,17 +28,11 @@ class FacultyController extends Controller
 
         $filters = $request->all('search');
 
-        if ($user->hasRole('super-admin')) {
-            $faculties = Faculty::orderBy('faculty_name')
-                ->filter($request->only('search'))
-                ->paginate(10)
-                ->withQueryString();
-        } else {
-            $faculties = $user->admin->faculties()
-                ->filter($request->only('search'))
-                ->paginate(10)
-                ->withQueryString();
-        }
+        $faculties = Faculty::orderBy('faculty_name')
+            ->filter($request->only('search'))
+            ->paginate(10)
+            ->withQueryString();
+
 
 
 
@@ -62,7 +56,7 @@ class FacultyController extends Controller
                 'id' => $faculty->id,
                 'faculty_name' => $faculty->faculty_name,
                 'slug' => $faculty->slug,
-                'departments' => $faculty->departments()->orderBy('department_name')->get()->map->only('id', 'department_name'),
+                'departments' => $faculty->departments()->orderBy('department_name')->get()->map->only('id', 'department_name', 'slug'),
             ],
             'permissions' => [
                 'delete' => auth()->user()->can('delete_faculties'),

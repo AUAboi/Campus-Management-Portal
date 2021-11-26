@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\Course;
+use App\Models\Faculty;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -23,6 +24,38 @@ class CourseController extends Controller
             'permissions' => [
                 'create' => auth()->user()->can('create', Faculty::class),
             ]
+        ]);
+    }
+
+    public function create()
+    {
+        return Inertia::render('Admin/Courses/Create');
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'course_name' => 'required|unique:courses,course_name',
+            'course_code' => 'unique:courses,course_code',
+            'practical_credit_hours' => 'required|numeric',
+            'theory_credit_hours' => 'required|numeric',
+            'department_code' => 'required',
+        ]);
+
+        $course = Course::create($request->all());
+
+        return redirect()->route('admin.courses')->with('success', 'Course created successfully.');
+    }
+
+    public function edit(Course $course)
+    {
+        $this->authorize('update', $course);
+
+        return Inertia::render("Admin/Courses/Edit", [
+            'course' => $course,
+            'permissions' => [
+                'delete' => auth()->user()->can('delete_faculties'),
+            ],
         ]);
     }
 }
