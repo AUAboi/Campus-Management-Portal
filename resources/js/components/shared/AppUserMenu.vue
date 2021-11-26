@@ -11,7 +11,6 @@
 			>Manage Users</Link
 		>
 
-		<!-- logout temperary -->
 		<Link
 			class="block px-6 py-2 hover:bg-indigo-500 hover:text-white w-full text-left"
 			:href="$route('logout')"
@@ -28,11 +27,6 @@ import { Link } from "@inertiajs/inertia-vue";
 export default {
 	components: {
 		Link
-	},
-	methods: {
-		async logoutUser() {
-			let res = await axios.post("/logout");
-		}
 	}
 };
 </script>

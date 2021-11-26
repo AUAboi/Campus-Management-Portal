@@ -37,6 +37,10 @@ Route::get('/programs', [TestController::class, 'page']);
 
 Route::get('/test', [TestController::class, 'index']);
 
+Route::get('/ctest', function () {
+  return view('course');
+});
+
 Route::group(['middleware' => ['role:admin']], function () {
   Route::prefix('admin')->group(function () {
     //Dashboard
