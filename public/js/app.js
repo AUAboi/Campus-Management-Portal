@@ -2238,7 +2238,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     creditHours: function creditHours(course) {
-      var hours = parseInt(course.theory_credit_hours) + parseInt(course.practical_credit_hours);
+      var hours = course.theory_credit_hours + course.practical_credit_hours;
       return "".concat(hours, "(").concat(course.theory_credit_hours, "-").concat(course.practical_credit_hours, ")");
     }
   },

@@ -17,8 +17,8 @@ class CreateCoursesTable extends Migration
             $table->id();
             $table->string('course_name');
             $table->string('course_code');
-            $table->string('practical_credit_hours');
-            $table->string('theory_credit_hours');
+            $table->tinyInteger('practical_credit_hours');
+            $table->tinyInteger('theory_credit_hours');
             $table->string('department_code');
             $table->timestamps();
         });

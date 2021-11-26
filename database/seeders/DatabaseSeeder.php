@@ -20,14 +20,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            FacultySeeder::class,
+            ProgramSeeder::class,
             CourseSeeder::class,
-            // FacultySeeder::class,
-            // ProgramSeeder::class,
-            // RoleSeeder::class,
-            // PermissionSeeder::class,
-            // AdminSeeder::class,
-            // AdminFacultySeeder::class,
-            // SuperAdminSeeder::class,
+            RoleSeeder::class,
+            PermissionSeeder::class,
+            AdminSeeder::class,
+            AdminFacultySeeder::class,
+            SuperAdminSeeder::class,
         ]);
     }
 }

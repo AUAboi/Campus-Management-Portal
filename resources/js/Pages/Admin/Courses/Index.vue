@@ -115,9 +115,7 @@ export default {
 			this.form = mapValues(this.form, () => null);
 		},
 		creditHours(course) {
-			let hours =
-				parseInt(course.theory_credit_hours) +
-				parseInt(course.practical_credit_hours);
+			let hours = course.theory_credit_hours + course.practical_credit_hours;
 			return `${hours}(${course.theory_credit_hours}-${course.practical_credit_hours})`;
 		}
 	},
