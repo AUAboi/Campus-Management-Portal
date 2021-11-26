@@ -16,18 +16,21 @@ class CourseSeeder extends Seeder
     {
         foreach ($this->getDatabaseData()['courses'] as $course) {
             Course::create([
-                'name' => $course['__2']['value'],
+                'course_name' => $course['__2']['value'],
                 'course_code' => substr($course['__1']['value'], 4, 3),
                 'practical_credit_hours' => $course['__3']['value'][4],
                 'theory_credit_hours' => $course['__3']['value'][2],
                 'department_code' => substr($course['__1']['value'], 0, 3),
             ]);
         }
+
+
+        //ignore error -_-
     }
 
     public function getDatabaseData()
     {
-        $json = '{"Scheme of Studies BS Software Engineering": [
+        $json = '{"courses": [
             {
                 "__1": {
                     "value": "CSI-301",

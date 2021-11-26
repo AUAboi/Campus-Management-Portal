@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\FacultyController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -35,11 +36,6 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/programs', [TestController::class, 'page']);
 
-Route::get('/test', [TestController::class, 'index']);
-
-Route::get('/ctest', function () {
-  return view('course');
-});
 
 Route::group(['middleware' => ['role:admin']], function () {
   Route::prefix('admin')->group(function () {
@@ -75,6 +71,13 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::post('/programs/create', [ProgramController::class, 'store'])->name('admin.programs.store');
     Route::put('/programs/{program}/update', [ProgramController::class, 'update'])->name('admin.programs.update');
     Route::delete('/programs/{program}/delete', [ProgramController::class, 'destroy'])->name('admin.programs.destroy');
+
+
+    //Courses
+    Route::get('/courses', [CourseController::class, 'index'])->name('admin.courses');
+    Route::get('/courses/create', [CourseController::class, 'create'])->name('admin.courses.create');
+    Route::get('/courses/{course}/edit', [CourseController::class, 'edit'])->name('admin.courses.edit');
+
 
     //Users
     Route::get('/users', [UserController::class, 'index'])->name('admin.users');

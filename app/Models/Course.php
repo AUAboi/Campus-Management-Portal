@@ -16,4 +16,12 @@ class Course extends Model
         'theory_credit_hours',
         'department_code'
     ];
+
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? null, function ($query, $search) {
+            $query->where('course_name', 'like', '%' . $search . '%');
+        });
+    }
 }
