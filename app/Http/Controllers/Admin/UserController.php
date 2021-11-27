@@ -176,23 +176,35 @@ class UserController extends Controller
     {
         $this->authorize('update', $user);
 
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'faculties' => 'array',
+        ]);
+
         //Grab all permissions from the request and store in $permissions
         $selected_permissions = $request->only('permissions');
+
         $permissions = array_keys(array_filter($selected_permissions['permissions']));
 
         //delete all permissions from the user and set the new permissions
         $user->syncPermissions($permissions);
 
         //Grab all faculties for admin from the request and store in admin_faculties
-        $faculties = $request->only('faculties');
-        foreach ($faculties['faculties'] as $faculty) {
+        $faculties =  $request->only('faculties');
 
-            if ($faculty['owns_faculty']) {
-                $user->admin->faculties()->attach($faculty['id']);
-            } else {
-                $user->admin->faculties()->detach($faculty['id']);
-            }
-        }
+        $faculties = $faculties['faculties'];
+
+        $faculties_id = array_filter($faculties, function ($faculty) {
+            return $faculty['owns_faculty'] == true;
+        });
+
+        $faculties_id = array_map(function ($faculty) {
+            return $faculty['id'];
+        }, $faculties_id);
+
+
+        $user->admin->faculties()->sync($faculties_id);
+
 
         $user->update($request->only('name'));
 

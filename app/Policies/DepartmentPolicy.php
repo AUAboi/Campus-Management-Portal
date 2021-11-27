@@ -35,7 +35,7 @@ class DepartmentPolicy
      */
     public function create(User $user)
     {
-        return $user->hasPermissionTo('create faculty');
+        return $user->hasPermissionTo('create_faculties');
     }
 
     /**
@@ -59,6 +59,6 @@ class DepartmentPolicy
      */
     public function delete(User $user, Department $department)
     {
-        return $user->hasPermissionTo('delete faculty');
+        return $user->hasPermissionTo('delete_faculties');
     }
 }

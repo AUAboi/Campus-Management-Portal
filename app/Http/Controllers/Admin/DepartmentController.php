@@ -14,20 +14,25 @@ use Spatie\Permission\Contracts\Permission;
 
 class DepartmentController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth', 'role:admin']);
-    }
-
     public function index(Request $request)
     {
         $filters = $request->all('search');
 
-        $departments =  Department::orderBy('department_name')
-            ->filter($request->only('search'))
-            ->with('faculty')
-            ->paginate(10)
-            ->withQueryString();
+
+        if (auth()->user()->hasRole('super-admin')) {
+            $departments =  Department::orderBy('department_name')
+                ->filter($request->only('search'))
+                ->with('faculty')
+                ->paginate(10)
+                ->withQueryString();
+        } else {
+            $departments =  auth()->user()->admin->departments()->orderBy('department_name')
+                ->filter($request->only('search'))
+                ->with('faculty')
+                ->paginate(10)
+                ->withQueryString();
+        }
+
 
         return Inertia::render("Admin/Departments/Index", ['departments' => $departments, 'filters' => $filters, 'permissions' => [
             'create' => auth()->user()->can('create', Faculty::class),
@@ -45,6 +50,8 @@ class DepartmentController extends Controller
 
     public function edit(Department $department)
     {
+        $this->authorize('update', $department);
+
         return Inertia::render("Admin/Departments/Edit", [
             'department' => [
                 'id' => $department->id,
