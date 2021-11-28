@@ -15,7 +15,12 @@
 				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block">Faculty Name: </label>
-						<input type="text" v-model="form.faculty_name" class="form_input" />
+						<input
+							type="text"
+							v-model="form.faculty_name"
+							class="form_input"
+							:readonly="!permissions.update"
+						/>
 						<div class="text-red-600" v-if="form.errors.faculty_name">
 							{{ form.errors.faculty_name }}
 						</div>
@@ -41,6 +46,7 @@
 					</form>
 
 					<button
+						v-if="permissions.update"
 						form="update-form"
 						:disabled="form.processing"
 						type="submit"
@@ -109,6 +115,7 @@ export default {
 			type: Object,
 			default: () => {
 				return {
+					update: false,
 					delete: false
 				};
 			}

@@ -2710,6 +2710,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2729,6 +2735,7 @@ __webpack_require__.r(__webpack_exports__);
       type: Object,
       "default": function _default() {
         return {
+          update: false,
           "delete": false
         };
       }
@@ -2843,6 +2850,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -2867,7 +2875,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     permissions: {
       type: Object,
-      required: false,
       "default": function _default() {
         return {
           create: false
@@ -3074,6 +3081,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -3089,6 +3102,7 @@ __webpack_require__.r(__webpack_exports__);
       type: Object,
       "default": function _default() {
         return {
+          update: false,
           "delete": false
         };
       }
@@ -22998,6 +23012,40 @@ component.options.__file = "resources/js/components/shared/AppUserMenu.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/shared/form/AppTextInput.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/shared/form/AppTextInput.vue ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/shared/form/AppTextInput.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/shared/layouts/Layout.vue":
 /*!***********************************************************!*\
   !*** ./resources/js/components/shared/layouts/Layout.vue ***!
@@ -25496,7 +25544,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "form_input",
-                    attrs: { type: "text" },
+                    attrs: { type: "text", readonly: !_vm.permissions.update },
                     domProps: { value: _vm.form.department_name },
                     on: {
                       input: function($event) {
@@ -25538,6 +25586,7 @@ var render = function() {
                         }
                       ],
                       staticClass: "form_input",
+                      attrs: { disabled: !_vm.permissions.update },
                       on: {
                         change: function($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -25627,19 +25676,21 @@ var render = function() {
                       )
                     : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
-                      attrs: {
-                        form: "update-form",
-                        disabled: _vm.form.processing,
-                        type: "submit"
-                      }
-                    },
-                    [_vm._v("\n\t\t\t\t\tUpdate Department\n\t\t\t\t")]
-                  )
+                  _vm.permissions.update
+                    ? _c(
+                        "button",
+                        {
+                          staticClass:
+                            "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
+                          attrs: {
+                            form: "update-form",
+                            disabled: _vm.form.processing,
+                            type: "submit"
+                          }
+                        },
+                        [_vm._v("\n\t\t\t\t\tUpdate Department\n\t\t\t\t")]
+                      )
+                    : _vm._e()
                 ]
               )
             ]
@@ -25698,24 +25749,26 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c(
-            "Link",
-            {
-              staticClass:
-                "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
-              attrs: {
-                as: "button",
-                href: _vm.$route("admin.departments.create")
-              }
-            },
-            [
-              _c("span", [_vm._v("Create")]),
-              _vm._v(" "),
-              _c("span", { staticClass: "hidden md:inline" }, [
-                _vm._v("department")
-              ])
-            ]
-          )
+          _vm.permissions.create
+            ? _c(
+                "Link",
+                {
+                  staticClass:
+                    "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
+                  attrs: {
+                    as: "button",
+                    href: _vm.$route("admin.departments.create")
+                  }
+                },
+                [
+                  _c("span", [_vm._v("Create")]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "hidden md:inline" }, [
+                    _vm._v("department")
+                  ])
+                ]
+              )
+            : _vm._e()
         ],
         1
       ),
@@ -26073,7 +26126,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "form_input",
-                    attrs: { type: "text" },
+                    attrs: { type: "text", readonly: !_vm.permissions.update },
                     domProps: { value: _vm.form.faculty_name },
                     on: {
                       input: function($event) {
@@ -26134,19 +26187,21 @@ var render = function() {
                       )
                     : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
-                      attrs: {
-                        form: "update-form",
-                        disabled: _vm.form.processing,
-                        type: "submit"
-                      }
-                    },
-                    [_vm._v("\n\t\t\t\t\tUpdate Faculty\n\t\t\t\t")]
-                  )
+                  _vm.permissions.update
+                    ? _c(
+                        "button",
+                        {
+                          staticClass:
+                            "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
+                          attrs: {
+                            form: "update-form",
+                            disabled: _vm.form.processing,
+                            type: "submit"
+                          }
+                        },
+                        [_vm._v("\n\t\t\t\t\tUpdate Faculty\n\t\t\t\t")]
+                      )
+                    : _vm._e()
                 ]
               )
             ]
@@ -42747,6 +42802,7 @@ var map = {
 	"./components/shared/AppTooltip.vue": "./resources/js/components/shared/AppTooltip.vue",
 	"./components/shared/AppUserAvatar.vue": "./resources/js/components/shared/AppUserAvatar.vue",
 	"./components/shared/AppUserMenu.vue": "./resources/js/components/shared/AppUserMenu.vue",
+	"./components/shared/form/AppTextInput.vue": "./resources/js/components/shared/form/AppTextInput.vue",
 	"./components/shared/layouts/Layout.vue": "./resources/js/components/shared/layouts/Layout.vue",
 	"./components/shared/tables/AppTablePagination.vue": "./resources/js/components/shared/tables/AppTablePagination.vue",
 	"./components/shared/tables/AppTableSearch.vue": "./resources/js/components/shared/tables/AppTableSearch.vue",

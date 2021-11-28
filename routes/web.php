@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\FacultyController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\CourseController;
+use App\Http\Controllers\Admin\CourseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -75,11 +75,8 @@ Route::group(['middleware' => ['role:admin']], function () {
 
     //Courses
     Route::get('/courses', [CourseController::class, 'index'])->name('admin.courses');
-
     Route::get('/courses/create', [CourseController::class, 'create'])->name('admin.courses.create');
-
     Route::get('/courses/{course}/edit', [CourseController::class, 'edit'])->name('admin.courses.edit');
-
 
     Route::post('/courses/create', [CourseController::class, 'store'])->name('admin.courses.store');
 

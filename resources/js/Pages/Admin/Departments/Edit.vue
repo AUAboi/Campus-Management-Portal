@@ -26,6 +26,7 @@
 							type="text"
 							v-model="form.department_name"
 							class="form_input"
+							:readonly="!permissions.update"
 						/>
 						<div class="text-red-600" v-if="form.errors.department_name">
 							{{ form.errors.department_name }}
@@ -33,7 +34,11 @@
 					</div>
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block">Faculty: </label>
-						<select class="form_input" v-model="form.faculty_id">
+						<select
+							:disabled="!permissions.update"
+							class="form_input"
+							v-model="form.faculty_id"
+						>
 							<option
 								v-for="faculty in faculties"
 								:key="faculty.id"
@@ -67,6 +72,7 @@
 					</form>
 
 					<button
+						v-if="permissions.update"
 						form="update-form"
 						:disabled="form.processing"
 						type="submit"
@@ -101,6 +107,7 @@ export default {
 			type: Object,
 			default: () => {
 				return {
+					update: false,
 					delete: false
 				};
 			}

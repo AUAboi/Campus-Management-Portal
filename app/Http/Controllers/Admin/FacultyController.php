@@ -28,10 +28,21 @@ class FacultyController extends Controller
 
         $filters = $request->all('search');
 
-        $faculties = Faculty::orderBy('faculty_name')
-            ->filter($request->only('search'))
-            ->paginate(10)
-            ->withQueryString();
+
+        if ($user->hasRole('super-admin')) {
+
+            $faculties = Faculty::orderBy('faculty_name')
+                ->filter($request->only('search'))
+                ->paginate(10)
+                ->withQueryString();
+        } else {
+            $faculties = $user->admin->faculties()
+                ->orderBy('faculty_name')
+                ->filter($request->only('search'))
+                ->paginate(10)
+                ->withQueryString();
+        }
+
 
 
 
@@ -49,7 +60,7 @@ class FacultyController extends Controller
 
     public function edit(Faculty $faculty)
     {
-        $this->authorize('update', $faculty);
+        $this->authorize('view', $faculty);
 
         return Inertia::render("Admin/Faculties/Edit", [
             'faculty' => [
@@ -59,7 +70,8 @@ class FacultyController extends Controller
                 'departments' => $faculty->departments()->orderBy('department_name')->get()->map->only('id', 'department_name', 'slug'),
             ],
             'permissions' => [
-                'delete' => auth()->user()->can('delete_faculties'),
+                'update' => auth()->user()->can('update', $faculty),
+                'delete' => auth()->user()->can('delete', $faculty),
             ],
         ]);
     }

@@ -24,7 +24,7 @@ class DepartmentPolicy
      */
     public function view(User $user, Department $department)
     {
-        return $user->faculties->contains($department->faculty_id);
+        return $user->admin->faculties->contains($department->faculty_id);
     }
 
     /**
@@ -47,7 +47,7 @@ class DepartmentPolicy
      */
     public function update(User $user, Department $department)
     {
-        return $user->admin->faculties->contains($department->faculty_id);
+        return $user->hasPermissionTo('update_faculties');
     }
 
     /**

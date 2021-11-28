@@ -42,15 +42,19 @@ class DepartmentController extends Controller
     public function create()
     {
         $this->authorize('create', Faculty::class);
+
         $faculties = Faculty::select('faculty_name', 'id')->get();
         return Inertia::render("Admin/Departments/Create", [
-            'faculties' => $faculties
+            'faculties' => $faculties,
+            'permissions' => [
+                'create' => auth()->user()->can('create', Department::class),
+            ]
         ]);
     }
 
     public function edit(Department $department)
     {
-        $this->authorize('update', $department);
+        $this->authorize('view', $department);
 
         return Inertia::render("Admin/Departments/Edit", [
             'department' => [
@@ -60,10 +64,12 @@ class DepartmentController extends Controller
                 'faculty_name' => $department->faculty->faculty_name,
                 'faculty_id' => $department->faculty->id,
             ],
+
+
             'faculties' => Faculty::select('faculty_name', 'id')->get(),
             'permissions' => [
-                //right now we only have one permission delete faculty to manage everything
-                'delete' => auth()->user()->can('delete_faculties'),
+                'update' => auth()->user()->can('update', $department),
+                'delete' => auth()->user()->can('delete', $department),
             ],
         ]);
     }
@@ -82,7 +88,6 @@ class DepartmentController extends Controller
         $faculty->departments()->create(
             [
                 'department_name' => $request->department_name,
-                'slug' => Str::slug($request->department_name),
             ]
         );
 
@@ -95,12 +100,15 @@ class DepartmentController extends Controller
         $this->authorize('update', $department);
 
         $request->validate([
-            'department_name' => 'required|unique:departments,department_name,' . $department->id,
+            'department_name' => 'required|unique:departments,department_name',
             'faculty_id' => 'required|exists:faculties,id'
         ]);
 
 
-        $department->update($request->only('department_name', 'faculty_id'));
+        $department->update([
+            'department_name' => $request->department_name,
+            'faculty_id' => $request->faculty_id,
+        ]);
         return Redirect::route('admin.departments')->with('success', 'Department updated.');
     }
 
