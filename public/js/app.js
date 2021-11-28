@@ -3664,6 +3664,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3672,7 +3685,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: {
-        search: this.filters.search
+        search: this.filters.search,
+        degree: this.filters.degree
       }
     };
   },
@@ -3686,6 +3700,7 @@ __webpack_require__.r(__webpack_exports__);
     programs: {
       required: false
     },
+    degrees: Array,
     permissions: {
       type: Object,
       required: false,
@@ -24711,6 +24726,48 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "p-8 -mr-6 -mb-8 flex flex-wrap" }, [
                 _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
+                  _c("label", { staticClass: "block" }, [
+                    _vm._v("Department Code: ")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.department_code,
+                        expression: "form.department_code"
+                      }
+                    ],
+                    staticClass: "form_input",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.form.department_code },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.form,
+                          "department_code",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.form.errors.department_code
+                    ? _c("div", { staticClass: "text-red-600" }, [
+                        _vm._v(
+                          "\n\t\t\t\t\t\t" +
+                            _vm._s(_vm.form.errors.department_code) +
+                            "\n\t\t\t\t\t"
+                        )
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
                   _c(
                     "label",
                     { staticClass: "block" },
@@ -24757,48 +24814,6 @@ var render = function() {
                         _vm._v(
                           "\n\t\t\t\t\t\t" +
                             _vm._s(_vm.form.errors.course_code) +
-                            "\n\t\t\t\t\t"
-                        )
-                      ])
-                    : _vm._e()
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
-                  _c("label", { staticClass: "block" }, [
-                    _vm._v("Department Code: ")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.department_code,
-                        expression: "form.department_code"
-                      }
-                    ],
-                    staticClass: "form_input",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.form.department_code },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form,
-                          "department_code",
-                          $event.target.value
-                        )
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _vm.form.errors.department_code
-                    ? _c("div", { staticClass: "text-red-600" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.department_code) +
                             "\n\t\t\t\t\t"
                         )
                       ])
@@ -26645,11 +26660,11 @@ var render = function() {
                     0
                   ),
                   _vm._v(" "),
-                  _vm.form.errors.degree_name
+                  _vm.form.errors.degree_id
                     ? _c("div", { staticClass: "text-red-600" }, [
                         _vm._v(
                           "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.degree_name) +
+                            _vm._s(_vm.form.errors.degree_id) +
                             "\n\t\t\t\t\t"
                         )
                       ])
@@ -26706,11 +26721,11 @@ var render = function() {
                     0
                   ),
                   _vm._v(" "),
-                  _vm.form.errors.department_name
+                  _vm.form.errors.department_id
                     ? _c("div", { staticClass: "text-red-600" }, [
                         _vm._v(
                           "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.department_name) +
+                            _vm._s(_vm.form.errors.department_id) +
                             "\n\t\t\t\t\t"
                         )
                       ])
@@ -27136,17 +27151,81 @@ var render = function() {
         "div",
         { staticClass: "mb-6 flex justify-between items-center" },
         [
-          _c("AppTableSearch", {
-            staticClass: "w-full max-w-md mr-4",
-            on: { reset: _vm.reset },
-            model: {
-              value: _vm.form.search,
-              callback: function($$v) {
-                _vm.$set(_vm.form, "search", $$v)
-              },
-              expression: "form.search"
-            }
-          }),
+          _c(
+            "AppTableSearch",
+            {
+              staticClass: "w-full max-w-md mr-4",
+              attrs: { filterable: true },
+              on: { reset: _vm.reset },
+              model: {
+                value: _vm.form.search,
+                callback: function($$v) {
+                  _vm.$set(_vm.form, "search", $$v)
+                },
+                expression: "form.search"
+              }
+            },
+            [
+              _c("label", { staticClass: "block text-gray-700" }, [
+                _vm._v("Degree:")
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.degree,
+                      expression: "form.degree"
+                    }
+                  ],
+                  staticClass: "mt-1 w-full form-select",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.form,
+                        "degree",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", { domProps: { value: null } }),
+                  _vm._v(" "),
+                  _vm._l(_vm.degrees, function(degree) {
+                    return _c(
+                      "option",
+                      {
+                        key: degree.id,
+                        domProps: { value: degree.degree_name }
+                      },
+                      [
+                        _vm._v(
+                          "\n\t\t\t\t\t" +
+                            _vm._s(degree.degree_name) +
+                            "\n\t\t\t\t"
+                        )
+                      ]
+                    )
+                  })
+                ],
+                2
+              )
+            ]
+          ),
           _vm._v(" "),
           _c(
             "Link",

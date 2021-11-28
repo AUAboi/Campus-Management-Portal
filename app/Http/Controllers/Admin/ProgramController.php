@@ -17,17 +17,22 @@ class ProgramController extends Controller
 {
   public function index(Request $request)
   {
-    $filters = $request->all('search');
+    $filters = $request->all('search', 'degree');
 
     $programs =  Program::orderBy('id')
-      ->filter($request->only('search'))
+      ->filter($request->only('search', 'degree'))
       ->with(['department', 'degree'])
       ->paginate(10)
       ->withQueryString();
 
-    return Inertia::render("Admin/Programs/Index", ['programs' => $programs, 'filters' => $filters, 'permissions' => [
-      'create' => auth()->user()->can('create', Faculty::class),
-    ]]);
+    return Inertia::render("Admin/Programs/Index", [
+      'programs' => $programs,
+      'degrees' => Degree::select('id', 'degree_name')->get(),
+      'filters' => $filters,
+      'permissions' => [
+        'create' => auth()->user()->can('create', Faculty::class),
+      ]
+    ]);
   }
 
 
@@ -59,13 +64,11 @@ class ProgramController extends Controller
       return redirect()->back()->with('error', 'Program already exists');
     }
 
-    $title = Degree::find($request->degree_id)->degree_name . Department::find($request->department_id)->department_name;
 
     Program::create([
       'department_id' => $request->department_id,
       'degree_id' => $request->degree_id,
       'credit_hours' => $request->credit_hours,
-      'slug' => Str::slug($title)
     ]);
 
     return redirect()->route('admin.programs')->with('success', 'Program created successfully.');
@@ -114,7 +117,6 @@ class ProgramController extends Controller
       'department_id' => $request->department_id,
       'degree_id' => $request->degree_id,
       'credit_hours' => $request->credit_hours,
-      'slug' => Str::slug($title)
     ]);
 
     return redirect()->route('admin.programs')->with('success', 'Program updated successfully.');

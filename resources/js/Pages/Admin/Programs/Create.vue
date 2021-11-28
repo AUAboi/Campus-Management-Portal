@@ -23,8 +23,8 @@
 								>{{ degree.degree_name }}</option
 							>
 						</select>
-						<div class="text-red-600" v-if="form.errors.degree_name">
-							{{ form.errors.degree_name }}
+						<div class="text-red-600" v-if="form.errors.degree_id">
+							{{ form.errors.degree_id }}
 						</div>
 					</div>
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
@@ -37,8 +37,8 @@
 								>{{ department.department_name }}</option
 							>
 						</select>
-						<div class="text-red-600" v-if="form.errors.department_name">
-							{{ form.errors.department_name }}
+						<div class="text-red-600" v-if="form.errors.department_id">
+							{{ form.errors.department_id }}
 						</div>
 					</div>
 				</div>

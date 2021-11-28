@@ -47,6 +47,17 @@
 				</div>
 				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
+						<label class="block">Department Code: </label>
+						<input
+							type="text"
+							v-model="form.department_code"
+							class="form_input"
+						/>
+						<div class="text-red-600" v-if="form.errors.department_code">
+							{{ form.errors.department_code }}
+						</div>
+					</div>
+					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block"
 							>Course Code:
 							<AppTooltip tooltip="Automatically generate course code"
@@ -56,17 +67,6 @@
 						<input type="text" v-model="form.course_code" class="form_input" />
 						<div class="text-red-600" v-if="form.errors.course_code">
 							{{ form.errors.course_code }}
-						</div>
-					</div>
-					<div class="pr-6 pb-8 w-full lg:w-1/2">
-						<label class="block">Department Code: </label>
-						<input
-							type="text"
-							v-model="form.department_code"
-							class="form_input"
-						/>
-						<div class="text-red-600" v-if="form.errors.department_code">
-							{{ form.errors.department_code }}
 						</div>
 					</div>
 				</div>
