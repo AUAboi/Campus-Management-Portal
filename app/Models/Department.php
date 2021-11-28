@@ -20,7 +20,9 @@ class Department extends Model
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('department_name')
+            ->generateSlugsFrom(function ($model) {
+                return "dept " . "$model->department_name";
+            })
             ->saveSlugsTo('slug');
     }
 

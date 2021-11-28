@@ -28,6 +28,7 @@
 							class="form_input"
 							:readonly="!permissions.update"
 						/>
+
 						<div class="text-red-600" v-if="form.errors.department_name">
 							{{ form.errors.department_name }}
 						</div>
@@ -47,8 +48,8 @@
 								{{ faculty.faculty_name }}
 							</option>
 						</select>
-						<div class="text-red-600" v-if="form.errors.department_name">
-							{{ form.errors.department_name }}
+						<div class="text-red-600" v-if="form.errors.faculty_id">
+							{{ form.errors.faculty_id }}
 						</div>
 					</div>
 				</div>

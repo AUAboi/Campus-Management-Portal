@@ -2716,6 +2716,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -25411,11 +25412,11 @@ var render = function() {
                     0
                   ),
                   _vm._v(" "),
-                  _vm.form.errors.department_name
+                  _vm.form.errors.faculty_id
                     ? _c("div", { staticClass: "text-red-600" }, [
                         _vm._v(
                           "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.id) +
+                            _vm._s(_vm.form.errors.faculty_id) +
                             "\n\t\t\t\t\t"
                         )
                       ])
@@ -25623,11 +25624,11 @@ var render = function() {
                     0
                   ),
                   _vm._v(" "),
-                  _vm.form.errors.department_name
+                  _vm.form.errors.faculty_id
                     ? _c("div", { staticClass: "text-red-600" }, [
                         _vm._v(
                           "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.department_name) +
+                            _vm._s(_vm.form.errors.faculty_id) +
                             "\n\t\t\t\t\t"
                         )
                       ])

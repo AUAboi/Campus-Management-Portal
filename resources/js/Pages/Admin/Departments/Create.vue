@@ -34,8 +34,8 @@
 								>{{ faculty.faculty_name }}</option
 							>
 						</select>
-						<div class="text-red-600" v-if="form.errors.department_name">
-							{{ form.errors.id }}
+						<div class="text-red-600" v-if="form.errors.faculty_id">
+							{{ form.errors.faculty_id }}
 						</div>
 					</div>
 				</div>

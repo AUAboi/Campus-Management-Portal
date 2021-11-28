@@ -82,14 +82,12 @@ class DepartmentController extends Controller
             'department_name' => 'required|unique:departments,department_name',
             'faculty_id' => 'required|exists:faculties,id'
         ]);
+
         $faculty = Faculty::find($request->faculty_id);
 
-
-        $faculty->departments()->create(
-            [
-                'department_name' => $request->department_name,
-            ]
-        );
+        $faculty->departments()->create([
+            'department_name' => $request->department_name,
+        ]);
 
 
         return Redirect::route('admin.departments')->with('success', 'Department created.');
@@ -100,7 +98,7 @@ class DepartmentController extends Controller
         $this->authorize('update', $department);
 
         $request->validate([
-            'department_name' => 'required|unique:departments,department_name',
+            'department_name' => 'required|unique:departments,department_name,' . $department->id,
             'faculty_id' => 'required|exists:faculties,id'
         ]);
 

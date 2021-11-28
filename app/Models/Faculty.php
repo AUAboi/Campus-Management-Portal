@@ -4,17 +4,28 @@ namespace App\Models;
 
 use App\Models\Admin;
 use App\Models\Department;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Faculty extends Model
 {
-    use HasFactory;
+    use HasFactory, HasSlug;
 
     protected $fillable = [
         'faculty_name',
         'slug'
     ];
+
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom(function ($model) {
+                return "faculty " . "$model->faculty_name";
+            })
+            ->saveSlugsTo('slug');
+    }
 
     public function getRouteKeyName()
     {

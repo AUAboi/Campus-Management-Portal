@@ -2,13 +2,13 @@
 
 use App\Http\Controllers\Admin\FacultyController;
 use App\Http\Controllers\Admin\DepartmentController;
-use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ProgramController;
 use App\Http\Controllers\Admin\CourseController;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\TestController;
 
 use App\Http\Controllers\Student\CourseDetailsController;

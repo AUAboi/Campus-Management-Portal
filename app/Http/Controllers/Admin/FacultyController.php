@@ -22,12 +22,8 @@ class FacultyController extends Controller
     public function index(Request $request)
     {
 
-
         $user = auth()->user();
-
-
         $filters = $request->all('search');
-
 
         if ($user->hasRole('super-admin')) {
 
@@ -43,13 +39,13 @@ class FacultyController extends Controller
                 ->withQueryString();
         }
 
-
-
-
-
-        return Inertia::render("Admin/Faculties/Index", ['faculties' => $faculties, 'filters' => $filters, 'permissions' => [
-            'create' => $user->can('create', Faculty::class),
-        ]]);
+        return Inertia::render("Admin/Faculties/Index", [
+            'faculties' => $faculties,
+            'filters' => $filters,
+            'permissions' => [
+                'create' => $user->can('create', Faculty::class),
+            ]
+        ]);
     }
 
     public function create()
@@ -84,10 +80,7 @@ class FacultyController extends Controller
             'faculty_name' => 'required|unique:faculties,faculty_name',
         ]);
 
-        Faculty::create([
-            'faculty_name' => $request->faculty_name,
-            'slug' => Str::slug($request->faculty_name),
-        ]);
+        Faculty::create($request->only('faculty_name'));
         return Redirect::route('admin.faculties')->with('success', 'Faculty created.');
     }
 
