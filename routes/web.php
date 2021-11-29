@@ -79,6 +79,8 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/courses/{course}/edit', [CourseController::class, 'edit'])->name('admin.courses.edit');
 
     Route::post('/courses/create', [CourseController::class, 'store'])->name('admin.courses.store');
+    Route::put('/courses/{course}/update', [CourseController::class, 'update'])->name('admin.courses.update');
+    Route::delete('/courses/{course}/delete', [CourseController::class, 'destroy'])->name('admin.courses.destroy');
 
     //Users
     Route::get('/users', [UserController::class, 'index'])->name('admin.users');

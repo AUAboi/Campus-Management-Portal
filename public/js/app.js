@@ -2294,6 +2294,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2317,7 +2367,11 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: this.$inertia.form({
-        course_name: this.course.course_name
+        course_name: this.course.course_name,
+        practical_credit_hours: this.course.practical_credit_hours,
+        theory_credit_hours: this.course.theory_credit_hours,
+        department_code: this.course.department_code,
+        course_code: this.course.course_code
       })
     };
   },
@@ -24914,9 +24968,9 @@ var render = function() {
             },
             [
               _c("div", { staticClass: "p-8 -mr-6 -mb-8 flex flex-wrap" }, [
-                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
+                _c("div", { staticClass: "pr-6 pb-8 w-full" }, [
                   _c("label", { staticClass: "block" }, [
-                    _vm._v("course Name: ")
+                    _vm._v("Course Name: ")
                   ]),
                   _vm._v(" "),
                   _c("input", {
@@ -24946,6 +25000,174 @@ var render = function() {
                         _vm._v(
                           "\n\t\t\t\t\t\t" +
                             _vm._s(_vm.form.errors.course_name) +
+                            "\n\t\t\t\t\t"
+                        )
+                      ])
+                    : _vm._e()
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "p-8 -mr-6 -mb-8 flex flex-wrap" }, [
+                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
+                  _c("label", { staticClass: "block" }, [
+                    _vm._v("Practical Credit Hours: ")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.practical_credit_hours,
+                        expression: "form.practical_credit_hours"
+                      }
+                    ],
+                    staticClass: "form_input",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.form.practical_credit_hours },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.form,
+                          "practical_credit_hours",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.form.practical_credit_hours.course_name
+                    ? _c("div", { staticClass: "text-red-600" }, [
+                        _vm._v(
+                          "\n\t\t\t\t\t\t" +
+                            _vm._s(_vm.form.errors.practical_credit_hours) +
+                            "\n\t\t\t\t\t"
+                        )
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
+                  _c("label", { staticClass: "block" }, [
+                    _vm._v("Practical Credit Hours: ")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.practical_credit_hours,
+                        expression: "form.practical_credit_hours"
+                      }
+                    ],
+                    staticClass: "form_input",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.form.practical_credit_hours },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.form,
+                          "practical_credit_hours",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.form.practical_credit_hours.course_name
+                    ? _c("div", { staticClass: "text-red-600" }, [
+                        _vm._v(
+                          "\n\t\t\t\t\t\t" +
+                            _vm._s(_vm.form.errors.practical_credit_hours) +
+                            "\n\t\t\t\t\t"
+                        )
+                      ])
+                    : _vm._e()
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "p-8 -mr-6 -mb-8 flex flex-wrap" }, [
+                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
+                  _c("label", { staticClass: "block" }, [
+                    _vm._v("Department Code: ")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.department_code,
+                        expression: "form.department_code"
+                      }
+                    ],
+                    staticClass: "form_input",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.form.department_code },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.form,
+                          "department_code",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.form.errors.department_code
+                    ? _c("div", { staticClass: "text-red-600" }, [
+                        _vm._v(
+                          "\n\t\t\t\t\t\t" +
+                            _vm._s(_vm.form.errors.department_code) +
+                            "\n\t\t\t\t\t"
+                        )
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
+                  _c("label", { staticClass: "block" }, [
+                    _vm._v("Course Code: : ")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.course_code,
+                        expression: "form.course_code"
+                      }
+                    ],
+                    staticClass: "form_input",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.form.course_code },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "course_code", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.form.errors.course_code
+                    ? _c("div", { staticClass: "text-red-600" }, [
+                        _vm._v(
+                          "\n\t\t\t\t\t\t" +
+                            _vm._s(_vm.form.errors.course_code) +
                             "\n\t\t\t\t\t"
                         )
                       ])
