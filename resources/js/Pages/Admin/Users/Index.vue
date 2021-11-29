@@ -61,13 +61,13 @@
 						</Link>
 					</td>
 					<td class="border-t">
-						<span class="px-4 flex items-center">
+						<span class="px-4 py-4 flex items-center">
 							{{ user.role }}
 						</span>
 					</td>
 					<td class="border-t w-px">
 						<Link
-							class="px-4 flex items-center"
+							class="px-4 py-4 flex items-center"
 							:href="$route('admin.users.show', user.id)"
 							tabindex="-1"
 						>

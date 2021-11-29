@@ -28833,7 +28833,7 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("td", { staticClass: "border-t" }, [
-                    _c("span", { staticClass: "px-4 flex items-center" }, [
+                    _c("span", { staticClass: "px-4 py-4 flex items-center" }, [
                       _vm._v(
                         "\n\t\t\t\t\t\t" + _vm._s(user.role) + "\n\t\t\t\t\t"
                       )
@@ -28847,7 +28847,7 @@ var render = function() {
                       _c(
                         "Link",
                         {
-                          staticClass: "px-4 flex items-center",
+                          staticClass: "px-4 py-4 flex items-center",
                           attrs: {
                             href: _vm.$route("admin.users.show", user.id),
                             tabindex: "-1"
@@ -30306,7 +30306,10 @@ var render = function() {
                       key: key,
                       staticClass:
                         "mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-indigo-500 focus:text-indigo-500",
-                      class: { "bg-white": link.active },
+                      class: {
+                        "bg-white border-indigo-500 focus:text-indigo-500":
+                          link.active
+                      },
                       attrs: { href: link.url },
                       domProps: { innerHTML: _vm._s(link.label) }
                     })
