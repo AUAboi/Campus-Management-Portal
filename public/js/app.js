@@ -4278,6 +4278,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -4289,7 +4292,8 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     filters: Object,
     users: Array,
-    permissions: Object
+    permissions: Object,
+    roles: Array
   },
   data: function data() {
     return {
@@ -27449,21 +27453,26 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _c(
-            "Link",
-            {
-              staticClass:
-                "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
-              attrs: { as: "button", href: _vm.$route("admin.programs.create") }
-            },
-            [
-              _c("span", [_vm._v("Create")]),
-              _vm._v(" "),
-              _c("span", { staticClass: "hidden md:inline" }, [
-                _vm._v("Program")
-              ])
-            ]
-          )
+          _vm.permissions.create
+            ? _c(
+                "Link",
+                {
+                  staticClass:
+                    "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
+                  attrs: {
+                    as: "button",
+                    href: _vm.$route("admin.programs.create")
+                  }
+                },
+                [
+                  _c("span", [_vm._v("Create")]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "hidden md:inline" }, [
+                    _vm._v("Program")
+                  ])
+                ]
+              )
+            : _vm._e()
         ],
         1
       ),
@@ -28945,22 +28954,25 @@ var render = function() {
                 [
                   _c("option", { domProps: { value: null } }),
                   _vm._v(" "),
-                  _c("option", { attrs: { value: "student" } }, [
-                    _vm._v("Student")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "teacher" } }, [
-                    _vm._v("Teacher")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "admin" } }, [
-                    _vm._v("Admin")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "super-admin" } }, [
-                    _vm._v("Super Admin")
-                  ])
-                ]
+                  _vm._l(_vm.roles, function(role) {
+                    return _c(
+                      "option",
+                      {
+                        key: role.id,
+                        staticClass: "capitalize",
+                        domProps: { value: role.name }
+                      },
+                      [
+                        _vm._v(
+                          "\n\t\t\t\t\t" +
+                            _vm._s(role.name.replace("-", " ")) +
+                            "\n\t\t\t\t"
+                        )
+                      ]
+                    )
+                  })
+                ],
+                2
               )
             ]
           ),

@@ -19,7 +19,7 @@ class ProgramPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->hasPermissionTo('create_faculties');
     }
 
     /**
@@ -31,7 +31,7 @@ class ProgramPolicy
      */
     public function update(User $user, Program $program)
     {
-        //
+        return $user->hasPermissionTo('update_faculties');
     }
 
     /**
@@ -43,6 +43,6 @@ class ProgramPolicy
      */
     public function delete(User $user, Program $program)
     {
-        //
+        return $user->hasPermissionTo('delete_faculties');
     }
 }

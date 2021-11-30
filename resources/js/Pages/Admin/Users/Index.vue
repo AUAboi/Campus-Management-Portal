@@ -13,13 +13,16 @@
 				<label class="block text-gray-700">Role:</label>
 				<select v-model="form.role" class="mt-1 w-full form-select">
 					<option :value="null" />
-					<option value="student">Student</option>
-					<option value="teacher">Teacher</option>
-					<option value="admin">Admin</option>
-					<option value="super-admin">Super Admin</option>
+					<option
+						v-for="role in roles"
+						:key="role.id"
+						:value="role.name"
+						class="capitalize"
+					>
+						{{ role.name.replace("-", " ") }}
+					</option>
 				</select>
 			</AppTableSearch>
-
 			<Link
 				v-if="permissions.create"
 				as="button"
@@ -97,7 +100,8 @@ export default {
 	props: {
 		filters: Object,
 		users: Array,
-		permissions: Object
+		permissions: Object,
+		roles: Array
 	},
 	data() {
 		return {

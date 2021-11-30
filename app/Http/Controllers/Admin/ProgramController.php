@@ -98,7 +98,7 @@ class ProgramController extends Controller
 
   public function update(Request $request, Program $program)
   {
-    $this->authorize('update');
+    $this->authorize('update', $program);
 
 
     $request->validate([
