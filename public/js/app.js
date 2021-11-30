@@ -3568,6 +3568,70 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -3594,7 +3658,8 @@ __webpack_require__.r(__webpack_exports__);
           "delete": false
         };
       }
-    }
+    },
+    courses: Array
   },
   data: function data() {
     return {
@@ -3613,6 +3678,10 @@ __webpack_require__.r(__webpack_exports__);
       if (confirm("Are you sure you want to delete this program?")) {
         this.$inertia["delete"](this.$route("admin.programs.destroy", this.program.slug));
       }
+    },
+    creditHours: function creditHours(course) {
+      var hours = course.theory_credit_hours + course.practical_credit_hours;
+      return "".concat(hours, "(").concat(course.theory_credit_hours, "-").concat(course.practical_credit_hours, ")");
     }
   }
 });
@@ -27336,12 +27405,195 @@ var render = function() {
             ]
           )
         ]
+      ),
+      _vm._v(" "),
+      _c("h1", { staticClass: "my-8 font-bold text-3xl" }, [_vm._v("Courses")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "bg-white rounded-md shadow overflow-hidden max-w-3xl" },
+        [
+          _c(
+            "table",
+            { staticClass: "w-full whitespace-nowrap" },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _vm._l(_vm.courses, function(course) {
+                return _c(
+                  "tr",
+                  {
+                    key: course.id,
+                    staticClass: "hover:bg-gray-100 focus-within:bg-gray-100"
+                  },
+                  [
+                    _c(
+                      "td",
+                      { staticClass: "border-t" },
+                      [
+                        _c(
+                          "Link",
+                          {
+                            staticClass:
+                              "px-6 py-4 flex items-center focus:text-indigo-500",
+                            attrs: {
+                              href: _vm.$route("admin.courses.edit", course.id)
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n\t\t\t\t\t\t" +
+                                _vm._s(course.course_name) +
+                                "\n\t\t\t\t\t"
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      { staticClass: "border-t" },
+                      [
+                        _c(
+                          "Link",
+                          {
+                            staticClass:
+                              "px-6 py-4 flex items-center focus:text-indigo-500",
+                            attrs: {
+                              href: _vm.$route("admin.courses.edit", course.id)
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n\t\t\t\t\t\t" +
+                                _vm._s(course.department_code) +
+                                "-" +
+                                _vm._s(course.course_code) +
+                                "\n\t\t\t\t\t"
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      { staticClass: "border-t" },
+                      [
+                        _c(
+                          "Link",
+                          {
+                            staticClass:
+                              "px-6 py-4 flex items-center focus:text-indigo-500",
+                            attrs: {
+                              href: _vm.$route("admin.courses.edit", course.id)
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n\t\t\t\t\t\t" +
+                                _vm._s(_vm.creditHours(course)) +
+                                "\n\t\t\t\t\t"
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      { staticClass: "border-t" },
+                      [
+                        _c(
+                          "Link",
+                          {
+                            staticClass:
+                              "px-6 py-4 flex items-center focus:text-indigo-500",
+                            attrs: {
+                              href: _vm.$route("admin.courses.edit", course.id)
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n\t\t\t\t\t\t" +
+                                _vm._s(course.pivot.semester) +
+                                "\n\t\t\t\t\t"
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      { staticClass: "border-t w-px" },
+                      [
+                        _c(
+                          "Link",
+                          {
+                            staticClass: "px-4 flex items-center",
+                            attrs: {
+                              href: _vm.$route("admin.courses.edit", course.id),
+                              tabindex: "-1"
+                            }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "fas fa-angle-right text-gray-600"
+                            })
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                )
+              }),
+              _vm._v(" "),
+              _vm.courses.length === 0
+                ? _c("tr", [
+                    _c(
+                      "td",
+                      {
+                        staticClass: "border-t px-6 py-4",
+                        attrs: { colspan: "4" }
+                      },
+                      [_vm._v("\n\t\t\t\t\tNo courses found.\n\t\t\t\t")]
+                    )
+                  ])
+                : _vm._e()
+            ],
+            2
+          )
+        ]
       )
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", { staticClass: "text-left font-bold" }, [
+      _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Name")]),
+      _vm._v(" "),
+      _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Course Code")]),
+      _vm._v(" "),
+      _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Credit Hours")]),
+      _vm._v(" "),
+      _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Semester")]),
+      _vm._v(" "),
+      _c("th", { staticClass: "px-6 pt-6 pb-4" })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -28930,7 +29182,7 @@ var render = function() {
                       expression: "form.role"
                     }
                   ],
-                  staticClass: "mt-1 w-full form-select",
+                  staticClass: "mt-1 w-full form-select capitalize",
                   on: {
                     change: function($event) {
                       var $$selectedVal = Array.prototype.filter
@@ -30540,10 +30792,7 @@ var render = function() {
                       key: key,
                       staticClass:
                         "mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-indigo-500 focus:text-indigo-500",
-                      class: {
-                        "bg-white border-indigo-500 focus:text-indigo-500":
-                          link.active
-                      },
+                      class: { "bg-white border-indigo-500 ": link.active },
                       attrs: { href: link.url },
                       domProps: { innerHTML: _vm._s(link.label) }
                     })
@@ -30623,7 +30872,7 @@ var render = function() {
                   "div",
                   {
                     staticClass:
-                      "mt-2 px-4 py-6 w-screen shadow-xl bg-white rounded",
+                      "mt-2 px-4 py-6 w-screen shadow-xl bg-white rounded ",
                     style: { maxWidth: _vm.maxWidth + "px" },
                     attrs: { slot: "dropdown" },
                     slot: "dropdown"

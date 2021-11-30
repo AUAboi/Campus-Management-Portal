@@ -78,6 +78,7 @@ class ProgramController extends Controller
   {
     $this->authorize('update', $program);
 
+
     return Inertia::render("Admin/Programs/Edit", [
       'program' => [
         'id' => $program->id,
@@ -88,6 +89,7 @@ class ProgramController extends Controller
         'credit_hours' => $program->credit_hours,
         'slug' => $program->slug
       ],
+      'courses' => $program->courses()->orderBy('semester')->get(),
       'departments' => Department::select('department_name', 'id')->get(),
       'degrees' => Degree::select('degree_name', 'id')->get(),
       'permissions' => [

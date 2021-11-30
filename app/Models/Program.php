@@ -40,6 +40,11 @@ class Program extends Model
         return $this->belongsTo(Department::class);
     }
 
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class)->withPivot('semester');
+    }
+
     public function degree()
     {
         return $this->belongsTo(Degree::class);

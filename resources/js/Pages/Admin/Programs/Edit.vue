@@ -90,6 +90,70 @@
 				</div>
 			</form>
 		</div>
+		<h1 class="my-8 font-bold text-3xl">Courses</h1>
+		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
+			<table class="w-full whitespace-nowrap">
+				<tr class="text-left font-bold">
+					<th class="px-6 pt-6 pb-4">Name</th>
+					<th class="px-6 pt-6 pb-4">Course Code</th>
+					<th class="px-6 pt-6 pb-4">Credit Hours</th>
+					<th class="px-6 pt-6 pb-4">Semester</th>
+					<th class="px-6 pt-6 pb-4"></th>
+				</tr>
+				<tr
+					v-for="course in courses"
+					:key="course.id"
+					class="hover:bg-gray-100 focus-within:bg-gray-100"
+				>
+					<td class="border-t">
+						<Link
+							class="px-6 py-4 flex items-center focus:text-indigo-500"
+							:href="$route('admin.courses.edit', course.id)"
+						>
+							{{ course.course_name }}
+						</Link>
+					</td>
+					<td class="border-t">
+						<Link
+							class="px-6 py-4 flex items-center focus:text-indigo-500"
+							:href="$route('admin.courses.edit', course.id)"
+						>
+							{{ course.department_code }}-{{ course.course_code }}
+						</Link>
+					</td>
+					<td class="border-t">
+						<Link
+							class="px-6 py-4 flex items-center focus:text-indigo-500"
+							:href="$route('admin.courses.edit', course.id)"
+						>
+							{{ creditHours(course) }}
+						</Link>
+					</td>
+					<td class="border-t">
+						<Link
+							class="px-6 py-4 flex items-center focus:text-indigo-500"
+							:href="$route('admin.courses.edit', course.id)"
+						>
+							{{ course.pivot.semester }}
+						</Link>
+					</td>
+					<td class="border-t w-px">
+						<Link
+							class="px-4 flex items-center"
+							:href="$route('admin.courses.edit', course.id)"
+							tabindex="-1"
+						>
+							<i class="fas fa-angle-right text-gray-600"></i
+						></Link>
+					</td>
+				</tr>
+				<tr v-if="courses.length === 0">
+					<td class="border-t px-6 py-4" colspan="4">
+						No courses found.
+					</td>
+				</tr>
+			</table>
+		</div>
 	</div>
 </template>
 
@@ -121,7 +185,8 @@ export default {
 					delete: false
 				};
 			}
-		}
+		},
+		courses: Array
 	},
 	data() {
 		return {
@@ -142,6 +207,11 @@ export default {
 					this.$route("admin.programs.destroy", this.program.slug)
 				);
 			}
+		},
+
+		creditHours(course) {
+			let hours = course.theory_credit_hours + course.practical_credit_hours;
+			return `${hours}(${course.theory_credit_hours}-${course.practical_credit_hours})`;
 		}
 	}
 };

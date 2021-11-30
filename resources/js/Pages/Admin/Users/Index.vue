@@ -11,7 +11,7 @@
 				@reset="reset"
 			>
 				<label class="block text-gray-700">Role:</label>
-				<select v-model="form.role" class="mt-1 w-full form-select">
+				<select v-model="form.role" class="mt-1 w-full form-select capitalize">
 					<option :value="null" />
 					<option
 						v-for="role in roles"

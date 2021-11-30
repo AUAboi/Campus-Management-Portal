@@ -21,7 +21,7 @@
 				</div>
 				<div
 					slot="dropdown"
-					class="mt-2 px-4 py-6 w-screen shadow-xl bg-white rounded"
+					class="mt-2 px-4 py-6 w-screen shadow-xl bg-white rounded "
 					:style="{ maxWidth: `${maxWidth}px` }"
 				>
 					<slot />
