@@ -5,10 +5,7 @@
 
 		<component :user="user" :is="`app-${role}-profile-card`"></component>
 
-		<div
-			v-if="permissions.edit"
-			class="py-4 my-4 bg-gray-50 border-t border-gray-100 max-w-3xl"
-		>
+		<div v-if="permissions.edit" class="py-4 my-4  max-w-3xl">
 			<Link
 				:href="$route('admin.users.edit', user.id)"
 				class="bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md"

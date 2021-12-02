@@ -20,7 +20,7 @@ class Course extends Model
 
     public function programs()
     {
-        return $this->belongsToMany(Program::class);
+        return $this->belongsToMany(Program::class)->withPivot('semester');
     }
 
     public function scopeFilter($query, array $filters)

@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ProgramController;
 use App\Http\Controllers\Admin\CourseController;
-
+use App\Http\Controllers\Admin\ProgramCourseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -72,7 +72,6 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::put('/programs/{program}/update', [ProgramController::class, 'update'])->name('admin.programs.update');
     Route::delete('/programs/{program}/delete', [ProgramController::class, 'destroy'])->name('admin.programs.destroy');
 
-
     //Courses
     Route::get('/courses', [CourseController::class, 'index'])->name('admin.courses');
     Route::get('/courses/create', [CourseController::class, 'create'])->name('admin.courses.create');
@@ -81,6 +80,12 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::post('/courses/create', [CourseController::class, 'store'])->name('admin.courses.store');
     Route::put('/courses/{course}/update', [CourseController::class, 'update'])->name('admin.courses.update');
     Route::delete('/courses/{course}/delete', [CourseController::class, 'destroy'])->name('admin.courses.destroy');
+
+    //ProgramCourses
+    Route::get('/programs/{program}/{semester}/courses', [ProgramCourseController::class, 'index'])->name('admin.programs.courses');
+
+    Route::put('/programs/{program}/{semester}/courses/add', [ProgramCourseController::class, 'store'])->name('admin.programs.courses.store');
+
 
     //Users
     Route::get('/users', [UserController::class, 'index'])->name('admin.users');

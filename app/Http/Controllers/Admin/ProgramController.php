@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Inertia\Inertia;
+use App\Models\Course;
 use App\Models\Degree;
 use App\Models\Faculty;
 use App\Models\Program;
@@ -19,7 +20,7 @@ class ProgramController extends Controller
   {
     $filters = $request->all('search', 'degree');
 
-    $programs =  Program::orderBy('id')
+    $programs =  Program::orderBy('slug')
       ->filter($request->only('search', 'degree'))
       ->with(['department', 'degree'])
       ->paginate(10)

@@ -1,11 +1,18 @@
 <template>
 	<div>
-		<AppAdminHead :title="form.program_name" />
+		<AppAdminHead
+			:title="
+				`${program.degree_name}
+				${program.department_name}`
+			"
+		/>
 		<h1 class="mb-8 font-bold text-3xl">
 			<Link
 				class="text-indigo-400 hover:text-indigo-600"
 				:href="$route('admin.departments')"
-				>{{ program.department_name }}</Link
+			>
+				{{ program.degree_name }}
+				{{ program.department_name }}</Link
 			>
 			<span class="text-indigo-400 font-medium">/</span>
 
@@ -90,6 +97,7 @@
 				</div>
 			</form>
 		</div>
+
 		<h1 class="my-8 font-bold text-3xl">Courses</h1>
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<table class="w-full whitespace-nowrap">
@@ -100,6 +108,7 @@
 					<th class="px-6 pt-6 pb-4">Semester</th>
 					<th class="px-6 pt-6 pb-4"></th>
 				</tr>
+
 				<tr
 					v-for="course in courses"
 					:key="course.id"
@@ -153,6 +162,14 @@
 					</td>
 				</tr>
 			</table>
+		</div>
+		<div class="mt-4">
+			<Link
+				class="bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md "
+				:href="$route('admin.programs.courses', [program.slug, 1])"
+			>
+				Add Course
+			</Link>
 		</div>
 	</div>
 </template>
