@@ -82,12 +82,19 @@ export default {
 	},
 	methods: {
 		update() {
-			this.updateForm.put(
-				this.$route("admin.programs.courses.store", [
-					this.program.slug,
-					this.semester
-				])
-			);
+			this.updateForm
+				.transform(course => {
+					return {
+						...course,
+						belongs_to_program: course.belongs_to_program ? 1 : 0
+					};
+				})
+				.put(
+					this.$route("admin.programs.courses.store", [
+						this.program.slug,
+						this.semester
+					])
+				);
 		},
 
 		creditHours(course) {

@@ -1,5 +1,39 @@
 <template>
 	<div>
+		<AppModal modalWidth="w-3xl" @close="show = false" v-if="show">
+			<div class="my-6 p-4 grid grid-cols-3 mx-4">
+				<Link
+					class="p-4"
+					:href="$route('admin.programs.courses', [program.slug, 1])"
+				>
+					Semester 1
+				</Link>
+				<Link
+					class="p-4"
+					:href="$route('admin.programs.courses', [program.slug, 2])"
+				>
+					Semester 2
+				</Link>
+				<Link
+					class="p-4"
+					:href="$route('admin.programs.courses', [program.slug, 3])"
+				>
+					Semester 3
+				</Link>
+				<Link
+					class="p-4"
+					:href="$route('admin.programs.courses', [program.slug, 4])"
+				>
+					Semester 4
+				</Link>
+				<Link
+					class="p-4"
+					:href="$route('admin.programs.courses', [program.slug, 5])"
+				>
+					Semester 5
+				</Link>
+			</div>
+		</AppModal>
 		<AppAdminHead
 			:title="
 				`${program.degree_name}
@@ -166,7 +200,7 @@
 		<div class="mt-4">
 			<Link
 				class="bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md "
-				:href="$route('admin.programs.courses', [program.slug, 1])"
+				@click.prevent="show = true"
 			>
 				Add Course
 			</Link>
@@ -211,7 +245,8 @@ export default {
 				degree_id: this.program.degree_id,
 				department_id: this.program.department_id,
 				credit_hours: this.program.credit_hours
-			})
+			}),
+			show: false
 		};
 	},
 	methods: {

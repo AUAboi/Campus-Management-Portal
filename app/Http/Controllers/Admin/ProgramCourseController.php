@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\Redirect;
 
 class ProgramCourseController extends Controller
 {
-    public function index(Request $request, Program $program, $semester)
+    public function index(Program $program, $semester)
     {
+        $this->authorize('update', $program);
 
         $courses =  Course::orderBy('course_name')
             ->get()
@@ -40,6 +41,9 @@ class ProgramCourseController extends Controller
 
     public function store(Request $request, Program $program, $semester)
     {
+
+        $this->authorize('update', $program);
+
         $courses = $request->courses;
 
         $selected_courses = array_column(array_filter($courses, function ($course) {
@@ -47,10 +51,10 @@ class ProgramCourseController extends Controller
         }), 'id');
 
 
-        $program->courses()->syncWithPivotValues($selected_courses, [
-            'semester' => 1,
-        ]);
+        $program->courses()->wherePivot('semester', '=', $semester)->detach();
 
-        return Redirect::route('admin.programs')->with('success', 'Courses added successfully');
+        $program->courses()->attach($selected_courses, ['semester' => $semester]);
+
+        return Redirect::route('admin.programs.edit', $program->slug)->with('success', 'Courses added successfully');
     }
 }

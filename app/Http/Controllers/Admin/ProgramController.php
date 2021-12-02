@@ -114,7 +114,6 @@ class ProgramController extends Controller
       return redirect()->back()->with('error', 'Program already exists');
     }
 
-    $title = Degree::find($request->degree_id)->degree_name . Department::find($request->department_id)->department_name;
 
     $program->update([
       'department_id' => $request->department_id,
