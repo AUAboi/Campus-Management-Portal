@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
 use Inertia\Inertia;
-use App\Models\Course;
 use App\Models\Degree;
 use App\Models\Faculty;
 use App\Models\Program;
-use App\Models\Student;
 use App\Models\Department;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

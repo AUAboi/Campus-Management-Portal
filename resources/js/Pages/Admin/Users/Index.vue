@@ -26,7 +26,7 @@
 			<Link
 				v-if="permissions.create"
 				as="button"
-				class="bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md"
+				class="btn-main"
 				:href="$route('admin.users.create')"
 			>
 				<span>Create</span>

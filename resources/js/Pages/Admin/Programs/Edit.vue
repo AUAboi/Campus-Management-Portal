@@ -124,7 +124,7 @@
 						form="update-form"
 						:disabled="form.processing"
 						type="submit"
-						class="bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md"
+						class="btn-main"
 					>
 						Update program
 					</button>
@@ -198,10 +198,7 @@
 			</table>
 		</div>
 		<div class="mt-4">
-			<Link
-				class="bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md "
-				@click.prevent="show = true"
-			>
+			<Link class="btn-main " @click.prevent="show = true">
 				Add Course
 			</Link>
 		</div>

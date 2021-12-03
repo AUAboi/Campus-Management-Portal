@@ -2197,10 +2197,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2639,10 +2635,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2970,10 +2962,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
-//
-//
-//
-//
 //
 //
 //
@@ -3359,67 +3347,80 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+/* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    Link: _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.Link
+  },
   props: {
     semester: {
       required: true
@@ -3450,11 +3451,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     update: function update() {
-      this.updateForm.transform(function (course) {
-        return _objectSpread(_objectSpread({}, course), {}, {
-          belongs_to_program: course.belongs_to_program ? 1 : 0
-        });
-      }).put(this.$route("admin.programs.courses.store", [this.program.slug, this.semester]));
+      this.updateForm.put(this.$route("admin.programs.courses.store", [this.program.slug, this.semester]));
     },
     creditHours: function creditHours(course) {
       var hours = course.theory_credit_hours + course.practical_credit_hours;
@@ -3477,10 +3474,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
-//
-//
-//
-//
 //
 //
 //
@@ -3590,9 +3583,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
-//
-//
-//
 //
 //
 //
@@ -4574,9 +4564,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
-//
-//
-//
 //
 //
 //
@@ -25335,8 +25322,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass:
-                        "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
+                      staticClass: "btn-main",
                       attrs: { disabled: _vm.form.processing, type: "submit" }
                     },
                     [_vm._v("\n\t\t\t\t\tCreate course\n\t\t\t\t")]
@@ -25665,8 +25651,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass:
-                        "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
+                      staticClass: "btn-main",
                       attrs: {
                         form: "update-form",
                         disabled: _vm.form.processing,
@@ -25735,8 +25720,7 @@ var render = function() {
             ? _c(
                 "Link",
                 {
-                  staticClass:
-                    "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
+                  staticClass: "btn-main",
                   attrs: {
                     as: "button",
                     href: _vm.$route("admin.courses.create")
@@ -26121,8 +26105,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass:
-                        "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
+                      staticClass: "btn-main",
                       attrs: { disabled: _vm.form.processing, type: "submit" }
                     },
                     [_vm._v("\n\t\t\t\t\tCreate department\n\t\t\t\t")]
@@ -26368,8 +26351,7 @@ var render = function() {
                     ? _c(
                         "button",
                         {
-                          staticClass:
-                            "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
+                          staticClass: "btn-main",
                           attrs: {
                             form: "update-form",
                             disabled: _vm.form.processing,
@@ -26441,8 +26423,7 @@ var render = function() {
             ? _c(
                 "Link",
                 {
-                  staticClass:
-                    "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
+                  staticClass: "btn-main",
                   attrs: {
                     as: "button",
                     href: _vm.$route("admin.departments.create")
@@ -26716,8 +26697,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass:
-                        "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
+                      staticClass: "btn-main",
                       attrs: { disabled: _vm.form.processing, type: "submit" }
                     },
                     [_vm._v("\n\t\t\t\t\tCreate Faculty\n\t\t\t\t")]
@@ -26879,8 +26859,7 @@ var render = function() {
                     ? _c(
                         "button",
                         {
-                          staticClass:
-                            "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
+                          staticClass: "btn-main",
                           attrs: {
                             form: "update-form",
                             disabled: _vm.form.processing,
@@ -27058,8 +27037,7 @@ var render = function() {
             ? _c(
                 "Link",
                 {
-                  staticClass:
-                    "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
+                  staticClass: "btn-main",
                   attrs: {
                     as: "button",
                     href: _vm.$route("admin.faculties.create")
@@ -27249,7 +27227,39 @@ var render = function() {
     [
       _c("AppAdminHead", { attrs: { title: "Courses" } }),
       _vm._v(" "),
-      _c("h1", { staticClass: "mb-8 font-bold text-3xl" }, [_vm._v("Courses")]),
+      _c(
+        "h1",
+        { staticClass: "mb-8 font-bold text-3xl" },
+        [
+          _c(
+            "Link",
+            {
+              staticClass: "text-indigo-400 hover:text-indigo-600",
+              attrs: { href: _vm.$route("admin.faculties") }
+            },
+            [_vm._v("Programs")]
+          ),
+          _vm._v(" "),
+          _c("span", { staticClass: "text-indigo-400 font-medium" }, [
+            _vm._v("/")
+          ]),
+          _vm._v(" "),
+          _c(
+            "Link",
+            {
+              staticClass: "text-indigo-400 hover:text-indigo-600",
+              attrs: { href: _vm.$route("admin.faculties") }
+            },
+            [_vm._v("Courses")]
+          ),
+          _vm._v(" "),
+          _c("span", { staticClass: "text-indigo-400 font-medium" }, [
+            _vm._v("/")
+          ]),
+          _vm._v("Add\n\t")
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("h3", { staticClass: "mb-8 font-bold text-3xl" }, [
         _vm._v("Semester " + _vm._s(_vm.semester))
@@ -27258,6 +27268,7 @@ var render = function() {
       _c(
         "button",
         {
+          staticClass: "btn-main mb-4",
           on: {
             click: function($event) {
               $event.preventDefault()
@@ -27666,8 +27677,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass:
-                        "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
+                      staticClass: "btn-main",
                       attrs: { disabled: _vm.form.processing, type: "submit" }
                     },
                     [_vm._v("\n\t\t\t\t\tCreate program\n\t\t\t\t")]
@@ -28082,8 +28092,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass:
-                        "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
+                      staticClass: "btn-main",
                       attrs: {
                         form: "update-form",
                         disabled: _vm.form.processing,
@@ -28272,8 +28281,7 @@ var render = function() {
           _c(
             "Link",
             {
-              staticClass:
-                "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md ",
+              staticClass: "btn-main ",
               on: {
                 click: function($event) {
                   $event.preventDefault()
@@ -28423,8 +28431,7 @@ var render = function() {
             ? _c(
                 "Link",
                 {
-                  staticClass:
-                    "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
+                  staticClass: "btn-main",
                   attrs: {
                     as: "button",
                     href: _vm.$route("admin.programs.create")
@@ -29078,8 +29085,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass:
-                "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
+              staticClass: "btn-main",
               attrs: {
                 disabled: _vm.form.processing,
                 type: "submit",
@@ -29240,8 +29246,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass:
-                        "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
+                      staticClass: "btn-main",
                       attrs: {
                         form: "update-form",
                         disabled: _vm.form.processing,
@@ -29947,8 +29952,7 @@ var render = function() {
             ? _c(
                 "Link",
                 {
-                  staticClass:
-                    "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
+                  staticClass: "btn-main",
                   attrs: {
                     as: "button",
                     href: _vm.$route("admin.users.create")
@@ -30146,8 +30150,7 @@ var render = function() {
               _c(
                 "Link",
                 {
-                  staticClass:
-                    "bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md",
+                  staticClass: "btn-main",
                   attrs: { href: _vm.$route("admin.users.edit", _vm.user.id) }
                 },
                 [_vm._v("\n\t\t\tEdit\n\t\t")]

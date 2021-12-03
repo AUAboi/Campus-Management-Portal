@@ -2,10 +2,24 @@
 	<div>
 		<AppAdminHead title="Courses" />
 
-		<h1 class="mb-8 font-bold text-3xl">Courses</h1>
+		<h1 class="mb-8 font-bold text-3xl">
+			<Link
+				class="text-indigo-400 hover:text-indigo-600"
+				:href="$route('admin.faculties')"
+				>Programs</Link
+			>
+			<span class="text-indigo-400 font-medium">/</span>
+
+			<Link
+				class="text-indigo-400 hover:text-indigo-600"
+				:href="$route('admin.faculties')"
+				>Courses</Link
+			>
+			<span class="text-indigo-400 font-medium">/</span>Add
+		</h1>
 		<h3 class="mb-8 font-bold text-3xl">Semester {{ semester }}</h3>
 
-		<button @click.prevent="update">
+		<button class="btn-main mb-4" @click.prevent="update">
 			Update
 		</button>
 		<div class="bg-white rounded-md shadow overflow-x-auto">
@@ -53,7 +67,12 @@
 </template>
 
 <script>
+import { Link } from "@inertiajs/inertia-vue";
+
 export default {
+	components: {
+		Link
+	},
 	props: {
 		semester: {
 			required: true
@@ -82,19 +101,12 @@ export default {
 	},
 	methods: {
 		update() {
-			this.updateForm
-				.transform(course => {
-					return {
-						...course,
-						belongs_to_program: course.belongs_to_program ? 1 : 0
-					};
-				})
-				.put(
-					this.$route("admin.programs.courses.store", [
-						this.program.slug,
-						this.semester
-					])
-				);
+			this.updateForm.put(
+				this.$route("admin.programs.courses.store", [
+					this.program.slug,
+					this.semester
+				])
+			);
 		},
 
 		creditHours(course) {
