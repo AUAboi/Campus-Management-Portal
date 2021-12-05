@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Degree;
 use App\Models\Faculty;
 use App\Models\Program;
-use App\Models\Student;
 use App\Models\Department;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -17,17 +14,22 @@ class ProgramController extends Controller
 {
   public function index(Request $request)
   {
-    $filters = $request->all('search');
+    $filters = $request->all('search', 'degree');
 
-    $programs =  Program::orderBy('id')
-      ->filter($request->only('search'))
+    $programs =  Program::orderBy('slug')
+      ->filter($request->only('search', 'degree'))
       ->with(['department', 'degree'])
       ->paginate(10)
       ->withQueryString();
 
-    return Inertia::render("Admin/Programs/Index", ['programs' => $programs, 'filters' => $filters, 'permissions' => [
-      'create' => auth()->user()->can('create', Faculty::class),
-    ]]);
+    return Inertia::render("Admin/Programs/Index", [
+      'programs' => $programs,
+      'degrees' => Degree::select('id', 'degree_name')->get(),
+      'filters' => $filters,
+      'permissions' => [
+        'create' => auth()->user()->can('create', Faculty::class),
+      ]
+    ]);
   }
 
 
@@ -59,13 +61,11 @@ class ProgramController extends Controller
       return redirect()->back()->with('error', 'Program already exists');
     }
 
-    $title = Degree::find($request->degree_id)->degree_name . Department::find($request->department_id)->department_name;
 
     Program::create([
       'department_id' => $request->department_id,
       'degree_id' => $request->degree_id,
       'credit_hours' => $request->credit_hours,
-      'slug' => Str::slug($title)
     ]);
 
     return redirect()->route('admin.programs')->with('success', 'Program created successfully.');
@@ -74,6 +74,7 @@ class ProgramController extends Controller
   public function edit(Program $program)
   {
     $this->authorize('update', $program);
+
 
     return Inertia::render("Admin/Programs/Edit", [
       'program' => [
@@ -85,6 +86,7 @@ class ProgramController extends Controller
         'credit_hours' => $program->credit_hours,
         'slug' => $program->slug
       ],
+      'courses' => $program->courses()->orderBy('semester')->get(),
       'departments' => Department::select('department_name', 'id')->get(),
       'degrees' => Degree::select('degree_name', 'id')->get(),
       'permissions' => [
@@ -95,7 +97,7 @@ class ProgramController extends Controller
 
   public function update(Request $request, Program $program)
   {
-    $this->authorize('update');
+    $this->authorize('update', $program);
 
 
     $request->validate([
@@ -108,13 +110,11 @@ class ProgramController extends Controller
       return redirect()->back()->with('error', 'Program already exists');
     }
 
-    $title = Degree::find($request->degree_id)->degree_name . Department::find($request->department_id)->department_name;
 
     $program->update([
       'department_id' => $request->department_id,
       'degree_id' => $request->degree_id,
       'credit_hours' => $request->credit_hours,
-      'slug' => Str::slug($title)
     ]);
 
     return redirect()->route('admin.programs')->with('success', 'Program updated successfully.');

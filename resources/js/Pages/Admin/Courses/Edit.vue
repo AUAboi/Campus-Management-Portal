@@ -13,11 +13,61 @@
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form @submit.prevent="update" id="update-form" class="m-0">
 				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
-					<div class="pr-6 pb-8 w-full lg:w-1/2">
-						<label class="block">course Name: </label>
+					<div class="pr-6 pb-8 w-full">
+						<label class="block">Course Name: </label>
 						<input type="text" v-model="form.course_name" class="form_input" />
 						<div class="text-red-600" v-if="form.errors.course_name">
 							{{ form.errors.course_name }}
+						</div>
+					</div>
+				</div>
+				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
+					<div class="pr-6 pb-8 w-full lg:w-1/2">
+						<label class="block">Practical Credit Hours: </label>
+						<input
+							type="text"
+							v-model="form.practical_credit_hours"
+							class="form_input"
+						/>
+						<div
+							class="text-red-600"
+							v-if="form.practical_credit_hours.course_name"
+						>
+							{{ form.errors.practical_credit_hours }}
+						</div>
+					</div>
+					<div class="pr-6 pb-8 w-full lg:w-1/2">
+						<label class="block">Practical Credit Hours: </label>
+						<input
+							type="text"
+							v-model="form.practical_credit_hours"
+							class="form_input"
+						/>
+						<div
+							class="text-red-600"
+							v-if="form.practical_credit_hours.course_name"
+						>
+							{{ form.errors.practical_credit_hours }}
+						</div>
+					</div>
+				</div>
+				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
+					<div class="pr-6 pb-8 w-full lg:w-1/2">
+						<label class="block">Department Code: </label>
+						<input
+							type="text"
+							v-model="form.department_code"
+							class="form_input"
+						/>
+						<div class="text-red-600" v-if="form.errors.department_code">
+							{{ form.errors.department_code }}
+						</div>
+					</div>
+					<div class="pr-6 pb-8 w-full lg:w-1/2">
+						<label class="block">Course Code: : </label>
+						<input type="text" v-model="form.course_code" class="form_input" />
+						<div class="text-red-600" v-if="form.errors.course_code">
+							{{ form.errors.course_code }}
 						</div>
 					</div>
 				</div>
@@ -44,7 +94,7 @@
 						form="update-form"
 						:disabled="form.processing"
 						type="submit"
-						class="bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md"
+						class="btn-main"
 					>
 						Update course
 					</button>
@@ -79,7 +129,11 @@ export default {
 	data() {
 		return {
 			form: this.$inertia.form({
-				course_name: this.course.course_name
+				course_name: this.course.course_name,
+				practical_credit_hours: this.course.practical_credit_hours,
+				theory_credit_hours: this.course.theory_credit_hours,
+				department_code: this.course.department_code,
+				course_code: this.course.course_code
 			})
 		};
 	},

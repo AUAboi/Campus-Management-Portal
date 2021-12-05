@@ -7,21 +7,14 @@ use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Faculty;
 use App\Models\Student;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
-use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware(['auth', 'role:admin']);
-    }
 
     /**
      * Display a listing of the resource.
@@ -43,9 +36,14 @@ class UserController extends Controller
             ]);
 
 
-        return Inertia::render("Admin/Users/Index", ['users' => $users, 'filters' => $filters,  'permissions' => [
-            'create' => auth()->user()->can('create', User::class),
-        ]]);
+        return Inertia::render("Admin/Users/Index", [
+            'users' => $users,
+            'roles' => Role::select('name', 'id')->get(),
+            'filters' => $filters,
+            'permissions' => [
+                'create' => auth()->user()->can('create', User::class),
+            ]
+        ]);
     }
 
     /**

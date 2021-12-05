@@ -37,13 +37,19 @@ class CourseController extends Controller
     {
         $this->validate($request, [
             'course_name' => 'required|unique:courses,course_name',
-            'course_code' => 'unique:courses,course_code',
+            'course_code' => 'required|numeric|max:999|min:100',
             'practical_credit_hours' => 'required|numeric',
             'theory_credit_hours' => 'required|numeric',
             'department_code' => 'required',
         ]);
 
-        $course = Course::create($request->all());
+        $course = Course::create($request->only([
+            'course_name',
+            'course_code',
+            'practical_credit_hours',
+            'theory_credit_hours',
+            'department_code',
+        ]));
 
         return redirect()->route('admin.courses')->with('success', 'Course created successfully.');
     }
@@ -58,5 +64,37 @@ class CourseController extends Controller
                 'delete' => auth()->user()->can('delete_faculties'),
             ],
         ]);
+    }
+
+    public function update(Request $request, Course $course)
+    {
+        $this->authorize('update', $course);
+
+        $this->validate($request, [
+            'course_name' => 'required|unique:courses,course_name,' . $course->id,
+            'course_code' => 'required|numeric|max:999|min:100',
+            'practical_credit_hours' => 'required|numeric',
+            'theory_credit_hours' => 'required|numeric',
+            'department_code' => 'required',
+        ]);
+
+        $course->update($request->only([
+            'course_name',
+            'course_code',
+            'practical_credit_hours',
+            'theory_credit_hours',
+            'department_code',
+        ]));
+
+        return redirect()->route('admin.courses')->with('success', 'Course updated successfully.');
+    }
+
+    public function destroy(Course $course)
+    {
+        $this->authorize('delete', $course);
+
+        $course->delete();
+
+        return redirect()->route('admin.courses')->with('success', 'Course deleted successfully.');
     }
 }

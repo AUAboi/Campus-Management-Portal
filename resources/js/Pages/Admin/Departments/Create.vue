@@ -42,11 +42,7 @@
 				<div
 					class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center"
 				>
-					<button
-						:disabled="form.processing"
-						type="submit"
-						class="bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md"
-					>
+					<button :disabled="form.processing" type="submit" class="btn-main">
 						Create department
 					</button>
 				</div>

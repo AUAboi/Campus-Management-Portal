@@ -23,8 +23,8 @@
 								>{{ degree.degree_name }}</option
 							>
 						</select>
-						<div class="text-red-600" v-if="form.errors.degree_name">
-							{{ form.errors.degree_name }}
+						<div class="text-red-600" v-if="form.errors.degree_id">
+							{{ form.errors.degree_id }}
 						</div>
 					</div>
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
@@ -37,8 +37,8 @@
 								>{{ department.department_name }}</option
 							>
 						</select>
-						<div class="text-red-600" v-if="form.errors.department_name">
-							{{ form.errors.department_name }}
+						<div class="text-red-600" v-if="form.errors.department_id">
+							{{ form.errors.department_id }}
 						</div>
 					</div>
 				</div>
@@ -55,11 +55,7 @@
 				<div
 					class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center"
 				>
-					<button
-						:disabled="form.processing"
-						type="submit"
-						class="bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md"
-					>
+					<button :disabled="form.processing" type="submit" class="btn-main">
 						Create program
 					</button>
 				</div>

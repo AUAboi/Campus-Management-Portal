@@ -12,7 +12,7 @@
 					v-else
 					:key="key"
 					class="mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-indigo-500 focus:text-indigo-500"
-					:class="{ 'bg-white': link.active }"
+					:class="{ 'bg-white border-indigo-500 ': link.active }"
 					:href="link.url"
 					v-html="link.label"
 				/>

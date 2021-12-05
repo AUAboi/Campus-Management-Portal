@@ -18,6 +18,11 @@ class Course extends Model
     ];
 
 
+    public function programs()
+    {
+        return $this->belongsToMany(Program::class)->withPivot('semester');
+    }
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {

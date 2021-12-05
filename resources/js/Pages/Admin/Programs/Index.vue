@@ -5,14 +5,27 @@
 		<h1 class="mb-8 font-bold text-3xl">Programs</h1>
 		<div class="mb-6 flex justify-between items-center">
 			<AppTableSearch
+				:filterable="true"
 				v-model="form.search"
 				class="w-full max-w-md mr-4"
 				@reset="reset"
-			/>
-
+			>
+				<label class="block text-gray-700">Degree:</label>
+				<select v-model="form.degree" class="mt-1 w-full form-select">
+					<option :value="null" />
+					<option
+						v-for="degree in degrees"
+						:key="degree.id"
+						:value="degree.degree_name"
+					>
+						{{ degree.degree_name }}
+					</option>
+				</select>
+			</AppTableSearch>
 			<Link
+				v-if="permissions.create"
 				as="button"
-				class="bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md"
+				class="btn-main"
 				:href="$route('admin.programs.create')"
 			>
 				<span>Create</span>
@@ -89,7 +102,8 @@ export default {
 	data() {
 		return {
 			form: {
-				search: this.filters.search
+				search: this.filters.search,
+				degree: this.filters.degree
 			}
 		};
 	},
@@ -103,6 +117,7 @@ export default {
 		programs: {
 			required: false
 		},
+		degrees: Array,
 		permissions: {
 			type: Object,
 			required: false,
