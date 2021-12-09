@@ -115,7 +115,7 @@ export default {
 			type: Object
 		},
 		programs: {
-			required: false
+			required: true
 		},
 		degrees: Array,
 		permissions: {

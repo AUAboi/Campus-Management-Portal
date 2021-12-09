@@ -54,7 +54,7 @@
 							class="px-6 py-4 flex items-center focus:text-indigo-500"
 							:href="$route('admin.courses.edit', course.id)"
 						>
-							{{ creditHours(course) }}
+							{{ course.credit_hours }}
 						</Link>
 					</td>
 					<td class="border-t w-px">
@@ -113,10 +113,6 @@ export default {
 	methods: {
 		reset() {
 			this.form = mapValues(this.form, () => null);
-		},
-		creditHours(course) {
-			let hours = course.theory_credit_hours + course.practical_credit_hours;
-			return `${hours}(${course.theory_credit_hours}-${course.practical_credit_hours})`;
 		}
 	},
 	watch: {

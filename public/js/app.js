@@ -2520,10 +2520,6 @@ __webpack_require__.r(__webpack_exports__);
       this.form = lodash_mapValues__WEBPACK_IMPORTED_MODULE_3___default()(this.form, function () {
         return null;
       });
-    },
-    creditHours: function creditHours(course) {
-      var hours = course.theory_credit_hours + course.practical_credit_hours;
-      return "".concat(hours, "(").concat(course.theory_credit_hours, "-").concat(course.practical_credit_hours, ")");
     }
   },
   watch: {
@@ -3768,28 +3764,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -3837,10 +3811,6 @@ __webpack_require__.r(__webpack_exports__);
       if (confirm("Are you sure you want to delete this program?")) {
         this.$inertia["delete"](this.$route("admin.programs.destroy", this.program.slug));
       }
-    },
-    creditHours: function creditHours(course) {
-      var hours = course.theory_credit_hours + course.practical_credit_hours;
-      return "".concat(hours, "(").concat(course.theory_credit_hours, "-").concat(course.practical_credit_hours, ")");
     }
   }
 });
@@ -3980,7 +3950,7 @@ __webpack_require__.r(__webpack_exports__);
       type: Object
     },
     programs: {
-      required: false
+      required: true
     },
     degrees: Array,
     permissions: {
@@ -25822,7 +25792,7 @@ var render = function() {
                         [
                           _vm._v(
                             "\n\t\t\t\t\t\t" +
-                              _vm._s(_vm.creditHours(course)) +
+                              _vm._s(course.credit_hours) +
                               "\n\t\t\t\t\t"
                           )
                         ]
@@ -27733,77 +27703,26 @@ var render = function() {
               _c(
                 "div",
                 { staticClass: "my-6 p-4 grid grid-cols-3 mx-4" },
-                [
-                  _c(
+                _vm._l(_vm.program.semesters, function(semester, index) {
+                  return _c(
                     "Link",
                     {
-                      staticClass: "p-4",
+                      key: index,
+                      staticClass: "m-4",
                       attrs: {
                         href: _vm.$route("admin.programs.courses", [
                           _vm.program.slug,
-                          1
+                          semester
                         ])
                       }
                     },
-                    [_vm._v("\n\t\t\t\tSemester 1\n\t\t\t")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "Link",
-                    {
-                      staticClass: "p-4",
-                      attrs: {
-                        href: _vm.$route("admin.programs.courses", [
-                          _vm.program.slug,
-                          2
-                        ])
-                      }
-                    },
-                    [_vm._v("\n\t\t\t\tSemester 2\n\t\t\t")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "Link",
-                    {
-                      staticClass: "p-4",
-                      attrs: {
-                        href: _vm.$route("admin.programs.courses", [
-                          _vm.program.slug,
-                          3
-                        ])
-                      }
-                    },
-                    [_vm._v("\n\t\t\t\tSemester 3\n\t\t\t")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "Link",
-                    {
-                      staticClass: "p-4",
-                      attrs: {
-                        href: _vm.$route("admin.programs.courses", [
-                          _vm.program.slug,
-                          4
-                        ])
-                      }
-                    },
-                    [_vm._v("\n\t\t\t\tSemester 4\n\t\t\t")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "Link",
-                    {
-                      staticClass: "p-4",
-                      attrs: {
-                        href: _vm.$route("admin.programs.courses", [
-                          _vm.program.slug,
-                          5
-                        ])
-                      }
-                    },
-                    [_vm._v("\n\t\t\t\tSemester 5\n\t\t\t")]
+                    [
+                      _vm._v(
+                        "\n\t\t\t\tSemester " + _vm._s(semester) + "\n\t\t\t"
+                      )
+                    ]
                   )
-                ],
+                }),
                 1
               )
             ]
@@ -28196,7 +28115,7 @@ var render = function() {
                           [
                             _vm._v(
                               "\n\t\t\t\t\t\t" +
-                                _vm._s(_vm.creditHours(course)) +
+                                _vm._s(course.credit_hours) +
                                 "\n\t\t\t\t\t"
                             )
                           ]
@@ -28221,7 +28140,7 @@ var render = function() {
                           [
                             _vm._v(
                               "\n\t\t\t\t\t\t" +
-                                _vm._s(course.pivot.semester) +
+                                _vm._s(course.semester) +
                                 "\n\t\t\t\t\t"
                             )
                           ]
