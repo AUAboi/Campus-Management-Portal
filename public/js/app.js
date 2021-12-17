@@ -2520,10 +2520,6 @@ __webpack_require__.r(__webpack_exports__);
       this.form = lodash_mapValues__WEBPACK_IMPORTED_MODULE_3___default()(this.form, function () {
         return null;
       });
-    },
-    creditHours: function creditHours(course) {
-      var hours = course.theory_credit_hours + course.practical_credit_hours;
-      return "".concat(hours, "(").concat(course.theory_credit_hours, "-").concat(course.practical_credit_hours, ")");
     }
   },
   watch: {
@@ -3768,28 +3764,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -3837,10 +3811,6 @@ __webpack_require__.r(__webpack_exports__);
       if (confirm("Are you sure you want to delete this program?")) {
         this.$inertia["delete"](this.$route("admin.programs.destroy", this.program.slug));
       }
-    },
-    creditHours: function creditHours(course) {
-      var hours = course.theory_credit_hours + course.practical_credit_hours;
-      return "".concat(hours, "(").concat(course.theory_credit_hours, "-").concat(course.practical_credit_hours, ")");
     }
   }
 });
@@ -3980,7 +3950,7 @@ __webpack_require__.r(__webpack_exports__);
       type: Object
     },
     programs: {
-      required: false
+      required: true
     },
     degrees: Array,
     permissions: {
@@ -25822,7 +25792,7 @@ var render = function() {
                         [
                           _vm._v(
                             "\n\t\t\t\t\t\t" +
-                              _vm._s(_vm.creditHours(course)) +
+                              _vm._s(course.credit_hours) +
                               "\n\t\t\t\t\t"
                           )
                         ]
@@ -27733,77 +27703,26 @@ var render = function() {
               _c(
                 "div",
                 { staticClass: "my-6 p-4 grid grid-cols-3 mx-4" },
-                [
-                  _c(
+                _vm._l(_vm.program.semesters, function(semester, index) {
+                  return _c(
                     "Link",
                     {
-                      staticClass: "p-4",
+                      key: index,
+                      staticClass: "m-4",
                       attrs: {
                         href: _vm.$route("admin.programs.courses", [
                           _vm.program.slug,
-                          1
+                          semester
                         ])
                       }
                     },
-                    [_vm._v("\n\t\t\t\tSemester 1\n\t\t\t")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "Link",
-                    {
-                      staticClass: "p-4",
-                      attrs: {
-                        href: _vm.$route("admin.programs.courses", [
-                          _vm.program.slug,
-                          2
-                        ])
-                      }
-                    },
-                    [_vm._v("\n\t\t\t\tSemester 2\n\t\t\t")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "Link",
-                    {
-                      staticClass: "p-4",
-                      attrs: {
-                        href: _vm.$route("admin.programs.courses", [
-                          _vm.program.slug,
-                          3
-                        ])
-                      }
-                    },
-                    [_vm._v("\n\t\t\t\tSemester 3\n\t\t\t")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "Link",
-                    {
-                      staticClass: "p-4",
-                      attrs: {
-                        href: _vm.$route("admin.programs.courses", [
-                          _vm.program.slug,
-                          4
-                        ])
-                      }
-                    },
-                    [_vm._v("\n\t\t\t\tSemester 4\n\t\t\t")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "Link",
-                    {
-                      staticClass: "p-4",
-                      attrs: {
-                        href: _vm.$route("admin.programs.courses", [
-                          _vm.program.slug,
-                          5
-                        ])
-                      }
-                    },
-                    [_vm._v("\n\t\t\t\tSemester 5\n\t\t\t")]
+                    [
+                      _vm._v(
+                        "\n\t\t\t\tSemester " + _vm._s(semester) + "\n\t\t\t"
+                      )
+                    ]
                   )
-                ],
+                }),
                 1
               )
             ]
@@ -28196,7 +28115,7 @@ var render = function() {
                           [
                             _vm._v(
                               "\n\t\t\t\t\t\t" +
-                                _vm._s(_vm.creditHours(course)) +
+                                _vm._s(course.credit_hours) +
                                 "\n\t\t\t\t\t"
                             )
                           ]
@@ -28221,7 +28140,7 @@ var render = function() {
                           [
                             _vm._v(
                               "\n\t\t\t\t\t\t" +
-                                _vm._s(course.pivot.semester) +
+                                _vm._s(course.semester) +
                                 "\n\t\t\t\t\t"
                             )
                           ]
@@ -44242,7 +44161,7 @@ webpackContext.id = "./resources/js sync recursive \\.vue$/";
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_args":[["axios@0.21.4","G:\\\\WebProjects\\\\Campus-Management-Portal"]],"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/","/@inertiajs/inertia"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"G:\\\\WebProjects\\\\Campus-Management-Portal","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","E:\\\\Lapto-Projects\\\\portal_cms"]],"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/","/@inertiajs/inertia"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"E:\\\\Lapto-Projects\\\\portal_cms","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

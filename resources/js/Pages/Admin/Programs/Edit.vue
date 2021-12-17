@@ -3,34 +3,12 @@
 		<AppModal modalWidth="w-3xl" @close="show = false" v-if="show">
 			<div class="my-6 p-4 grid grid-cols-3 mx-4">
 				<Link
-					class="p-4"
-					:href="$route('admin.programs.courses', [program.slug, 1])"
+					v-for="(semester, index) in program.semesters"
+					:key="index"
+					class="m-4"
+					:href="$route('admin.programs.courses', [program.slug, semester])"
 				>
-					Semester 1
-				</Link>
-				<Link
-					class="p-4"
-					:href="$route('admin.programs.courses', [program.slug, 2])"
-				>
-					Semester 2
-				</Link>
-				<Link
-					class="p-4"
-					:href="$route('admin.programs.courses', [program.slug, 3])"
-				>
-					Semester 3
-				</Link>
-				<Link
-					class="p-4"
-					:href="$route('admin.programs.courses', [program.slug, 4])"
-				>
-					Semester 4
-				</Link>
-				<Link
-					class="p-4"
-					:href="$route('admin.programs.courses', [program.slug, 5])"
-				>
-					Semester 5
+					Semester {{ semester }}
 				</Link>
 			</div>
 		</AppModal>
@@ -168,7 +146,7 @@
 							class="px-6 py-4 flex items-center focus:text-indigo-500"
 							:href="$route('admin.courses.edit', course.id)"
 						>
-							{{ creditHours(course) }}
+							{{ course.credit_hours }}
 						</Link>
 					</td>
 					<td class="border-t">
@@ -176,7 +154,7 @@
 							class="px-6 py-4 flex items-center focus:text-indigo-500"
 							:href="$route('admin.courses.edit', course.id)"
 						>
-							{{ course.pivot.semester }}
+							{{ course.semester }}
 						</Link>
 					</td>
 				</tr>
@@ -246,11 +224,6 @@ export default {
 					this.$route("admin.programs.destroy", this.program.slug)
 				);
 			}
-		},
-
-		creditHours(course) {
-			let hours = course.theory_credit_hours + course.practical_credit_hours;
-			return `${hours}(${course.theory_credit_hours}-${course.practical_credit_hours})`;
 		}
 	}
 };

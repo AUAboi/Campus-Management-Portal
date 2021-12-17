@@ -18,6 +18,12 @@ class Course extends Model
     ];
 
 
+    public function getCreditHoursAttribute()
+    {
+        $totalHours = $this->theory_credit_hours + $this->practical_credit_hoursourse_name;
+        return $totalHours . '(' . $this->theory_credit_hours . '-' . $this->practical_credit_hours . ')';
+    }
+
     public function programs()
     {
         return $this->belongsToMany(Program::class)->withPivot('semester');
