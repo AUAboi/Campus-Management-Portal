@@ -140,7 +140,6 @@
 					<th class="px-6 pt-6 pb-4">Course Code</th>
 					<th class="px-6 pt-6 pb-4">Credit Hours</th>
 					<th class="px-6 pt-6 pb-4">Semester</th>
-					<th class="px-6 pt-6 pb-4"></th>
 				</tr>
 
 				<tr
@@ -179,15 +178,6 @@
 						>
 							{{ course.pivot.semester }}
 						</Link>
-					</td>
-					<td class="border-t w-px">
-						<Link
-							class="px-4 flex items-center"
-							:href="$route('admin.courses.edit', course.id)"
-							tabindex="-1"
-						>
-							<i class="fas fa-angle-right text-gray-600"></i
-						></Link>
 					</td>
 				</tr>
 				<tr v-if="courses.length === 0">

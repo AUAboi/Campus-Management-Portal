@@ -26,7 +26,8 @@ class UserController extends Controller
         $filters = $request->all('search', 'role');
 
 
-        $users = User::orderBy('name')
+
+        $users = User::with('roles')->orderBy('name')
             ->filter($request->only('search', 'role'))->get()->transform(fn ($user) => [
                 'id' => $user->id,
                 'name' => $user->name,
