@@ -7,7 +7,7 @@
 			<component :form="form" :is="roleComponent"></component>
 		</div>
 		<div
-			v-if="roleComponent !== 'app-admin-step'"
+			v-if="roleComponent == 'app-teacher-step'"
 			class="mt-2 px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center"
 		>
 			<button
@@ -49,6 +49,11 @@ export default {
 		form: {
 			required: true,
 			type: Object
+		}
+	},
+	methods: {
+		store() {
+			this.form.post(this.$route("admin.users.create"));
 		}
 	},
 	computed: {

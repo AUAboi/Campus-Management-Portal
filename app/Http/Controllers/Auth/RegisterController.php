@@ -8,11 +8,14 @@ use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
+use App\Traits\UserStudentTrait;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
+    use UserStudentTrait;
+
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -77,7 +80,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
+        //////////////////////////////
+        //USE TRAITS TO BUILD MODEL//
+        ////////////////////////////
         $role = $data['role'];
 
         $user = User::create([

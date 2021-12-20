@@ -2,7 +2,7 @@
 	<div>
 		<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
 			<div class="pr-6 pb-8 w-full lg:w-1/2">
-				<label class="block">User Name: </label>
+				<label class="block">Name: </label>
 				<input type="text" v-model="form.name" class="form_input" />
 				<div class="text-red-600" v-if="form.errors.name">
 					{{ form.errors.name }}
@@ -13,6 +13,26 @@
 				<input type="text" v-model="form.email" class="form_input" />
 				<div class="text-red-600" v-if="form.errors.email">
 					{{ form.errors.email }}
+				</div>
+			</div>
+		</div>
+		<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
+			<div class="pr-6 pb-8 w-full lg:w-1/2">
+				<label class="block">Father Name: </label>
+				<input type="text" v-model="form.father_name" class="form_input" />
+				<div class="text-red-600" v-if="form.errors.father_name">
+					{{ form.errors.father_name }}
+				</div>
+			</div>
+			<div class="pr-6 pb-8 w-full lg:w-1/2">
+				<label class="block">Gender: </label>
+				<select v-model="form.gender" class="form_input">
+					<option value="" selected></option>
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+				</select>
+				<div class="text-red-600" v-if="form.errors.gender">
+					{{ form.errors.gender }}
 				</div>
 			</div>
 		</div>

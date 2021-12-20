@@ -8,13 +8,15 @@ use Inertia\Inertia;
 use App\Models\Faculty;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use App\Traits\UserStudentTrait;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
-use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
+    use UserStudentTrait;
 
     /**
      * Display a listing of the resource.
@@ -68,12 +70,14 @@ class UserController extends Controller
         $this->authorize('create', User::class);
         $request->validate([
             'name' => 'required|string|max:255',
+            'father_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
-            'cnic' => 'required|string|min:13|max:13',
+            'cnic' => 'required|string|min:13|max:13|unique:users',
             'phone' => 'required|string|max:11',
             'role' => 'required|string|exists:roles,name',
         ]);
+
 
         $user = User::create([
             'name' => $request->name,
@@ -83,20 +87,23 @@ class UserController extends Controller
             'phone' => $request->phone,
         ]);
 
+        switch ($request->role) {
+            case 'student':
+                $this->createStudent($user, $request);
+                break;
+            case 'admin':
+                $user->admin()->create();
+                break;
+            default:
+                # code...
+                break;
+        }
 
-        $user->student()->create([
-            'registration_number' => $this->generateRegNumber(),
-            'session_duration' => Carbon::now()->year . '-' . Carbon::now()->addYears(4)->year,
-            'session_type' => $request->session_type,
-            'roll_no' => $user->id + 1000,
-            'admission_year' => Carbon::now()->year,
-            'cgpa' => 0.00
 
-        ]);
+        $user->assignRole($request->role);
 
 
-
-        return Redirect::route('admin.users.index')->with('success', 'User created successfully');
+        return Redirect::route('admin.users')->with('success', 'User created successfully');
     }
 
 
@@ -223,17 +230,5 @@ class UserController extends Controller
         $user->delete();
 
         return Redirect::route('admin.users')->with('success', 'User deleted.');
-    }
-
-    private function generateRegNumber()
-    {
-        //Format is like this:
-        //RANDOM_5_DIGITS
-
-        $reg_number = rand(1, 9)  . rand(1, 9)   . rand(1, 9)  . rand(1, 9) .  rand(1, 9);
-        if (Student::where('registration_number', $reg_number)->exists()) {
-            $reg_number = $this->generateRegNumber();
-        }
-        return $reg_number;
     }
 }
