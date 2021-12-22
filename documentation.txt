@@ -1,0 +1,16 @@
+DRAFT DOCS
+
+
+STUDENT FLOW:
+
+- student create account (standard user - no role) 
+- logins to admission portal, choose course and apply with details
+- application get reviewed based on merit by admin and/or automatically (flags for admin)
+- once admin marks student as enrolled, role student is assigned and user can login to student portal
+- all students based on seats get assigned a semester number (and maybe a batch number)
+- Department admin now assign each batch (evening and morning) teachers 
+
+
+
+TO-DO: 
+Create something to differeniate b/w enrolled student and applying user (so enrolled cannot apply)

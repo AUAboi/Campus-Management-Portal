@@ -84,6 +84,10 @@ export default {
 		courses: {
 			required: false
 		},
+		program_courses: {
+			type: Array,
+			required: false
+		},
 		permissions: {
 			type: Object,
 			required: false,
@@ -107,6 +111,10 @@ export default {
 					this.semester
 				])
 			);
+		},
+
+		belongsToProgram(course) {
+			return this.program_courses.includes(course.id);
 		},
 
 		creditHours(course) {

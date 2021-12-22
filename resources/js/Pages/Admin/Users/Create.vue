@@ -37,6 +37,8 @@ export default {
 		return {
 			form: this.$inertia.form({
 				name: "",
+				father_name: "",
+				gender: "",
 				email: "",
 				password: "",
 				cnic: "",
@@ -45,11 +47,7 @@ export default {
 			})
 		};
 	},
-	methods: {
-		store() {
-			this.form.post(this.$route("admin.users.create"));
-		}
-	},
+
 	watch: {
 		"form.role": function() {
 			//Reset role form

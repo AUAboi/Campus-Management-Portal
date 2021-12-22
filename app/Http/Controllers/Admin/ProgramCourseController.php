@@ -10,16 +10,20 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 
+use function PHPSTORM_META\map;
+
 class ProgramCourseController extends Controller
 {
     public function index(Program $program, $semester)
     {
         $this->authorize('update', $program);
 
+
         if ($semester > $program->degree->semesters) {
             return Redirect::back()->with('error', 'Semester is not available.');
         }
 
+        $program_courses = $program->courses()->where('semester', $semester)->get();
         $courses =  Course::orderBy('course_name')
             ->get()
             ->transform(fn ($course) => [
@@ -29,14 +33,16 @@ class ProgramCourseController extends Controller
                 'theory_credit_hours' => $course->theory_credit_hours,
                 'practical_credit_hours' => $course->practical_credit_hours,
                 'department_code' => $course->department_code,
-                'belongs_to_program' => $program->courses()->where('course_id', $course->id)->where('semester', $semester)->exists(),
-            ]);
+                'belongs_to_program' => $program_courses->contains($course->id)
 
+
+            ]);
 
         return Inertia::render('Admin/Programs/AddCourse', [
             'semester' => $semester,
             'program' => $program,
             'courses' => $courses,
+            'program_courses' => $program_courses,
             'permissions' => [
                 'create' => auth()->user()->can('create', Faculty::class),
             ]
