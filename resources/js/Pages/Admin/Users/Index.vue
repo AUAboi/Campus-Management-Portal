@@ -23,15 +23,42 @@
 					</option>
 				</select>
 			</AppTableSearch>
-			<Link
-				v-if="permissions.create"
-				as="button"
-				class="btn-main"
-				:href="$route('admin.users.create')"
-			>
-				<span>Create</span>
-				<span class="hidden md:inline">User</span>
-			</Link>
+			<AppDropdown v-if="permissions.create" class="mt-1" placement="bottom">
+				<div class="flex items-center cursor-pointer select-none group">
+					<button class="btn-main">
+						<span>Create</span>
+						<span class="hidden md:inline">User</span>
+						<i
+							class="fas fa-chevron-down w-5 h-5 text-white flex align-middle mt-1"
+						></i>
+					</button>
+				</div>
+				<div
+					slot="dropdown"
+					class="mt-2 py-2 shadow-xl bg-white rounded text-sm"
+				>
+					<div>
+						<Link
+							class="block px-6 py-2 hover:bg-indigo-500 hover:text-white"
+							:href="$route('admin.profile')"
+							>Admin</Link
+						>
+						<Link
+							class="block px-6 py-2 hover:bg-indigo-500 hover:text-white"
+							:href="$route('admin.users')"
+							>Teacher</Link
+						>
+
+						<Link
+							class="block px-6 py-2 hover:bg-indigo-500 hover:text-white w-full text-left"
+							:href="$route('logout')"
+							method="post"
+							as="button"
+							>Student</Link
+						>
+					</div>
+				</div>
+			</AppDropdown>
 		</div>
 		<div class="bg-white rounded-md shadow overflow-x-auto">
 			<table class="w-full whitespace-nowrap">
