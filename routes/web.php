@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\FacultyController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\UserController;
@@ -44,6 +45,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 
     //Profile
     Route::get('/profile', [App\Http\Controllers\Admin\ProfileController::class, 'index'])->name('admin.profile');
+    Route::get('/profile/edit', [App\Http\Controllers\Admin\ProfileController::class, 'edit'])->name('admin.profile.edit');
 
     //Faculties
     Route::get('/faculties', [FacultyController::class, 'index'])->name('admin.faculties');
@@ -96,6 +98,11 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::post('/users/create', [UserController::class, 'store'])->name('admin.users.store');
     Route::put('/users/{user}/update', [UserController::class, 'update'])->name('admin.users.update');
     Route::delete('/users/{user}/delete', [UserController::class, 'destroy'])->name('admin.users.destroy');
+
+    Route::get('/users/admin/create', [AdminController::class, 'create'])->name('admin.users.admin.create');
+    Route::get('/users/admin/{admin}/edit', [AdminController::class, 'edit'])->name('admin.users.admin.edit');
+
+    Route::put('/users/admin/{admin}/update', [AdminController::class, 'update'])->name('admin.users.admin.update');
   });
 });
 

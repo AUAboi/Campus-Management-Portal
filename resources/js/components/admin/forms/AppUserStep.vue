@@ -51,7 +51,6 @@
 					maxlength="13"
 					v-model="form.cnic"
 					placeholder="XXXXX-XXXXXXX-X"
-					autofocus=""
 					class="form_input"
 				/>
 				<div class="text-red-600" v-if="form.errors.cnic">
@@ -92,6 +91,3 @@ export default {
 	}
 };
 </script>
-
-<style>
-</style>

@@ -22,4 +22,13 @@ class ProfileController extends Controller
             'user' => $user,
         ]);
     }
+
+    public function edit()
+    {
+        $user = User::find(auth()->user()->id);
+
+        return Inertia::render('Admin/Profile/Edit', [
+            'user' => $user,
+        ]);
+    }
 }
