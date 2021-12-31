@@ -102,9 +102,12 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/users/admin/create', [AdminController::class, 'create'])->name('admin.users.admin.create');
     Route::get('/users/admin/{admin}/edit', [AdminController::class, 'edit'])->name('admin.users.admin.edit');
 
+    Route::post('/users/admin/create', [AdminController::class, 'store'])->name('admin.users.admin.store');
     Route::put('/users/admin/{admin}/update', [AdminController::class, 'update'])->name('admin.users.admin.update');
   });
 });
+
+
 
 Route::group(['middleware' => ['role:teacher']], function () {
   Route::prefix('teacher')->group(function () {

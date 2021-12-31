@@ -40,7 +40,7 @@
 					<div>
 						<Link
 							class="block px-6 py-2 hover:bg-indigo-500 hover:text-white"
-							:href="$route('admin.profile')"
+							:href="$route('admin.users.admin.create')"
 							>Admin</Link
 						>
 						<Link
@@ -154,4 +154,5 @@ export default {
 		}
 	}
 };
+
 </script>

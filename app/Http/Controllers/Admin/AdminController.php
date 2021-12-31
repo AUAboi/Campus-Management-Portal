@@ -16,8 +16,9 @@ class AdminController extends Controller
         return Inertia::render('Admin/Users/Admin/Create');
     }
 
-    public function store(UserRequest $request)
+    public function store(Request $request)
     {
+        dd($request->all());
         $request->validated();
 
         $user = User::create([
