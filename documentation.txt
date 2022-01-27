@@ -12,5 +12,6 @@ STUDENT FLOW:
 
 
 
-TO-DO: 
+TO-DO:
+ 
 Create something to differeniate b/w enrolled student and applying user (so enrolled cannot apply)

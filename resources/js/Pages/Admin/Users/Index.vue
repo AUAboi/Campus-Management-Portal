@@ -45,15 +45,13 @@
 						>
 						<Link
 							class="block px-6 py-2 hover:bg-indigo-500 hover:text-white"
-							:href="$route('admin.users')"
+							:href="$route('admin.users.teacher.create')"
 							>Teacher</Link
 						>
 
 						<Link
-							class="block px-6 py-2 hover:bg-indigo-500 hover:text-white w-full text-left"
-							:href="$route('logout')"
-							method="post"
-							as="button"
+							class="block px-6 py-2 hover:bg-indigo-500 hover:text-white"
+							:href="$route('admin.users.student.create')"
 							>Student</Link
 						>
 					</div>
@@ -154,5 +152,4 @@ export default {
 		}
 	}
 };
-
 </script>

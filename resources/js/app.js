@@ -38,7 +38,7 @@ import { createInertiaApp } from "@inertiajs/inertia-vue";
 
 //Layouts
 import Layout from "./components/shared/layouts/Layout";
-import AppAdminMenu from "./components/admin/layouts/AppAdminMenu";
+import TheAdminMenu from "./components/admin/layouts/TheAdminMenu";
 import AppStudentMenu from "./components/student/layouts/AppStudentMenu";
 
 import PortalVue from "portal-vue";
@@ -54,7 +54,7 @@ createInertiaApp({
         const page = require(`./Pages/${name}`).default;
         if (page.layout === undefined) {
             if (name.startsWith("Admin")) {
-                page.layout = [Layout, AppAdminMenu];
+                page.layout = [Layout, TheAdminMenu];
             } else if (name.startsWith("Student")) {
                 page.layout = [Layout, AppStudentMenu];
             }

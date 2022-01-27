@@ -1,19 +1,21 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\FacultyController;
-use App\Http\Controllers\Admin\DepartmentController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\ProgramController;
-use App\Http\Controllers\Admin\CourseController;
-use App\Http\Controllers\Admin\ProgramCourseController;
+use App\Models\Program;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\FacultyController;
+use App\Http\Controllers\Admin\ProgramController;
+use App\Http\Controllers\Admin\StudentController;
 
+use App\Http\Controllers\Admin\TeacherController;
+use App\Http\Controllers\Admin\DepartmentController;
+use App\Http\Controllers\Admin\ProgramCourseController;
 use App\Http\Controllers\Student\CourseDetailsController;
-use App\Models\Program;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,6 +102,9 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::delete('/users/{user}/delete', [UserController::class, 'destroy'])->name('admin.users.destroy');
 
     Route::get('/users/admin/create', [AdminController::class, 'create'])->name('admin.users.admin.create');
+    Route::get('/user/teacher/create', [TeacherController::class, 'create'])->name('admin.users.teacher.create');
+    Route::get('/user/student/create', [StudentController::class, 'create'])->name('admin.users.student.create');
+
     Route::get('/users/admin/{admin}/edit', [AdminController::class, 'edit'])->name('admin.users.admin.edit');
 
     Route::post('/users/admin/create', [AdminController::class, 'store'])->name('admin.users.admin.store');
