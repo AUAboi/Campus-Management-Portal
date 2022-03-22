@@ -7,7 +7,9 @@
 			<div class="my-4">
 				<label for="email">Email</label>
 				<input name="email" class="block" type="email" v-model="form.email" />
-				<div v-if="form.errors.email">{{ form.errors.email }}</div>
+				<div class="text-red-600" v-if="form.errors.email">
+					{{ form.errors.email }}
+				</div>
 			</div>
 			<div class="my-4">
 				<label for="password">Password</label>
@@ -17,7 +19,9 @@
 					type="password"
 					v-model="form.password"
 				/>
-				<div v-if="form.errors.password">{{ form.errors.password }}</div>
+				<div class="text-red-600" v-if="form.errors.password">
+					{{ form.errors.password }}
+				</div>
 			</div>
 			<div class="my-4">
 				<input type="checkbox" v-model="form.remember" /> Remember Me
