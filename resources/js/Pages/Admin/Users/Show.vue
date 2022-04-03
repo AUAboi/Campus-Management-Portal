@@ -31,7 +31,7 @@ export default {
 	},
 	computed: {
 		role() {
-			return this.user.role;
+			return this.user.roles[0].name;
 		}
 	}
 };

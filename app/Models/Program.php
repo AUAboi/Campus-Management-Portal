@@ -50,6 +50,11 @@ class Program extends Model
         return $this->belongsTo(Degree::class);
     }
 
+    public function getFullProgramNameAttribute()
+    {
+        return "{$this->degree->degree_name} {$this->department->department_name}";
+    }
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {

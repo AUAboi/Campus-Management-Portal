@@ -66,7 +66,7 @@
 					<th class="px-6 pt-6 pb-4" colspan="2">Role</th>
 				</tr>
 				<tr
-					v-for="user in users"
+					v-for="user in users.data"
 					:key="user.id"
 					class="hover:bg-gray-100 focus-within:bg-gray-100"
 				>
@@ -103,11 +103,12 @@
 						</Link>
 					</td>
 				</tr>
-				<tr v-if="users.length === 0">
+				<tr v-if="users.data.length === 0">
 					<td class="border-t px-6 py-4" colspan="4">No users found.</td>
 				</tr>
 			</table>
 		</div>
+		<AppTablePagination class="mt-6" :links="users.links" />
 	</div>
 </template>
 
@@ -124,7 +125,7 @@ export default {
 	},
 	props: {
 		filters: Object,
-		users: Array,
+		users: Object,
 		permissions: Object,
 		roles: Array
 	},

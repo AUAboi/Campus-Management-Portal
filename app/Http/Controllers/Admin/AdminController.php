@@ -25,6 +25,7 @@ class AdminController extends Controller
             'password' => 'confirmed|required|string|min:8',
             'cnic' => 'required|string|min:13|max:13|unique:users',
             'phone' => 'required|string|max:11',
+            'gender' => 'required|string'
         ]);
 
 
@@ -36,10 +37,11 @@ class AdminController extends Controller
             'password' => Hash::make($request->password),
             'cnic' => $request->cnic,
             'phone' => $request->phone,
+            'gender' => $request->gender
         ]);
 
         $user->assignRole('admin');
-        $user->admin->create();
+        $user->admin()->create();
 
         return redirect()->route('admin.users')->with('success', 'Admin created successfully');
     }

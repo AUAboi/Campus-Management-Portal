@@ -30,7 +30,10 @@ class UserController extends Controller
 
 
         $users = User::with('roles')->orderBy('name')
-            ->filter($request->only('search', 'role'))->get()->transform(fn ($user) => [
+            ->filter($request->only('search', 'role'))
+            ->paginate(10)
+            ->withQueryString()
+            ->through(fn ($user) => [
                 'id' => $user->id,
                 'name' => $user->name,
                 'email' => $user->email,
@@ -49,62 +52,48 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return Inertia::render("Admin/Users/Create");
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $this->authorize('create', User::class);
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'father_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
-            'cnic' => 'required|string|min:13|max:13|unique:users',
-            'phone' => 'required|string|max:11',
-            'role' => 'required|string|exists:roles,name',
-        ]);
 
 
-        $user = User::create([
-            'name' => $request->name,
-            'father_name' => $request->father_name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'cnic' => $request->cnic,
-            'phone' => $request->phone,
-        ]);
-
-        switch ($request->role) {
-            case 'student':
-                $this->createStudent($user, $request);
-                break;
-            case 'admin':
-                $user->admin()->create();
-                break;
-            default:
-                break;
-        }
+    // public function store(Request $request)
+    // {
+    //     $this->authorize('create', User::class);
+    //     $request->validate([
+    //         'name' => 'required|string|max:255',
+    //         'father_name' => 'required|string|max:255',
+    //         'email' => 'required|string|email|max:255|unique:users',
+    //         'password' => 'required|string|min:8',
+    //         'cnic' => 'required|string|min:13|max:13|unique:users',
+    //         'phone' => 'required|string|max:11',
+    //         'role' => 'required|string|exists:roles,name',
+    //     ]);
 
 
-        $user->assignRole($request->role);
+    //     $user = User::create([
+    //         'name' => $request->name,
+    //         'father_name' => $request->father_name,
+    //         'email' => $request->email,
+    //         'password' => Hash::make($request->password),
+    //         'cnic' => $request->cnic,
+    //         'phone' => $request->phone,
+    //     ]);
+
+    //     switch ($request->role) {
+    //         case 'student':
+    //             $this->createStudent($user, $request);
+    //             break;
+    //         case 'admin':
+    //             $user->admin()->create();
+    //             break;
+    //         default:
+    //             break;
+    //     }
 
 
-        return Redirect::route('admin.users')->with('success', 'User created successfully');
-    }
+    //     $user->assignRole($request->role);
+
+
+    //     return Redirect::route('admin.users')->with('success', 'User created successfully');
+    // }
 
 
     /**
@@ -115,15 +104,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-
+        $user = User::with('student', 'admin', 'roles')->findOrFail($user->id);
         return Inertia::render("Admin/Users/Show", [
-            'user' => [
-                'id' => $user->id,
-                'name' => $user->name,
-                'email' => $user->email,
-                'avatar' => $user->avatar,
-                'role' => $user->roles->pluck('name')[0],
-            ],
+            'user' => $user,
             'permissions' => [
                 'edit' => auth()->user()->can('update', $user),
                 'delete' => auth()->user()->can('delete', $user),
@@ -145,7 +128,7 @@ class UserController extends Controller
             dd($user);
         }
 
-        return Inertia::render("Admin/Users/Edit", [
+        return Inertia::render("Admin/Users/Admin/Edit", [
             'user' => [
                 'id' => $user->id,
                 'name' => $user->name,

@@ -48,7 +48,14 @@
 				>Courses</Link
 			>
 		</div>
-
+		<div class="nav-item">
+			<Link
+				:class="{ 'text-white': isUrl('students') }"
+				class="m-2"
+				:href="$route('admin.students')"
+				>Students</Link
+			>
+		</div>
 		<!-- Sending sloted main content through portal -->
 		<portal to="maincontent">
 			<slot />

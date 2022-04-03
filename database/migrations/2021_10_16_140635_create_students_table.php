@@ -19,7 +19,7 @@ class CreateStudentsTable extends Migration
             $table->text('session_type');
             $table->integer('registration_number');
             $table->integer('roll_no');
-            $table->year("admission_year");
+            $table->year('admission_year');
             $table->decimal('cgpa', 3, 2);
             $table->timestamps();
         });

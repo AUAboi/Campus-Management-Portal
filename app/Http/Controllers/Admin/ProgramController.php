@@ -64,7 +64,7 @@ class ProgramController extends Controller
 
     Program::create([
       'department_id' => $request->department_id,
-      
+
       'degree_id' => $request->degree_id,
       'credit_hours' => $request->credit_hours,
     ]);

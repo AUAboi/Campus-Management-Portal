@@ -28,6 +28,8 @@ class User extends Authenticatable
         'phone',
         'avatar',
         'password',
+        'gender',
+        'date_of_birth'
     ];
 
     /**
@@ -50,6 +52,7 @@ class User extends Authenticatable
     ];
 
 
+
     public function student()
     {
         return $this->hasOne(Student::class);
@@ -59,6 +62,7 @@ class User extends Authenticatable
     {
         return $this->hasOne(Admin::class);
     }
+
 
     public function scopeFilter($query, array $filters)
     {

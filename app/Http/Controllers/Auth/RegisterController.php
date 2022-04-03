@@ -98,12 +98,12 @@ class RegisterController extends Controller
         if ($role === "student") {
             $user->student()->create(
                 [
-                    'session_duration' => '2020-2024',
                     'session_type' => 'evening',
-                    'registration_number' => '2020-ACUF-04367',
+                    'registration_number' => '04367',
                     'roll_no' => 04367,
                     'admission_year' => Carbon::now()->format('Y'),
-                    'cgpa' => 0.00
+                    'cgpa' => 0.00,
+                    'has_enrolled' => true,
                 ]
             );
         } else if ($role === "admin") {
