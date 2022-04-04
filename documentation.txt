@@ -10,8 +10,3 @@ STUDENT FLOW:
 - all students based on seats get assigned a semester number (and maybe a batch number)
 - Department admin now assign each batch (evening and morning) teachers 
 
-
-
-TO-DO:
- 
-Create something to differeniate b/w enrolled student and applying user (so enrolled cannot apply)

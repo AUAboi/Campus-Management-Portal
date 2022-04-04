@@ -6,7 +6,10 @@
 		<component :user="user" :is="`${role}-profile-card`"></component>
 
 		<div v-if="permissions.edit" class="py-4 my-4  max-w-3xl">
-			<Link :href="$route('admin.users.edit', user.id)" class="btn-main">
+			<Link
+				:href="$route(`admin.users.${role}.edit`, user.id)"
+				class="btn-main"
+			>
 				Edit
 			</Link>
 		</div>

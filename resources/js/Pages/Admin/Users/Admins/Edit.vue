@@ -176,7 +176,7 @@ export default {
 	},
 	methods: {
 		update() {
-			this.form.put(this.$route("admin.users.update", this.user.id));
+			this.form.put(this.$route("admin.users.admin.update", this.user.id));
 		},
 		destroy() {
 			if (confirm("Are you sure you want to delete this user?")) {
