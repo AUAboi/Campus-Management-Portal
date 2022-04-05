@@ -32,9 +32,6 @@ use App\Http\Controllers\Student\CourseDetailsController;
 
 Auth::routes();
 
-Route::get('/', function () {
-  return redirect('admin/dashboard');
-});
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -45,6 +42,9 @@ Route::get('/programs', [TestController::class, 'page']);
 
 Route::group(['middleware' => ['role:admin']], function () {
   Route::prefix('admin')->group(function () {
+    Route::get('/', function () {
+      return redirect('admin/dashboard');
+    });
     //Dashboard
     Route::inertia('/dashboard', 'Admin/Dashboard/Index')->name('admin.dashboard');
 
@@ -97,25 +97,22 @@ Route::group(['middleware' => ['role:admin']], function () {
     //Users
     Route::get('/users', [UserController::class, 'index'])->name('admin.users');
     Route::get('/users/{user}', [UserController::class, 'show'])->name('admin.users.show');
-    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
 
-    Route::put('/users/{user}/update', [UserController::class, 'update'])->name('admin.users.update');
     Route::delete('/users/{user}/delete', [UserController::class, 'destroy'])->name('admin.users.destroy');
 
+    //User Admin
     Route::get('/users/admin/create', [AdminController::class, 'create'])->name('admin.users.admin.create');
-    Route::get('/user/teacher/create', [TeacherController::class, 'create'])->name('admin.users.teacher.create');
-    Route::get('/user/student/create', [StudentController::class, 'create'])->name('admin.users.student.create');
-
-    Route::get('/users/admin/{admin}/edit', [AdminController::class, 'edit'])->name('admin.users.admin.edit');
+    Route::get('/users/admin/{user}/edit', [AdminController::class, 'edit'])->name('admin.users.admin.edit');
 
     Route::post('/users/admin/create', [AdminController::class, 'store'])->name('admin.users.admin.store');
-    Route::put('/users/admin/{admin}/update', [AdminController::class, 'update'])->name('admin.users.admin.update');
+    Route::put('/users/admin/{user}/update', [AdminController::class, 'update'])->name('admin.users.admin.update');
 
+    //User Student
+    Route::get('/users/student/create', [App\Http\Controllers\Admin\StudentController::class, 'create'])->name('admin.users.student.create');
+    Route::get('/users/student/{user}/edit', [App\Http\Controllers\Admin\StudentController::class, 'edit'])->name('admin.users.student.edit');
 
-    //Students
-    Route::get('/students', [App\Http\Controllers\Admin\StudentController::class, 'index'])->name('admin.students');
-
-    Route::get('/students/{student}/edit', [App\Http\Controllers\Admin\StudentController::class, 'edit'])->name('admin.students.edit');
+    //User Teacher
+    Route::get('/user/teacher/create', [TeacherController::class, 'create'])->name('admin.users.teacher.create');
   });
 });
 

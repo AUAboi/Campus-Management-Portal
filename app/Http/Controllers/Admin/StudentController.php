@@ -10,39 +10,49 @@ use App\Http\Controllers\Controller;
 
 class StudentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function edit(User $user)
     {
-        $filters = $request->all('search');
+        $this->authorize('update', $user);
 
+        return Inertia::render('Admin/Users/Students/Edit', [
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'father_name' => $user->father_name,
+                'email' => $user->email,
+                'cnic' => $user->cnic,
+                'phone' => $user->phone,
+                'student' => $user->student,
+            ],
 
-
-        $students = Student::with('user')
-            ->filter($request->only('search'))
-            ->paginate(10)
-            ->withQueryString()
-            ->through(fn ($student) => [
-                'id' => $student->id,
-                'name' => $student->user->name,
-                'email' => $student->user->email,
-                'program' => $student->program->full_program_name,
-            ]);
-
-
-
-        return Inertia::render("Admin/Students/Index", [
-            'students' => $students,
-            'filters' => $filters,
-
+            'permissions' => [
+                'delete' => auth()->user()->can('delete', $user),
+                'update' => auth()->user()->can('update', $user),
+            ],
         ]);
     }
 
-    public function create()
+    public function update(Request $request, User $user)
     {
-        return "Hello";
+        $this->authorize('update', $user);
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'father_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'cnic' => 'required|string|min:13|max:13|unique:users,cnic,' . $user->id,
+            'phone' => 'required|string|max:11',
+            //add student info validation
+        ]);
+
+        $user->update([
+            'name' => $request->name,
+            'father_name' => $request->father_name,
+            'email' => $request->email,
+            'cnic' => $request->cnic,
+            'phone' => $request->phone,
+        ]);
+
+        return redirect()->route('admin.users')->with('success', 'Student updated successfully');
     }
 }
