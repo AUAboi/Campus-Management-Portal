@@ -17,16 +17,7 @@ class CourseController extends Controller
         $courses =  Course::orderBy('course_name')
             ->filter($request->only('search'))
             ->paginate(10)
-            ->withQueryString()
-            ->through(fn ($course) => [
-                'id' => $course->id,
-                'course_name' => $course->course_name,
-                'course_code' => $course->course_code,
-                'department_code' => $course->department_code,
-                'credit_hours' => $course->credit_hours,
-            ]);
-
-
+            ->withQueryString();
 
         return Inertia::render('Admin/Courses/Index', [
             'courses' => $courses,

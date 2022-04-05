@@ -10,6 +10,13 @@ use App\Http\Controllers\Controller;
 
 class StudentController extends Controller
 {
+    public function create()
+    {
+        return Inertia::render('Admin/Users/Students/Create');
+    }
+
+
+
     public function edit(User $user)
     {
         $this->authorize('update', $user);
