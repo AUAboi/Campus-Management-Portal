@@ -1,7 +1,6 @@
 <template>
 	<div>
 		<AppAdminHead title="Users" />
-
 		<h1 class="mb-8 font-bold text-3xl">Users</h1>
 		<div class="mb-6 flex justify-between items-center">
 			<AppTableSearch
@@ -59,54 +58,11 @@
 			</AppDropdown>
 		</div>
 		<div class="bg-white rounded-md shadow overflow-x-auto">
-			<table class="w-full whitespace-nowrap">
-				<tr class="text-left font-bold">
-					<th class="px-6 pt-6 pb-4">Name</th>
-					<th class="px-6 pt-6 pb-4">Email</th>
-					<th class="px-6 pt-6 pb-4" colspan="2">Role</th>
-				</tr>
-				<tr
-					v-for="user in users.data"
-					:key="user.id"
-					class="hover:bg-gray-100 focus-within:bg-gray-100"
-				>
-					<td class="border-t">
-						<Link
-							class="px-6 py-4 flex items-center"
-							:href="$route('admin.users.show', user.id)"
-							tabindex="-1"
-						>
-							{{ user.name }}
-						</Link>
-					</td>
-					<td class="border-t">
-						<Link
-							class="px-6 py-4 flex items-center"
-							:href="$route('admin.users.show', user.id)"
-							tabindex="-1"
-						>
-							{{ user.email }}
-						</Link>
-					</td>
-					<td class="border-t">
-						<span class="px-4 py-4 flex items-center">
-							{{ user.role }}
-						</span>
-					</td>
-					<td class="border-t w-px">
-						<Link
-							class="px-4 py-4 flex items-center"
-							:href="$route('admin.users.show', user.id)"
-							tabindex="-1"
-						>
-							<i class="fas fa-angle-right text-gray-600"></i>
-						</Link>
-					</td>
-				</tr>
-				<tr v-if="users.data.length === 0">
-					<td class="border-t px-6 py-4" colspan="4">No users found.</td>
-				</tr>
-			</table>
+			<AppDataTable
+				:table_data="users.data"
+				:labels="labels"
+				route="admin.users.show"
+			/>
 		</div>
 		<AppTablePagination class="mt-6" :links="users.links" />
 	</div>
@@ -134,7 +90,21 @@ export default {
 			form: {
 				search: this.filters.search,
 				role: this.filters.role
-			}
+			},
+			labels: [
+				{
+					value: "Name",
+					key: "name"
+				},
+				{
+					value: "Email",
+					key: "email"
+				},
+				{
+					value: "Role",
+					key: "role"
+				}
+			]
 		};
 	},
 	watch: {

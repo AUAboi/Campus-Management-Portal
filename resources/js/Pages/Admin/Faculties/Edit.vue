@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<AppAdminHead :title="form.faculty_name" />
-		<Breadcrumb :crumbs="crumbs" />
+		<BreadCrumbs :crumbs="crumbs" />
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form @submit.prevent="update" id="update-form" class="m-0">
 				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
@@ -53,39 +53,11 @@
 			Departments
 		</h1>
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
-			<table class="w-full whitespace-nowrap">
-				<tr class="text-left font-bold">
-					<th class="px-6 pt-6 pb-4">Name</th>
-				</tr>
-				<tr
-					v-for="department in faculty.departments"
-					:key="department.id"
-					class="hover:bg-gray-100 focus-within:bg-gray-100"
-				>
-					<td class="border-t">
-						<Link
-							class="px-6 py-4 flex items-center focus:text-indigo-500"
-							:href="$route('admin.departments.edit', department.slug)"
-						>
-							{{ department.department_name }}
-						</Link>
-					</td>
-					<td class="border-t w-px">
-						<Link
-							class="px-4 flex items-center"
-							:href="$route('admin.departments.edit', department.slug)"
-							tabindex="-1"
-						>
-							<i class="fas fa-angle-right text-gray-600"></i
-						></Link>
-					</td>
-				</tr>
-				<tr v-if="faculty.departments.length === 0">
-					<td class="border-t px-6 py-4" colspan="4">
-						No departments found.
-					</td>
-				</tr>
-			</table>
+			<AppDataTable
+				route="admin.departments.edit"
+				:table_data="faculty.departments"
+				:labels="labels"
+			/>
 		</div>
 	</div>
 </template>
@@ -118,6 +90,13 @@ export default {
 			form: this.$inertia.form({
 				faculty_name: this.faculty.faculty_name
 			}),
+
+			labels: [
+				{
+					key: "department_name",
+					value: "Name"
+				}
+			],
 
 			crumbs: [
 				{

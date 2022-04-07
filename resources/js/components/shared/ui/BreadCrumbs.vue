@@ -7,7 +7,7 @@
 					:href="crumb.route"
 					>{{ crumb.text }}</Link
 				>
-				<span class="text-indigo-400 font-medium">/</span>
+				<span class="text-indigo-400 font-medium"> / </span>
 			</span>
 			<span v-else>{{ crumb.text }}</span>
 		</span>

@@ -29,7 +29,6 @@ class Program extends Model
             ->saveSlugsTo('slug');
     }
 
-
     public function getRouteKeyName()
     {
         return 'slug';

@@ -20,7 +20,14 @@ class ProgramController extends Controller
       ->filter($request->only('search', 'degree'))
       ->with(['department', 'degree'])
       ->paginate(10)
-      ->withQueryString();
+      ->withQueryString()
+      ->through(fn ($program) => [
+        'id' => $program->id,
+        'program_name' => $program->full_program_name,
+        'slug' => $program->slug,
+        'department_name' => $program->department->department_name,
+        'credit_hours' => $program->credit_hours,
+      ]);
 
     return Inertia::render("Admin/Programs/Index", [
       'programs' => $programs,
@@ -80,13 +87,16 @@ class ProgramController extends Controller
     return Inertia::render("Admin/Programs/Edit", [
       'program' => [
         'id' => $program->id,
+        'program_name' => $program->full_program_name,
         'degree_id' => $program->degree->id,
         'degree_name' => $program->degree->degree_name,
         'semesters' => $program->degree->semesters,
         'department_name' => $program->department->department_name,
         'department_id' => $program->department->id,
+        'department_slug' => $program->department->slug,
         'credit_hours' => $program->credit_hours,
         'slug' => $program->slug
+
       ],
 
       'courses' => $program->courses()->orderBy('semester')->get()->transform(fn ($course) => [

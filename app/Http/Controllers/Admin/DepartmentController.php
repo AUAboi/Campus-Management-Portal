@@ -5,12 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Inertia\Inertia;
 use App\Models\Faculty;
 use App\Models\Department;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Spatie\Permission\Contracts\Role;
 use Illuminate\Support\Facades\Redirect;
-use Spatie\Permission\Contracts\Permission;
 
 class DepartmentController extends Controller
 {
@@ -18,21 +15,22 @@ class DepartmentController extends Controller
     {
         $filters = $request->all('search');
 
+        $departments =
+            auth()->user()->hasRole('super-admin') ?
+            Department::orderBy('department_name') :
+            auth()->user()->admin->departments()->orderBy("department_name");
 
-        if (auth()->user()->hasRole('super-admin')) {
-            $departments =  Department::orderBy('department_name')
-                ->filter($request->only('search'))
-                ->with('faculty')
-                ->paginate(10)
-                ->withQueryString();
-        } else {
-            $departments =  auth()->user()->admin->departments()->orderBy('department_name')
-                ->filter($request->only('search'))
-                ->with('faculty')
-                ->paginate(10)
-                ->withQueryString();
-        }
-
+        $departments =
+            $departments->filter($request->only('search'))
+            ->with(['faculty'])
+            ->paginate(10)
+            ->withQueryString()
+            ->through(fn ($department) => [
+                'id' => $department->id,
+                'department_name' => $department->department_name,
+                'slug' => $department->slug,
+                'faculty_name' => $department->faculty->faculty_name,
+            ]);
 
         return Inertia::render("Admin/Departments/Index", ['departments' => $departments, 'filters' => $filters, 'permissions' => [
             'create' => auth()->user()->can('create', Faculty::class),

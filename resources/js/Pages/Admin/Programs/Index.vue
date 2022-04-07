@@ -33,60 +33,11 @@
 			</Link>
 		</div>
 		<div class="bg-white rounded-md shadow overflow-x-auto">
-			<table class="w-full whitespace-nowrap">
-				<tr class="text-left font-bold">
-					<th class="px-6 pt-6 pb-4">Name</th>
-					<th class="px-6 pt-6 pb-4">Department</th>
-					<th class="px-6 pt-6 pb-4">Credit Hours</th>
-				</tr>
-				<tr
-					v-for="program in programs.data"
-					:key="program.id"
-					class="hover:bg-gray-100 focus-within:bg-gray-100"
-				>
-					<td class="border-t">
-						<Link
-							class="px-6 py-4 flex items-center focus:text-indigo-500"
-							:href="$route('admin.programs.edit', program.slug)"
-						>
-							{{ program.degree.degree_name }}
-							{{ program.department.department_name }}
-						</Link>
-					</td>
-					<td class="border-t">
-						<Link
-							class="px-6 py-4 flex items-center focus:text-indigo-500"
-							:href="$route('admin.programs.edit', program.slug)"
-						>
-							{{
-								program.department ? program.department.department_name : "NA"
-							}}
-						</Link>
-					</td>
-					<td class="border-t">
-						<Link
-							class="px-6 py-4 flex items-center focus:text-indigo-500"
-							:href="$route('admin.programs.edit', program.slug)"
-						>
-							{{ program.credit_hours }}
-						</Link>
-					</td>
-					<td class="border-t w-px">
-						<Link
-							class="px-4 flex items-center"
-							:href="$route('admin.programs.edit', program.slug)"
-							tabindex="-1"
-						>
-							<i class="fas fa-angle-right text-gray-600"></i
-						></Link>
-					</td>
-				</tr>
-				<tr v-if="programs.data.length === 0">
-					<td class="border-t px-6 py-4" colspan="4">
-						No programs found.
-					</td>
-				</tr>
-			</table>
+			<AppDataTable
+				:table_data="programs.data"
+				:labels="labels"
+				route="admin.programs.edit"
+			/>
 		</div>
 		<AppTablePagination class="mt-6" :links="programs.links" />
 	</div>
@@ -104,7 +55,21 @@ export default {
 			form: {
 				search: this.filters.search,
 				degree: this.filters.degree
-			}
+			},
+			labels: [
+				{
+					key: "program_name",
+					value: "Name"
+				},
+				{
+					key: "department_name",
+					value: "Department"
+				},
+				{
+					key: "credit_hours",
+					value: "Credit Hours"
+				}
+			]
 		};
 	},
 	components: {

@@ -8,6 +8,7 @@ use App\Models\Faculty;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Contracts\Role;
 use Illuminate\Support\Facades\Redirect;
 
@@ -25,26 +26,23 @@ class FacultyController extends Controller
         $user = auth()->user();
         $filters = $request->all('search');
 
-        if ($user->hasRole('super-admin')) {
+        $faculties = $user->hasRole('super-admin') ? Faculty::orderBy('faculty_name') : $user->admin->faculties()->orderBy("faculty_name");
 
-            $faculties = Faculty::orderBy('faculty_name')
-                ->filter($request->only('search'))
-                ->paginate(10)
-                ->withQueryString();
-        } else {
-            $faculties = $user->admin->faculties()
-                ->orderBy('faculty_name')
-                ->filter($request->only('search'))
-                ->paginate(10)
-                ->withQueryString();
-        }
+
+        $faculties =
+
+            $faculties
+            ->filter($request->only('search'))
+            ->paginate(10)
+            ->withQueryString();
 
         return Inertia::render("Admin/Faculties/Index", [
             'faculties' => $faculties,
             'filters' => $filters,
             'permissions' => [
                 'create' => $user->can('create', Faculty::class),
-            ]
+            ],
+
         ]);
     }
 

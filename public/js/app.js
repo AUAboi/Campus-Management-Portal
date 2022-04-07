@@ -2327,19 +2327,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2368,8 +2355,19 @@ __webpack_require__.r(__webpack_exports__);
         theory_credit_hours: this.course.theory_credit_hours,
         department_code: this.course.department_code,
         course_code: this.course.course_code
-      })
+      }),
+      crumbs: [{
+        text: "Faculties",
+        route: this.$route("admin.faculties")
+      }, {
+        text: this.course.course_name
+      }]
     };
+  },
+  watch: {
+    "form.course_name": function formCourse_name(newValue) {
+      this.crumbs[this.crumbs.length - 1].text = newValue;
+    }
   },
   methods: {
     update: function update() {
@@ -2403,7 +2401,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash_pickBy__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_pickBy__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var lodash_mapValues__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash/mapValues */ "./node_modules/lodash/mapValues.js");
 /* harmony import */ var lodash_mapValues__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash_mapValues__WEBPACK_IMPORTED_MODULE_3__);
-//
 //
 //
 //
@@ -2625,12 +2622,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2646,7 +2637,13 @@ __webpack_require__.r(__webpack_exports__);
       form: this.$inertia.form({
         department_name: "",
         faculty_id: ""
-      })
+      }),
+      crumbs: [{
+        text: "Department",
+        route: this.$route("admin.departments")
+      }, {
+        text: "Create"
+      }]
     };
   },
   methods: {
@@ -2670,20 +2667,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2789,8 +2772,22 @@ __webpack_require__.r(__webpack_exports__);
       form: this.$inertia.form({
         department_name: this.department.department_name,
         faculty_id: this.department.faculty_id
-      })
+      }),
+      crumbs: [{
+        text: this.department.faculty_name,
+        route: this.$route("admin.faculties")
+      }, {
+        text: "Department",
+        route: this.$route("admin.departments")
+      }, {
+        text: this.department.department_name
+      }]
     };
+  },
+  watch: {
+    "form.department_name": function formDepartment_name(newValue) {
+      this.crumbs[this.crumbs.length - 1].text = newValue;
+    }
   },
   methods: {
     update: function update() {
@@ -2857,43 +2854,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2903,7 +2863,14 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: {
         search: this.filters.search
-      }
+      },
+      labels: [{
+        key: "department_name",
+        value: "Name"
+      }, {
+        key: "faculty_name",
+        value: "Faculty"
+      }]
     };
   },
   components: {
@@ -2986,13 +2953,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -3002,7 +2962,13 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: this.$inertia.form({
         faculty_name: ""
-      })
+      }),
+      crumbs: [{
+        text: "Faculty",
+        route: this.$route("admin.faculties")
+      }, {
+        text: "Create"
+      }]
     };
   },
   methods: {
@@ -3026,34 +2992,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -3144,6 +3082,10 @@ __webpack_require__.r(__webpack_exports__);
       form: this.$inertia.form({
         faculty_name: this.faculty.faculty_name
       }),
+      labels: [{
+        key: "department_name",
+        value: "Name"
+      }],
       crumbs: [{
         text: "Faculties",
         route: this.$route("admin.faculties")
@@ -3223,34 +3165,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -3258,6 +3172,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      labels: [{
+        key: "faculty_name",
+        value: "Name"
+      }],
       form: {
         search: this.filters.search
       }
@@ -3304,10 +3222,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Admin/Faculties/IndexAlternative.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Admin/Faculties/IndexAlternative.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Admin/Faculties/IndexA.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Admin/Faculties/IndexA.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3348,6 +3266,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3355,10 +3308,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      labels: [{
-        key: "faculty_name",
-        value: "Name"
-      }],
       form: {
         search: this.filters.search
       }
@@ -3797,73 +3746,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -3900,7 +3782,29 @@ __webpack_require__.r(__webpack_exports__);
         department_id: this.program.department_id,
         credit_hours: this.program.credit_hours
       }),
-      show: false
+      show: false,
+      labels: [{
+        key: "course_name",
+        value: "Name"
+      }, {
+        key: "course_code",
+        value: "Course Code"
+      }, {
+        key: "credit_hours",
+        value: "Credit Hours"
+      }, {
+        key: "semester",
+        value: "Semester"
+      }],
+      crumbs: [{
+        text: this.program.department_name,
+        route: this.$route("admin.departments.edit", this.program.department_slug)
+      }, {
+        text: "Program",
+        route: this.$route("admin.programs")
+      }, {
+        text: this.program.program_name
+      }]
     };
   },
   methods: {
@@ -3980,55 +3884,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -4039,7 +3894,17 @@ __webpack_require__.r(__webpack_exports__);
       form: {
         search: this.filters.search,
         degree: this.filters.degree
-      }
+      },
+      labels: [{
+        key: "program_name",
+        value: "Name"
+      }, {
+        key: "department_name",
+        value: "Department"
+      }, {
+        key: "credit_hours",
+        value: "Credit Hours"
+      }]
     };
   },
   components: {
@@ -4525,50 +4390,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -4588,7 +4409,17 @@ __webpack_require__.r(__webpack_exports__);
       form: {
         search: this.filters.search,
         role: this.filters.role
-      }
+      },
+      labels: [{
+        value: "Name",
+        key: "name"
+      }, {
+        value: "Email",
+        key: "email"
+      }, {
+        value: "Role",
+        key: "role"
+      }]
     };
   },
   watch: {
@@ -5651,16 +5482,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     Link: _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.Link
   },
   props: {
-    name: {
+    route: {
       type: String,
       required: false
     },
@@ -5669,17 +5497,8 @@ __webpack_require__.r(__webpack_exports__);
       required: true
     },
     table_data: {
-      type: Object,
+      type: Array,
       required: true
-    },
-    permissions: {
-      type: Object,
-      required: false,
-      "default": function _default() {
-        return {
-          create: false
-        };
-      }
     }
   }
 });
@@ -6014,10 +5833,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/ui/Breadcrumb.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/ui/Breadcrumb.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/ui/BreadCrumbs.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/ui/BreadCrumbs.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -22880,10 +22699,10 @@ component.options.__file = "resources/js/Pages/Admin/Faculties/Index.vue"
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Admin/Faculties/IndexAlternative.vue":
-/*!*****************************************************************!*\
-  !*** ./resources/js/Pages/Admin/Faculties/IndexAlternative.vue ***!
-  \*****************************************************************/
+/***/ "./resources/js/Pages/Admin/Faculties/IndexA.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/Pages/Admin/Faculties/IndexA.vue ***!
+  \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -22891,8 +22710,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _IndexAlternative_vue_vue_type_template_id_1dd03a91___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./IndexAlternative.vue?vue&type=template&id=1dd03a91& */ "./resources/js/Pages/Admin/Faculties/IndexAlternative.vue?vue&type=template&id=1dd03a91&");
-/* harmony import */ var _IndexAlternative_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./IndexAlternative.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Admin/Faculties/IndexAlternative.vue?vue&type=script&lang=js&");
+/* harmony import */ var _IndexA_vue_vue_type_template_id_79a56845___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./IndexA.vue?vue&type=template&id=79a56845& */ "./resources/js/Pages/Admin/Faculties/IndexA.vue?vue&type=template&id=79a56845&");
+/* harmony import */ var _IndexA_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./IndexA.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Admin/Faculties/IndexA.vue?vue&type=script&lang=js&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -22902,9 +22721,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _IndexAlternative_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _IndexAlternative_vue_vue_type_template_id_1dd03a91___WEBPACK_IMPORTED_MODULE_0__.render,
-  _IndexAlternative_vue_vue_type_template_id_1dd03a91___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _IndexA_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _IndexA_vue_vue_type_template_id_79a56845___WEBPACK_IMPORTED_MODULE_0__.render,
+  _IndexA_vue_vue_type_template_id_79a56845___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
   null,
@@ -22914,7 +22733,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/Pages/Admin/Faculties/IndexAlternative.vue"
+component.options.__file = "resources/js/Pages/Admin/Faculties/IndexA.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -24249,10 +24068,10 @@ component.options.__file = "resources/js/components/shared/ui/AppTooltip.vue"
 
 /***/ }),
 
-/***/ "./resources/js/components/shared/ui/Breadcrumb.vue":
-/*!**********************************************************!*\
-  !*** ./resources/js/components/shared/ui/Breadcrumb.vue ***!
-  \**********************************************************/
+/***/ "./resources/js/components/shared/ui/BreadCrumbs.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/shared/ui/BreadCrumbs.vue ***!
+  \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -24260,8 +24079,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Breadcrumb_vue_vue_type_template_id_6fe6491f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Breadcrumb.vue?vue&type=template&id=6fe6491f& */ "./resources/js/components/shared/ui/Breadcrumb.vue?vue&type=template&id=6fe6491f&");
-/* harmony import */ var _Breadcrumb_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Breadcrumb.vue?vue&type=script&lang=js& */ "./resources/js/components/shared/ui/Breadcrumb.vue?vue&type=script&lang=js&");
+/* harmony import */ var _BreadCrumbs_vue_vue_type_template_id_07605804___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BreadCrumbs.vue?vue&type=template&id=07605804& */ "./resources/js/components/shared/ui/BreadCrumbs.vue?vue&type=template&id=07605804&");
+/* harmony import */ var _BreadCrumbs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BreadCrumbs.vue?vue&type=script&lang=js& */ "./resources/js/components/shared/ui/BreadCrumbs.vue?vue&type=script&lang=js&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -24271,9 +24090,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Breadcrumb_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Breadcrumb_vue_vue_type_template_id_6fe6491f___WEBPACK_IMPORTED_MODULE_0__.render,
-  _Breadcrumb_vue_vue_type_template_id_6fe6491f___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _BreadCrumbs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _BreadCrumbs_vue_vue_type_template_id_07605804___WEBPACK_IMPORTED_MODULE_0__.render,
+  _BreadCrumbs_vue_vue_type_template_id_07605804___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
   null,
@@ -24283,7 +24102,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/shared/ui/Breadcrumb.vue"
+component.options.__file = "resources/js/components/shared/ui/BreadCrumbs.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -24560,10 +24379,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Admin/Faculties/IndexAlternative.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************!*\
-  !*** ./resources/js/Pages/Admin/Faculties/IndexAlternative.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************/
+/***/ "./resources/js/Pages/Admin/Faculties/IndexA.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/Pages/Admin/Faculties/IndexA.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -24571,8 +24390,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexAlternative_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./IndexAlternative.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Admin/Faculties/IndexAlternative.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexAlternative_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexA_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./IndexA.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Admin/Faculties/IndexA.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexA_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -25120,10 +24939,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/shared/ui/Breadcrumb.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/components/shared/ui/Breadcrumb.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************/
+/***/ "./resources/js/components/shared/ui/BreadCrumbs.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/shared/ui/BreadCrumbs.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -25131,8 +24950,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Breadcrumb_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Breadcrumb.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/ui/Breadcrumb.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Breadcrumb_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BreadCrumbs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BreadCrumbs.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/ui/BreadCrumbs.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BreadCrumbs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -25364,19 +25183,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Admin/Faculties/IndexAlternative.vue?vue&type=template&id=1dd03a91&":
-/*!************************************************************************************************!*\
-  !*** ./resources/js/Pages/Admin/Faculties/IndexAlternative.vue?vue&type=template&id=1dd03a91& ***!
-  \************************************************************************************************/
+/***/ "./resources/js/Pages/Admin/Faculties/IndexA.vue?vue&type=template&id=79a56845&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/Pages/Admin/Faculties/IndexA.vue?vue&type=template&id=79a56845& ***!
+  \**************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexAlternative_vue_vue_type_template_id_1dd03a91___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexAlternative_vue_vue_type_template_id_1dd03a91___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexA_vue_vue_type_template_id_79a56845___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexA_vue_vue_type_template_id_79a56845___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexAlternative_vue_vue_type_template_id_1dd03a91___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./IndexAlternative.vue?vue&type=template&id=1dd03a91& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Admin/Faculties/IndexAlternative.vue?vue&type=template&id=1dd03a91&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexA_vue_vue_type_template_id_79a56845___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./IndexA.vue?vue&type=template&id=79a56845& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Admin/Faculties/IndexA.vue?vue&type=template&id=79a56845&");
 
 
 /***/ }),
@@ -25959,19 +25778,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/shared/ui/Breadcrumb.vue?vue&type=template&id=6fe6491f&":
-/*!*****************************************************************************************!*\
-  !*** ./resources/js/components/shared/ui/Breadcrumb.vue?vue&type=template&id=6fe6491f& ***!
-  \*****************************************************************************************/
+/***/ "./resources/js/components/shared/ui/BreadCrumbs.vue?vue&type=template&id=07605804&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/shared/ui/BreadCrumbs.vue?vue&type=template&id=07605804& ***!
+  \******************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Breadcrumb_vue_vue_type_template_id_6fe6491f___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Breadcrumb_vue_vue_type_template_id_6fe6491f___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BreadCrumbs_vue_vue_type_template_id_07605804___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BreadCrumbs_vue_vue_type_template_id_07605804___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Breadcrumb_vue_vue_type_template_id_6fe6491f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Breadcrumb.vue?vue&type=template&id=6fe6491f& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/ui/Breadcrumb.vue?vue&type=template&id=6fe6491f&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BreadCrumbs_vue_vue_type_template_id_07605804___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BreadCrumbs.vue?vue&type=template&id=07605804& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/ui/BreadCrumbs.vue?vue&type=template&id=07605804&");
 
 
 /***/ }),
@@ -26344,26 +26163,7 @@ var render = function() {
     [
       _c("AppAdminHead", { attrs: { title: _vm.form.course_name } }),
       _vm._v(" "),
-      _c(
-        "h1",
-        { staticClass: "mb-8 font-bold text-3xl" },
-        [
-          _c(
-            "Link",
-            {
-              staticClass: "text-indigo-400 hover:text-indigo-600",
-              attrs: { href: _vm.$route("admin.courses") }
-            },
-            [_vm._v("Faculites")]
-          ),
-          _vm._v(" "),
-          _c("span", { staticClass: "text-indigo-400 font-medium" }, [
-            _vm._v("/")
-          ]),
-          _vm._v("\n\t\t" + _vm._s(_vm.form.course_name) + "\n\t")
-        ],
-        1
-      ),
+      _c("BreadCrumbs", { attrs: { crumbs: _vm.crumbs } }),
       _vm._v(" "),
       _c(
         "div",
@@ -26425,7 +26225,7 @@ var render = function() {
               _c("div", { staticClass: "p-8 -mr-6 -mb-8 flex flex-wrap" }, [
                 _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
                   _c("label", { staticClass: "block" }, [
-                    _vm._v("Practical Credit Hours: ")
+                    _vm._v("Theory Credit Hours: ")
                   ]),
                   _vm._v(" "),
                   _c("input", {
@@ -26433,13 +26233,13 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.practical_credit_hours,
-                        expression: "form.practical_credit_hours"
+                        value: _vm.form.theory_credit_hours,
+                        expression: "form.theory_credit_hours"
                       }
                     ],
                     staticClass: "form_input",
                     attrs: { type: "text" },
-                    domProps: { value: _vm.form.practical_credit_hours },
+                    domProps: { value: _vm.form.theory_credit_hours },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
@@ -26447,18 +26247,18 @@ var render = function() {
                         }
                         _vm.$set(
                           _vm.form,
-                          "practical_credit_hours",
+                          "theory_credit_hours",
                           $event.target.value
                         )
                       }
                     }
                   }),
                   _vm._v(" "),
-                  _vm.form.practical_credit_hours.course_name
+                  _vm.form.errors.theory_credit_hours
                     ? _c("div", { staticClass: "text-red-600" }, [
                         _vm._v(
                           "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.practical_credit_hours) +
+                            _vm._s(_vm.form.errors.theory_credit_hours) +
                             "\n\t\t\t\t\t"
                         )
                       ])
@@ -26496,7 +26296,7 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _vm.form.practical_credit_hours.course_name
+                  _vm.form.errors.practical_credit_hours
                     ? _c("div", { staticClass: "text-red-600" }, [
                         _vm._v(
                           "\n\t\t\t\t\t\t" +
@@ -26937,26 +26737,7 @@ var render = function() {
     [
       _c("AppAdminHead", { attrs: { title: "Create department" } }),
       _vm._v(" "),
-      _c(
-        "h1",
-        { staticClass: "mb-8 font-bold text-3xl" },
-        [
-          _c(
-            "Link",
-            {
-              staticClass: "text-indigo-400 hover:text-indigo-600",
-              attrs: { href: _vm.$route("admin.departments") }
-            },
-            [_vm._v("Departments")]
-          ),
-          _vm._v(" "),
-          _c("span", { staticClass: "text-indigo-400 font-medium" }, [
-            _vm._v("/")
-          ]),
-          _vm._v(" Create\n\t")
-        ],
-        1
-      ),
+      _c("BreadCrumbs", { attrs: { crumbs: _vm.crumbs } }),
       _vm._v(" "),
       _c(
         "div",
@@ -27127,39 +26908,7 @@ var render = function() {
     [
       _c("AppAdminHead", { attrs: { title: _vm.form.department_name } }),
       _vm._v(" "),
-      _c(
-        "h1",
-        { staticClass: "mb-8 font-bold text-3xl" },
-        [
-          _c(
-            "Link",
-            {
-              staticClass: "text-indigo-400 hover:text-indigo-600",
-              attrs: { href: _vm.$route("admin.faculties") }
-            },
-            [_vm._v(_vm._s(_vm.department.faculty_name))]
-          ),
-          _vm._v(" "),
-          _c("span", { staticClass: "text-indigo-400 font-medium" }, [
-            _vm._v("/")
-          ]),
-          _vm._v(" "),
-          _c(
-            "Link",
-            {
-              staticClass: "text-indigo-400 hover:text-indigo-600",
-              attrs: { href: _vm.$route("admin.departments") }
-            },
-            [_vm._v("Departments")]
-          ),
-          _vm._v(" "),
-          _c("span", { staticClass: "text-indigo-400 font-medium" }, [
-            _vm._v("/")
-          ]),
-          _vm._v("\n\t\t" + _vm._s(_vm.form.department_name) + "\n\t")
-        ],
-        1
-      ),
+      _c("BreadCrumbs", { attrs: { crumbs: _vm.crumbs } }),
       _vm._v(" "),
       _c(
         "div",
@@ -27421,126 +27170,20 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "bg-white rounded-md shadow overflow-x-auto" }, [
-        _c(
-          "table",
-          { staticClass: "w-full whitespace-nowrap" },
-          [
-            _vm._m(0),
-            _vm._v(" "),
-            _vm._l(_vm.departments.data, function(department) {
-              return _c(
-                "tr",
-                {
-                  key: department.id,
-                  staticClass: "hover:bg-gray-100 focus-within:bg-gray-100"
-                },
-                [
-                  _c(
-                    "td",
-                    { staticClass: "border-t" },
-                    [
-                      _c(
-                        "Link",
-                        {
-                          staticClass:
-                            "px-6 py-4 flex items-center focus:text-indigo-500",
-                          attrs: {
-                            href: _vm.$route(
-                              "admin.departments.edit",
-                              department.slug
-                            )
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n\t\t\t\t\t\t" +
-                              _vm._s(department.department_name) +
-                              "\n\t\t\t\t\t"
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    { staticClass: "border-t" },
-                    [
-                      _c(
-                        "Link",
-                        {
-                          staticClass:
-                            "px-6 py-4 flex items-center focus:text-indigo-500",
-                          attrs: {
-                            href: _vm.$route(
-                              "admin.departments.edit",
-                              department.slug
-                            )
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n\t\t\t\t\t\t" +
-                              _vm._s(
-                                department.faculty
-                                  ? department.faculty.faculty_name
-                                  : "NA"
-                              ) +
-                              "\n\t\t\t\t\t"
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    { staticClass: "border-t w-px" },
-                    [
-                      _c(
-                        "Link",
-                        {
-                          staticClass: "px-4 flex items-center",
-                          attrs: {
-                            href: _vm.$route(
-                              "admin.departments.edit",
-                              department.slug
-                            ),
-                            tabindex: "-1"
-                          }
-                        },
-                        [
-                          _c("i", {
-                            staticClass: "fas fa-angle-right text-gray-600"
-                          })
-                        ]
-                      )
-                    ],
-                    1
-                  )
-                ]
-              )
-            }),
-            _vm._v(" "),
-            _vm.departments.data.length === 0
-              ? _c("tr", [
-                  _c(
-                    "td",
-                    {
-                      staticClass: "border-t px-6 py-4",
-                      attrs: { colspan: "4" }
-                    },
-                    [_vm._v("\n\t\t\t\t\tNo departments found.\n\t\t\t\t")]
-                  )
-                ])
-              : _vm._e()
-          ],
-          2
-        )
-      ]),
+      _c(
+        "div",
+        { staticClass: "bg-white rounded-md shadow overflow-x-auto" },
+        [
+          _c("AppDataTable", {
+            attrs: {
+              table_data: _vm.departments.data,
+              labels: _vm.labels,
+              route: "admin.departments.edit"
+            }
+          })
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("AppTablePagination", {
         staticClass: "mt-6",
@@ -27550,18 +27193,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", { staticClass: "text-left font-bold" }, [
-      _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Name")]),
-      _vm._v(" "),
-      _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Faculty")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -27589,26 +27221,7 @@ var render = function() {
     [
       _c("AppAdminHead", { attrs: { title: "Create Faculty" } }),
       _vm._v(" "),
-      _c(
-        "h1",
-        { staticClass: "mb-8 font-bold text-3xl" },
-        [
-          _c(
-            "Link",
-            {
-              staticClass: "text-indigo-400 hover:text-indigo-600",
-              attrs: { href: _vm.$route("admin.faculties") }
-            },
-            [_vm._v("Faculites")]
-          ),
-          _vm._v(" "),
-          _c("span", { staticClass: "text-indigo-400 font-medium" }, [
-            _vm._v("/")
-          ]),
-          _vm._v(" Create\n\t")
-        ],
-        1
-      ),
+      _c("BreadCrumbs", { attrs: { crumbs: _vm.crumbs } }),
       _vm._v(" "),
       _c(
         "div",
@@ -27719,7 +27332,7 @@ var render = function() {
     [
       _c("AppAdminHead", { attrs: { title: _vm.form.faculty_name } }),
       _vm._v(" "),
-      _c("Breadcrumb", { attrs: { crumbs: _vm.crumbs } }),
+      _c("BreadCrumbs", { attrs: { crumbs: _vm.crumbs } }),
       _vm._v(" "),
       _c(
         "div",
@@ -27844,108 +27457,21 @@ var render = function() {
         "div",
         { staticClass: "bg-white rounded-md shadow overflow-hidden max-w-3xl" },
         [
-          _c(
-            "table",
-            { staticClass: "w-full whitespace-nowrap" },
-            [
-              _vm._m(0),
-              _vm._v(" "),
-              _vm._l(_vm.faculty.departments, function(department) {
-                return _c(
-                  "tr",
-                  {
-                    key: department.id,
-                    staticClass: "hover:bg-gray-100 focus-within:bg-gray-100"
-                  },
-                  [
-                    _c(
-                      "td",
-                      { staticClass: "border-t" },
-                      [
-                        _c(
-                          "Link",
-                          {
-                            staticClass:
-                              "px-6 py-4 flex items-center focus:text-indigo-500",
-                            attrs: {
-                              href: _vm.$route(
-                                "admin.departments.edit",
-                                department.slug
-                              )
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n\t\t\t\t\t\t" +
-                                _vm._s(department.department_name) +
-                                "\n\t\t\t\t\t"
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "td",
-                      { staticClass: "border-t w-px" },
-                      [
-                        _c(
-                          "Link",
-                          {
-                            staticClass: "px-4 flex items-center",
-                            attrs: {
-                              href: _vm.$route(
-                                "admin.departments.edit",
-                                department.slug
-                              ),
-                              tabindex: "-1"
-                            }
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "fas fa-angle-right text-gray-600"
-                            })
-                          ]
-                        )
-                      ],
-                      1
-                    )
-                  ]
-                )
-              }),
-              _vm._v(" "),
-              _vm.faculty.departments.length === 0
-                ? _c("tr", [
-                    _c(
-                      "td",
-                      {
-                        staticClass: "border-t px-6 py-4",
-                        attrs: { colspan: "4" }
-                      },
-                      [_vm._v("\n\t\t\t\t\tNo departments found.\n\t\t\t\t")]
-                    )
-                  ])
-                : _vm._e()
-            ],
-            2
-          )
-        ]
+          _c("AppDataTable", {
+            attrs: {
+              route: "admin.departments.edit",
+              table_data: _vm.faculty.departments,
+              labels: _vm.labels
+            }
+          })
+        ],
+        1
       )
     ],
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", { staticClass: "text-left font-bold" }, [
-      _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Name")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -27956,6 +27482,100 @@ render._withStripped = true
 /*!****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Admin/Faculties/Index.vue?vue&type=template&id=6bd2f1a8& ***!
   \****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("AppAdminHead", { attrs: { title: "Faculties" } }),
+      _vm._v(" "),
+      _c("h1", { staticClass: "mb-8 font-bold text-3xl" }, [
+        _vm._v("Faculties")
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "mb-6 flex justify-between items-center" },
+        [
+          _c("AppTableSearch", {
+            staticClass: "w-full max-w-md mr-4",
+            on: { reset: _vm.reset },
+            model: {
+              value: _vm.form.search,
+              callback: function($$v) {
+                _vm.$set(_vm.form, "search", $$v)
+              },
+              expression: "form.search"
+            }
+          }),
+          _vm._v(" "),
+          _vm.permissions.create
+            ? _c(
+                "Link",
+                {
+                  staticClass: "btn-main",
+                  attrs: {
+                    as: "button",
+                    href: _vm.$route("admin.faculties.create")
+                  }
+                },
+                [
+                  _c("span", [_vm._v("Create")]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "hidden md:inline" }, [
+                    _vm._v("faculty")
+                  ])
+                ]
+              )
+            : _vm._e()
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "bg-white rounded-md shadow overflow-x-auto" },
+        [
+          _c("AppDataTable", {
+            attrs: {
+              route: "admin.faculties.edit",
+              labels: _vm.labels,
+              table_data: _vm.faculties.data
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("AppTablePagination", {
+        staticClass: "mt-6",
+        attrs: { links: _vm.faculties.links }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Admin/Faculties/IndexA.vue?vue&type=template&id=79a56845&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Admin/Faculties/IndexA.vue?vue&type=template&id=79a56845& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -28123,88 +27743,6 @@ var staticRenderFns = [
     ])
   }
 ]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Admin/Faculties/IndexAlternative.vue?vue&type=template&id=1dd03a91&":
-/*!***************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Admin/Faculties/IndexAlternative.vue?vue&type=template&id=1dd03a91& ***!
-  \***************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("AppAdminHead", { attrs: { title: "Faculties" } }),
-      _vm._v(" "),
-      _c("h1", { staticClass: "mb-8 font-bold text-3xl" }, [
-        _vm._v("Faculties")
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "mb-6 flex justify-between items-center" },
-        [
-          _c("AppTableSearch", {
-            staticClass: "w-full max-w-md mr-4",
-            on: { reset: _vm.reset },
-            model: {
-              value: _vm.form.search,
-              callback: function($$v) {
-                _vm.$set(_vm.form, "search", $$v)
-              },
-              expression: "form.search"
-            }
-          }),
-          _vm._v(" "),
-          _vm.permissions.create
-            ? _c(
-                "Link",
-                {
-                  staticClass: "btn-main",
-                  attrs: {
-                    as: "button",
-                    href: _vm.$route("admin.faculties.create")
-                  }
-                },
-                [
-                  _c("span", [_vm._v("Create")]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "hidden md:inline" }, [
-                    _vm._v("faculty")
-                  ])
-                ]
-              )
-            : _vm._e()
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("AppDataTable", {
-        attrs: {
-          name: "faculties",
-          labels: _vm.labels,
-          table_data: _vm.faculties
-        }
-      })
-    ],
-    1
-  )
-}
-var staticRenderFns = []
 render._withStripped = true
 
 
@@ -28760,6 +28298,8 @@ var render = function() {
   return _c(
     "div",
     [
+      _c("AppAdminHead", { attrs: { title: "" + _vm.program.program_name } }),
+      _vm._v(" "),
       _vm.show
         ? _c(
             "AppModal",
@@ -28801,59 +28341,7 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _c("AppAdminHead", {
-        attrs: {
-          title:
-            _vm.program.degree_name + "\n\t\t\t" + _vm.program.department_name
-        }
-      }),
-      _vm._v(" "),
-      _c(
-        "h1",
-        { staticClass: "mb-8 font-bold text-3xl" },
-        [
-          _c(
-            "Link",
-            {
-              staticClass: "text-indigo-400 hover:text-indigo-600",
-              attrs: { href: _vm.$route("admin.departments") }
-            },
-            [
-              _vm._v(
-                "\n\t\t\t" +
-                  _vm._s(_vm.program.degree_name) +
-                  "\n\t\t\t" +
-                  _vm._s(_vm.program.department_name)
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("span", { staticClass: "text-indigo-400 font-medium" }, [
-            _vm._v("/")
-          ]),
-          _vm._v(" "),
-          _c(
-            "Link",
-            {
-              staticClass: "text-indigo-400 hover:text-indigo-600",
-              attrs: { href: _vm.$route("admin.programs") }
-            },
-            [_vm._v("Program")]
-          ),
-          _vm._v(" "),
-          _c("span", { staticClass: "text-indigo-400 font-medium" }, [
-            _vm._v("/")
-          ]),
-          _vm._v(
-            "\n\t\t" +
-              _vm._s(_vm.program.degree_name) +
-              " " +
-              _vm._s(_vm.program.department_name) +
-              "\n\t"
-          )
-        ],
-        1
-      ),
+      _c("BreadCrumbs", { attrs: { crumbs: _vm.crumbs } }),
       _vm._v(" "),
       _c(
         "div",
@@ -29105,141 +28593,15 @@ var render = function() {
         "div",
         { staticClass: "bg-white rounded-md shadow overflow-hidden max-w-3xl" },
         [
-          _c(
-            "table",
-            { staticClass: "w-full whitespace-nowrap" },
-            [
-              _vm._m(0),
-              _vm._v(" "),
-              _vm._l(_vm.courses, function(course) {
-                return _c(
-                  "tr",
-                  {
-                    key: course.id,
-                    staticClass: "hover:bg-gray-100 focus-within:bg-gray-100"
-                  },
-                  [
-                    _c(
-                      "td",
-                      { staticClass: "border-t" },
-                      [
-                        _c(
-                          "Link",
-                          {
-                            staticClass:
-                              "px-6 py-4 flex items-center focus:text-indigo-500",
-                            attrs: {
-                              href: _vm.$route("admin.courses.edit", course.id)
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n\t\t\t\t\t\t" +
-                                _vm._s(course.course_name) +
-                                "\n\t\t\t\t\t"
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "td",
-                      { staticClass: "border-t" },
-                      [
-                        _c(
-                          "Link",
-                          {
-                            staticClass:
-                              "px-6 py-4 flex items-center focus:text-indigo-500",
-                            attrs: {
-                              href: _vm.$route("admin.courses.edit", course.id)
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n\t\t\t\t\t\t" +
-                                _vm._s(course.department_code) +
-                                "-" +
-                                _vm._s(course.course_code) +
-                                "\n\t\t\t\t\t"
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "td",
-                      { staticClass: "border-t" },
-                      [
-                        _c(
-                          "Link",
-                          {
-                            staticClass:
-                              "px-6 py-4 flex items-center focus:text-indigo-500",
-                            attrs: {
-                              href: _vm.$route("admin.courses.edit", course.id)
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n\t\t\t\t\t\t" +
-                                _vm._s(course.credit_hours) +
-                                "\n\t\t\t\t\t"
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "td",
-                      { staticClass: "border-t" },
-                      [
-                        _c(
-                          "Link",
-                          {
-                            staticClass:
-                              "px-6 py-4 flex items-center focus:text-indigo-500",
-                            attrs: {
-                              href: _vm.$route("admin.courses.edit", course.id)
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n\t\t\t\t\t\t" +
-                                _vm._s(course.semester) +
-                                "\n\t\t\t\t\t"
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    )
-                  ]
-                )
-              }),
-              _vm._v(" "),
-              _vm.courses.length === 0
-                ? _c("tr", [
-                    _c(
-                      "td",
-                      {
-                        staticClass: "border-t px-6 py-4",
-                        attrs: { colspan: "4" }
-                      },
-                      [_vm._v("\n\t\t\t\t\tNo courses found.\n\t\t\t\t")]
-                    )
-                  ])
-                : _vm._e()
-            ],
-            2
-          )
-        ]
+          _c("AppDataTable", {
+            attrs: {
+              table_data: _vm.courses,
+              labels: _vm.labels,
+              route: "admin.courses.edit"
+            }
+          })
+        ],
+        1
       ),
       _vm._v(" "),
       _c(
@@ -29266,22 +28628,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", { staticClass: "text-left font-bold" }, [
-      _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Name")]),
-      _vm._v(" "),
-      _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Course Code")]),
-      _vm._v(" "),
-      _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Credit Hours")]),
-      _vm._v(" "),
-      _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Semester")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -29416,156 +28763,20 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "bg-white rounded-md shadow overflow-x-auto" }, [
-        _c(
-          "table",
-          { staticClass: "w-full whitespace-nowrap" },
-          [
-            _vm._m(0),
-            _vm._v(" "),
-            _vm._l(_vm.programs.data, function(program) {
-              return _c(
-                "tr",
-                {
-                  key: program.id,
-                  staticClass: "hover:bg-gray-100 focus-within:bg-gray-100"
-                },
-                [
-                  _c(
-                    "td",
-                    { staticClass: "border-t" },
-                    [
-                      _c(
-                        "Link",
-                        {
-                          staticClass:
-                            "px-6 py-4 flex items-center focus:text-indigo-500",
-                          attrs: {
-                            href: _vm.$route(
-                              "admin.programs.edit",
-                              program.slug
-                            )
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n\t\t\t\t\t\t" +
-                              _vm._s(program.degree.degree_name) +
-                              "\n\t\t\t\t\t\t" +
-                              _vm._s(program.department.department_name) +
-                              "\n\t\t\t\t\t"
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    { staticClass: "border-t" },
-                    [
-                      _c(
-                        "Link",
-                        {
-                          staticClass:
-                            "px-6 py-4 flex items-center focus:text-indigo-500",
-                          attrs: {
-                            href: _vm.$route(
-                              "admin.programs.edit",
-                              program.slug
-                            )
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n\t\t\t\t\t\t" +
-                              _vm._s(
-                                program.department
-                                  ? program.department.department_name
-                                  : "NA"
-                              ) +
-                              "\n\t\t\t\t\t"
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    { staticClass: "border-t" },
-                    [
-                      _c(
-                        "Link",
-                        {
-                          staticClass:
-                            "px-6 py-4 flex items-center focus:text-indigo-500",
-                          attrs: {
-                            href: _vm.$route(
-                              "admin.programs.edit",
-                              program.slug
-                            )
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n\t\t\t\t\t\t" +
-                              _vm._s(program.credit_hours) +
-                              "\n\t\t\t\t\t"
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    { staticClass: "border-t w-px" },
-                    [
-                      _c(
-                        "Link",
-                        {
-                          staticClass: "px-4 flex items-center",
-                          attrs: {
-                            href: _vm.$route(
-                              "admin.programs.edit",
-                              program.slug
-                            ),
-                            tabindex: "-1"
-                          }
-                        },
-                        [
-                          _c("i", {
-                            staticClass: "fas fa-angle-right text-gray-600"
-                          })
-                        ]
-                      )
-                    ],
-                    1
-                  )
-                ]
-              )
-            }),
-            _vm._v(" "),
-            _vm.programs.data.length === 0
-              ? _c("tr", [
-                  _c(
-                    "td",
-                    {
-                      staticClass: "border-t px-6 py-4",
-                      attrs: { colspan: "4" }
-                    },
-                    [_vm._v("\n\t\t\t\t\tNo programs found.\n\t\t\t\t")]
-                  )
-                ])
-              : _vm._e()
-          ],
-          2
-        )
-      ]),
+      _c(
+        "div",
+        { staticClass: "bg-white rounded-md shadow overflow-x-auto" },
+        [
+          _c("AppDataTable", {
+            attrs: {
+              table_data: _vm.programs.data,
+              labels: _vm.labels,
+              route: "admin.programs.edit"
+            }
+          })
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("AppTablePagination", {
         staticClass: "mt-6",
@@ -29575,20 +28786,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", { staticClass: "text-left font-bold" }, [
-      _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Name")]),
-      _vm._v(" "),
-      _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Department")]),
-      _vm._v(" "),
-      _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Credit Hours")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -30959,121 +30157,20 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "bg-white rounded-md shadow overflow-x-auto" }, [
-        _c(
-          "table",
-          { staticClass: "w-full whitespace-nowrap" },
-          [
-            _vm._m(0),
-            _vm._v(" "),
-            _vm._l(_vm.users.data, function(user) {
-              return _c(
-                "tr",
-                {
-                  key: user.id,
-                  staticClass: "hover:bg-gray-100 focus-within:bg-gray-100"
-                },
-                [
-                  _c(
-                    "td",
-                    { staticClass: "border-t" },
-                    [
-                      _c(
-                        "Link",
-                        {
-                          staticClass: "px-6 py-4 flex items-center",
-                          attrs: {
-                            href: _vm.$route("admin.users.show", user.id),
-                            tabindex: "-1"
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n\t\t\t\t\t\t" +
-                              _vm._s(user.name) +
-                              "\n\t\t\t\t\t"
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    { staticClass: "border-t" },
-                    [
-                      _c(
-                        "Link",
-                        {
-                          staticClass: "px-6 py-4 flex items-center",
-                          attrs: {
-                            href: _vm.$route("admin.users.show", user.id),
-                            tabindex: "-1"
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n\t\t\t\t\t\t" +
-                              _vm._s(user.email) +
-                              "\n\t\t\t\t\t"
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "border-t" }, [
-                    _c("span", { staticClass: "px-4 py-4 flex items-center" }, [
-                      _vm._v(
-                        "\n\t\t\t\t\t\t" + _vm._s(user.role) + "\n\t\t\t\t\t"
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    { staticClass: "border-t w-px" },
-                    [
-                      _c(
-                        "Link",
-                        {
-                          staticClass: "px-4 py-4 flex items-center",
-                          attrs: {
-                            href: _vm.$route("admin.users.show", user.id),
-                            tabindex: "-1"
-                          }
-                        },
-                        [
-                          _c("i", {
-                            staticClass: "fas fa-angle-right text-gray-600"
-                          })
-                        ]
-                      )
-                    ],
-                    1
-                  )
-                ]
-              )
-            }),
-            _vm._v(" "),
-            _vm.users.data.length === 0
-              ? _c("tr", [
-                  _c(
-                    "td",
-                    {
-                      staticClass: "border-t px-6 py-4",
-                      attrs: { colspan: "4" }
-                    },
-                    [_vm._v("No users found.")]
-                  )
-                ])
-              : _vm._e()
-          ],
-          2
-        )
-      ]),
+      _c(
+        "div",
+        { staticClass: "bg-white rounded-md shadow overflow-x-auto" },
+        [
+          _c("AppDataTable", {
+            attrs: {
+              table_data: _vm.users.data,
+              labels: _vm.labels,
+              route: "admin.users.show"
+            }
+          })
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("AppTablePagination", {
         staticClass: "mt-6",
@@ -31083,22 +30180,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", { staticClass: "text-left font-bold" }, [
-      _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Name")]),
-      _vm._v(" "),
-      _c("th", { staticClass: "px-6 pt-6 pb-4" }, [_vm._v("Email")]),
-      _vm._v(" "),
-      _c("th", { staticClass: "px-6 pt-6 pb-4", attrs: { colspan: "2" } }, [
-        _vm._v("Role")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -32511,117 +31593,103 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("div", { staticClass: "bg-white rounded-md shadow overflow-x-auto" }, [
+  return _c("div", [
+    _c(
+      "table",
+      { staticClass: "w-full whitespace-nowrap" },
+      [
         _c(
-          "table",
-          { staticClass: "w-full whitespace-nowrap" },
-          [
-            _c(
-              "tr",
-              { staticClass: "text-left font-bold" },
+          "tr",
+          { staticClass: "text-left font-bold" },
+          _vm._l(_vm.labels, function(label, index) {
+            return _c("th", { key: index, staticClass: "px-6 pt-6 pb-4" }, [
+              _vm._v("\n\t\t\t\t" + _vm._s(label.value) + "\n\t\t\t")
+            ])
+          }),
+          0
+        ),
+        _vm._v(" "),
+        _vm._l(_vm.table_data, function(data, index) {
+          return _c(
+            "tr",
+            {
+              key: index,
+              staticClass: "hover:bg-gray-100 focus-within:bg-gray-100"
+            },
+            [
               _vm._l(_vm.labels, function(label, index) {
-                return _c("th", { key: index, staticClass: "px-6 pt-6 pb-4" }, [
-                  _vm._v("\n\t\t\t\t\t" + _vm._s(label.value) + "\n\t\t\t\t")
-                ])
-              }),
-              0
-            ),
-            _vm._v(" "),
-            _vm._l(_vm.table_data.data, function(data) {
-              return _c(
-                "tr",
-                {
-                  key: data.id,
-                  staticClass: "hover:bg-gray-100 focus-within:bg-gray-100"
-                },
-                [
-                  _vm._l(_vm.labels, function(label, index) {
-                    return _c(
-                      "td",
-                      { key: index, staticClass: "border-t" },
+                return _c(
+                  "td",
+                  { key: index, staticClass: "border-t" },
+                  [
+                    _c(
+                      "Link",
+                      {
+                        staticClass:
+                          "px-6 py-4 flex items-center focus:text-indigo-500",
+                        attrs: {
+                          href: _vm.$route(
+                            _vm.route,
+                            data.slug ? data.slug : data.id
+                          )
+                        }
+                      },
                       [
-                        _c(
-                          "Link",
-                          {
-                            staticClass:
-                              "px-6 py-4 flex items-center focus:text-indigo-500",
-                            attrs: {
-                              href: _vm.$route(
-                                "admin." + _vm.name + ".edit",
-                                data.slug
-                              )
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n\t\t\t\t\t\t" +
-                                _vm._s(data[label.key]) +
-                                "\n\t\t\t\t\t"
-                            )
-                          ]
+                        _vm._v(
+                          "\n\t\t\t\t\t" +
+                            _vm._s(data[label.key]) +
+                            "\n\t\t\t\t"
                         )
-                      ],
-                      1
+                      ]
                     )
-                  }),
-                  _vm._v(" "),
+                  ],
+                  1
+                )
+              }),
+              _vm._v(" "),
+              _c(
+                "td",
+                { staticClass: "border-t w-px" },
+                [
                   _c(
-                    "td",
-                    { staticClass: "border-t w-px" },
+                    "Link",
+                    {
+                      staticClass: "px-4 flex items-center",
+                      attrs: {
+                        href: _vm.$route(
+                          _vm.route,
+                          data.slug ? data.slug : data.id
+                        ),
+                        tabindex: "-1"
+                      }
+                    },
                     [
-                      _c(
-                        "Link",
-                        {
-                          staticClass: "px-4 flex items-center",
-                          attrs: {
-                            href: _vm.$route(
-                              "admin." + _vm.name + ".edit",
-                              data.slug
-                            ),
-                            tabindex: "-1"
-                          }
-                        },
-                        [
-                          _c("i", {
-                            staticClass: "fas fa-angle-right text-gray-600"
-                          })
-                        ]
-                      )
-                    ],
-                    1
+                      _c("i", {
+                        staticClass: "fas fa-angle-right text-gray-600"
+                      })
+                    ]
                   )
                 ],
-                2
+                1
               )
-            }),
-            _vm._v(" "),
-            _vm.table_data.data.length === 0
-              ? _c("tr", [
-                  _c(
-                    "td",
-                    {
-                      staticClass: "border-t px-6 py-4",
-                      attrs: { colspan: "4" }
-                    },
-                    [_vm._v("No " + _vm._s(_vm.name) + " found.")]
-                  )
-                ])
-              : _vm._e()
-          ],
-          2
-        )
-      ]),
-      _vm._v(" "),
-      _c("AppTablePagination", {
-        staticClass: "mt-6",
-        attrs: { links: _vm.table_data.links }
-      })
-    ],
-    1
-  )
+            ],
+            2
+          )
+        }),
+        _vm._v(" "),
+        _vm.table_data.length === 0
+          ? _c("tr", [
+              _c(
+                "td",
+                { staticClass: "border-t px-6 py-4", attrs: { colspan: "4" } },
+                [_vm._v("No entry found.")]
+              )
+            ])
+          : _vm._e()
+      ],
+      2
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -33035,10 +32103,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/ui/Breadcrumb.vue?vue&type=template&id=6fe6491f&":
-/*!********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/ui/Breadcrumb.vue?vue&type=template&id=6fe6491f& ***!
-  \********************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/ui/BreadCrumbs.vue?vue&type=template&id=07605804&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/ui/BreadCrumbs.vue?vue&type=template&id=07605804& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -33070,7 +32138,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("span", { staticClass: "text-indigo-400 font-medium" }, [
-                  _vm._v("/")
+                  _vm._v(" / ")
                 ])
               ],
               1
@@ -45441,8 +44509,8 @@ var map = {
 	"./Admin/Faculties/Edit.vue": "./resources/js/Pages/Admin/Faculties/Edit.vue",
 	"./Admin/Faculties/Index": "./resources/js/Pages/Admin/Faculties/Index.vue",
 	"./Admin/Faculties/Index.vue": "./resources/js/Pages/Admin/Faculties/Index.vue",
-	"./Admin/Faculties/IndexAlternative": "./resources/js/Pages/Admin/Faculties/IndexAlternative.vue",
-	"./Admin/Faculties/IndexAlternative.vue": "./resources/js/Pages/Admin/Faculties/IndexAlternative.vue",
+	"./Admin/Faculties/IndexA": "./resources/js/Pages/Admin/Faculties/IndexA.vue",
+	"./Admin/Faculties/IndexA.vue": "./resources/js/Pages/Admin/Faculties/IndexA.vue",
 	"./Admin/Profile/Index": "./resources/js/Pages/Admin/Profile/Index.vue",
 	"./Admin/Profile/Index.vue": "./resources/js/Pages/Admin/Profile/Index.vue",
 	"./Admin/Programs/AddCourse": "./resources/js/Pages/Admin/Programs/AddCourse.vue",
@@ -45516,7 +44584,7 @@ var map = {
 	"./Pages/Admin/Faculties/Create.vue": "./resources/js/Pages/Admin/Faculties/Create.vue",
 	"./Pages/Admin/Faculties/Edit.vue": "./resources/js/Pages/Admin/Faculties/Edit.vue",
 	"./Pages/Admin/Faculties/Index.vue": "./resources/js/Pages/Admin/Faculties/Index.vue",
-	"./Pages/Admin/Faculties/IndexAlternative.vue": "./resources/js/Pages/Admin/Faculties/IndexAlternative.vue",
+	"./Pages/Admin/Faculties/IndexA.vue": "./resources/js/Pages/Admin/Faculties/IndexA.vue",
 	"./Pages/Admin/Profile/Index.vue": "./resources/js/Pages/Admin/Profile/Index.vue",
 	"./Pages/Admin/Programs/AddCourse.vue": "./resources/js/Pages/Admin/Programs/AddCourse.vue",
 	"./Pages/Admin/Programs/Create.vue": "./resources/js/Pages/Admin/Programs/Create.vue",
@@ -45551,7 +44619,7 @@ var map = {
 	"./components/shared/ui/AppDropdown.vue": "./resources/js/components/shared/ui/AppDropdown.vue",
 	"./components/shared/ui/AppFlashMessage.vue": "./resources/js/components/shared/ui/AppFlashMessage.vue",
 	"./components/shared/ui/AppTooltip.vue": "./resources/js/components/shared/ui/AppTooltip.vue",
-	"./components/shared/ui/Breadcrumb.vue": "./resources/js/components/shared/ui/Breadcrumb.vue",
+	"./components/shared/ui/BreadCrumbs.vue": "./resources/js/components/shared/ui/BreadCrumbs.vue",
 	"./components/student/cards/StudentProfileCard.vue": "./resources/js/components/student/cards/StudentProfileCard.vue",
 	"./components/student/layouts/AppStudentMenu.vue": "./resources/js/components/student/layouts/AppStudentMenu.vue",
 	"./components/student/test.vue": "./resources/js/components/student/test.vue"
@@ -45596,7 +44664,7 @@ webpackContext.id = "./resources/js sync recursive \\.vue$/";
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_args":[["axios@0.21.4","G:\\\\WebProjects\\\\Campus-Management-Portal"]],"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/","/@inertiajs/inertia"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"G:\\\\WebProjects\\\\Campus-Management-Portal","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","E:\\\\Lapto-Projects\\\\portal_cms"]],"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/","/@inertiajs/inertia"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"E:\\\\Lapto-Projects\\\\portal_cms","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

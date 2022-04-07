@@ -1,15 +1,8 @@
 <template>
 	<div>
 		<AppAdminHead :title="form.course_name" />
-		<h1 class="mb-8 font-bold text-3xl">
-			<Link
-				class="text-indigo-400 hover:text-indigo-600"
-				:href="$route('admin.courses')"
-				>Faculites</Link
-			>
-			<span class="text-indigo-400 font-medium">/</span>
-			{{ form.course_name }}
-		</h1>
+		<BreadCrumbs :crumbs="crumbs" />
+
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form @submit.prevent="update" id="update-form" class="m-0">
 				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
@@ -23,17 +16,14 @@
 				</div>
 				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
-						<label class="block">Practical Credit Hours: </label>
+						<label class="block">Theory Credit Hours: </label>
 						<input
 							type="text"
-							v-model="form.practical_credit_hours"
+							v-model="form.theory_credit_hours"
 							class="form_input"
 						/>
-						<div
-							class="text-red-600"
-							v-if="form.practical_credit_hours.course_name"
-						>
-							{{ form.errors.practical_credit_hours }}
+						<div class="text-red-600" v-if="form.errors.theory_credit_hours">
+							{{ form.errors.theory_credit_hours }}
 						</div>
 					</div>
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
@@ -43,10 +33,7 @@
 							v-model="form.practical_credit_hours"
 							class="form_input"
 						/>
-						<div
-							class="text-red-600"
-							v-if="form.practical_credit_hours.course_name"
-						>
+						<div class="text-red-600" v-if="form.errors.practical_credit_hours">
 							{{ form.errors.practical_credit_hours }}
 						</div>
 					</div>
@@ -134,8 +121,23 @@ export default {
 				theory_credit_hours: this.course.theory_credit_hours,
 				department_code: this.course.department_code,
 				course_code: this.course.course_code
-			})
+			}),
+
+			crumbs: [
+				{
+					text: "Faculties",
+					route: this.$route("admin.faculties")
+				},
+				{
+					text: this.course.course_name
+				}
+			]
 		};
+	},
+	watch: {
+		"form.course_name": function(newValue) {
+			this.crumbs[this.crumbs.length - 1].text = newValue;
+		}
 	},
 	methods: {
 		update() {

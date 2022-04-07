@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<AppAdminHead :title="`${program.program_name}`" />
 		<AppModal modalWidth="w-3xl" @close="show = false" v-if="show">
 			<div class="my-6 p-4 grid grid-cols-3 mx-4">
 				<Link
@@ -12,30 +13,9 @@
 				</Link>
 			</div>
 		</AppModal>
-		<AppAdminHead
-			:title="
-				`${program.degree_name}
-				${program.department_name}`
-			"
-		/>
-		<h1 class="mb-8 font-bold text-3xl">
-			<Link
-				class="text-indigo-400 hover:text-indigo-600"
-				:href="$route('admin.departments')"
-			>
-				{{ program.degree_name }}
-				{{ program.department_name }}</Link
-			>
-			<span class="text-indigo-400 font-medium">/</span>
 
-			<Link
-				class="text-indigo-400 hover:text-indigo-600"
-				:href="$route('admin.programs')"
-				>Program</Link
-			>
-			<span class="text-indigo-400 font-medium">/</span>
-			{{ program.degree_name }} {{ program.department_name }}
-		</h1>
+		<BreadCrumbs :crumbs="crumbs" />
+
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form @submit.prevent="update" id="update-form" class="m-0">
 				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
@@ -112,58 +92,11 @@
 
 		<h1 class="my-8 font-bold text-3xl">Courses</h1>
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
-			<table class="w-full whitespace-nowrap">
-				<tr class="text-left font-bold">
-					<th class="px-6 pt-6 pb-4">Name</th>
-					<th class="px-6 pt-6 pb-4">Course Code</th>
-					<th class="px-6 pt-6 pb-4">Credit Hours</th>
-					<th class="px-6 pt-6 pb-4">Semester</th>
-				</tr>
-
-				<tr
-					v-for="course in courses"
-					:key="course.id"
-					class="hover:bg-gray-100 focus-within:bg-gray-100"
-				>
-					<td class="border-t">
-						<Link
-							class="px-6 py-4 flex items-center focus:text-indigo-500"
-							:href="$route('admin.courses.edit', course.id)"
-						>
-							{{ course.course_name }}
-						</Link>
-					</td>
-					<td class="border-t">
-						<Link
-							class="px-6 py-4 flex items-center focus:text-indigo-500"
-							:href="$route('admin.courses.edit', course.id)"
-						>
-							{{ course.department_code }}-{{ course.course_code }}
-						</Link>
-					</td>
-					<td class="border-t">
-						<Link
-							class="px-6 py-4 flex items-center focus:text-indigo-500"
-							:href="$route('admin.courses.edit', course.id)"
-						>
-							{{ course.credit_hours }}
-						</Link>
-					</td>
-					<td class="border-t">
-						<Link
-							class="px-6 py-4 flex items-center focus:text-indigo-500"
-							:href="$route('admin.courses.edit', course.id)"
-						>
-							{{ course.semester }}
-						</Link>
-					</td>
-				</tr>
-				<tr v-if="courses.length === 0">
-					<td class="border-t px-6 py-4" colspan="4">
-						No courses found.
-					</td>
-				</tr>
-			</table>
+			<AppDataTable
+				:table_data="courses"
+				:labels="labels"
+				route="admin.courses.edit"
+			/>
 		</div>
 		<div class="mt-4">
 			<Link class="btn-main " @click.prevent="show = true">
@@ -211,7 +144,41 @@ export default {
 				department_id: this.program.department_id,
 				credit_hours: this.program.credit_hours
 			}),
-			show: false
+			show: false,
+			labels: [
+				{
+					key: "course_name",
+					value: "Name"
+				},
+				{
+					key: "course_code",
+					value: "Course Code"
+				},
+				{
+					key: "credit_hours",
+					value: "Credit Hours"
+				},
+				{
+					key: "semester",
+					value: "Semester"
+				}
+			],
+			crumbs: [
+				{
+					text: this.program.department_name,
+					route: this.$route(
+						"admin.departments.edit",
+						this.program.department_slug
+					)
+				},
+				{
+					text: "Program",
+					route: this.$route("admin.programs")
+				},
+				{
+					text: this.program.program_name
+				}
+			]
 		};
 	},
 	methods: {

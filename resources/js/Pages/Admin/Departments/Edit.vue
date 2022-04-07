@@ -1,22 +1,8 @@
 <template>
 	<div>
 		<AppAdminHead :title="form.department_name" />
-		<h1 class="mb-8 font-bold text-3xl">
-			<Link
-				class="text-indigo-400 hover:text-indigo-600"
-				:href="$route('admin.faculties')"
-				>{{ department.faculty_name }}</Link
-			>
-			<span class="text-indigo-400 font-medium">/</span>
+		<BreadCrumbs :crumbs="crumbs" />
 
-			<Link
-				class="text-indigo-400 hover:text-indigo-600"
-				:href="$route('admin.departments')"
-				>Departments</Link
-			>
-			<span class="text-indigo-400 font-medium">/</span>
-			{{ form.department_name }}
-		</h1>
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form @submit.prevent="update" id="update-form" class="m-0">
 				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
@@ -119,8 +105,27 @@ export default {
 			form: this.$inertia.form({
 				department_name: this.department.department_name,
 				faculty_id: this.department.faculty_id
-			})
+			}),
+
+			crumbs: [
+				{
+					text: this.department.faculty_name,
+					route: this.$route("admin.faculties")
+				},
+				{
+					text: "Department",
+					route: this.$route("admin.departments")
+				},
+				{
+					text: this.department.department_name
+				}
+			]
 		};
+	},
+	watch: {
+		"form.department_name": function(newValue) {
+			this.crumbs[this.crumbs.length - 1].text = newValue;
+		}
 	},
 	methods: {
 		update() {

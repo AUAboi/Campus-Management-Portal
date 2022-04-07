@@ -2,14 +2,7 @@
 	<div>
 		<AppAdminHead title="Create Faculty" />
 
-		<h1 class="mb-8 font-bold text-3xl">
-			<Link
-				class="text-indigo-400 hover:text-indigo-600"
-				:href="$route('admin.faculties')"
-				>Faculites</Link
-			>
-			<span class="text-indigo-400 font-medium">/</span> Create
-		</h1>
+		<BreadCrumbs :crumbs="crumbs" />
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form class="m-0" @submit.prevent="store">
 				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
@@ -44,7 +37,17 @@ export default {
 		return {
 			form: this.$inertia.form({
 				faculty_name: ""
-			})
+			}),
+
+			crumbs: [
+				{
+					text: "Faculty",
+					route: this.$route("admin.faculties")
+				},
+				{
+					text: "Create"
+				}
+			]
 		};
 	},
 	methods: {
