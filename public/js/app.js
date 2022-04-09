@@ -2953,6 +2953,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -5263,6 +5268,63 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     Link: _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.Link
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputText.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputText.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  inheritAttrs: false,
+  props: {
+    type: {
+      type: String,
+      "default": "text"
+    },
+    error: String,
+    label: String,
+    modelValue: String
+  },
+  emits: ["update:modelValue"],
+  methods: {
+    focus: function focus() {
+      this.$refs.input.focus();
+    },
+    select: function select() {
+      this.$refs.input.select();
+    },
+    setSelectionRange: function setSelectionRange(start, end) {
+      this.$refs.input.setSelectionRange(start, end);
+    },
+    handleInput: function handleInput(event) {
+      this.$emit("update:modelValue", event.target.value);
+    }
   }
 });
 
@@ -23752,6 +23814,45 @@ component.options.__file = "resources/js/components/shared/AppUserMenu.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/shared/form/FormInputText.vue":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/shared/form/FormInputText.vue ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _FormInputText_vue_vue_type_template_id_54869292___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormInputText.vue?vue&type=template&id=54869292& */ "./resources/js/components/shared/form/FormInputText.vue?vue&type=template&id=54869292&");
+/* harmony import */ var _FormInputText_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormInputText.vue?vue&type=script&lang=js& */ "./resources/js/components/shared/form/FormInputText.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _FormInputText_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _FormInputText_vue_vue_type_template_id_54869292___WEBPACK_IMPORTED_MODULE_0__.render,
+  _FormInputText_vue_vue_type_template_id_54869292___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/shared/form/FormInputText.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/shared/layouts/Layout.vue":
 /*!***********************************************************!*\
   !*** ./resources/js/components/shared/layouts/Layout.vue ***!
@@ -24811,6 +24912,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/shared/form/FormInputText.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/shared/form/FormInputText.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormInputText_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FormInputText.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputText.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormInputText_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/shared/layouts/Layout.vue?vue&type=script&lang=js&":
 /*!************************************************************************************!*\
   !*** ./resources/js/components/shared/layouts/Layout.vue?vue&type=script&lang=js& ***!
@@ -25642,6 +25759,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/shared/form/FormInputText.vue?vue&type=template&id=54869292&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/shared/form/FormInputText.vue?vue&type=template&id=54869292& ***!
+  \**********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormInputText_vue_vue_type_template_id_54869292___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormInputText_vue_vue_type_template_id_54869292___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormInputText_vue_vue_type_template_id_54869292___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FormInputText.vue?vue&type=template&id=54869292& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputText.vue?vue&type=template&id=54869292&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/shared/layouts/Layout.vue?vue&type=template&id=5226db82&":
 /*!******************************************************************************************!*\
   !*** ./resources/js/components/shared/layouts/Layout.vue?vue&type=template&id=5226db82& ***!
@@ -25902,7 +26036,7 @@ var render = function() {
                         expression: "form.course_name"
                       }
                     ],
-                    staticClass: "form_input",
+                    staticClass: "form-input",
                     attrs: { type: "text" },
                     domProps: { value: _vm.form.course_name },
                     on: {
@@ -25942,7 +26076,7 @@ var render = function() {
                         expression: "form.practical_credit_hours"
                       }
                     ],
-                    staticClass: "form_input",
+                    staticClass: "form-input",
                     attrs: { type: "text" },
                     domProps: { value: _vm.form.practical_credit_hours },
                     on: {
@@ -25984,7 +26118,7 @@ var render = function() {
                         expression: "form.theory_credit_hours"
                       }
                     ],
-                    staticClass: "form_input",
+                    staticClass: "form-input",
                     attrs: { type: "text" },
                     domProps: { value: _vm.form.theory_credit_hours },
                     on: {
@@ -26028,7 +26162,7 @@ var render = function() {
                         expression: "form.department_code"
                       }
                     ],
-                    staticClass: "form_input",
+                    staticClass: "form-input",
                     attrs: { type: "text" },
                     domProps: { value: _vm.form.department_code },
                     on: {
@@ -26085,7 +26219,7 @@ var render = function() {
                         expression: "form.course_code"
                       }
                     ],
-                    staticClass: "form_input",
+                    staticClass: "form-input",
                     attrs: { type: "text" },
                     domProps: { value: _vm.form.course_code },
                     on: {
@@ -26197,7 +26331,7 @@ var render = function() {
                         expression: "form.course_name"
                       }
                     ],
-                    staticClass: "form_input",
+                    staticClass: "form-input",
                     attrs: { type: "text" },
                     domProps: { value: _vm.form.course_name },
                     on: {
@@ -26237,7 +26371,7 @@ var render = function() {
                         expression: "form.theory_credit_hours"
                       }
                     ],
-                    staticClass: "form_input",
+                    staticClass: "form-input",
                     attrs: { type: "text" },
                     domProps: { value: _vm.form.theory_credit_hours },
                     on: {
@@ -26279,7 +26413,7 @@ var render = function() {
                         expression: "form.practical_credit_hours"
                       }
                     ],
-                    staticClass: "form_input",
+                    staticClass: "form-input",
                     attrs: { type: "text" },
                     domProps: { value: _vm.form.practical_credit_hours },
                     on: {
@@ -26323,7 +26457,7 @@ var render = function() {
                         expression: "form.department_code"
                       }
                     ],
-                    staticClass: "form_input",
+                    staticClass: "form-input",
                     attrs: { type: "text" },
                     domProps: { value: _vm.form.department_code },
                     on: {
@@ -26365,7 +26499,7 @@ var render = function() {
                         expression: "form.course_code"
                       }
                     ],
-                    staticClass: "form_input",
+                    staticClass: "form-input",
                     attrs: { type: "text" },
                     domProps: { value: _vm.form.course_code },
                     on: {
@@ -26770,7 +26904,7 @@ var render = function() {
                         expression: "form.department_name"
                       }
                     ],
-                    staticClass: "form_input",
+                    staticClass: "form-input",
                     attrs: { type: "text" },
                     domProps: { value: _vm.form.department_name },
                     on: {
@@ -26812,7 +26946,7 @@ var render = function() {
                           expression: "form.faculty_id"
                         }
                       ],
-                      staticClass: "form_input",
+                      staticClass: "form-input",
                       on: {
                         change: function($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -26942,7 +27076,7 @@ var render = function() {
                         expression: "form.department_name"
                       }
                     ],
-                    staticClass: "form_input",
+                    staticClass: "form-input",
                     attrs: { type: "text", readonly: !_vm.permissions.update },
                     domProps: { value: _vm.form.department_name },
                     on: {
@@ -26984,7 +27118,7 @@ var render = function() {
                           expression: "form.faculty_id"
                         }
                       ],
-                      staticClass: "form_input",
+                      staticClass: "form-input",
                       attrs: { disabled: !_vm.permissions.update },
                       on: {
                         change: function($event) {
@@ -27254,7 +27388,8 @@ var render = function() {
                         expression: "form.faculty_name"
                       }
                     ],
-                    staticClass: "form_input",
+                    staticClass: "form-input",
+                    class: _vm.form.errors.faculty_name ? "error" : "",
                     attrs: { type: "text" },
                     domProps: { value: _vm.form.faculty_name },
                     on: {
@@ -27268,7 +27403,7 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _vm.form.errors.faculty_name
-                    ? _c("div", { staticClass: "text-red-600" }, [
+                    ? _c("div", { staticClass: "form-error" }, [
                         _vm._v(
                           "\n\t\t\t\t\t\t" +
                             _vm._s(_vm.form.errors.faculty_name) +
@@ -27366,7 +27501,7 @@ var render = function() {
                         expression: "form.faculty_name"
                       }
                     ],
-                    staticClass: "form_input",
+                    staticClass: "form-input",
                     attrs: { type: "text", readonly: !_vm.permissions.update },
                     domProps: { value: _vm.form.faculty_name },
                     on: {
@@ -28103,7 +28238,7 @@ var render = function() {
                           expression: "form.degree_id"
                         }
                       ],
-                      staticClass: "form_input",
+                      staticClass: "form-input",
                       on: {
                         change: function($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -28161,7 +28296,7 @@ var render = function() {
                           expression: "form.department_id"
                         }
                       ],
-                      staticClass: "form_input",
+                      staticClass: "form-input",
                       on: {
                         change: function($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -28222,7 +28357,7 @@ var render = function() {
                         expression: "form.credit_hours"
                       }
                     ],
-                    staticClass: "form_input",
+                    staticClass: "form-input",
                     attrs: { type: "text" },
                     domProps: { value: _vm.form.credit_hours },
                     on: {
@@ -28375,7 +28510,7 @@ var render = function() {
                           expression: "form.degree_id"
                         }
                       ],
-                      staticClass: "form_input",
+                      staticClass: "form-input",
                       on: {
                         change: function($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -28439,7 +28574,7 @@ var render = function() {
                           expression: "form.department_id"
                         }
                       ],
-                      staticClass: "form_input",
+                      staticClass: "form-input",
                       on: {
                         change: function($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -28506,7 +28641,7 @@ var render = function() {
                         expression: "form.credit_hours"
                       }
                     ],
-                    staticClass: "form_input",
+                    staticClass: "form-input",
                     attrs: { type: "text" },
                     domProps: { value: _vm.form.credit_hours },
                     on: {
@@ -28877,7 +29012,7 @@ var render = function() {
                         expression: "form.name"
                       }
                     ],
-                    staticClass: "form_input",
+                    staticClass: "form-input",
                     attrs: { type: "text" },
                     domProps: { value: _vm.form.name },
                     on: {
@@ -28913,7 +29048,7 @@ var render = function() {
                         expression: "form.email"
                       }
                     ],
-                    staticClass: "form_input",
+                    staticClass: "form-input",
                     attrs: { type: "text" },
                     domProps: { value: _vm.form.email },
                     on: {
@@ -28953,7 +29088,7 @@ var render = function() {
                         expression: "form.father_name"
                       }
                     ],
-                    staticClass: "form_input",
+                    staticClass: "form-input",
                     attrs: { type: "text" },
                     domProps: { value: _vm.form.father_name },
                     on: {
@@ -28991,7 +29126,7 @@ var render = function() {
                           expression: "form.gender"
                         }
                       ],
-                      staticClass: "form_input",
+                      staticClass: "form-input",
                       on: {
                         change: function($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -29052,7 +29187,7 @@ var render = function() {
                         expression: "form.phone"
                       }
                     ],
-                    staticClass: "form_input",
+                    staticClass: "form-input",
                     attrs: { type: "text" },
                     domProps: { value: _vm.form.phone },
                     on: {
@@ -29088,7 +29223,7 @@ var render = function() {
                         expression: "form.cnic"
                       }
                     ],
-                    staticClass: "form_input",
+                    staticClass: "form-input",
                     attrs: {
                       type: "text",
                       maxlength: "13",
@@ -29130,7 +29265,7 @@ var render = function() {
                         expression: "form.password"
                       }
                     ],
-                    staticClass: "form_input",
+                    staticClass: "form-input",
                     attrs: { type: "text" },
                     domProps: { value: _vm.form.password },
                     on: {
@@ -29168,7 +29303,7 @@ var render = function() {
                         expression: "form.password_confirmation"
                       }
                     ],
-                    staticClass: "form_input",
+                    staticClass: "form-input",
                     attrs: { type: "text" },
                     domProps: { value: _vm.form.password_confirmation },
                     on: {
@@ -29304,7 +29439,7 @@ var render = function() {
                         expression: "form.name"
                       }
                     ],
-                    staticClass: "form_input",
+                    staticClass: "form-input",
                     attrs: { type: "text" },
                     domProps: { value: _vm.form.name },
                     on: {
@@ -30759,7 +30894,7 @@ var render = function() {
             expression: "form.name"
           }
         ],
-        staticClass: "form_input",
+        staticClass: "form-input",
         attrs: { type: "text" },
         domProps: { value: _vm.form.name },
         on: {
@@ -30791,7 +30926,7 @@ var render = function() {
             expression: "form.email"
           }
         ],
-        staticClass: "form_input",
+        staticClass: "form-input",
         attrs: { type: "text" },
         domProps: { value: _vm.form.email },
         on: {
@@ -31022,7 +31157,7 @@ var staticRenderFns = [
         _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
           _c("label", { staticClass: "block" }, [_vm._v("Student Name: ")]),
           _vm._v(" "),
-          _c("input", { staticClass: "form_input", attrs: { type: "text" } }),
+          _c("input", { staticClass: "form-input", attrs: { type: "text" } }),
           _vm._v(" "),
           _c("div", { staticClass: "text-red-600" })
         ]),
@@ -31030,7 +31165,7 @@ var staticRenderFns = [
         _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
           _c("label", { staticClass: "block" }, [_vm._v("Email: ")]),
           _vm._v(" "),
-          _c("input", { staticClass: "form_input", attrs: { type: "text" } })
+          _c("input", { staticClass: "form-input", attrs: { type: "text" } })
         ])
       ])
     ])
@@ -31289,6 +31424,58 @@ var render = function() {
     ],
     1
   )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputText.vue?vue&type=template&id=54869292&":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputText.vue?vue&type=template&id=54869292& ***!
+  \*************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { class: _vm.$attrs.class }, [
+    _vm.label
+      ? _c("label", { staticClass: "form-label" }, [
+          _vm._v(_vm._s(_vm.label) + ":")
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "input",
+      _vm._b(
+        {
+          ref: "input",
+          staticClass: "form-input",
+          class: { error: _vm.error },
+          attrs: { type: "text" },
+          domProps: { value: _vm.modelValue },
+          on: { input: _vm.handleInput }
+        },
+        "input",
+        Object.assign({}, _vm.$attrs, { class: null }),
+        false
+      )
+    ),
+    _vm._v(" "),
+    _vm.error
+      ? _c("div", { staticClass: "form-error" }, [_vm._v(_vm._s(_vm.error))])
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -44611,6 +44798,7 @@ var map = {
 	"./components/admin/layouts/TheAdminMenu.vue": "./resources/js/components/admin/layouts/TheAdminMenu.vue",
 	"./components/shared/AppUserAvatar.vue": "./resources/js/components/shared/AppUserAvatar.vue",
 	"./components/shared/AppUserMenu.vue": "./resources/js/components/shared/AppUserMenu.vue",
+	"./components/shared/form/FormInputText.vue": "./resources/js/components/shared/form/FormInputText.vue",
 	"./components/shared/layouts/Layout.vue": "./resources/js/components/shared/layouts/Layout.vue",
 	"./components/shared/modals/AppModal.vue": "./resources/js/components/shared/modals/AppModal.vue",
 	"./components/shared/tables/AppDataTable.vue": "./resources/js/components/shared/tables/AppDataTable.vue",

@@ -15,7 +15,7 @@
 				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block">User Name: </label>
-						<input type="text" v-model="form.name" class="form_input" />
+						<input type="text" v-model="form.name" class="form-input" />
 						<div class="text-red-600" v-if="form.errors.name">
 							{{ form.errors.name }}
 						</div>

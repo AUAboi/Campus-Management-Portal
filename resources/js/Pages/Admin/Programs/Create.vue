@@ -15,7 +15,7 @@
 				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block">Degree: </label>
-						<select v-model="form.degree_id" class="form_input">
+						<select v-model="form.degree_id" class="form-input">
 							<option
 								v-for="degree in degrees"
 								:key="degree.id"
@@ -29,7 +29,7 @@
 					</div>
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block">Department: </label>
-						<select v-model="form.department_id" class="form_input">
+						<select v-model="form.department_id" class="form-input">
 							<option
 								v-for="department in departments"
 								:key="department.id"
@@ -45,7 +45,7 @@
 				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block">Credit Hours: </label>
-						<input type="text" v-model="form.credit_hours" class="form_input" />
+						<input type="text" v-model="form.credit_hours" class="form-input" />
 						<div class="text-red-600" v-if="form.errors.credit_hours">
 							{{ form.errors.credit_hours }}
 						</div>

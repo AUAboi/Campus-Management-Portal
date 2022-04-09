@@ -8,8 +8,13 @@
 				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block">Faculty Name: </label>
-						<input type="text" v-model="form.faculty_name" class="form_input" />
-						<div class="text-red-600" v-if="form.errors.faculty_name">
+						<input
+							type="text"
+							v-model="form.faculty_name"
+							class="form-input"
+							:class="form.errors.faculty_name ? 'error' : ''"
+						/>
+						<div class="form-error" v-if="form.errors.faculty_name">
 							{{ form.errors.faculty_name }}
 						</div>
 					</div>

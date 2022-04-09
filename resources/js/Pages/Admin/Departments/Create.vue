@@ -12,7 +12,7 @@
 						<input
 							type="text"
 							v-model="form.department_name"
-							class="form_input"
+							class="form-input"
 						/>
 						<div class="text-red-600" v-if="form.errors.department_name">
 							{{ form.errors.department_name }}
@@ -20,7 +20,7 @@
 					</div>
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block">Faculty: </label>
-						<select v-model="form.faculty_id" class="form_input">
+						<select v-model="form.faculty_id" class="form-input">
 							<option
 								v-for="faculty in faculties"
 								:key="faculty.id"

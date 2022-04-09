@@ -10,7 +10,7 @@
 						<input
 							type="text"
 							v-model="form.faculty_name"
-							class="form_input"
+							class="form-input"
 							:readonly="!permissions.update"
 						/>
 						<div class="text-red-600" v-if="form.errors.faculty_name">

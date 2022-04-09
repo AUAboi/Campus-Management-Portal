@@ -11,7 +11,7 @@
 						<input
 							type="text"
 							v-model="form.department_name"
-							class="form_input"
+							class="form-input"
 							:readonly="!permissions.update"
 						/>
 
@@ -23,7 +23,7 @@
 						<label class="block">Faculty: </label>
 						<select
 							:disabled="!permissions.update"
-							class="form_input"
+							class="form-input"
 							v-model="form.faculty_id"
 						>
 							<option

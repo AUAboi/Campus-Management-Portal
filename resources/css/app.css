@@ -6,11 +6,17 @@ html {
     @apply bg-gray-100 h-full;
 }
 
-.form_input {
-    @apply border border-gray-300 w-full p-2 my-1
-        rounded;
-}
-
 .btn-main {
     @apply bg-indigo-500 text-white inline px-4 py-2 cursor-pointer rounded-md;
+}
+.form-input {
+    @apply p-2 leading-normal block w-full border text-gray-700 bg-white font-sans rounded text-left appearance-none relative focus:border-indigo-400 focus:ring;
+}
+
+.form-input.error {
+    @apply border-red-500 focus:ring focus:ring-red-200;
+}
+
+.form-error {
+    @apply text-red-700 mt-2 text-sm;
 }

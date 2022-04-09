@@ -21,14 +21,14 @@
 				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block">Name: </label>
-						<input type="text" v-model="form.name" class="form_input" />
+						<input type="text" v-model="form.name" class="form-input" />
 						<div class="text-red-600" v-if="form.errors.name">
 							{{ form.errors.name }}
 						</div>
 					</div>
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block">Email: </label>
-						<input type="text" v-model="form.email" class="form_input" />
+						<input type="text" v-model="form.email" class="form-input" />
 						<div class="text-red-600" v-if="form.errors.email">
 							{{ form.errors.email }}
 						</div>
@@ -37,14 +37,14 @@
 				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block">Father Name: </label>
-						<input type="text" v-model="form.father_name" class="form_input" />
+						<input type="text" v-model="form.father_name" class="form-input" />
 						<div class="text-red-600" v-if="form.errors.father_name">
 							{{ form.errors.father_name }}
 						</div>
 					</div>
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block">Gender: </label>
-						<select v-model="form.gender" class="form_input">
+						<select v-model="form.gender" class="form-input">
 							<option value="" selected></option>
 							<option value="male">Male</option>
 							<option value="female">Female</option>
@@ -57,7 +57,7 @@
 				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block">Phone Number: </label>
-						<input type="text" v-model="form.phone" class="form_input" />
+						<input type="text" v-model="form.phone" class="form-input" />
 						<div class="text-red-600" v-if="form.errors.phone">
 							{{ form.errors.phone }}
 						</div>
@@ -69,7 +69,7 @@
 							maxlength="13"
 							v-model="form.cnic"
 							placeholder="XXXXX-XXXXXXX-X"
-							class="form_input"
+							class="form-input"
 						/>
 						<div class="text-red-600" v-if="form.errors.cnic">
 							{{ form.errors.cnic }}
@@ -79,7 +79,7 @@
 				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block">Password: </label>
-						<input type="text" v-model="form.password" class="form_input" />
+						<input type="text" v-model="form.password" class="form-input" />
 						<div class="text-red-600" v-if="form.errors.password">
 							{{ form.errors.password }}
 						</div>
@@ -89,7 +89,7 @@
 						<input
 							type="text"
 							v-model="form.password_confirmation"
-							class="form_input"
+							class="form-input"
 						/>
 						<div class="text-red-600" v-if="form.errors.password_confirmation">
 							{{ form.errors.password_confirmation }}

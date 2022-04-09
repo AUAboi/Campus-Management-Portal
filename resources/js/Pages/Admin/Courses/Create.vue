@@ -15,7 +15,7 @@
 				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
 					<div class="pr-6 pb-8 w-full ">
 						<label class="block">Course Name: </label>
-						<input type="text" v-model="form.course_name" class="form_input" />
+						<input type="text" v-model="form.course_name" class="form-input" />
 						<div class="text-red-600" v-if="form.errors.course_name">
 							{{ form.errors.course_name }}
 						</div>
@@ -27,7 +27,7 @@
 						<input
 							type="text"
 							v-model="form.practical_credit_hours"
-							class="form_input"
+							class="form-input"
 						/>
 						<div class="text-red-600" v-if="form.errors.practical_credit_hours">
 							{{ form.errors.practical_credit_hours }}
@@ -38,7 +38,7 @@
 						<input
 							type="text"
 							v-model="form.theory_credit_hours"
-							class="form_input"
+							class="form-input"
 						/>
 						<div class="text-red-600" v-if="form.errors.theory_credit_hours">
 							{{ form.errors.theory_credit_hours }}
@@ -51,7 +51,7 @@
 						<input
 							type="text"
 							v-model="form.department_code"
-							class="form_input"
+							class="form-input"
 						/>
 						<div class="text-red-600" v-if="form.errors.department_code">
 							{{ form.errors.department_code }}
@@ -64,7 +64,7 @@
 								>(optional)</AppTooltip
 							>:
 						</label>
-						<input type="text" v-model="form.course_code" class="form_input" />
+						<input type="text" v-model="form.course_code" class="form-input" />
 						<div class="text-red-600" v-if="form.errors.course_code">
 							{{ form.errors.course_code }}
 						</div>

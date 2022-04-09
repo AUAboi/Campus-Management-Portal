@@ -28086,17 +28086,6 @@ html {
   background-color: rgba(241, 245, 249, var(--tw-bg-opacity));
 }
 
-.form_input {
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
-  width: 100%;
-  border-radius: 0.25rem;
-  border-width: 1px;
-  --tw-border-opacity: 1;
-  border-color: rgba(203, 213, 225, var(--tw-border-opacity));
-  padding: 0.5rem;
-}
-
 .btn-main {
   display: inline;
   cursor: pointer;
@@ -28109,6 +28098,60 @@ html {
   padding-bottom: 0.5rem;
   --tw-text-opacity: 1;
   color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.form-input {
+  position: relative;
+  display: block;
+  width: 100%;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-radius: 0.25rem;
+  border-width: 1px;
+}
+
+.form-input:focus {
+  --tw-border-opacity: 1;
+  border-color: rgba(120, 134, 215, var(--tw-border-opacity));
+}
+
+.form-input {
+  --tw-bg-opacity: 1;
+  background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+  padding: 0.5rem;
+  text-align: left;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  line-height: 1.5;
+  --tw-text-opacity: 1;
+  color: rgba(51, 65, 85, var(--tw-text-opacity));
+}
+
+.form-input:focus {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+.form-input.error {
+  --tw-border-opacity: 1;
+  border-color: rgba(239, 68, 68, var(--tw-border-opacity));
+}
+
+.form-input.error:focus {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgba(254, 202, 202, var(--tw-ring-opacity));
+}
+
+.form-error {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --tw-text-opacity: 1;
+  color: rgba(185, 28, 28, var(--tw-text-opacity));
 }
 
 @media (min-width: 640px) {
