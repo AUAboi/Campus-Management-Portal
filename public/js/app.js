@@ -2616,12 +2616,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2951,13 +2945,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2997,11 +2984,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
-//
-//
-//
-//
-//
 //
 //
 //
@@ -5273,6 +5255,54 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputSelect.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputSelect.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  inheritAttrs: false,
+  props: {
+    error: String,
+    label: String,
+    value: [String, Number, Boolean]
+  },
+  emits: ["input"],
+  data: function data() {
+    return {
+      selected: this.value
+    };
+  },
+  watch: {
+    selected: function selected(_selected) {
+      this.$emit("input", _selected);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputText.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputText.vue?vue&type=script&lang=js& ***!
@@ -5299,7 +5329,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   inheritAttrs: false,
   props: {
@@ -5309,21 +5338,14 @@ __webpack_require__.r(__webpack_exports__);
     },
     error: String,
     label: String,
-    modelValue: String
+    value: {
+      type: String,
+      "default": ""
+    }
   },
-  emits: ["update:modelValue"],
   methods: {
-    focus: function focus() {
-      this.$refs.input.focus();
-    },
-    select: function select() {
-      this.$refs.input.select();
-    },
-    setSelectionRange: function setSelectionRange(start, end) {
-      this.$refs.input.setSelectionRange(start, end);
-    },
     handleInput: function handleInput(event) {
-      this.$emit("update:modelValue", event.target.value);
+      this.$emit("input", event.target.value);
     }
   }
 });
@@ -23814,6 +23836,45 @@ component.options.__file = "resources/js/components/shared/AppUserMenu.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/shared/form/FormInputSelect.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/shared/form/FormInputSelect.vue ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _FormInputSelect_vue_vue_type_template_id_716cdaf4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormInputSelect.vue?vue&type=template&id=716cdaf4& */ "./resources/js/components/shared/form/FormInputSelect.vue?vue&type=template&id=716cdaf4&");
+/* harmony import */ var _FormInputSelect_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormInputSelect.vue?vue&type=script&lang=js& */ "./resources/js/components/shared/form/FormInputSelect.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _FormInputSelect_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _FormInputSelect_vue_vue_type_template_id_716cdaf4___WEBPACK_IMPORTED_MODULE_0__.render,
+  _FormInputSelect_vue_vue_type_template_id_716cdaf4___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/shared/form/FormInputSelect.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/shared/form/FormInputText.vue":
 /*!***************************************************************!*\
   !*** ./resources/js/components/shared/form/FormInputText.vue ***!
@@ -24912,6 +24973,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/shared/form/FormInputSelect.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/shared/form/FormInputSelect.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormInputSelect_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FormInputSelect.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputSelect.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormInputSelect_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/shared/form/FormInputText.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************!*\
   !*** ./resources/js/components/shared/form/FormInputText.vue?vue&type=script&lang=js& ***!
@@ -25755,6 +25832,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AppUserMenu_vue_vue_type_template_id_73063b4c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AppUserMenu_vue_vue_type_template_id_73063b4c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AppUserMenu.vue?vue&type=template&id=73063b4c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/AppUserMenu.vue?vue&type=template&id=73063b4c&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/shared/form/FormInputSelect.vue?vue&type=template&id=716cdaf4&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/shared/form/FormInputSelect.vue?vue&type=template&id=716cdaf4& ***!
+  \************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormInputSelect_vue_vue_type_template_id_716cdaf4___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormInputSelect_vue_vue_type_template_id_716cdaf4___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormInputSelect_vue_vue_type_template_id_716cdaf4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FormInputSelect.vue?vue&type=template&id=716cdaf4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputSelect.vue?vue&type=template&id=716cdaf4&");
 
 
 /***/ }),
@@ -26889,82 +26983,36 @@ var render = function() {
               }
             },
             [
-              _c("div", { staticClass: "p-8 -mr-6 -mb-8 flex flex-wrap" }, [
-                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
-                  _c("label", { staticClass: "block" }, [
-                    _vm._v("Department Name: ")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.department_name,
-                        expression: "form.department_name"
-                      }
-                    ],
-                    staticClass: "form-input",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.form.department_name },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form,
-                          "department_name",
-                          $event.target.value
-                        )
-                      }
+              _c(
+                "div",
+                { staticClass: "p-8 -mr-6 -mb-8 flex flex-wrap" },
+                [
+                  _c("FormInputText", {
+                    staticClass: "pr-6 pb-8 w-full lg:w-1/2",
+                    attrs: {
+                      label: "Department Name",
+                      error: _vm.form.errors.department_name
+                    },
+                    model: {
+                      value: _vm.form.department_name,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "department_name", $$v)
+                      },
+                      expression: "form.department_name"
                     }
                   }),
                   _vm._v(" "),
-                  _vm.form.errors.department_name
-                    ? _c("div", { staticClass: "text-red-600" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.department_name) +
-                            "\n\t\t\t\t\t"
-                        )
-                      ])
-                    : _vm._e()
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
-                  _c("label", { staticClass: "block" }, [_vm._v("Faculty: ")]),
-                  _vm._v(" "),
                   _c(
-                    "select",
+                    "FormInputSelect",
                     {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.faculty_id,
-                          expression: "form.faculty_id"
-                        }
-                      ],
-                      staticClass: "form-input",
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.form,
-                            "faculty_id",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
+                      staticClass: "pr-6 pb-8 w-full lg:w-1/2",
+                      attrs: { label: "Faculty" },
+                      model: {
+                        value: _vm.form.faculty_id,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "faculty_id", $$v)
+                        },
+                        expression: "form.faculty_id"
                       }
                     },
                     _vm._l(_vm.faculties, function(faculty) {
@@ -26975,19 +27023,10 @@ var render = function() {
                       )
                     }),
                     0
-                  ),
-                  _vm._v(" "),
-                  _vm.form.errors.faculty_id
-                    ? _c("div", { staticClass: "text-red-600" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.faculty_id) +
-                            "\n\t\t\t\t\t"
-                        )
-                      ])
-                    : _vm._e()
-                ])
-              ]),
+                  )
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "div",
@@ -27373,46 +27412,27 @@ var render = function() {
               }
             },
             [
-              _c("div", { staticClass: "p-8 -mr-6 -mb-8 flex flex-wrap" }, [
-                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
-                  _c("label", { staticClass: "block" }, [
-                    _vm._v("Faculty Name: ")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.faculty_name,
-                        expression: "form.faculty_name"
-                      }
-                    ],
-                    staticClass: "form-input",
-                    class: _vm.form.errors.faculty_name ? "error" : "",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.form.faculty_name },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "faculty_name", $event.target.value)
-                      }
+              _c(
+                "div",
+                { staticClass: "p-8 -mr-6 -mb-8 flex flex-wrap" },
+                [
+                  _c("FormInputText", {
+                    staticClass: "pr-6 pb-8 w-full lg:w-1/2",
+                    attrs: {
+                      label: "Create Faculty",
+                      error: _vm.form.errors.faculty_name
+                    },
+                    model: {
+                      value: _vm.form.faculty_name,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "faculty_name", $$v)
+                      },
+                      expression: "form.faculty_name"
                     }
-                  }),
-                  _vm._v(" "),
-                  _vm.form.errors.faculty_name
-                    ? _c("div", { staticClass: "form-error" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.faculty_name) +
-                            "\n\t\t\t\t\t"
-                        )
-                      ])
-                    : _vm._e()
-                ])
-              ]),
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "div",
@@ -27486,45 +27506,28 @@ var render = function() {
               }
             },
             [
-              _c("div", { staticClass: "p-8 -mr-6 -mb-8 flex flex-wrap" }, [
-                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
-                  _c("label", { staticClass: "block" }, [
-                    _vm._v("Faculty Name: ")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.faculty_name,
-                        expression: "form.faculty_name"
-                      }
-                    ],
-                    staticClass: "form-input",
-                    attrs: { type: "text", readonly: !_vm.permissions.update },
-                    domProps: { value: _vm.form.faculty_name },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "faculty_name", $event.target.value)
-                      }
+              _c(
+                "div",
+                { staticClass: "p-8 -mr-6 -mb-8 flex flex-wrap" },
+                [
+                  _c("FormInputText", {
+                    staticClass: "pr-6 pb-8 w-full lg:w-1/2",
+                    attrs: {
+                      label: "Faculty Name",
+                      readonly: !_vm.permissions.update,
+                      error: _vm.form.errors.faculty_name
+                    },
+                    model: {
+                      value: _vm.form.faculty_name,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "faculty_name", $$v)
+                      },
+                      expression: "form.faculty_name"
                     }
-                  }),
-                  _vm._v(" "),
-                  _vm.form.errors.faculty_name
-                    ? _c("div", { staticClass: "text-red-600" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.faculty_name) +
-                            "\n\t\t\t\t\t"
-                        )
-                      ])
-                    : _vm._e()
-                ])
-              ]),
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "div",
@@ -31432,6 +31435,79 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputSelect.vue?vue&type=template&id=716cdaf4&":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputSelect.vue?vue&type=template&id=716cdaf4& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { class: _vm.$attrs.class }, [
+    _vm.label
+      ? _c("label", { staticClass: "form-label" }, [
+          _vm._v(_vm._s(_vm.label) + ":")
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "select",
+      _vm._b(
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selected,
+              expression: "selected"
+            }
+          ],
+          staticClass: "form-select",
+          class: { error: _vm.error },
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.selected = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
+          }
+        },
+        "select",
+        Object.assign({}, _vm.$attrs, { class: null }),
+        false
+      ),
+      [_vm._t("default")],
+      2
+    ),
+    _vm._v(" "),
+    _vm.error
+      ? _c("div", { staticClass: "form-error" }, [_vm._v(_vm._s(_vm.error))])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputText.vue?vue&type=template&id=54869292&":
 /*!*************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputText.vue?vue&type=template&id=54869292& ***!
@@ -31459,11 +31535,10 @@ var render = function() {
       "input",
       _vm._b(
         {
-          ref: "input",
           staticClass: "form-input",
           class: { error: _vm.error },
           attrs: { type: "text" },
-          domProps: { value: _vm.modelValue },
+          domProps: { value: _vm.value },
           on: { input: _vm.handleInput }
         },
         "input",
@@ -31501,13 +31576,13 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "main",
+    "div",
     { staticClass: "md:h-screen md:flex md:flex-col" },
     [
       _c("portal-target", { attrs: { name: "dropdown", slim: "" } }),
       _vm._v(" "),
       _c("header", [
-        _c("div", { staticClass: "md:flex md:flex-shrink-0" }, [
+        _c("nav", { staticClass: "md:flex md:flex-shrink-0" }, [
           _c(
             "div",
             {
@@ -31635,7 +31710,7 @@ var render = function() {
         ),
         _vm._v(" "),
         _c(
-          "article",
+          "main",
           { staticClass: "md:flex-1 px-4 py-8 md:p-12 md:overflow-y-auto " },
           [
             _c("AppFlashMessage"),
@@ -44798,6 +44873,7 @@ var map = {
 	"./components/admin/layouts/TheAdminMenu.vue": "./resources/js/components/admin/layouts/TheAdminMenu.vue",
 	"./components/shared/AppUserAvatar.vue": "./resources/js/components/shared/AppUserAvatar.vue",
 	"./components/shared/AppUserMenu.vue": "./resources/js/components/shared/AppUserMenu.vue",
+	"./components/shared/form/FormInputSelect.vue": "./resources/js/components/shared/form/FormInputSelect.vue",
 	"./components/shared/form/FormInputText.vue": "./resources/js/components/shared/form/FormInputText.vue",
 	"./components/shared/layouts/Layout.vue": "./resources/js/components/shared/layouts/Layout.vue",
 	"./components/shared/modals/AppModal.vue": "./resources/js/components/shared/modals/AppModal.vue",

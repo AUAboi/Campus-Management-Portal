@@ -18,7 +18,7 @@ class DepartmentController extends Controller
         $departments =
             auth()->user()->hasRole('super-admin') ?
             Department::orderBy('department_name') :
-            auth()->user()->admin->departments()->orderBy("department_name");
+            auth()->user()->admin->departments()->orderBy('department_name');
 
         $departments =
             $departments->filter($request->only('search'))
@@ -31,6 +31,7 @@ class DepartmentController extends Controller
                 'slug' => $department->slug,
                 'faculty_name' => $department->faculty->faculty_name,
             ]);
+
 
         return Inertia::render("Admin/Departments/Index", ['departments' => $departments, 'filters' => $filters, 'permissions' => [
             'create' => auth()->user()->can('create', Faculty::class),

@@ -1,8 +1,8 @@
 <template>
-	<main class="md:h-screen md:flex md:flex-col">
+	<div class="md:h-screen md:flex md:flex-col">
 		<portal-target name="dropdown" slim />
 		<header>
-			<div class="md:flex md:flex-shrink-0">
+			<nav class="md:flex md:flex-shrink-0">
 				<div
 					class="bg-indigo-900 text-white md:flex-shrink-0 md:w-56 px-6 py-4 flex items-center justify-between md:justify-center"
 				>
@@ -50,7 +50,7 @@
 						</div>
 					</AppDropdown>
 				</div>
-			</div>
+			</nav>
 		</header>
 		<div class="md:flex md:flex-grow md:overflow-hidden">
 			<nav
@@ -59,12 +59,12 @@
 				<slot />
 			</nav>
 
-			<article class="md:flex-1 px-4 py-8 md:p-12 md:overflow-y-auto ">
+			<main class="md:flex-1 px-4 py-8 md:p-12 md:overflow-y-auto ">
 				<AppFlashMessage />
 				<portal-target name="maincontent" />
-			</article>
+			</main>
 		</div>
-	</main>
+	</div>
 </template>
 
 <script>

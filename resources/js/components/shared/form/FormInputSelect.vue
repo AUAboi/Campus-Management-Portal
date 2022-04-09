@@ -1,14 +1,14 @@
 <template>
 	<div :class="$attrs.class">
 		<label v-if="label" class="form-label">{{ label }}:</label>
-		<input
+		<select
+			v-model="selected"
 			v-bind="{ ...$attrs, class: null }"
-			class="form-input"
+			class="form-select"
 			:class="{ error: error }"
-			type="text"
-			:value="value"
-			@input="handleInput"
-		/>
+		>
+			<slot />
+		</select>
 		<div v-if="error" class="form-error">{{ error }}</div>
 	</div>
 </template>
@@ -17,20 +17,19 @@
 export default {
 	inheritAttrs: false,
 	props: {
-		type: {
-			type: String,
-			default: "text"
-		},
 		error: String,
 		label: String,
-		value: {
-			type: String,
-			default: ""
-		}
+		value: [String, Number, Boolean]
 	},
-	methods: {
-		handleInput(event) {
-			this.$emit("input", event.target.value);
+	emits: ["input"],
+	data() {
+		return {
+			selected: this.value
+		};
+	},
+	watch: {
+		selected(selected) {
+			this.$emit("input", selected);
 		}
 	}
 };
