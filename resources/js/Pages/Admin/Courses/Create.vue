@@ -12,7 +12,7 @@
 		</h1>
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form class="m-0" @submit.prevent="store">
-				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
+				<div class="form-control">
 					<div class="pr-6 pb-8 w-full ">
 						<label class="block">Course Name: </label>
 						<input type="text" v-model="form.course_name" class="form-input" />
@@ -21,7 +21,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
+				<div class="form-control">
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block">Practical Credit Hours: </label>
 						<input
@@ -45,7 +45,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
+				<div class="form-control">
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block">Department Code: </label>
 						<input

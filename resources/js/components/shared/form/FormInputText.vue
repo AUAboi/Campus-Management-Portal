@@ -5,7 +5,7 @@
 			v-bind="{ ...$attrs, class: null }"
 			class="form-input"
 			:class="{ error: error }"
-			type="text"
+			:type="type"
 			:value="value"
 			@input="handleInput"
 		/>

@@ -28162,6 +28162,14 @@ html {
   background-position: right 0.7rem center;
 }
 
+.form-control {
+  margin-right: -1.5rem;
+  margin-bottom: -2rem;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2rem;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

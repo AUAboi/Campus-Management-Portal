@@ -7,15 +7,39 @@ use Inertia\Inertia;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
     public function create()
     {
+        $this->authorize('create', User::class);
+
         return Inertia::render('Admin/Users/Students/Create');
     }
 
+    public function store(Request $request)
+    {
+        $this->authorize('create', User::class);
 
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'father_name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users',
+            'cnic' => 'required|string|max:255',
+            'password' => 'required|confirmed',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        $user->student()->create();
+        $user->assignRole('student');
+
+        return redirect()->route('admin.users.students.index');
+    }
 
     public function edit(User $user)
     {

@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use App\Models\Faculty;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 
@@ -17,30 +18,13 @@ class AdminController extends Controller
         return Inertia::render('Admin/Users/Admins/Create');
     }
 
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
 
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'father_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'confirmed|required|string|min:8',
-            'cnic' => 'required|string|min:13|max:13|unique:users',
-            'phone' => 'required|string|max:11',
-            'gender' => 'required|string'
-        ]);
+        $validated = $request->validated();
+        $validated['password'] = Hash::make($validated['password']);
 
-
-
-        $user = User::create([
-            'name' => $request->name,
-            'father_name' => $request->father_name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'cnic' => $request->cnic,
-            'phone' => $request->phone,
-            'gender' => $request->gender
-        ]);
+        $user = User::create($validated);
 
         $user->assignRole('admin');
         $user->admin()->create();

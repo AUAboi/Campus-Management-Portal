@@ -6,7 +6,7 @@
 
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form class="m-0" @submit.prevent="store">
-				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
+				<div class="form-control">
 					<FormInputText
 						label="Department Name"
 						v-model="form.department_name"
@@ -18,6 +18,7 @@
 						class="pr-6 pb-8 w-full lg:w-1/2"
 						label="Faculty"
 						v-model="form.faculty_id"
+						:error="form.errors.faculty_id"
 					>
 						<option
 							v-for="faculty in faculties"

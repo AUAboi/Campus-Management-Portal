@@ -1,5 +1,5 @@
 <template>
-	<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
+	<div class="form-control">
 		<div class="pr-6 pb-8 w-full lg:w-1/2">
 			<label class="block">Student Name: </label>
 			<input type="text" v-model="form.name" class="form-input" />

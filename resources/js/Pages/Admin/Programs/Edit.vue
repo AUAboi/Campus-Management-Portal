@@ -18,7 +18,7 @@
 
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form @submit.prevent="update" id="update-form" class="m-0">
-				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
+				<div class="form-control">
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block">Degree: </label>
 						<select class="form-input" v-model="form.degree_id">
@@ -50,7 +50,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="p-8 -mr-6 -mb-8 flex flex-wrap">
+				<div class="form-control">
 					<div class="pr-6 pb-8 w-full lg:w-1/2">
 						<label class="block">Credit Hours: </label>
 						<input type="text" v-model="form.credit_hours" class="form-input" />
