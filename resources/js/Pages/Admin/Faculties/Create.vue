@@ -6,7 +6,6 @@
 			<form class="m-0" @submit.prevent="store">
 				<div class="form-control">
 					<FormInputText
-						class="pr-6 pb-8 w-full lg:w-1/2"
 						v-model="form.faculty_name"
 						label="Create Faculty"
 						:error="form.errors.faculty_name"

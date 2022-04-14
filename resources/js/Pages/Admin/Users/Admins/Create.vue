@@ -7,13 +7,11 @@
 			<form id="create-form" @submit.prevent="store">
 				<div class="form-control">
 					<FormInputText
-						class="pr-6 pb-8 w-full lg:w-1/2"
 						label="Name"
 						v-model="form.name"
 						:error="form.errors.name"
 					/>
 					<FormInputText
-						class="pr-6 pb-8 w-full lg:w-1/2"
 						label="Email"
 						v-model="form.email"
 						:error="form.errors.email"
@@ -21,13 +19,11 @@
 				</div>
 				<div class="form-control">
 					<FormInputText
-						class="pr-6 pb-8 w-full lg:w-1/2"
 						label="Father Name"
 						v-model="form.father_name"
 						:error="form.errors.father_name"
 					/>
 					<FormInputSelect
-						class="pr-6 pb-8 w-full lg:w-1/2"
 						label="Gender"
 						v-model="form.gender"
 						:error="form.errors.gender"
@@ -39,13 +35,11 @@
 				</div>
 				<div class="form-control">
 					<FormInputText
-						class="pr-6 pb-8 w-full lg:w-1/2"
 						label="Phone Number"
 						v-model="form.phone_number"
 						:error="form.errors.phone_number"
 					/>
 					<FormInputText
-						class="pr-6 pb-8 w-full lg:w-1/2"
 						label="CNIC"
 						v-model="form.cnic"
 						:error="form.errors.cnic"
@@ -55,13 +49,11 @@
 				</div>
 				<div class="form-control">
 					<FormInputText
-						class="pr-6 pb-8 w-full lg:w-1/2"
 						label="Password"
 						v-model="form.password"
 						:error="form.errors.password"
 					/>
 					<FormInputText
-						class="pr-6 pb-8 w-full lg:w-1/2"
 						label="Confirm Password"
 						v-model="form.password_confirmation"
 						:error="form.errors.password_confirmation"

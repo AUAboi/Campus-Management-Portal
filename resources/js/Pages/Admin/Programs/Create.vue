@@ -1,19 +1,17 @@
 <template>
 	<div>
 		<AppAdminHead title="Create program" />
+		<BreadCrumbs :crumbs="crumbs" />
 
-		<h1 class="mb-8 font-bold text-3xl">
-			<Link
-				class="text-indigo-400 hover:text-indigo-600"
-				:href="$route('admin.programs')"
-				>Program</Link
-			>
-			<span class="text-indigo-400 font-medium">/</span> Create
-		</h1>
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form class="m-0" @submit.prevent="store">
 				<div class="form-control">
-					<div class="pr-6 pb-8 w-full lg:w-1/2">
+					<FormInputText
+						label="Name"
+						v-model="form.name"
+						:error="form.errors.name"
+					/>
+					<div>
 						<label class="block">Degree: </label>
 						<select v-model="form.degree_id" class="form-input">
 							<option
@@ -27,7 +25,7 @@
 							{{ form.errors.degree_id }}
 						</div>
 					</div>
-					<div class="pr-6 pb-8 w-full lg:w-1/2">
+					<div>
 						<label class="block">Department: </label>
 						<select v-model="form.department_id" class="form-input">
 							<option
@@ -43,7 +41,7 @@
 					</div>
 				</div>
 				<div class="form-control">
-					<div class="pr-6 pb-8 w-full lg:w-1/2">
+					<div>
 						<label class="block">Credit Hours: </label>
 						<input type="text" v-model="form.credit_hours" class="form-input" />
 						<div class="text-red-600" v-if="form.errors.credit_hours">
@@ -85,7 +83,17 @@ export default {
 				degree_id: "",
 				department_id: "",
 				credit_hours: ""
-			})
+			}),
+
+			crumbs: [
+				{
+					text: "Program",
+					route: this.$route("admin.programs")
+				},
+				{
+					text: "Create"
+				}
+			]
 		};
 	},
 	methods: {

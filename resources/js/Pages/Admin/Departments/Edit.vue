@@ -6,7 +6,7 @@
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form @submit.prevent="update" id="update-form" class="m-0">
 				<div class="form-control">
-					<div class="pr-6 pb-8 w-full lg:w-1/2">
+					<div>
 						<label class="block">Department Name: </label>
 						<input
 							type="text"
@@ -19,7 +19,7 @@
 							{{ form.errors.department_name }}
 						</div>
 					</div>
-					<div class="pr-6 pb-8 w-full lg:w-1/2">
+					<div>
 						<label class="block">Faculty: </label>
 						<select
 							:disabled="!permissions.update"

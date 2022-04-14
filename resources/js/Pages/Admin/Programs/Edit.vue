@@ -19,45 +19,42 @@
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form @submit.prevent="update" id="update-form" class="m-0">
 				<div class="form-control">
-					<div class="pr-6 pb-8 w-full lg:w-1/2">
-						<label class="block">Degree: </label>
-						<select class="form-input" v-model="form.degree_id">
-							<option
-								v-for="degree in degrees"
-								:key="degree.id"
-								:value="degree.id"
-							>
-								{{ degree.degree_name }}
-							</option>
-						</select>
-						<div class="text-red-600" v-if="form.errors.department_name">
-							{{ form.errors.department_name }}
-						</div>
-					</div>
-					<div class="pr-6 pb-8 w-full lg:w-1/2">
-						<label class="block">Department: </label>
-						<select class="form-input" v-model="form.department_id">
-							<option
-								v-for="department in departments"
-								:key="department.id"
-								:value="department.id"
-							>
-								{{ department.department_name }}
-							</option>
-						</select>
-						<div class="text-red-600" v-if="form.errors.department_name">
-							{{ form.errors.department_name }}
-						</div>
-					</div>
+					<FormInputSelect
+						label="Degree"
+						:error="form.errors.degree_id"
+						v-model="form.degree_id"
+					>
+						<option
+							v-for="degree in degrees"
+							:key="degree.id"
+							:value="degree.id"
+						>
+							{{ degree.degree_name }}
+						</option>
+					</FormInputSelect>
+
+					<FormInputSelect
+						label="Department"
+						:error="form.errors.department_id"
+						v-model="form.department_id"
+					>
+						<option
+							v-for="department in departments"
+							:key="department.id"
+							:value="department.id"
+						>
+							{{ department.department_name }}
+						</option>
+					</FormInputSelect>
 				</div>
 				<div class="form-control">
-					<div class="pr-6 pb-8 w-full lg:w-1/2">
-						<label class="block">Credit Hours: </label>
-						<input type="text" v-model="form.credit_hours" class="form-input" />
-						<div class="text-red-600" v-if="form.errors.credit_hours">
-							{{ form.errors.credit_hours }}
-						</div>
-					</div>
+					<FormInputText
+						label="Credit Hours"
+						:error="form.errors.credit_hours"
+						v-model="form.credit_hours"
+						type="number"
+						min="0"
+					/>
 				</div>
 				<div
 					class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center"
@@ -107,11 +104,10 @@
 </template>
 
 <script>
-import { Head, Link } from "@inertiajs/inertia-vue";
+import { Link } from "@inertiajs/inertia-vue";
 
 export default {
 	components: {
-		Head,
 		Link
 	},
 	props: {

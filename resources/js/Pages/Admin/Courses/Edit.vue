@@ -6,57 +6,46 @@
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form @submit.prevent="update" id="update-form" class="m-0">
 				<div class="form-control">
-					<div class="pr-6 pb-8 w-full">
-						<label class="block">Course Name: </label>
-						<input type="text" v-model="form.course_name" class="form-input" />
-						<div class="text-red-600" v-if="form.errors.course_name">
-							{{ form.errors.course_name }}
-						</div>
-					</div>
+					<FormInputText
+						class="lg:w-full"
+						label="Course Name"
+						v-model="form.course_name"
+						:error="form.errors.course_name"
+					/>
 				</div>
 				<div class="form-control">
-					<div class="pr-6 pb-8 w-full lg:w-1/2">
-						<label class="block">Theory Credit Hours: </label>
-						<input
-							type="text"
-							v-model="form.theory_credit_hours"
-							class="form-input"
-						/>
-						<div class="text-red-600" v-if="form.errors.theory_credit_hours">
-							{{ form.errors.theory_credit_hours }}
-						</div>
-					</div>
-					<div class="pr-6 pb-8 w-full lg:w-1/2">
-						<label class="block">Practical Credit Hours: </label>
-						<input
-							type="text"
-							v-model="form.practical_credit_hours"
-							class="form-input"
-						/>
-						<div class="text-red-600" v-if="form.errors.practical_credit_hours">
-							{{ form.errors.practical_credit_hours }}
-						</div>
-					</div>
+					<FormInputText
+						label="Theory Credit Hours"
+						v-model="form.theory_credit_hours"
+						:error="form.errors.theory_credit_hours"
+						type="number"
+						max="99"
+						min="0"
+					/>
+					<FormInputText
+						label="Practical Credit Hours"
+						v-model="form.practical_credit_hours"
+						:error="form.errors.practical_credit_hours"
+						type="number"
+						max="99"
+						min="0"
+					/>
 				</div>
 				<div class="form-control">
-					<div class="pr-6 pb-8 w-full lg:w-1/2">
-						<label class="block">Department Code: </label>
-						<input
-							type="text"
-							v-model="form.department_code"
-							class="form-input"
-						/>
-						<div class="text-red-600" v-if="form.errors.department_code">
-							{{ form.errors.department_code }}
-						</div>
-					</div>
-					<div class="pr-6 pb-8 w-full lg:w-1/2">
-						<label class="block">Course Code: : </label>
-						<input type="text" v-model="form.course_code" class="form-input" />
-						<div class="text-red-600" v-if="form.errors.course_code">
-							{{ form.errors.course_code }}
-						</div>
-					</div>
+					<FormInputText
+						label="Department Code"
+						v-model="form.department_code"
+						:error="form.errors.department_code"
+					/>
+
+					<FormInputText
+						label="Course Code"
+						v-model="form.course_code"
+						:error="form.errors.course_code"
+						type="number"
+						max="999"
+						min="0"
+					/>
 				</div>
 				<div
 					class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center"
@@ -92,13 +81,7 @@
 </template>
 
 <script>
-import { Head, Link } from "@inertiajs/inertia-vue";
-
 export default {
-	components: {
-		Head,
-		Link
-	},
 	props: {
 		course: {
 			type: Object,

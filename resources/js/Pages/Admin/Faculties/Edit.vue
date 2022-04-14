@@ -6,7 +6,6 @@
 			<form @submit.prevent="update" id="update-form" class="m-0">
 				<div class="form-control">
 					<FormInputText
-						class="pr-6 pb-8 w-full lg:w-1/2"
 						label="Faculty Name"
 						v-model="form.faculty_name"
 						:readonly="!permissions.update"

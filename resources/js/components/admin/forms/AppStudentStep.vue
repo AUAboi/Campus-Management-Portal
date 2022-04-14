@@ -1,13 +1,13 @@
 <template>
 	<div class="form-control">
-		<div class="pr-6 pb-8 w-full lg:w-1/2">
+		<div>
 			<label class="block">Student Name: </label>
 			<input type="text" v-model="form.name" class="form-input" />
 			<div class="text-red-600" v-if="form.errors.name">
 				{{ form.errors.name }}
 			</div>
 		</div>
-		<div class="pr-6 pb-8 w-full lg:w-1/2">
+		<div>
 			<label class="block">Email: </label>
 			<input type="text" v-model="form.email" class="form-input" />
 			<div class="text-red-600" v-if="form.errors.email">

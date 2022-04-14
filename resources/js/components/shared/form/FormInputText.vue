@@ -1,5 +1,5 @@
 <template>
-	<div :class="$attrs.class">
+	<div class="pr-6 pb-8 w-full lg:w-1/2" :class="$attrs.class">
 		<label v-if="label" class="form-label">{{ label }}:</label>
 		<input
 			v-bind="{ ...$attrs, class: null }"
@@ -24,7 +24,7 @@ export default {
 		error: String,
 		label: String,
 		value: {
-			type: String,
+			type: [String, Number],
 			default: ""
 		}
 	},
@@ -35,3 +35,17 @@ export default {
 	}
 };
 </script>
+
+<style scoped>
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+	-moz-appearance: textfield;
+}
+</style>

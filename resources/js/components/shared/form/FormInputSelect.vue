@@ -1,5 +1,5 @@
 <template>
-	<div :class="$attrs.class">
+	<div class="pr-6 pb-8 w-full lg:w-1/2" :class="$attrs.class">
 		<label v-if="label" class="form-label">{{ label }}:</label>
 		<select
 			v-model="selected"

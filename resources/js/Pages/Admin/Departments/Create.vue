@@ -11,11 +11,9 @@
 						label="Department Name"
 						v-model="form.department_name"
 						:error="form.errors.department_name"
-						class="pr-6 pb-8 w-full lg:w-1/2"
 					/>
 
 					<FormInputSelect
-						class="pr-6 pb-8 w-full lg:w-1/2"
 						label="Faculty"
 						v-model="form.faculty_id"
 						:error="form.errors.faculty_id"

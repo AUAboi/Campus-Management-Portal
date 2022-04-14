@@ -1,25 +1,16 @@
 <template>
 	<div>
 		<AppAdminHead :title="form.name" />
-		<h1 class="mb-8 font-bold text-3xl">
-			<Link
-				class="text-indigo-400 hover:text-indigo-600"
-				:href="$route('admin.users')"
-				>Users</Link
-			>
-			<span class="text-indigo-400 font-medium">/</span>
-			{{ form.name }}
-		</h1>
+		<BreadCrumbs :crumbs="crumbs" />
+
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form @submit.prevent="update" id="update-form" class="m-0">
 				<div class="form-control">
-					<div class="pr-6 pb-8 w-full lg:w-1/2">
-						<label class="block">User Name: </label>
-						<input type="text" v-model="form.name" class="form-input" />
-						<div class="text-red-600" v-if="form.errors.name">
-							{{ form.errors.name }}
-						</div>
-					</div>
+					<FormInputText
+						label="User Name"
+						v-model="form.name"
+						:error="form.errors.name"
+					/>
 				</div>
 				<div
 					class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center"
@@ -171,8 +162,23 @@ export default {
 				name: this.user.name,
 				permissions: this.user.permissions,
 				faculties: this.user.faculties
-			})
+			}),
+
+			crumbs: [
+				{
+					text: "Users",
+					route: this.$route("admin.users")
+				},
+				{
+					text: this.user.name
+				}
+			]
 		};
+	},
+	watch: {
+		"form.name": function(newValue) {
+			this.crumbs[this.crumbs.length - 1].text = newValue;
+		}
 	},
 	methods: {
 		update() {

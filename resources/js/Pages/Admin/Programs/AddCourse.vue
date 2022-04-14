@@ -2,21 +2,7 @@
 	<div>
 		<AppAdminHead title="Courses" />
 
-		<h1 class="mb-8 font-bold text-3xl">
-			<Link
-				class="text-indigo-400 hover:text-indigo-600"
-				:href="$route('admin.faculties')"
-				>Programs</Link
-			>
-			<span class="text-indigo-400 font-medium">/</span>
-
-			<Link
-				class="text-indigo-400 hover:text-indigo-600"
-				:href="$route('admin.faculties')"
-				>Courses</Link
-			>
-			<span class="text-indigo-400 font-medium">/</span>Add
-		</h1>
+		<BreadCrumbs :crumbs="crumbs" />
 		<h3 class="mb-8 font-bold text-3xl">Semester {{ semester }}</h3>
 
 		<button class="btn-main mb-4" @click.prevent="update">
@@ -47,7 +33,7 @@
 					</td>
 					<td class="border-t">
 						<span class="px-6 py-4 flex items-center focus:text-indigo-500">
-							{{ creditHours(course) }}
+							{{ course.total_credit_hours }}
 						</span>
 					</td>
 					<td class="border-t w-px">
@@ -100,7 +86,20 @@ export default {
 		return {
 			updateForm: this.$inertia.form({
 				courses: this.courses
-			})
+			}),
+			crumbs: [
+				{
+					text: "Program",
+					route: this.$route("admin.programs")
+				},
+				{
+					text: "Courses",
+					route: this.$route("admin.courses")
+				},
+				{
+					text: "Add"
+				}
+			]
 		};
 	},
 	methods: {
@@ -111,15 +110,6 @@ export default {
 					this.semester
 				])
 			);
-		},
-
-		belongsToProgram(course) {
-			return this.program_courses.includes(course.id);
-		},
-
-		creditHours(course) {
-			let hours = course.theory_credit_hours + course.practical_credit_hours;
-			return `${hours}(${course.theory_credit_hours}-${course.practical_credit_hours})`;
 		}
 	}
 };

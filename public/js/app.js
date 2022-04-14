@@ -2169,34 +2169,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2210,7 +2182,13 @@ __webpack_require__.r(__webpack_exports__);
         theory_credit_hours: "",
         department_code: "",
         course_code: ""
-      })
+      }),
+      crumbs: [{
+        text: "Course",
+        route: this.$route("admin.courses")
+      }, {
+        text: "Create"
+      }]
     };
   },
   methods: {
@@ -2233,7 +2211,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
 //
 //
 //
@@ -2316,23 +2293,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  components: {
-    Head: _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.Head,
-    Link: _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.Link
-  },
   props: {
     course: {
       type: Object,
@@ -2575,8 +2536,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
-//
-//
 //
 //
 //
@@ -2945,7 +2904,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2985,7 +2943,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
-//
 //
 //
 //
@@ -3438,20 +3395,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -3486,19 +3429,21 @@ __webpack_require__.r(__webpack_exports__);
     return {
       updateForm: this.$inertia.form({
         courses: this.courses
-      })
+      }),
+      crumbs: [{
+        text: "Program",
+        route: this.$route("admin.programs")
+      }, {
+        text: "Courses",
+        route: this.$route("admin.courses")
+      }, {
+        text: "Add"
+      }]
     };
   },
   methods: {
     update: function update() {
       this.updateForm.put(this.$route("admin.programs.courses.store", [this.program.slug, this.semester]));
-    },
-    belongsToProgram: function belongsToProgram(course) {
-      return this.program_courses.includes(course.id);
-    },
-    creditHours: function creditHours(course) {
-      var hours = course.theory_credit_hours + course.practical_credit_hours;
-      return "".concat(hours, "(").concat(course.theory_credit_hours, "-").concat(course.practical_credit_hours, ")");
     }
   }
 });
@@ -3517,8 +3462,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
-//
-//
 //
 //
 //
@@ -3602,7 +3545,13 @@ __webpack_require__.r(__webpack_exports__);
         degree_id: "",
         department_id: "",
         credit_hours: ""
-      })
+      }),
+      crumbs: [{
+        text: "Program",
+        route: this.$route("admin.programs")
+      }, {
+        text: "Create"
+      }]
     };
   },
   methods: {
@@ -3731,13 +3680,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    Head: _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.Head,
     Link: _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.Link
   },
   props: {
@@ -4025,14 +3970,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -4223,15 +4160,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -4255,8 +4183,19 @@ __webpack_require__.r(__webpack_exports__);
         name: this.user.name,
         permissions: this.user.permissions,
         faculties: this.user.faculties
-      })
+      }),
+      crumbs: [{
+        text: "Users",
+        route: this.$route("admin.users")
+      }, {
+        text: this.user.name
+      }]
     };
+  },
+  watch: {
+    "form.name": function formName(newValue) {
+      this.crumbs[this.crumbs.length - 1].text = newValue;
+    }
   },
   methods: {
     update: function update() {
@@ -5322,7 +5261,7 @@ __webpack_require__.r(__webpack_exports__);
     error: String,
     label: String,
     value: {
-      type: String,
+      type: [String, Number],
       "default": ""
     }
   },
@@ -5889,6 +5828,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     tooltip: {
@@ -6243,6 +6185,30 @@ if ($defineProperty) {
 } else {
 	module.exports.apply = applyBind;
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputText.vue?vue&type=style&index=0&id=54869292&scoped=true&lang=css&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputText.vue?vue&type=style&index=0&id=54869292&scoped=true&lang=css& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "/* Chrome, Safari, Edge, Opera */\ninput[data-v-54869292]::-webkit-outer-spin-button,\r\ninput[data-v-54869292]::-webkit-inner-spin-button {\n  -webkit-appearance: none;\n  margin: 0;\n}\n\n/* Firefox */\ninput[type=\"number\"][data-v-54869292] {\n  -moz-appearance: textfield;\n}\r\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
 
 /***/ }),
@@ -22037,6 +22003,36 @@ module.exports = function getSideChannel() {
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputText.vue?vue&type=style&index=0&id=54869292&scoped=true&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputText.vue?vue&type=style&index=0&id=54869292&scoped=true&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FormInputText_vue_vue_type_style_index_0_id_54869292_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FormInputText.vue?vue&type=style&index=0&id=54869292&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputText.vue?vue&type=style&index=0&id=54869292&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FormInputText_vue_vue_type_style_index_0_id_54869292_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FormInputText_vue_vue_type_style_index_0_id_54869292_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/layouts/Layout.vue?vue&type=style&index=0&lang=css&":
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/layouts/Layout.vue?vue&type=style&index=0&lang=css& ***!
@@ -23869,23 +23865,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _FormInputText_vue_vue_type_template_id_54869292___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormInputText.vue?vue&type=template&id=54869292& */ "./resources/js/components/shared/form/FormInputText.vue?vue&type=template&id=54869292&");
+/* harmony import */ var _FormInputText_vue_vue_type_template_id_54869292_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormInputText.vue?vue&type=template&id=54869292&scoped=true& */ "./resources/js/components/shared/form/FormInputText.vue?vue&type=template&id=54869292&scoped=true&");
 /* harmony import */ var _FormInputText_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormInputText.vue?vue&type=script&lang=js& */ "./resources/js/components/shared/form/FormInputText.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _FormInputText_vue_vue_type_style_index_0_id_54869292_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FormInputText.vue?vue&type=style&index=0&id=54869292&scoped=true&lang=css& */ "./resources/js/components/shared/form/FormInputText.vue?vue&type=style&index=0&id=54869292&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
+;
 
 
 /* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _FormInputText_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _FormInputText_vue_vue_type_template_id_54869292___WEBPACK_IMPORTED_MODULE_0__.render,
-  _FormInputText_vue_vue_type_template_id_54869292___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _FormInputText_vue_vue_type_template_id_54869292_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _FormInputText_vue_vue_type_template_id_54869292_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  null,
+  "54869292",
   null
   
 )
@@ -25164,6 +25162,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/shared/form/FormInputText.vue?vue&type=style&index=0&id=54869292&scoped=true&lang=css&":
+/*!************************************************************************************************************************!*\
+  !*** ./resources/js/components/shared/form/FormInputText.vue?vue&type=style&index=0&id=54869292&scoped=true&lang=css& ***!
+  \************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FormInputText_vue_vue_type_style_index_0_id_54869292_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FormInputText.vue?vue&type=style&index=0&id=54869292&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputText.vue?vue&type=style&index=0&id=54869292&scoped=true&lang=css&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/shared/layouts/Layout.vue?vue&type=style&index=0&lang=css&":
 /*!********************************************************************************************!*\
   !*** ./resources/js/components/shared/layouts/Layout.vue?vue&type=style&index=0&lang=css& ***!
@@ -25836,19 +25847,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/shared/form/FormInputText.vue?vue&type=template&id=54869292&":
-/*!**********************************************************************************************!*\
-  !*** ./resources/js/components/shared/form/FormInputText.vue?vue&type=template&id=54869292& ***!
-  \**********************************************************************************************/
+/***/ "./resources/js/components/shared/form/FormInputText.vue?vue&type=template&id=54869292&scoped=true&":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/js/components/shared/form/FormInputText.vue?vue&type=template&id=54869292&scoped=true& ***!
+  \**********************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormInputText_vue_vue_type_template_id_54869292___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormInputText_vue_vue_type_template_id_54869292___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormInputText_vue_vue_type_template_id_54869292_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormInputText_vue_vue_type_template_id_54869292_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormInputText_vue_vue_type_template_id_54869292___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FormInputText.vue?vue&type=template&id=54869292& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputText.vue?vue&type=template&id=54869292&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormInputText_vue_vue_type_template_id_54869292_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FormInputText.vue?vue&type=template&id=54869292&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputText.vue?vue&type=template&id=54869292&scoped=true&");
 
 
 /***/ }),
@@ -26061,26 +26072,7 @@ var render = function() {
     [
       _c("AppAdminHead", { attrs: { title: "Create course" } }),
       _vm._v(" "),
-      _c(
-        "h1",
-        { staticClass: "mb-8 font-bold text-3xl" },
-        [
-          _c(
-            "Link",
-            {
-              staticClass: "text-indigo-400 hover:text-indigo-600",
-              attrs: { href: _vm.$route("admin.courses") }
-            },
-            [_vm._v("Courses")]
-          ),
-          _vm._v(" "),
-          _c("span", { staticClass: "text-indigo-400 font-medium" }, [
-            _vm._v("/")
-          ]),
-          _vm._v(" Create\n\t")
-        ],
-        1
-      ),
+      _c("BreadCrumbs", { attrs: { crumbs: _vm.crumbs } }),
       _vm._v(" "),
       _c(
         "div",
@@ -26098,228 +26090,102 @@ var render = function() {
               }
             },
             [
-              _c("div", { staticClass: "form-control" }, [
-                _c("div", { staticClass: "pr-6 pb-8 w-full " }, [
-                  _c("label", { staticClass: "block" }, [
-                    _vm._v("Course Name: ")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.course_name,
-                        expression: "form.course_name"
-                      }
-                    ],
-                    staticClass: "form-input",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.form.course_name },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "course_name", $event.target.value)
-                      }
+              _c(
+                "div",
+                { staticClass: "form-control" },
+                [
+                  _c("FormInputText", {
+                    staticClass: "lg:w-full",
+                    attrs: {
+                      label: "Course Name",
+                      error: _vm.form.errors.course_name
+                    },
+                    model: {
+                      value: _vm.form.course_name,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "course_name", $$v)
+                      },
+                      expression: "form.course_name"
                     }
-                  }),
-                  _vm._v(" "),
-                  _vm.form.errors.course_name
-                    ? _c("div", { staticClass: "text-red-600" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.course_name) +
-                            "\n\t\t\t\t\t"
-                        )
-                      ])
-                    : _vm._e()
-                ])
-              ]),
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "form-control" }, [
-                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
-                  _c("label", { staticClass: "block" }, [
-                    _vm._v("Practical Credit Hours: ")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.practical_credit_hours,
-                        expression: "form.practical_credit_hours"
-                      }
-                    ],
-                    staticClass: "form-input",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.form.practical_credit_hours },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form,
-                          "practical_credit_hours",
-                          $event.target.value
-                        )
-                      }
+              _c(
+                "div",
+                { staticClass: "form-control" },
+                [
+                  _c("FormInputText", {
+                    attrs: {
+                      label: "Practical Credit Hours",
+                      error: _vm.form.errors.practical_credit_hours,
+                      type: "number",
+                      max: "99",
+                      min: "0"
+                    },
+                    model: {
+                      value: _vm.form.practical_credit_hours,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "practical_credit_hours", $$v)
+                      },
+                      expression: "form.practical_credit_hours"
                     }
                   }),
                   _vm._v(" "),
-                  _vm.form.errors.practical_credit_hours
-                    ? _c("div", { staticClass: "text-red-600" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.practical_credit_hours) +
-                            "\n\t\t\t\t\t"
-                        )
-                      ])
-                    : _vm._e()
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
-                  _c("label", { staticClass: "block" }, [
-                    _vm._v("Theory Credit Hours: ")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.theory_credit_hours,
-                        expression: "form.theory_credit_hours"
-                      }
-                    ],
-                    staticClass: "form-input",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.form.theory_credit_hours },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form,
-                          "theory_credit_hours",
-                          $event.target.value
-                        )
-                      }
+                  _c("FormInputText", {
+                    attrs: {
+                      label: "Theory Credit Hours",
+                      error: _vm.form.errors.theory_credit_hours,
+                      max: "99",
+                      min: "0"
+                    },
+                    model: {
+                      value: _vm.form.theory_credit_hours,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "theory_credit_hours", $$v)
+                      },
+                      expression: "form.theory_credit_hours"
                     }
-                  }),
-                  _vm._v(" "),
-                  _vm.form.errors.theory_credit_hours
-                    ? _c("div", { staticClass: "text-red-600" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.theory_credit_hours) +
-                            "\n\t\t\t\t\t"
-                        )
-                      ])
-                    : _vm._e()
-                ])
-              ]),
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "form-control" }, [
-                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
-                  _c("label", { staticClass: "block" }, [
-                    _vm._v("Department Code: ")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.department_code,
-                        expression: "form.department_code"
-                      }
-                    ],
-                    staticClass: "form-input",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.form.department_code },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form,
-                          "department_code",
-                          $event.target.value
-                        )
-                      }
+              _c(
+                "div",
+                { staticClass: "form-control" },
+                [
+                  _c("FormInputText", {
+                    attrs: {
+                      label: "Department Code",
+                      error: _vm.form.errors.department_code
+                    },
+                    model: {
+                      value: _vm.form.department_code,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "department_code", $$v)
+                      },
+                      expression: "form.department_code"
                     }
                   }),
                   _vm._v(" "),
-                  _vm.form.errors.department_code
-                    ? _c("div", { staticClass: "text-red-600" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.department_code) +
-                            "\n\t\t\t\t\t"
-                        )
-                      ])
-                    : _vm._e()
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
-                  _c(
-                    "label",
-                    { staticClass: "block" },
-                    [
-                      _vm._v("Course Code:\n\t\t\t\t\t\t"),
-                      _c(
-                        "AppTooltip",
-                        {
-                          attrs: {
-                            tooltip: "Automatically generate course code"
-                          }
-                        },
-                        [_vm._v("(optional)")]
-                      ),
-                      _vm._v(":\n\t\t\t\t\t")
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.course_code,
-                        expression: "form.course_code"
-                      }
-                    ],
-                    staticClass: "form-input",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.form.course_code },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "course_code", $event.target.value)
-                      }
+                  _c("FormInputText", {
+                    attrs: {
+                      label: "Course Code",
+                      error: _vm.form.errors.course_code
+                    },
+                    model: {
+                      value: _vm.form.course_code,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "course_code", $$v)
+                      },
+                      expression: "form.course_code"
                     }
-                  }),
-                  _vm._v(" "),
-                  _vm.form.errors.course_code
-                    ? _c("div", { staticClass: "text-red-600" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.course_code) +
-                            "\n\t\t\t\t\t"
-                        )
-                      ])
-                    : _vm._e()
-                ])
-              ]),
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "div",
@@ -26393,213 +26259,106 @@ var render = function() {
               }
             },
             [
-              _c("div", { staticClass: "form-control" }, [
-                _c("div", { staticClass: "pr-6 pb-8 w-full" }, [
-                  _c("label", { staticClass: "block" }, [
-                    _vm._v("Course Name: ")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.course_name,
-                        expression: "form.course_name"
-                      }
-                    ],
-                    staticClass: "form-input",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.form.course_name },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "course_name", $event.target.value)
-                      }
+              _c(
+                "div",
+                { staticClass: "form-control" },
+                [
+                  _c("FormInputText", {
+                    staticClass: "lg:w-full",
+                    attrs: {
+                      label: "Course Name",
+                      error: _vm.form.errors.course_name
+                    },
+                    model: {
+                      value: _vm.form.course_name,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "course_name", $$v)
+                      },
+                      expression: "form.course_name"
                     }
-                  }),
-                  _vm._v(" "),
-                  _vm.form.errors.course_name
-                    ? _c("div", { staticClass: "text-red-600" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.course_name) +
-                            "\n\t\t\t\t\t"
-                        )
-                      ])
-                    : _vm._e()
-                ])
-              ]),
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "form-control" }, [
-                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
-                  _c("label", { staticClass: "block" }, [
-                    _vm._v("Theory Credit Hours: ")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.theory_credit_hours,
-                        expression: "form.theory_credit_hours"
-                      }
-                    ],
-                    staticClass: "form-input",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.form.theory_credit_hours },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form,
-                          "theory_credit_hours",
-                          $event.target.value
-                        )
-                      }
+              _c(
+                "div",
+                { staticClass: "form-control" },
+                [
+                  _c("FormInputText", {
+                    attrs: {
+                      label: "Theory Credit Hours",
+                      error: _vm.form.errors.theory_credit_hours,
+                      type: "number",
+                      max: "99",
+                      min: "0"
+                    },
+                    model: {
+                      value: _vm.form.theory_credit_hours,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "theory_credit_hours", $$v)
+                      },
+                      expression: "form.theory_credit_hours"
                     }
                   }),
                   _vm._v(" "),
-                  _vm.form.errors.theory_credit_hours
-                    ? _c("div", { staticClass: "text-red-600" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.theory_credit_hours) +
-                            "\n\t\t\t\t\t"
-                        )
-                      ])
-                    : _vm._e()
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
-                  _c("label", { staticClass: "block" }, [
-                    _vm._v("Practical Credit Hours: ")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.practical_credit_hours,
-                        expression: "form.practical_credit_hours"
-                      }
-                    ],
-                    staticClass: "form-input",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.form.practical_credit_hours },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form,
-                          "practical_credit_hours",
-                          $event.target.value
-                        )
-                      }
+                  _c("FormInputText", {
+                    attrs: {
+                      label: "Practical Credit Hours",
+                      error: _vm.form.errors.practical_credit_hours,
+                      type: "number",
+                      max: "99",
+                      min: "0"
+                    },
+                    model: {
+                      value: _vm.form.practical_credit_hours,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "practical_credit_hours", $$v)
+                      },
+                      expression: "form.practical_credit_hours"
                     }
-                  }),
-                  _vm._v(" "),
-                  _vm.form.errors.practical_credit_hours
-                    ? _c("div", { staticClass: "text-red-600" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.practical_credit_hours) +
-                            "\n\t\t\t\t\t"
-                        )
-                      ])
-                    : _vm._e()
-                ])
-              ]),
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "form-control" }, [
-                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
-                  _c("label", { staticClass: "block" }, [
-                    _vm._v("Department Code: ")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.department_code,
-                        expression: "form.department_code"
-                      }
-                    ],
-                    staticClass: "form-input",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.form.department_code },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form,
-                          "department_code",
-                          $event.target.value
-                        )
-                      }
+              _c(
+                "div",
+                { staticClass: "form-control" },
+                [
+                  _c("FormInputText", {
+                    attrs: {
+                      label: "Department Code",
+                      error: _vm.form.errors.department_code
+                    },
+                    model: {
+                      value: _vm.form.department_code,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "department_code", $$v)
+                      },
+                      expression: "form.department_code"
                     }
                   }),
                   _vm._v(" "),
-                  _vm.form.errors.department_code
-                    ? _c("div", { staticClass: "text-red-600" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.department_code) +
-                            "\n\t\t\t\t\t"
-                        )
-                      ])
-                    : _vm._e()
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
-                  _c("label", { staticClass: "block" }, [
-                    _vm._v("Course Code: : ")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.course_code,
-                        expression: "form.course_code"
-                      }
-                    ],
-                    staticClass: "form-input",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.form.course_code },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "course_code", $event.target.value)
-                      }
+                  _c("FormInputText", {
+                    attrs: {
+                      label: "Course Code",
+                      error: _vm.form.errors.course_code,
+                      type: "number",
+                      max: "999",
+                      min: "0"
+                    },
+                    model: {
+                      value: _vm.form.course_code,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "course_code", $$v)
+                      },
+                      expression: "form.course_code"
                     }
-                  }),
-                  _vm._v(" "),
-                  _vm.form.errors.course_code
-                    ? _c("div", { staticClass: "text-red-600" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.course_code) +
-                            "\n\t\t\t\t\t"
-                        )
-                      ])
-                    : _vm._e()
-                ])
-              ]),
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "div",
@@ -26971,7 +26730,6 @@ var render = function() {
                 { staticClass: "form-control" },
                 [
                   _c("FormInputText", {
-                    staticClass: "pr-6 pb-8 w-full lg:w-1/2",
                     attrs: {
                       label: "Department Name",
                       error: _vm.form.errors.department_name
@@ -26988,7 +26746,6 @@ var render = function() {
                   _c(
                     "FormInputSelect",
                     {
-                      staticClass: "pr-6 pb-8 w-full lg:w-1/2",
                       attrs: {
                         label: "Faculty",
                         error: _vm.form.errors.faculty_id
@@ -27087,7 +26844,7 @@ var render = function() {
             },
             [
               _c("div", { staticClass: "form-control" }, [
-                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
+                _c("div", [
                   _c("label", { staticClass: "block" }, [
                     _vm._v("Department Name: ")
                   ]),
@@ -27129,7 +26886,7 @@ var render = function() {
                     : _vm._e()
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
+                _c("div", [
                   _c("label", { staticClass: "block" }, [_vm._v("Faculty: ")]),
                   _vm._v(" "),
                   _c(
@@ -27403,7 +27160,6 @@ var render = function() {
                 { staticClass: "form-control" },
                 [
                   _c("FormInputText", {
-                    staticClass: "pr-6 pb-8 w-full lg:w-1/2",
                     attrs: {
                       label: "Create Faculty",
                       error: _vm.form.errors.faculty_name
@@ -27497,7 +27253,6 @@ var render = function() {
                 { staticClass: "form-control" },
                 [
                   _c("FormInputText", {
-                    staticClass: "pr-6 pb-8 w-full lg:w-1/2",
                     attrs: {
                       label: "Faculty Name",
                       readonly: !_vm.permissions.update,
@@ -27931,39 +27686,7 @@ var render = function() {
     [
       _c("AppAdminHead", { attrs: { title: "Courses" } }),
       _vm._v(" "),
-      _c(
-        "h1",
-        { staticClass: "mb-8 font-bold text-3xl" },
-        [
-          _c(
-            "Link",
-            {
-              staticClass: "text-indigo-400 hover:text-indigo-600",
-              attrs: { href: _vm.$route("admin.faculties") }
-            },
-            [_vm._v("Programs")]
-          ),
-          _vm._v(" "),
-          _c("span", { staticClass: "text-indigo-400 font-medium" }, [
-            _vm._v("/")
-          ]),
-          _vm._v(" "),
-          _c(
-            "Link",
-            {
-              staticClass: "text-indigo-400 hover:text-indigo-600",
-              attrs: { href: _vm.$route("admin.faculties") }
-            },
-            [_vm._v("Courses")]
-          ),
-          _vm._v(" "),
-          _c("span", { staticClass: "text-indigo-400 font-medium" }, [
-            _vm._v("/")
-          ]),
-          _vm._v("Add\n\t")
-        ],
-        1
-      ),
+      _c("BreadCrumbs", { attrs: { crumbs: _vm.crumbs } }),
       _vm._v(" "),
       _c("h3", { staticClass: "mb-8 font-bold text-3xl" }, [
         _vm._v("Semester " + _vm._s(_vm.semester))
@@ -28044,7 +27767,7 @@ var render = function() {
                       [
                         _vm._v(
                           "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.creditHours(course)) +
+                            _vm._s(course.total_credit_hours) +
                             "\n\t\t\t\t\t"
                         )
                       ]
@@ -28175,26 +27898,7 @@ var render = function() {
     [
       _c("AppAdminHead", { attrs: { title: "Create program" } }),
       _vm._v(" "),
-      _c(
-        "h1",
-        { staticClass: "mb-8 font-bold text-3xl" },
-        [
-          _c(
-            "Link",
-            {
-              staticClass: "text-indigo-400 hover:text-indigo-600",
-              attrs: { href: _vm.$route("admin.programs") }
-            },
-            [_vm._v("Program")]
-          ),
-          _vm._v(" "),
-          _c("span", { staticClass: "text-indigo-400 font-medium" }, [
-            _vm._v("/")
-          ]),
-          _vm._v(" Create\n\t")
-        ],
-        1
-      ),
+      _c("BreadCrumbs", { attrs: { crumbs: _vm.crumbs } }),
       _vm._v(" "),
       _c(
         "div",
@@ -28212,127 +27916,143 @@ var render = function() {
               }
             },
             [
-              _c("div", { staticClass: "form-control" }, [
-                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
-                  _c("label", { staticClass: "block" }, [_vm._v("Degree: ")]),
+              _c(
+                "div",
+                { staticClass: "form-control" },
+                [
+                  _c("FormInputText", {
+                    attrs: { label: "Name", error: _vm.form.errors.name },
+                    model: {
+                      value: _vm.form.name,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "name", $$v)
+                      },
+                      expression: "form.name"
+                    }
+                  }),
                   _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.degree_id,
-                          expression: "form.degree_id"
+                  _c("div", [
+                    _c("label", { staticClass: "block" }, [_vm._v("Degree: ")]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.degree_id,
+                            expression: "form.degree_id"
+                          }
+                        ],
+                        staticClass: "form-input",
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.form,
+                              "degree_id",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
                         }
-                      ],
-                      staticClass: "form-input",
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.form,
-                            "degree_id",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
-                      }
-                    },
-                    _vm._l(_vm.degrees, function(degree) {
-                      return _c(
-                        "option",
-                        { key: degree.id, domProps: { value: degree.id } },
-                        [_vm._v(_vm._s(degree.degree_name))]
-                      )
-                    }),
-                    0
-                  ),
-                  _vm._v(" "),
-                  _vm.form.errors.degree_id
-                    ? _c("div", { staticClass: "text-red-600" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.degree_id) +
-                            "\n\t\t\t\t\t"
+                      },
+                      _vm._l(_vm.degrees, function(degree) {
+                        return _c(
+                          "option",
+                          { key: degree.id, domProps: { value: degree.id } },
+                          [_vm._v(_vm._s(degree.degree_name))]
                         )
-                      ])
-                    : _vm._e()
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
-                  _c("label", { staticClass: "block" }, [
-                    _vm._v("Department: ")
+                      }),
+                      0
+                    ),
+                    _vm._v(" "),
+                    _vm.form.errors.degree_id
+                      ? _c("div", { staticClass: "text-red-600" }, [
+                          _vm._v(
+                            "\n\t\t\t\t\t\t" +
+                              _vm._s(_vm.form.errors.degree_id) +
+                              "\n\t\t\t\t\t"
+                          )
+                        ])
+                      : _vm._e()
                   ]),
                   _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.department_id,
-                          expression: "form.department_id"
+                  _c("div", [
+                    _c("label", { staticClass: "block" }, [
+                      _vm._v("Department: ")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.department_id,
+                            expression: "form.department_id"
+                          }
+                        ],
+                        staticClass: "form-input",
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.form,
+                              "department_id",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
                         }
-                      ],
-                      staticClass: "form-input",
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.form,
-                            "department_id",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
-                      }
-                    },
-                    _vm._l(_vm.departments, function(department) {
-                      return _c(
-                        "option",
-                        {
-                          key: department.id,
-                          domProps: { value: department.id }
-                        },
-                        [_vm._v(_vm._s(department.department_name))]
-                      )
-                    }),
-                    0
-                  ),
-                  _vm._v(" "),
-                  _vm.form.errors.department_id
-                    ? _c("div", { staticClass: "text-red-600" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.department_id) +
-                            "\n\t\t\t\t\t"
+                      },
+                      _vm._l(_vm.departments, function(department) {
+                        return _c(
+                          "option",
+                          {
+                            key: department.id,
+                            domProps: { value: department.id }
+                          },
+                          [_vm._v(_vm._s(department.department_name))]
                         )
-                      ])
-                    : _vm._e()
-                ])
-              ]),
+                      }),
+                      0
+                    ),
+                    _vm._v(" "),
+                    _vm.form.errors.department_id
+                      ? _c("div", { staticClass: "text-red-600" }, [
+                          _vm._v(
+                            "\n\t\t\t\t\t\t" +
+                              _vm._s(_vm.form.errors.department_id) +
+                              "\n\t\t\t\t\t"
+                          )
+                        ])
+                      : _vm._e()
+                  ])
+                ],
+                1
+              ),
               _vm._v(" "),
               _c("div", { staticClass: "form-control" }, [
-                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
+                _c("div", [
                   _c("label", { staticClass: "block" }, [
                     _vm._v("Credit Hours: ")
                   ]),
@@ -28484,40 +28204,23 @@ var render = function() {
               }
             },
             [
-              _c("div", { staticClass: "form-control" }, [
-                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
-                  _c("label", { staticClass: "block" }, [_vm._v("Degree: ")]),
-                  _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-control" },
+                [
                   _c(
-                    "select",
+                    "FormInputSelect",
                     {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.degree_id,
-                          expression: "form.degree_id"
-                        }
-                      ],
-                      staticClass: "form-input",
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.form,
-                            "degree_id",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
+                      attrs: {
+                        label: "Degree",
+                        error: _vm.form.errors.degree_id
+                      },
+                      model: {
+                        value: _vm.form.degree_id,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "degree_id", $$v)
+                        },
+                        expression: "form.degree_id"
                       }
                     },
                     _vm._l(_vm.degrees, function(degree) {
@@ -28526,9 +28229,9 @@ var render = function() {
                         { key: degree.id, domProps: { value: degree.id } },
                         [
                           _vm._v(
-                            "\n\t\t\t\t\t\t\t" +
+                            "\n\t\t\t\t\t\t" +
                               _vm._s(degree.degree_name) +
-                              "\n\t\t\t\t\t\t"
+                              "\n\t\t\t\t\t"
                           )
                         ]
                       )
@@ -28536,52 +28239,19 @@ var render = function() {
                     0
                   ),
                   _vm._v(" "),
-                  _vm.form.errors.department_name
-                    ? _c("div", { staticClass: "text-red-600" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.department_name) +
-                            "\n\t\t\t\t\t"
-                        )
-                      ])
-                    : _vm._e()
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
-                  _c("label", { staticClass: "block" }, [
-                    _vm._v("Department: ")
-                  ]),
-                  _vm._v(" "),
                   _c(
-                    "select",
+                    "FormInputSelect",
                     {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.department_id,
-                          expression: "form.department_id"
-                        }
-                      ],
-                      staticClass: "form-input",
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.form,
-                            "department_id",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
+                      attrs: {
+                        label: "Department",
+                        error: _vm.form.errors.department_id
+                      },
+                      model: {
+                        value: _vm.form.department_id,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "department_id", $$v)
+                        },
+                        expression: "form.department_id"
                       }
                     },
                     _vm._l(_vm.departments, function(department) {
@@ -28593,67 +28263,41 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n\t\t\t\t\t\t\t" +
+                            "\n\t\t\t\t\t\t" +
                               _vm._s(department.department_name) +
-                              "\n\t\t\t\t\t\t"
+                              "\n\t\t\t\t\t"
                           )
                         ]
                       )
                     }),
                     0
-                  ),
-                  _vm._v(" "),
-                  _vm.form.errors.department_name
-                    ? _c("div", { staticClass: "text-red-600" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.department_name) +
-                            "\n\t\t\t\t\t"
-                        )
-                      ])
-                    : _vm._e()
-                ])
-              ]),
+                  )
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "form-control" }, [
-                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
-                  _c("label", { staticClass: "block" }, [
-                    _vm._v("Credit Hours: ")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.credit_hours,
-                        expression: "form.credit_hours"
-                      }
-                    ],
-                    staticClass: "form-input",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.form.credit_hours },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "credit_hours", $event.target.value)
-                      }
+              _c(
+                "div",
+                { staticClass: "form-control" },
+                [
+                  _c("FormInputText", {
+                    attrs: {
+                      label: "Credit Hours",
+                      error: _vm.form.errors.credit_hours,
+                      type: "number",
+                      min: "0"
+                    },
+                    model: {
+                      value: _vm.form.credit_hours,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "credit_hours", $$v)
+                      },
+                      expression: "form.credit_hours"
                     }
-                  }),
-                  _vm._v(" "),
-                  _vm.form.errors.credit_hours
-                    ? _c("div", { staticClass: "text-red-600" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.credit_hours) +
-                            "\n\t\t\t\t\t"
-                        )
-                      ])
-                    : _vm._e()
-                ])
-              ]),
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "div",
@@ -28961,7 +28605,6 @@ var render = function() {
                 { staticClass: "form-control" },
                 [
                   _c("FormInputText", {
-                    staticClass: "pr-6 pb-8 w-full lg:w-1/2",
                     attrs: { label: "Name", error: _vm.form.errors.name },
                     model: {
                       value: _vm.form.name,
@@ -28973,7 +28616,6 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("FormInputText", {
-                    staticClass: "pr-6 pb-8 w-full lg:w-1/2",
                     attrs: { label: "Email", error: _vm.form.errors.email },
                     model: {
                       value: _vm.form.email,
@@ -28992,7 +28634,6 @@ var render = function() {
                 { staticClass: "form-control" },
                 [
                   _c("FormInputText", {
-                    staticClass: "pr-6 pb-8 w-full lg:w-1/2",
                     attrs: {
                       label: "Father Name",
                       error: _vm.form.errors.father_name
@@ -29009,7 +28650,6 @@ var render = function() {
                   _c(
                     "FormInputSelect",
                     {
-                      staticClass: "pr-6 pb-8 w-full lg:w-1/2",
                       attrs: { label: "Gender", error: _vm.form.errors.gender },
                       model: {
                         value: _vm.form.gender,
@@ -29040,7 +28680,6 @@ var render = function() {
                 { staticClass: "form-control" },
                 [
                   _c("FormInputText", {
-                    staticClass: "pr-6 pb-8 w-full lg:w-1/2",
                     attrs: {
                       label: "Phone Number",
                       error: _vm.form.errors.phone_number
@@ -29055,7 +28694,6 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("FormInputText", {
-                    staticClass: "pr-6 pb-8 w-full lg:w-1/2",
                     attrs: {
                       label: "CNIC",
                       error: _vm.form.errors.cnic,
@@ -29079,7 +28717,6 @@ var render = function() {
                 { staticClass: "form-control" },
                 [
                   _c("FormInputText", {
-                    staticClass: "pr-6 pb-8 w-full lg:w-1/2",
                     attrs: {
                       label: "Password",
                       error: _vm.form.errors.password
@@ -29094,7 +28731,6 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("FormInputText", {
-                    staticClass: "pr-6 pb-8 w-full lg:w-1/2",
                     attrs: {
                       label: "Confirm Password",
                       error: _vm.form.errors.password_confirmation
@@ -29165,26 +28801,7 @@ var render = function() {
     [
       _c("AppAdminHead", { attrs: { title: _vm.form.name } }),
       _vm._v(" "),
-      _c(
-        "h1",
-        { staticClass: "mb-8 font-bold text-3xl" },
-        [
-          _c(
-            "Link",
-            {
-              staticClass: "text-indigo-400 hover:text-indigo-600",
-              attrs: { href: _vm.$route("admin.users") }
-            },
-            [_vm._v("Users")]
-          ),
-          _vm._v(" "),
-          _c("span", { staticClass: "text-indigo-400 font-medium" }, [
-            _vm._v("/")
-          ]),
-          _vm._v("\n\t\t" + _vm._s(_vm.form.name) + "\n\t")
-        ],
-        1
-      ),
+      _c("BreadCrumbs", { attrs: { crumbs: _vm.crumbs } }),
       _vm._v(" "),
       _c(
         "div",
@@ -29203,45 +28820,23 @@ var render = function() {
               }
             },
             [
-              _c("div", { staticClass: "form-control" }, [
-                _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
-                  _c("label", { staticClass: "block" }, [
-                    _vm._v("User Name: ")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.name,
-                        expression: "form.name"
-                      }
-                    ],
-                    staticClass: "form-input",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.form.name },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "name", $event.target.value)
-                      }
+              _c(
+                "div",
+                { staticClass: "form-control" },
+                [
+                  _c("FormInputText", {
+                    attrs: { label: "User Name", error: _vm.form.errors.name },
+                    model: {
+                      value: _vm.form.name,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "name", $$v)
+                      },
+                      expression: "form.name"
                     }
-                  }),
-                  _vm._v(" "),
-                  _vm.form.errors.name
-                    ? _c("div", { staticClass: "text-red-600" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.name) +
-                            "\n\t\t\t\t\t"
-                        )
-                      ])
-                    : _vm._e()
-                ])
-              ]),
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "div",
@@ -30661,7 +30256,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "form-control" }, [
-    _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
+    _c("div", [
       _c("label", { staticClass: "block" }, [_vm._v("Student Name: ")]),
       _vm._v(" "),
       _c("input", {
@@ -30693,7 +30288,7 @@ var render = function() {
         : _vm._e()
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
+    _c("div", [
       _c("label", { staticClass: "block" }, [_vm._v("Email: ")]),
       _vm._v(" "),
       _c("input", {
@@ -30933,7 +30528,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", [
       _c("div", { staticClass: "form-control" }, [
-        _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
+        _c("div", [
           _c("label", { staticClass: "block" }, [_vm._v("Student Name: ")]),
           _vm._v(" "),
           _c("input", { staticClass: "form-input", attrs: { type: "text" } }),
@@ -30941,7 +30536,7 @@ var staticRenderFns = [
           _c("div", { staticClass: "text-red-600" })
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "pr-6 pb-8 w-full lg:w-1/2" }, [
+        _c("div", [
           _c("label", { staticClass: "block" }, [_vm._v("Email: ")]),
           _vm._v(" "),
           _c("input", { staticClass: "form-input", attrs: { type: "text" } })
@@ -31227,55 +30822,59 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { class: _vm.$attrs.class }, [
-    _vm.label
-      ? _c("label", { staticClass: "form-label" }, [
-          _vm._v(_vm._s(_vm.label) + ":")
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _c(
-      "select",
-      _vm._b(
-        {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.selected,
-              expression: "selected"
-            }
-          ],
-          staticClass: "form-select",
-          class: { error: _vm.error },
-          on: {
-            change: function($event) {
-              var $$selectedVal = Array.prototype.filter
-                .call($event.target.options, function(o) {
-                  return o.selected
-                })
-                .map(function(o) {
-                  var val = "_value" in o ? o._value : o.value
-                  return val
-                })
-              _vm.selected = $event.target.multiple
-                ? $$selectedVal
-                : $$selectedVal[0]
-            }
-          }
-        },
+  return _c(
+    "div",
+    { staticClass: "pr-6 pb-8 w-full lg:w-1/2", class: _vm.$attrs.class },
+    [
+      _vm.label
+        ? _c("label", { staticClass: "form-label" }, [
+            _vm._v(_vm._s(_vm.label) + ":")
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
         "select",
-        Object.assign({}, _vm.$attrs, { class: null }),
-        false
+        _vm._b(
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.selected,
+                expression: "selected"
+              }
+            ],
+            staticClass: "form-select",
+            class: { error: _vm.error },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.selected = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
+            }
+          },
+          "select",
+          Object.assign({}, _vm.$attrs, { class: null }),
+          false
+        ),
+        [_vm._t("default")],
+        2
       ),
-      [_vm._t("default")],
-      2
-    ),
-    _vm._v(" "),
-    _vm.error
-      ? _c("div", { staticClass: "form-error" }, [_vm._v(_vm._s(_vm.error))])
-      : _vm._e()
-  ])
+      _vm._v(" "),
+      _vm.error
+        ? _c("div", { staticClass: "form-error" }, [_vm._v(_vm._s(_vm.error))])
+        : _vm._e()
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -31284,10 +30883,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputText.vue?vue&type=template&id=54869292&":
-/*!*************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputText.vue?vue&type=template&id=54869292& ***!
-  \*************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputText.vue?vue&type=template&id=54869292&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/form/FormInputText.vue?vue&type=template&id=54869292&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -31300,33 +30899,37 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { class: _vm.$attrs.class }, [
-    _vm.label
-      ? _c("label", { staticClass: "form-label" }, [
-          _vm._v(_vm._s(_vm.label) + ":")
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _c(
-      "input",
-      _vm._b(
-        {
-          staticClass: "form-input",
-          class: { error: _vm.error },
-          attrs: { type: _vm.type },
-          domProps: { value: _vm.value },
-          on: { input: _vm.handleInput }
-        },
+  return _c(
+    "div",
+    { staticClass: "pr-6 pb-8 w-full lg:w-1/2", class: _vm.$attrs.class },
+    [
+      _vm.label
+        ? _c("label", { staticClass: "form-label" }, [
+            _vm._v(_vm._s(_vm.label) + ":")
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
         "input",
-        Object.assign({}, _vm.$attrs, { class: null }),
-        false
-      )
-    ),
-    _vm._v(" "),
-    _vm.error
-      ? _c("div", { staticClass: "form-error" }, [_vm._v(_vm._s(_vm.error))])
-      : _vm._e()
-  ])
+        _vm._b(
+          {
+            staticClass: "form-input",
+            class: { error: _vm.error },
+            attrs: { type: _vm.type },
+            domProps: { value: _vm.value },
+            on: { input: _vm.handleInput }
+          },
+          "input",
+          Object.assign({}, _vm.$attrs, { class: null }),
+          false
+        )
+      ),
+      _vm._v(" "),
+      _vm.error
+        ? _c("div", { staticClass: "form-error" }, [_vm._v(_vm._s(_vm.error))])
+        : _vm._e()
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -32123,16 +31726,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "tooltip" },
-    [
-      _vm._t("default"),
-      _vm._v(" "),
-      _c("span", { staticClass: "tooltiptext" }, [_vm._v(_vm._s(_vm.tooltip))])
-    ],
-    2
-  )
+  return _c("div", { staticClass: "tooltip" }, [
+    _c("span", [_vm._v(_vm._s(_vm.tooltip))]),
+    _vm._v(" "),
+    _c("span", { staticClass: "tooltiptext" }, [_vm._t("default")], 2)
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
