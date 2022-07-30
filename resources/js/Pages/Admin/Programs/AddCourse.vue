@@ -4,8 +4,11 @@
 
 		<BreadCrumbs :crumbs="crumbs" />
 		<h3 class="mb-8 font-bold text-3xl">Semester {{ semester }}</h3>
-
-		<button class="btn-main mb-4" @click.prevent="update">
+		<button
+			v-if="permissions.update"
+			class="btn-main mb-4"
+			@click.prevent="update"
+		>
 			Update
 		</button>
 		<div class="bg-white rounded-md shadow overflow-x-auto">
@@ -36,8 +39,13 @@
 							{{ course.total_credit_hours }}
 						</span>
 					</td>
+
 					<td class="border-t w-px">
-						<span class="px-4 flex items-center" tabindex="-1">
+						<span
+							v-if="permissions.update"
+							class="px-4 flex items-center"
+							tabindex="-1"
+						>
 							<input type="checkbox" v-model="course.belongs_to_program" />
 						</span>
 					</td>
@@ -78,7 +86,7 @@ export default {
 			type: Object,
 			required: false,
 			default: () => ({
-				create: false
+				update: false
 			})
 		}
 	},

@@ -2167,8 +2167,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -3395,6 +3393,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -3420,7 +3426,7 @@ __webpack_require__.r(__webpack_exports__);
       required: false,
       "default": function _default() {
         return {
-          create: false
+          update: false
         };
       }
     }
@@ -3462,19 +3468,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -26092,7 +26085,7 @@ var render = function() {
             [
               _c(
                 "div",
-                { staticClass: "form-control" },
+                { staticClass: "form-row" },
                 [
                   _c("FormInputText", {
                     staticClass: "lg:w-full",
@@ -26114,7 +26107,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "form-control" },
+                { staticClass: "form-row" },
                 [
                   _c("FormInputText", {
                     attrs: {
@@ -26147,15 +26140,8 @@ var render = function() {
                       },
                       expression: "form.theory_credit_hours"
                     }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "form-control" },
-                [
+                  }),
+                  _vm._v(" "),
                   _c("FormInputText", {
                     attrs: {
                       label: "Department Code",
@@ -26261,7 +26247,7 @@ var render = function() {
             [
               _c(
                 "div",
-                { staticClass: "form-control" },
+                { staticClass: "form-row" },
                 [
                   _c("FormInputText", {
                     staticClass: "lg:w-full",
@@ -26283,7 +26269,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "form-control" },
+                { staticClass: "form-row" },
                 [
                   _c("FormInputText", {
                     attrs: {
@@ -26324,7 +26310,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "form-control" },
+                { staticClass: "form-row" },
                 [
                   _c("FormInputText", {
                     attrs: {
@@ -26727,7 +26713,7 @@ var render = function() {
             [
               _c(
                 "div",
-                { staticClass: "form-control" },
+                { staticClass: "form-row" },
                 [
                   _c("FormInputText", {
                     attrs: {
@@ -26843,7 +26829,7 @@ var render = function() {
               }
             },
             [
-              _c("div", { staticClass: "form-control" }, [
+              _c("div", { staticClass: "form-row" }, [
                 _c("div", [
                   _c("label", { staticClass: "block" }, [
                     _vm._v("Department Name: ")
@@ -27157,7 +27143,7 @@ var render = function() {
             [
               _c(
                 "div",
-                { staticClass: "form-control" },
+                { staticClass: "form-row" },
                 [
                   _c("FormInputText", {
                     attrs: {
@@ -27250,7 +27236,7 @@ var render = function() {
             [
               _c(
                 "div",
-                { staticClass: "form-control" },
+                { staticClass: "form-row" },
                 [
                   _c("FormInputText", {
                     attrs: {
@@ -27692,19 +27678,21 @@ var render = function() {
         _vm._v("Semester " + _vm._s(_vm.semester))
       ]),
       _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn-main mb-4",
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              return _vm.update.apply(null, arguments)
-            }
-          }
-        },
-        [_vm._v("\n\t\tUpdate\n\t")]
-      ),
+      _vm.permissions.update
+        ? _c(
+            "button",
+            {
+              staticClass: "btn-main mb-4",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.update.apply(null, arguments)
+                }
+              }
+            },
+            [_vm._v("\n\t\tUpdate\n\t")]
+          )
+        : _vm._e(),
       _vm._v(" "),
       _c("div", { staticClass: "bg-white rounded-md shadow overflow-x-auto" }, [
         _c(
@@ -27775,61 +27763,65 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("td", { staticClass: "border-t w-px" }, [
-                    _c(
-                      "span",
-                      {
-                        staticClass: "px-4 flex items-center",
-                        attrs: { tabindex: "-1" }
-                      },
-                      [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: course.belongs_to_program,
-                              expression: "course.belongs_to_program"
-                            }
-                          ],
-                          attrs: { type: "checkbox" },
-                          domProps: {
-                            checked: Array.isArray(course.belongs_to_program)
-                              ? _vm._i(course.belongs_to_program, null) > -1
-                              : course.belongs_to_program
+                    _vm.permissions.update
+                      ? _c(
+                          "span",
+                          {
+                            staticClass: "px-4 flex items-center",
+                            attrs: { tabindex: "-1" }
                           },
-                          on: {
-                            change: function($event) {
-                              var $$a = course.belongs_to_program,
-                                $$el = $event.target,
-                                $$c = $$el.checked ? true : false
-                              if (Array.isArray($$a)) {
-                                var $$v = null,
-                                  $$i = _vm._i($$a, $$v)
-                                if ($$el.checked) {
-                                  $$i < 0 &&
-                                    _vm.$set(
-                                      course,
-                                      "belongs_to_program",
-                                      $$a.concat([$$v])
-                                    )
-                                } else {
-                                  $$i > -1 &&
-                                    _vm.$set(
-                                      course,
-                                      "belongs_to_program",
-                                      $$a
-                                        .slice(0, $$i)
-                                        .concat($$a.slice($$i + 1))
-                                    )
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: course.belongs_to_program,
+                                  expression: "course.belongs_to_program"
                                 }
-                              } else {
-                                _vm.$set(course, "belongs_to_program", $$c)
+                              ],
+                              attrs: { type: "checkbox" },
+                              domProps: {
+                                checked: Array.isArray(
+                                  course.belongs_to_program
+                                )
+                                  ? _vm._i(course.belongs_to_program, null) > -1
+                                  : course.belongs_to_program
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = course.belongs_to_program,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        _vm.$set(
+                                          course,
+                                          "belongs_to_program",
+                                          $$a.concat([$$v])
+                                        )
+                                    } else {
+                                      $$i > -1 &&
+                                        _vm.$set(
+                                          course,
+                                          "belongs_to_program",
+                                          $$a
+                                            .slice(0, $$i)
+                                            .concat($$a.slice($$i + 1))
+                                        )
+                                    }
+                                  } else {
+                                    _vm.$set(course, "belongs_to_program", $$c)
+                                  }
+                                }
                               }
-                            }
-                          }
-                        })
-                      ]
-                    )
+                            })
+                          ]
+                        )
+                      : _vm._e()
                   ])
                 ]
               )
@@ -27918,178 +27910,77 @@ var render = function() {
             [
               _c(
                 "div",
-                { staticClass: "form-control" },
+                { staticClass: "form-row" },
                 [
+                  _c(
+                    "FormInputSelect",
+                    {
+                      attrs: {
+                        label: "Degree",
+                        error: _vm.form.errors.degree_id
+                      },
+                      model: {
+                        value: _vm.form.degree_id,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "degree_id", $$v)
+                        },
+                        expression: "form.degree_id"
+                      }
+                    },
+                    _vm._l(_vm.degrees, function(degree) {
+                      return _c(
+                        "option",
+                        { key: degree.id, domProps: { value: degree.id } },
+                        [_vm._v(_vm._s(degree.degree_name))]
+                      )
+                    }),
+                    0
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "FormInputSelect",
+                    {
+                      attrs: {
+                        label: "Department",
+                        error: _vm.form.errors.department_id
+                      },
+                      model: {
+                        value: _vm.form.department_id,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "department_id", $$v)
+                        },
+                        expression: "form.department_id"
+                      }
+                    },
+                    _vm._l(_vm.departments, function(department) {
+                      return _c(
+                        "option",
+                        {
+                          key: department.id,
+                          domProps: { value: department.id }
+                        },
+                        [_vm._v(_vm._s(department.department_name))]
+                      )
+                    }),
+                    0
+                  ),
+                  _vm._v(" "),
                   _c("FormInputText", {
-                    attrs: { label: "Name", error: _vm.form.errors.name },
+                    attrs: {
+                      label: "Credit Hours",
+                      error: _vm.form.errors.credit_hours
+                    },
                     model: {
-                      value: _vm.form.name,
+                      value: _vm.form.credit_hours,
                       callback: function($$v) {
-                        _vm.$set(_vm.form, "name", $$v)
+                        _vm.$set(_vm.form, "credit_hours", $$v)
                       },
-                      expression: "form.name"
+                      expression: "form.credit_hours"
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("div", [
-                    _c("label", { staticClass: "block" }, [_vm._v("Degree: ")]),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.degree_id,
-                            expression: "form.degree_id"
-                          }
-                        ],
-                        staticClass: "form-input",
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.form,
-                              "degree_id",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          }
-                        }
-                      },
-                      _vm._l(_vm.degrees, function(degree) {
-                        return _c(
-                          "option",
-                          { key: degree.id, domProps: { value: degree.id } },
-                          [_vm._v(_vm._s(degree.degree_name))]
-                        )
-                      }),
-                      0
-                    ),
-                    _vm._v(" "),
-                    _vm.form.errors.degree_id
-                      ? _c("div", { staticClass: "text-red-600" }, [
-                          _vm._v(
-                            "\n\t\t\t\t\t\t" +
-                              _vm._s(_vm.form.errors.degree_id) +
-                              "\n\t\t\t\t\t"
-                          )
-                        ])
-                      : _vm._e()
-                  ]),
-                  _vm._v(" "),
-                  _c("div", [
-                    _c("label", { staticClass: "block" }, [
-                      _vm._v("Department: ")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.department_id,
-                            expression: "form.department_id"
-                          }
-                        ],
-                        staticClass: "form-input",
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.form,
-                              "department_id",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          }
-                        }
-                      },
-                      _vm._l(_vm.departments, function(department) {
-                        return _c(
-                          "option",
-                          {
-                            key: department.id,
-                            domProps: { value: department.id }
-                          },
-                          [_vm._v(_vm._s(department.department_name))]
-                        )
-                      }),
-                      0
-                    ),
-                    _vm._v(" "),
-                    _vm.form.errors.department_id
-                      ? _c("div", { staticClass: "text-red-600" }, [
-                          _vm._v(
-                            "\n\t\t\t\t\t\t" +
-                              _vm._s(_vm.form.errors.department_id) +
-                              "\n\t\t\t\t\t"
-                          )
-                        ])
-                      : _vm._e()
-                  ])
+                  })
                 ],
                 1
               ),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-control" }, [
-                _c("div", [
-                  _c("label", { staticClass: "block" }, [
-                    _vm._v("Credit Hours: ")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.credit_hours,
-                        expression: "form.credit_hours"
-                      }
-                    ],
-                    staticClass: "form-input",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.form.credit_hours },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "credit_hours", $event.target.value)
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _vm.form.errors.credit_hours
-                    ? _c("div", { staticClass: "text-red-600" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t" +
-                            _vm._s(_vm.form.errors.credit_hours) +
-                            "\n\t\t\t\t\t"
-                        )
-                      ])
-                    : _vm._e()
-                ])
-              ]),
               _vm._v(" "),
               _c(
                 "div",
@@ -28206,7 +28097,7 @@ var render = function() {
             [
               _c(
                 "div",
-                { staticClass: "form-control" },
+                { staticClass: "form-row" },
                 [
                   _c(
                     "FormInputSelect",
@@ -28278,7 +28169,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "form-control" },
+                { staticClass: "form-row" },
                 [
                   _c("FormInputText", {
                     attrs: {
@@ -28602,7 +28493,7 @@ var render = function() {
             [
               _c(
                 "div",
-                { staticClass: "form-control" },
+                { staticClass: "form-row" },
                 [
                   _c("FormInputText", {
                     attrs: { label: "Name", error: _vm.form.errors.name },
@@ -28631,7 +28522,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "form-control" },
+                { staticClass: "form-row" },
                 [
                   _c("FormInputText", {
                     attrs: {
@@ -28677,7 +28568,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "form-control" },
+                { staticClass: "form-row" },
                 [
                   _c("FormInputText", {
                     attrs: {
@@ -28714,7 +28605,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "form-control" },
+                { staticClass: "form-row" },
                 [
                   _c("FormInputText", {
                     attrs: {
@@ -28822,7 +28713,7 @@ var render = function() {
             [
               _c(
                 "div",
-                { staticClass: "form-control" },
+                { staticClass: "form-row" },
                 [
                   _c("FormInputText", {
                     attrs: { label: "User Name", error: _vm.form.errors.name },
@@ -30255,7 +30146,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "form-control" }, [
+  return _c("div", { staticClass: "form-row" }, [
     _c("div", [
       _c("label", { staticClass: "block" }, [_vm._v("Student Name: ")]),
       _vm._v(" "),
@@ -30527,7 +30418,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("div", { staticClass: "form-control" }, [
+      _c("div", { staticClass: "form-row" }, [
         _c("div", [
           _c("label", { staticClass: "block" }, [_vm._v("Student Name: ")]),
           _vm._v(" "),

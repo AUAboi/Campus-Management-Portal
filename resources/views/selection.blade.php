@@ -1,5 +1,5 @@
 <label class="input">
-  <select class="form-control" name="PROGRAM_ID" id="PROGRAM_ID" required="">
+  <select class="form-row" name="PROGRAM_ID" id="PROGRAM_ID" required="">
                 <option value="">Select Program</option>
   
           SELECT DISTINCT PROGRAM_TITLE,DEPARTMENT_ID, PROGRAM_ID 

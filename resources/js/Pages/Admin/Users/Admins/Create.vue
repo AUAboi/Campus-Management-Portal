@@ -5,7 +5,7 @@
 
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form id="create-form" @submit.prevent="store">
-				<div class="form-control">
+				<div class="form-row">
 					<FormInputText
 						label="Name"
 						v-model="form.name"
@@ -17,7 +17,7 @@
 						:error="form.errors.email"
 					/>
 				</div>
-				<div class="form-control">
+				<div class="form-row">
 					<FormInputText
 						label="Father Name"
 						v-model="form.father_name"
@@ -33,7 +33,7 @@
 						<option value="female">Female</option>
 					</FormInputSelect>
 				</div>
-				<div class="form-control">
+				<div class="form-row">
 					<FormInputText
 						label="Phone Number"
 						v-model="form.phone_number"
@@ -47,7 +47,7 @@
 						maxLength="13"
 					/>
 				</div>
-				<div class="form-control">
+				<div class="form-row">
 					<FormInputText
 						label="Password"
 						v-model="form.password"

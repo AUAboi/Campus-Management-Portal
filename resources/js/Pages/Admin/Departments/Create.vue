@@ -6,7 +6,7 @@
 
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form class="m-0" @submit.prevent="store">
-				<div class="form-control">
+				<div class="form-row">
 					<FormInputText
 						label="Department Name"
 						v-model="form.department_name"

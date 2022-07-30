@@ -1,5 +1,5 @@
 <template>
-	<div class="form-control">
+	<div class="form-row">
 		<div>
 			<label class="block">Student Name: </label>
 			<input type="text" v-model="form.name" class="form-input" />

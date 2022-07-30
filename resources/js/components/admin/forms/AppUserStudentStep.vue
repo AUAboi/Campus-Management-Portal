@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="form-control">
+		<div class="form-row">
 			<div>
 				<label class="block">Student Name: </label>
 				<input type="text" class="form-input" />

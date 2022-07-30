@@ -5,7 +5,7 @@
 
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form @submit.prevent="update" id="update-form" class="m-0">
-				<div class="form-control">
+				<div class="form-row">
 					<FormInputText
 						class="lg:w-full"
 						label="Course Name"
@@ -13,7 +13,7 @@
 						:error="form.errors.course_name"
 					/>
 				</div>
-				<div class="form-control">
+				<div class="form-row">
 					<FormInputText
 						label="Theory Credit Hours"
 						v-model="form.theory_credit_hours"
@@ -31,7 +31,7 @@
 						min="0"
 					/>
 				</div>
-				<div class="form-control">
+				<div class="form-row">
 					<FormInputText
 						label="Department Code"
 						v-model="form.department_code"

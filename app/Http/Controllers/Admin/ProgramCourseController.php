@@ -43,7 +43,7 @@ class ProgramCourseController extends Controller
             'courses' => $courses,
             'program_courses' => $program_courses,
             'permissions' => [
-                'create' => auth()->user()->can('create', Faculty::class),
+                'update' => auth()->user()->can('update', Program::class),
             ]
         ]);
     }

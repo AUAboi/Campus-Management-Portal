@@ -5,49 +5,36 @@
 
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form class="m-0" @submit.prevent="store">
-				<div class="form-control">
+				<div class="form-row">
+					<FormInputSelect
+						label="Degree"
+						:error="form.errors.degree_id"
+						v-model="form.degree_id"
+					>
+						<option
+							v-for="degree in degrees"
+							:key="degree.id"
+							:value="degree.id"
+							>{{ degree.degree_name }}</option
+						>
+					</FormInputSelect>
+					<FormInputSelect
+						label="Department"
+						v-model="form.department_id"
+						:error="form.errors.department_id"
+					>
+						<option
+							v-for="department in departments"
+							:key="department.id"
+							:value="department.id"
+							>{{ department.department_name }}</option
+						>
+					</FormInputSelect>
 					<FormInputText
-						label="Name"
-						v-model="form.name"
-						:error="form.errors.name"
+						label="Credit Hours"
+						v-model="form.credit_hours"
+						:error="form.errors.credit_hours"
 					/>
-					<div>
-						<label class="block">Degree: </label>
-						<select v-model="form.degree_id" class="form-input">
-							<option
-								v-for="degree in degrees"
-								:key="degree.id"
-								:value="degree.id"
-								>{{ degree.degree_name }}</option
-							>
-						</select>
-						<div class="text-red-600" v-if="form.errors.degree_id">
-							{{ form.errors.degree_id }}
-						</div>
-					</div>
-					<div>
-						<label class="block">Department: </label>
-						<select v-model="form.department_id" class="form-input">
-							<option
-								v-for="department in departments"
-								:key="department.id"
-								:value="department.id"
-								>{{ department.department_name }}</option
-							>
-						</select>
-						<div class="text-red-600" v-if="form.errors.department_id">
-							{{ form.errors.department_id }}
-						</div>
-					</div>
-				</div>
-				<div class="form-control">
-					<div>
-						<label class="block">Credit Hours: </label>
-						<input type="text" v-model="form.credit_hours" class="form-input" />
-						<div class="text-red-600" v-if="form.errors.credit_hours">
-							{{ form.errors.credit_hours }}
-						</div>
-					</div>
 				</div>
 
 				<div

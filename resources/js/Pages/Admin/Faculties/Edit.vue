@@ -4,7 +4,7 @@
 		<BreadCrumbs :crumbs="crumbs" />
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form @submit.prevent="update" id="update-form" class="m-0">
-				<div class="form-control">
+				<div class="form-row">
 					<FormInputText
 						label="Faculty Name"
 						v-model="form.faculty_name"
