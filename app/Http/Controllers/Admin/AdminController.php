@@ -15,11 +15,15 @@ class AdminController extends Controller
 {
     public function create()
     {
+        $this->authorize('create', User::class);
+
         return Inertia::render('Admin/Users/Admins/Create');
     }
 
     public function store(StoreUserRequest $request)
     {
+        $this->authorize('create', User::class);
+
 
         $validated = $request->validated();
         $validated['password'] = Hash::make($validated['password']);

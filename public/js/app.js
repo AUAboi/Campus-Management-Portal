@@ -3927,42 +3927,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -4410,13 +4374,108 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
+/* harmony import */ var _components_shared_form_FormInputSelect_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../components/shared/form/FormInputSelect.vue */ "./resources/js/components/shared/form/FormInputSelect.vue");
 //
 //
 //
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    Link: _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.Link,
+    FormInputSelect: _components_shared_form_FormInputSelect_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  props: {
+    program: {
+      required: true
+    }
+  },
+  data: function data() {
+    return {
+      form: this.$inertia.form({
+        name: "",
+        father_name: "",
+        gender: "",
+        email: "",
+        password: "",
+        password_confirmation: "",
+        cnic: "",
+        phone: "",
+        sessions_type: "",
+        roll_no: ""
+      }),
+      crumbs: [{
+        text: "Users",
+        route: this.$route("admin.users")
+      }, {
+        text: "Student",
+        route: this.$route("admin.users", {
+          role: "student"
+        })
+      }, {
+        text: "Create"
+      }]
+    };
+  },
+  methods: {
+    store: function store() {
+      this.form.post(this.$route("admin.users.student.store"));
+    }
+  }
+});
 
 /***/ }),
 
@@ -5278,27 +5337,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -28636,27 +28674,30 @@ var render = function() {
                   })
                 ],
                 1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center"
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn-main",
+                      attrs: {
+                        disabled: _vm.form.processing,
+                        type: "submit",
+                        form: "create-form"
+                      }
+                    },
+                    [_vm._v("\n\t\t\t\t\tCreate User\n\t\t\t\t")]
+                  )
+                ]
               )
             ]
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "mt-2 pr-8 py-4 bg-gray-50 border-t border-gray-100 " },
-        [
-          _c(
-            "button",
-            {
-              staticClass: "btn-main",
-              attrs: {
-                disabled: _vm.form.processing,
-                type: "submit",
-                form: "create-form"
-              }
-            },
-            [_vm._v("\n\t\t\tCreate User\n\t\t")]
           )
         ]
       )
@@ -29666,16 +29707,295 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    [
+      _c("AppAdminHead", { attrs: { title: "Create Student" } }),
+      _vm._v(" "),
+      _c("BreadCrumbs", { attrs: { crumbs: _vm.crumbs } }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "overflow-hidden max-w-3xl bg-white rounded-md shadow" },
+        [
+          _c(
+            "form",
+            {
+              staticClass: "m-0",
+              attrs: { id: "create-form" },
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.store.apply(null, arguments)
+                }
+              }
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "form-row" },
+                [
+                  _c("FormInputText", {
+                    attrs: { label: "Name", error: _vm.form.errors.name },
+                    model: {
+                      value: _vm.form.name,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "name", $$v)
+                      },
+                      expression: "form.name"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("FormInputText", {
+                    attrs: { label: "Email", error: _vm.form.errors.email },
+                    model: {
+                      value: _vm.form.email,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "email", $$v)
+                      },
+                      expression: "form.email"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-row" },
+                [
+                  _c("FormInputText", {
+                    attrs: {
+                      label: "Father Name",
+                      error: _vm.form.errors.father_name
+                    },
+                    model: {
+                      value: _vm.form.father_name,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "father_name", $$v)
+                      },
+                      expression: "form.father_name"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "FormInputSelect",
+                    {
+                      attrs: { label: "Gender", error: _vm.form.errors.gender },
+                      model: {
+                        value: _vm.form.gender,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "gender", $$v)
+                        },
+                        expression: "form.gender"
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "", selected: "" } }),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "male" } }, [
+                        _vm._v("Male")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "female" } }, [
+                        _vm._v("Female")
+                      ])
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-row" },
+                [
+                  _c("FormInputText", {
+                    attrs: {
+                      label: "Phone Number",
+                      error: _vm.form.errors.phone_number
+                    },
+                    model: {
+                      value: _vm.form.phone_number,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "phone_number", $$v)
+                      },
+                      expression: "form.phone_number"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("FormInputText", {
+                    attrs: {
+                      label: "CNIC",
+                      error: _vm.form.errors.cnic,
+                      placeholder: "XXXXX-XXXXXXX-X",
+                      maxLength: "13"
+                    },
+                    model: {
+                      value: _vm.form.cnic,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "cnic", $$v)
+                      },
+                      expression: "form.cnic"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-row" },
+                [
+                  _c("FormInputText", {
+                    attrs: {
+                      label: "Password",
+                      error: _vm.form.errors.password
+                    },
+                    model: {
+                      value: _vm.form.password,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "password", $$v)
+                      },
+                      expression: "form.password"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("FormInputText", {
+                    attrs: {
+                      label: "Confirm Password",
+                      error: _vm.form.errors.password_confirmation
+                    },
+                    model: {
+                      value: _vm.form.password_confirmation,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "password_confirmation", $$v)
+                      },
+                      expression: "form.password_confirmation"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-row" },
+                [
+                  _c(
+                    "FormInputSelect",
+                    {
+                      attrs: {
+                        label: "Session Type",
+                        error: _vm.form.errors.sessions_type
+                      },
+                      model: {
+                        value: _vm.form.sessions_type,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "sessions_type", $$v)
+                        },
+                        expression: "form.sessions_type"
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "", selected: "" } }, [
+                        _vm._v("Select session type")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "morning" } }, [
+                        _vm._v("Morning")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "evening" } }, [
+                        _vm._v("Evening")
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("FormInputText", {
+                    attrs: {
+                      label: "Roll Number(optional)",
+                      error: _vm.form.errors.roll_no
+                    },
+                    model: {
+                      value: _vm.form.roll_no,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "roll_no", $$v)
+                      },
+                      expression: "form.roll_no"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-row" },
+                [
+                  _c(
+                    "FormInputSelect",
+                    {
+                      attrs: {
+                        label: "Program",
+                        error: _vm.form.errors.program
+                      },
+                      model: {
+                        value: _vm.form.program,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "program", $$v)
+                        },
+                        expression: "form.program"
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "", selected: "" } }, [
+                        _vm._v("Select program to enroll")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "morning" } }, [
+                        _vm._v("Morning")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "evening" } }, [
+                        _vm._v("Evening")
+                      ])
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center"
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn-main",
+                      attrs: {
+                        disabled: _vm.form.processing,
+                        type: "submit",
+                        form: "create-form"
+                      }
+                    },
+                    [_vm._v("\n\t\t\t\t\tCreate User\n\t\t\t\t")]
+                  )
+                ]
+              )
+            ]
+          )
+        ]
+      )
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("Create Student")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -30866,7 +31186,7 @@ var render = function() {
                   staticClass: "mt-1 text-2xl",
                   attrs: { href: "./dashboard" }
                 },
-                [_vm._v("PORTAL")]
+                [_vm._v("RL Academia")]
               ),
               _vm._v(" "),
               _c(

@@ -11,13 +11,11 @@ class Student extends Model
     use HasFactory;
 
     protected $fillable = [
-        'session_duration',
         'session_type',
         'registration_number',
         'roll_no',
         'admission_year',
-        'cgpa',
-        'program_id'
+        'program_id',
     ];
 
 

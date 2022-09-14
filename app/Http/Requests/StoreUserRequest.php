@@ -30,8 +30,8 @@ class StoreUserRequest extends FormRequest
             'cnic' => 'required|max:13|unique:users',
             'phone' => 'required|string|max:12',
             'password' => 'required|string|min:8|confirmed',
-            'gender' => 'string',
-            'date_of_birth' => 'date'
+            'gender' => 'required|string',
+            'date_of_birth' => 'required|date'
         ];
     }
 }

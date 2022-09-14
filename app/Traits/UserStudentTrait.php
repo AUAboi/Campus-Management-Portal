@@ -8,14 +8,33 @@ use App\Models\Student;
 trait UserStudentTrait
 {
 
-  public function createStudent($user, $request)
+  // HELPER TRAIT FOR ALL STUDENT RELATED STUFF
+
+  public function createStudent($user, $request): Student
   {
-    $user->student()->create([
+    $student = $user->student()->create([
+      'session_type' => $request->session_type,
       'registration_number' => $this->generateRegNumber(),
-      'session_type' => $request->session_type ?? 'evening',
-      'roll_no' => $user->id + 1000,
-      'admission_year' => Carbon::now()->year,
-      'cgpa' => 0.00
+      'roll_no' => $request->roll_no ?? $user->id + 1,
+      'admission_year' => Carbon::now()->year(),
+    ]);
+
+    if ($request->program) {
+      $this->enrollStudent($student, $request->program);
+    }
+
+    $user->assignRole('student');
+
+    return $student;
+  }
+
+  public function enrollStudent(Student $student, $program)
+  {
+    if ($student->program) {
+      return;
+    }
+    $student->update([
+      'program_id' => $program
     ]);
   }
 

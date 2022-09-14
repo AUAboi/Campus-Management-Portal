@@ -2,41 +2,69 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Inertia\Inertia;
+use App\Models\Program;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use App\Traits\UserStudentTrait;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\StoreUserStudentRequest;
 
 class StudentController extends Controller
 {
+    use UserStudentTrait;
+
     public function create()
     {
         $this->authorize('create', User::class);
 
-        return Inertia::render('Admin/Users/Students/Create');
+        $programs = Program::with(['department', 'degree'])->get();
+
+        return Inertia::render('Admin/Users/Students/Create', [
+            'programs' => [
+                'id' => $programs->id,
+                'program' => $programs->getFullProgramName
+            ]
+        ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreUserStudentRequest $request)
     {
         $this->authorize('create', User::class);
+        $validated = $request->validated();
+        dd($validated);
 
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'father_name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users',
-            'cnic' => 'required|string|max:255',
-            'password' => 'required|confirmed',
-        ]);
+        DB::transaction(function () use ($request) {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'father_name' => $request->father_name,
+                'cnic' => $request->cnic,
+                'date_of_birth' => $request->date_of_birth,
+                'phone' => $request->phone,
+                'gender' => $request->gender
+            ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-        $user->student()->create();
-        $user->assignRole('student');
+
+            $student = $user->student()->create([
+                'session_type' => $request->session_type,
+                'registration_number' => $this->generateRegNumber(),
+                'roll_no' => $request->roll_no ?? $user->id + 1,
+                'admission_year' => Carbon::now()->year(),
+            ]);
+
+            $user->assignRole('student');
+
+            if ($request->program) {
+                $this->enrollStudent($student, $request->program);
+            }
+        });
+
 
         return redirect()->route('admin.users.students.index');
     }

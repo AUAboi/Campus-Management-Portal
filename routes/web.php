@@ -111,6 +111,8 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/users/student/create', [App\Http\Controllers\Admin\StudentController::class, 'create'])->name('admin.users.student.create');
     Route::get('/users/student/{user}/edit', [App\Http\Controllers\Admin\StudentController::class, 'edit'])->name('admin.users.student.edit');
 
+    Route::post('/users/student/create', [App\Http\Controllers\Admin\StudentController::class, 'store'])->name('admin.users.student.store');
+
     //User Teacher
     Route::get('/user/teacher/create', [TeacherController::class, 'create'])->name('admin.users.teacher.create');
   });

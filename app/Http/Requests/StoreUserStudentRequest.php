@@ -21,8 +21,12 @@ class StoreUserStudentRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(StoreUserRequest $user_request)
     {
-        return [];
+        return array_merge($user_request, [
+            'session_type' => 'required|in:morning,evening',
+            'roll_no' => 'nullable|integer|max:9999',
+            'program' => 'nullable|exists:programs,id'
+        ]);
     }
 }
