@@ -25,18 +25,17 @@ class StudentController extends Controller
         $programs = Program::with(['department', 'degree'])->get();
 
         return Inertia::render('Admin/Users/Students/Create', [
-            'programs' => [
-                'id' => $programs->id,
-                'program' => $programs->getFullProgramName
-            ]
+            'programs' => $programs->map(fn ($program) => [
+                'id' => $program->id,
+                'program_name' => $program->full_program_name
+            ])
         ]);
     }
 
     public function store(StoreUserStudentRequest $request)
     {
         $this->authorize('create', User::class);
-        $validated = $request->validated();
-        dd($validated);
+
 
         DB::transaction(function () use ($request) {
             $user = User::create([

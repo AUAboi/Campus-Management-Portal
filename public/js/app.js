@@ -4439,7 +4439,7 @@ __webpack_require__.r(__webpack_exports__);
     FormInputSelect: _components_shared_form_FormInputSelect_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   props: {
-    program: {
+    programs: {
       required: true
     }
   },
@@ -4455,7 +4455,8 @@ __webpack_require__.r(__webpack_exports__);
         cnic: "",
         phone: "",
         sessions_type: "",
-        roll_no: ""
+        roll_no: "",
+        program: ""
       }),
       crumbs: [{
         text: "Users",
@@ -29718,6 +29719,7 @@ var render = function() {
         "div",
         { staticClass: "overflow-hidden max-w-3xl bg-white rounded-md shadow" },
         [
+          _vm._v("\n\t\t" + _vm._s(_vm.form) + "\n\t\t"),
           _c(
             "form",
             {
@@ -29953,14 +29955,19 @@ var render = function() {
                         _vm._v("Select program to enroll")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "morning" } }, [
-                        _vm._v("Morning")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "evening" } }, [
-                        _vm._v("Evening")
-                      ])
-                    ]
+                      _vm._l(_vm.programs, function(program) {
+                        return _c(
+                          "option",
+                          { key: program.id, domProps: { value: program.id } },
+                          [
+                            _vm._v(
+                              _vm._s(program.program_name) + "\n\t\t\t\t\t"
+                            )
+                          ]
+                        )
+                      })
+                    ],
+                    2
                   )
                 ],
                 1

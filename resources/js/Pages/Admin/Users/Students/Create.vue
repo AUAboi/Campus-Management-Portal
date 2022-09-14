@@ -3,7 +3,7 @@
 		<AppAdminHead title="Create Student" />
 		<BreadCrumbs :crumbs="crumbs" />
 		<div class="overflow-hidden max-w-3xl bg-white rounded-md shadow">
-
+			{{ form }}
 			<form class="m-0" id="create-form" @submit.prevent="store">
 				<div class="form-row">
 					<FormInputText label="Name" v-model="form.name" :error="form.errors.name" />
@@ -38,8 +38,8 @@
 				<div class="form-row">
 					<FormInputSelect label="Program" v-model="form.program" :error="form.errors.program">
 						<option value="" selected>Select program to enroll</option>
-						<option value="morning">Morning</option>
-						<option value="evening">Evening</option>
+						<option v-for="program in programs" :key="program.id" :value="program.id">{{ program.program_name }}
+						</option>
 					</FormInputSelect>
 
 				</div>
@@ -63,7 +63,7 @@ export default {
 		FormInputSelect
 	},
 	props: {
-		program: {
+		programs: {
 			required: true,
 		}
 	},
@@ -79,7 +79,8 @@ export default {
 				cnic: "",
 				phone: "",
 				sessions_type: "",
-				roll_no: ""
+				roll_no: "",
+				program: ""
 			}),
 			crumbs: [
 				{

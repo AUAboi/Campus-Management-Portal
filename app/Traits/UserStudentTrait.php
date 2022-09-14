@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use Carbon\Carbon;
 use App\Models\Student;
+use Error;
 
 trait UserStudentTrait
 {
@@ -31,7 +32,7 @@ trait UserStudentTrait
   public function enrollStudent(Student $student, $program)
   {
     if ($student->program) {
-      return;
+      throw new Error('Student is already enrolled');
     }
     $student->update([
       'program_id' => $program
