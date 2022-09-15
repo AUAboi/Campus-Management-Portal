@@ -18,7 +18,7 @@
 					</FormInputSelect>
 				</div>
 				<div class="form-row">
-					<FormInputText label="Phone Number" v-model="form.phone_number" :error="form.errors.phone_number" />
+					<FormInputText label="Phone Number" v-model="form.phone" :error="form.errors.phone" />
 					<FormInputText label="CNIC" v-model="form.cnic" :error="form.errors.cnic" placeholder="XXXXX-XXXXXXX-X"
 						maxLength="13" />
 				</div>

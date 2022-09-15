@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreUserStudentRequest;
+use Exception;
 
 class StudentController extends Controller
 {
@@ -35,7 +36,6 @@ class StudentController extends Controller
     public function store(StoreUserStudentRequest $request)
     {
         $this->authorize('create', User::class);
-
 
         DB::transaction(function () use ($request) {
             $user = User::create([
@@ -65,7 +65,8 @@ class StudentController extends Controller
         });
 
 
-        return redirect()->route('admin.users.students.index');
+
+        return redirect()->route('admin.users.students.index')->with('success', 'Student created successfully');
     }
 
     public function edit(User $user)

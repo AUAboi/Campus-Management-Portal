@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUserRequest extends FormRequest
@@ -28,7 +29,7 @@ class StoreUserRequest extends FormRequest
             'father_name' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
             'cnic' => 'required|max:13|unique:users',
-            'phone' => 'required|string|max:12',
+            'phone' => 'phone:PK,mobile',
             'password' => 'required|string|min:8|confirmed',
             'gender' => 'required|string',
             'date_of_birth' => 'required|date'

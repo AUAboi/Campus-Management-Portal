@@ -29815,14 +29815,14 @@ var render = function() {
                   _c("FormInputText", {
                     attrs: {
                       label: "Phone Number",
-                      error: _vm.form.errors.phone_number
+                      error: _vm.form.errors.phone
                     },
                     model: {
-                      value: _vm.form.phone_number,
+                      value: _vm.form.phone,
                       callback: function($$v) {
-                        _vm.$set(_vm.form, "phone_number", $$v)
+                        _vm.$set(_vm.form, "phone", $$v)
                       },
-                      expression: "form.phone_number"
+                      expression: "form.phone"
                     }
                   }),
                   _vm._v(" "),
