@@ -36,7 +36,6 @@ class StudentController extends Controller
     public function store(StoreUserStudentRequest $request)
     {
         $this->authorize('create', User::class);
-
         DB::transaction(function () use ($request) {
             $user = User::create([
                 'name' => $request->name,
@@ -50,23 +49,24 @@ class StudentController extends Controller
             ]);
 
 
+
             $student = $user->student()->create([
                 'session_type' => $request->session_type,
                 'registration_number' => $this->generateRegNumber(),
                 'roll_no' => $request->roll_no ?? $user->id + 1,
-                'admission_year' => Carbon::now()->year(),
+                'admission_year' => now()->year,
             ]);
 
             $user->assignRole('student');
 
             if ($request->program) {
-                $this->enrollStudent($student, $request->program);
+                $student->enroll($request->program);
             }
         });
 
 
 
-        return redirect()->route('admin.users.students.index')->with('success', 'Student created successfully');
+        return redirect()->route('admin.users')->with('success', 'Student created successfully');
     }
 
     public function edit(User $user)

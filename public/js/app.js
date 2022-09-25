@@ -4375,7 +4375,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
-/* harmony import */ var _components_shared_form_FormInputSelect_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../components/shared/form/FormInputSelect.vue */ "./resources/js/components/shared/form/FormInputSelect.vue");
 //
 //
 //
@@ -4431,12 +4430,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    Link: _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.Link,
-    FormInputSelect: _components_shared_form_FormInputSelect_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    Link: _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.Link
   },
   props: {
     programs: {
@@ -4450,11 +4448,12 @@ __webpack_require__.r(__webpack_exports__);
         father_name: "",
         gender: "",
         email: "",
+        date_of_birth: "",
         password: "",
         password_confirmation: "",
         cnic: "",
         phone: "",
-        sessions_type: "",
+        session_type: "",
         roll_no: "",
         program: ""
       }),
@@ -5289,12 +5288,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -29719,7 +29712,6 @@ var render = function() {
         "div",
         { staticClass: "overflow-hidden max-w-3xl bg-white rounded-md shadow" },
         [
-          _vm._v("\n\t\t" + _vm._s(_vm.form) + "\n\t\t"),
           _c(
             "form",
             {
@@ -29889,14 +29881,14 @@ var render = function() {
                     {
                       attrs: {
                         label: "Session Type",
-                        error: _vm.form.errors.sessions_type
+                        error: _vm.form.errors.session_type
                       },
                       model: {
-                        value: _vm.form.sessions_type,
+                        value: _vm.form.session_type,
                         callback: function($$v) {
-                          _vm.$set(_vm.form, "sessions_type", $$v)
+                          _vm.$set(_vm.form, "session_type", $$v)
                         },
-                        expression: "form.sessions_type"
+                        expression: "form.session_type"
                       }
                     },
                     [
@@ -29968,7 +29960,22 @@ var render = function() {
                       })
                     ],
                     2
-                  )
+                  ),
+                  _vm._v(" "),
+                  _c("FormInputText", {
+                    attrs: {
+                      label: "Date of birth",
+                      error: _vm.form.errors.date_of_birth,
+                      type: "date"
+                    },
+                    model: {
+                      value: _vm.form.date_of_birth,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "date_of_birth", $$v)
+                      },
+                      expression: "form.date_of_birth"
+                    }
+                  })
                 ],
                 1
               ),

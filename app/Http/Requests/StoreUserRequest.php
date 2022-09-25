@@ -28,8 +28,8 @@ class StoreUserRequest extends FormRequest
             'name' => 'required|string|max:255',
             'father_name' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
-            'cnic' => 'required|max:13|unique:users',
-            'phone' => 'phone:PK,mobile',
+            'cnic' => 'required|numeric|digits:13|unique:users',
+            'phone' => 'phone:PK',
             'password' => 'required|string|min:8|confirmed',
             'gender' => 'required|string',
             'date_of_birth' => 'required|date'

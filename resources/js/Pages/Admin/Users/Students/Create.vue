@@ -3,7 +3,6 @@
 		<AppAdminHead title="Create Student" />
 		<BreadCrumbs :crumbs="crumbs" />
 		<div class="overflow-hidden max-w-3xl bg-white rounded-md shadow">
-			{{ form }}
 			<form class="m-0" id="create-form" @submit.prevent="store">
 				<div class="form-row">
 					<FormInputText label="Name" v-model="form.name" :error="form.errors.name" />
@@ -28,7 +27,7 @@
 						:error="form.errors.password_confirmation" />
 				</div>
 				<div class="form-row">
-					<FormInputSelect label="Session Type" v-model="form.sessions_type" :error="form.errors.sessions_type">
+					<FormInputSelect label="Session Type" v-model="form.session_type" :error="form.errors.session_type">
 						<option value="" selected>Select session type</option>
 						<option value="morning">Morning</option>
 						<option value="evening">Evening</option>
@@ -41,6 +40,8 @@
 						<option v-for="program in programs" :key="program.id" :value="program.id">{{ program.program_name }}
 						</option>
 					</FormInputSelect>
+					<FormInputText label="Date of birth" v-model="form.date_of_birth" :error="form.errors.date_of_birth"
+						type="date" />
 
 				</div>
 				<div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center">
@@ -55,12 +56,10 @@
 
 <script>
 import { Link } from "@inertiajs/inertia-vue";
-import FormInputSelect from "../../../../components/shared/form/FormInputSelect.vue";
 
 export default {
 	components: {
 		Link,
-		FormInputSelect
 	},
 	props: {
 		programs: {
@@ -74,11 +73,12 @@ export default {
 				father_name: "",
 				gender: "",
 				email: "",
+				date_of_birth: "",
 				password: "",
 				password_confirmation: "",
 				cnic: "",
 				phone: "",
-				sessions_type: "",
+				session_type: "",
 				roll_no: "",
 				program: ""
 			}),

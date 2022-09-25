@@ -1,14 +1,8 @@
 <template>
 	<div class="pr-6 pb-8 w-full lg:w-1/2" :class="$attrs.class">
 		<label v-if="label" class="form-label">{{ label }}:</label>
-		<input
-			v-bind="{ ...$attrs, class: null }"
-			class="form-input"
-			:class="{ error: error }"
-			:type="type"
-			:value="value"
-			@input="handleInput"
-		/>
+		<input v-bind="{ ...$attrs, class: null }" class="form-input" :class="{ error: error }" :type="type" :value="value"
+			@input="handleInput" />
 		<div v-if="error" class="form-error">{{ error }}</div>
 	</div>
 </template>
