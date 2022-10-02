@@ -4,13 +4,14 @@
 
 		<BreadCrumbs :crumbs="crumbs" />
 		<h3 class="mb-8 font-bold text-3xl">Semester {{ semester }}</h3>
-		<button
-			v-if="permissions.update"
-			class="btn-main mb-4"
-			@click.prevent="update"
-		>
-			Update
-		</button>
+		<div class="flex items-center mb-4">
+			<button v-if="permissions.update" class="btn-main " @click.prevent="update">
+				Update
+			</button>
+			<p @click="deselectAll"
+				class="cursor-pointer ml-3 text-sm text-gray-500 hover:text-gray-700 focus:text-indigo-500">Unselect all</p>
+		</div>
+
 		<div class="bg-white rounded-md shadow overflow-x-auto">
 			<table class="w-full whitespace-nowrap">
 				<tr class="text-left font-bold">
@@ -19,15 +20,12 @@
 					<th class="px-6 pt-6 pb-4">Credit Hours</th>
 					<th class="px-6 pt-6 pb-4"></th>
 				</tr>
-				<tr
-					v-for="course in courses"
-					:key="course.id"
-					class="hover:bg-gray-100 focus-within:bg-gray-100"
-				>
+				<tr v-for="course in courses" :key="course.id" @click="course.belongs_to_program = !course.belongs_to_program"
+					class="hover:bg-gray-100 focus-within:bg-gray-100">
 					<td class="border-t">
-						<span class="px-6 py-4 flex items-center focus:text-indigo-500">
+						<label for="course" class="px-6 py-4 flex items-center focus:text-indigo-500">
 							{{ course.course_name }}
-						</span>
+						</label>
 					</td>
 					<td class="border-t">
 						<span class="px-6 py-4 flex items-center focus:text-indigo-500">
@@ -41,12 +39,8 @@
 					</td>
 
 					<td class="border-t w-px">
-						<span
-							v-if="permissions.update"
-							class="px-4 flex items-center"
-							tabindex="-1"
-						>
-							<input type="checkbox" v-model="course.belongs_to_program" />
+						<span v-if="permissions.update" class="px-4 flex items-center" tabindex="-1">
+							<input name="course" type="checkbox" v-model="course.belongs_to_program" />
 						</span>
 					</td>
 				</tr>
@@ -118,6 +112,11 @@ export default {
 					this.semester
 				])
 			);
+		},
+		deselectAll() {
+			this.courses.forEach(course => {
+				course.belongs_to_program = 0
+			})
 		}
 	}
 };

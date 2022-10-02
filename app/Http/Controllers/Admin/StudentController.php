@@ -114,4 +114,15 @@ class StudentController extends Controller
 
         return redirect()->route('admin.users')->with('success', 'Student updated successfully');
     }
+
+    public function show(User $user)
+    {
+        return Inertia::render("Admin/Users/Students/Show", [
+            'user' => $user->load('student'),
+            'permissions' =>  [
+                'edit' => auth()->user()->can('update', $user),
+                'delete' => auth()->user()->can('delete', $user),
+            ],
+        ]);
+    }
 }

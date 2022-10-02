@@ -61,10 +61,9 @@ class UserController extends Controller
     public function show(User $user)
     {
         $user = User::with('student', 'admin', 'roles')->findOrFail($user->id);
-        dd($user->student);
         return Inertia::render("Admin/Users/Show", [
             'user' => $user,
-            'permissions' => [
+            'permissions' =>  [
                 'edit' => auth()->user()->can('update', $user),
                 'delete' => auth()->user()->can('delete', $user),
             ],
