@@ -40,12 +40,16 @@ import { createInertiaApp } from "@inertiajs/inertia-vue";
 import Layout from "./components/shared/layouts/Layout";
 import TheAdminMenu from "./components/admin/layouts/TheAdminMenu";
 import AppStudentMenu from "./components/student/layouts/AppStudentMenu";
+import AppAdminHead from "./components/admin/layouts/AppAdminHead";
 
 import PortalVue from "portal-vue";
 
 import { InertiaProgress } from "@inertiajs/progress";
 
 Vue.use(PortalVue);
+
+//Global components
+Vue.component(AppAdminHead);
 
 InertiaProgress.init();
 

@@ -4854,13 +4854,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
+/* harmony import */ var _components_shared_form_FormInputText_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../components/shared/form/FormInputText.vue */ "./resources/js/components/shared/form/FormInputText.vue");
 //
 //
 //
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "StudentRegister",
+  components: {
+    FormInputText: _components_shared_form_FormInputText_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Head: _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.Head
+  }
+});
 
 /***/ }),
 
@@ -6149,8 +6229,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_shared_layouts_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/shared/layouts/Layout */ "./resources/js/components/shared/layouts/Layout.vue");
 /* harmony import */ var _components_admin_layouts_TheAdminMenu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/admin/layouts/TheAdminMenu */ "./resources/js/components/admin/layouts/TheAdminMenu.vue");
 /* harmony import */ var _components_student_layouts_AppStudentMenu__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/student/layouts/AppStudentMenu */ "./resources/js/components/student/layouts/AppStudentMenu.vue");
-/* harmony import */ var portal_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! portal-vue */ "./node_modules/portal-vue/dist/portal-vue.common.js");
-/* harmony import */ var _inertiajs_progress__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @inertiajs/progress */ "./node_modules/@inertiajs/progress/dist/index.js");
+/* harmony import */ var _components_admin_layouts_AppAdminHead__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/admin/layouts/AppAdminHead */ "./resources/js/components/admin/layouts/AppAdminHead.vue");
+/* harmony import */ var portal_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! portal-vue */ "./node_modules/portal-vue/dist/portal-vue.common.js");
+/* harmony import */ var _inertiajs_progress__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @inertiajs/progress */ "./node_modules/@inertiajs/progress/dist/index.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -6186,8 +6267,11 @@ files.keys().map(function (key) {
 
 
 
-Vue.use(portal_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
-_inertiajs_progress__WEBPACK_IMPORTED_MODULE_5__.InertiaProgress.init();
+
+Vue.use(portal_vue__WEBPACK_IMPORTED_MODULE_5__["default"]); //Global components
+
+Vue.component(_components_admin_layouts_AppAdminHead__WEBPACK_IMPORTED_MODULE_4__["default"]);
+_inertiajs_progress__WEBPACK_IMPORTED_MODULE_6__.InertiaProgress.init();
 (0,_inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.createInertiaApp)({
   resolve: function resolve(name) {
     var page = __webpack_require__("./resources/js/Pages sync recursive ^\\.\\/.*$")("./".concat(name))["default"];
@@ -30888,9 +30972,140 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n\tRegister page\n")])
+  return _c(
+    "main",
+    [
+      _c("Head", {
+        attrs: { title: "Register your account | " + _vm.$page.props.appName }
+      }),
+      _vm._v(" "),
+      _vm._m(0)
+    ],
+    1
+  )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "bg-grey-lighter min-h-screen flex flex-col" },
+      [
+        _c(
+          "div",
+          {
+            staticClass:
+              "container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2"
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "bg-white px-6 py-8 rounded shadow-md text-black w-full"
+              },
+              [
+                _c("h1", { staticClass: "mb-8 text-3xl text-center" }, [
+                  _vm._v("Sign up")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass:
+                    "block border border-grey-light w-full p-3 rounded mb-4",
+                  attrs: {
+                    type: "text",
+                    name: "fullname",
+                    placeholder: "Full Name"
+                  }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass:
+                    "block border border-grey-light w-full p-3 rounded mb-4",
+                  attrs: { type: "text", name: "email", placeholder: "Email" }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass:
+                    "block border border-grey-light w-full p-3 rounded mb-4",
+                  attrs: {
+                    type: "password",
+                    name: "password",
+                    placeholder: "Password"
+                  }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass:
+                    "block border border-grey-light w-full p-3 rounded mb-4",
+                  attrs: {
+                    type: "password",
+                    name: "confirm_password",
+                    placeholder: "Confirm Password"
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "w-full text-center py-3 rounded bg-green text-white hover:bg-green-dark focus:outline-none my-1",
+                    attrs: { type: "submit" }
+                  },
+                  [_vm._v("\n\t\t\t\t\tCreate Account\n\t\t\t\t")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "text-center text-sm text-grey-dark mt-4" },
+                  [
+                    _vm._v(
+                      "\n\t\t\t\t\tBy signing up, you agree to the\n\t\t\t\t\t"
+                    ),
+                    _c(
+                      "a",
+                      {
+                        staticClass:
+                          "no-underline border-b border-grey-dark text-grey-dark",
+                        attrs: { href: "#" }
+                      },
+                      [_vm._v("\n\t\t\t\t\t\tTerms of Service\n\t\t\t\t\t")]
+                    ),
+                    _vm._v("\n\t\t\t\t\tand\n\t\t\t\t\t"),
+                    _c(
+                      "a",
+                      {
+                        staticClass:
+                          "no-underline border-b border-grey-dark text-grey-dark",
+                        attrs: { href: "#" }
+                      },
+                      [_vm._v("\n\t\t\t\t\t\tPrivacy Policy\n\t\t\t\t\t")]
+                    )
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-grey-dark mt-6" }, [
+              _vm._v("\n\t\t\t\tAlready have an account?\n\t\t\t\t"),
+              _c(
+                "a",
+                {
+                  staticClass: "no-underline border-b border-blue text-blue",
+                  attrs: { href: "../login/" }
+                },
+                [_vm._v("\n\t\t\t\t\tLog in ")]
+              ),
+              _vm._v(".\n\t\t\t")
+            ])
+          ]
+        )
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 

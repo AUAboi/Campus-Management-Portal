@@ -35,8 +35,6 @@ Route::get('/programs', [TestController::class, 'page']);
 Route::inertia('/student/register', 'User/StudentRegister/Index')->name('student.register');
 
 
-
-
 Route::group(['middleware' => ['role:teacher']], function () {
   Route::prefix('teacher')->group(function () {
     Route::inertia('/dashboard', 'Teacher/DashboardPage');
