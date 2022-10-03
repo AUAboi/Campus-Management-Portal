@@ -36,6 +36,9 @@ import { Link } from "@inertiajs/inertia-vue";
 import throttle from "lodash/throttle";
 import pickBy from "lodash/pickBy";
 import mapValues from "lodash/mapValues";
+import AppDataTable from "../../../components/shared/tables/AppDataTable.vue";
+import AppTablePagination from "../../../components/shared/tables/AppTablePagination.vue";
+import AppTableSearch from "../../../components/shared/tables/AppTableSearch.vue";
 
 export default {
 	data() {
@@ -52,7 +55,10 @@ export default {
 		};
 	},
 	components: {
-		Link
+		Link,
+		AppDataTable,
+		AppTablePagination,
+		AppTableSearch
 	},
 	props: {
 		filters: {

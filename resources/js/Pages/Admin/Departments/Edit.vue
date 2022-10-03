@@ -123,13 +123,16 @@ export default {
 			);
 		},
 		destroy() {
-			this.confirmDelete(result => {
-				if (result.isConfirmed) {
-					this.$inertia.delete(
-						this.$route("admin.departments.destroy", this.department.slug)
-					);
-				}
-			});
+			this.confirm(
+				result => {
+					if (result.isConfirmed) {
+						this.$inertia.delete(
+							this.$route("admin.departments.destroy", this.department.slug)
+						);
+					}
+				},
+				{ title: `Deleting ${this.department.department_name}` }
+			);
 		}
 	}
 };

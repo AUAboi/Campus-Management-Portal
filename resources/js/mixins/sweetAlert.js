@@ -42,23 +42,6 @@ const sweetAlert = {
             );
 
             this.$swal(options).then(callback);
-        },
-        confirmDelete(callback, options) {
-            options = Object.assign(
-                {
-                    title: "Are you sure you want to delete this?",
-                    text:
-                        "This action will delete the selected entity permanently",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "Yes",
-                    closeOnConfirm: false
-                },
-                options
-            );
-
-            this.$swal(options).then(callback);
         }
     }
 };
