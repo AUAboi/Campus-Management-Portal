@@ -80,37 +80,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        //////////////////////////////
-        //USE TRAITS TO BUILD MODEL//
-        ////////////////////////////
-        $role = $data['role'];
 
         $user = User::create([
             'name' => $data['name'],
-            'father_name' => $data['name'],
+            'father_name' => $data['father_name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'gender' => $data['gender'],
             'phone' => '03214522363',
             'cnic' => '3310035761605'
         ]);
-
-
-        if ($role === "student") {
-            $user->student()->create(
-                [
-                    'session_type' => 'evening',
-                    'registration_number' => '04367',
-                    'roll_no' => 04367,
-                    'admission_year' => Carbon::now()->format('Y'),
-                    'cgpa' => 0.00,
-                    'has_enrolled' => true,
-                ]
-            );
-        } else if ($role === "admin") {
-            $user->admin()->create();
-        }
-
-        $user->assignRole($role);
 
         return $user;
     }

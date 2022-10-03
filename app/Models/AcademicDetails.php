@@ -19,4 +19,9 @@ class AcademicDetails extends Model
         'obtained_marks',
         'user_id'
     ];
+
+    public function applicant()
+    {
+        $this->belongsTo(User::class);
+    }
 }

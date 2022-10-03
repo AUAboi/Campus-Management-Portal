@@ -1,43 +1,29 @@
 <template>
 	<div>
 		<AppAdminHead :title="form.department_name" />
-		<BreadCrumbs :crumbs="crumbs" />
+		<AppBreadCrumbs :crumbs="crumbs" />
 
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form @submit.prevent="update" id="update-form" class="m-0">
 				<div class="form-row">
-					<div>
-						<label class="block">Department Name: </label>
-						<input
-							type="text"
-							v-model="form.department_name"
-							class="form-input"
-							:readonly="!permissions.update"
-						/>
-
-						<div class="text-red-600" v-if="form.errors.department_name">
-							{{ form.errors.department_name }}
-						</div>
-					</div>
-					<div>
-						<label class="block">Faculty: </label>
-						<select
-							:disabled="!permissions.update"
-							class="form-input"
-							v-model="form.faculty_id"
+					<FormInputText
+						v-model="form.department_name"
+						label="Department Name"
+						:error="form.errors.department_name"
+					/>
+					<FormInputSelect
+						v-model="form.faculty_id"
+						label="Faculty"
+						:error="form.errors.faculty_id"
+					>
+						<option
+							v-for="faculty in faculties"
+							:key="faculty.id"
+							:value="faculty.id"
 						>
-							<option
-								v-for="faculty in faculties"
-								:key="faculty.id"
-								:value="faculty.id"
-							>
-								{{ faculty.faculty_name }}
-							</option>
-						</select>
-						<div class="text-red-600" v-if="form.errors.faculty_id">
-							{{ form.errors.faculty_id }}
-						</div>
-					</div>
+							{{ faculty.faculty_name }}
+						</option>
+					</FormInputSelect>
 				</div>
 				<div
 					class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center"
@@ -75,11 +61,17 @@
 
 <script>
 import { Head, Link } from "@inertiajs/inertia-vue";
+import FormInputText from "../../../components/shared/form/FormInputText.vue";
+import FormInputSelect from "../../../components/shared/form/FormInputSelect.vue";
+
+import sweetAlert from "../../../mixins/sweetAlert";
 
 export default {
 	components: {
 		Head,
-		Link
+		Link,
+		FormInputText,
+		FormInputSelect
 	},
 	props: {
 		department: {
@@ -113,10 +105,6 @@ export default {
 					route: this.$route("admin.faculties")
 				},
 				{
-					text: "Department",
-					route: this.$route("admin.departments")
-				},
-				{
 					text: this.department.department_name
 				}
 			]
@@ -127,6 +115,7 @@ export default {
 			this.crumbs[this.crumbs.length - 1].text = newValue;
 		}
 	},
+	mixins: [sweetAlert],
 	methods: {
 		update() {
 			this.form.put(
@@ -134,11 +123,13 @@ export default {
 			);
 		},
 		destroy() {
-			if (confirm("Are you sure you want to delete this department?")) {
-				this.$inertia.delete(
-					this.$route("admin.departments.destroy", this.department.slug)
-				);
-			}
+			this.confirmDelete(result => {
+				if (result.isConfirmed) {
+					this.$inertia.delete(
+						this.$route("admin.departments.destroy", this.department.slug)
+					);
+				}
+			});
 		}
 	}
 };

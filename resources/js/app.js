@@ -45,7 +45,11 @@ import AppAdminHead from "./components/admin/layouts/AppAdminHead";
 import PortalVue from "portal-vue";
 
 import { InertiaProgress } from "@inertiajs/progress";
+import VueSweetalert2 from "vue-sweetalert2";
 
+import "sweetalert2/dist/sweetalert2.min.css";
+
+Vue.use(VueSweetalert2);
 Vue.use(PortalVue);
 
 //Global components

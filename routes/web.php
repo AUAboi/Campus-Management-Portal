@@ -32,8 +32,7 @@ Route::get('/programs', [TestController::class, 'page']);
 
 
 //auth routes
-Route::inertia('/student/register', 'User/StudentRegister/Index')->name('student.register');
-
+Route::inertia('/applicant/register', 'User/Applicant/Register')->name('applicant.register');
 
 Route::group(['middleware' => ['role:teacher']], function () {
   Route::prefix('teacher')->group(function () {

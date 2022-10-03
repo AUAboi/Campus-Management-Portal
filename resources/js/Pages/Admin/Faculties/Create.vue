@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<AppAdminHead title="Create Faculty" />
-		<BreadCrumbs :crumbs="crumbs" />
+		<AppBreadCrumbs :crumbs="crumbs" />
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form class="m-0" @submit.prevent="store">
 				<div class="form-row">

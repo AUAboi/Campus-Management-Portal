@@ -2,7 +2,7 @@
 	<div>
 		<AppAdminHead title="Create department" />
 
-		<BreadCrumbs :crumbs="crumbs" />
+		<AppBreadCrumbs :crumbs="crumbs" />
 
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form class="m-0" @submit.prevent="store">
@@ -40,10 +40,18 @@
 
 <script>
 import { Link } from "@inertiajs/inertia-vue";
+import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
+import AppAdminHead from "../../../components/admin/layouts/AppAdminHead.vue";
+import FormInputText from "../../../components/shared/form/FormInputText.vue";
+import FormInputSelect from "../../../components/shared/form/FormInputSelect.vue";
 
 export default {
 	components: {
-		Link
+		Link,
+		AppBreadCrumbs,
+		AppAdminHead,
+		FormInputText,
+		FormInputSelect
 	},
 	props: {
 		faculties: {
