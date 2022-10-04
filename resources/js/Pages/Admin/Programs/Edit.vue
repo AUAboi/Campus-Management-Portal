@@ -105,10 +105,27 @@
 
 <script>
 import { Link } from "@inertiajs/inertia-vue";
+import AppAdminHead from "../../../components/admin/layouts/AppAdminHead.vue";
+import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
+import FormInputSelect from "../../../components/shared/form/FormInputSelect.vue";
+import AppDataTable from "../../../components/shared/tables/AppDataTable.vue";
+import FormInputText from "../../../components/shared/form/FormInputText.vue";
+
+import sweetAlert from "../../../mixins/sweetAlert";
+
+const AppModal = () => ({
+	component: import("../../../components/shared/modals/AppModal.vue")
+});
 
 export default {
 	components: {
-		Link
+		Link,
+		AppAdminHead,
+		AppModal,
+		AppBreadCrumbs,
+		FormInputSelect,
+		AppDataTable,
+		FormInputText
 	},
 	props: {
 		program: {
@@ -133,6 +150,7 @@ export default {
 		},
 		courses: Array
 	},
+	mixins: [sweetAlert],
 	data() {
 		return {
 			form: this.$inertia.form({
@@ -182,11 +200,16 @@ export default {
 			this.form.put(this.$route("admin.programs.update", this.program.slug));
 		},
 		destroy() {
-			if (confirm("Are you sure you want to delete this program?")) {
-				this.$inertia.delete(
-					this.$route("admin.programs.destroy", this.program.slug)
-				);
-			}
+			this.confirm(
+				result => {
+					if (result.isConfirmed) {
+						this.$inertia.delete(
+							this.$route("admin.programs.destroy", this.program.slug)
+						);
+					}
+				},
+				{ title: `Deleting ${this.program.program_name}` }
+			);
 		}
 	}
 };

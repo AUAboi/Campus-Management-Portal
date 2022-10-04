@@ -65,14 +65,18 @@ import FormInputText from "../../../components/shared/form/FormInputText.vue";
 import FormInputSelect from "../../../components/shared/form/FormInputSelect.vue";
 
 import sweetAlert from "../../../mixins/sweetAlert";
+import AppAdminHead from "../../../components/admin/layouts/AppAdminHead.vue";
+import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
 
 export default {
 	components: {
-		Head,
-		Link,
-		FormInputText,
-		FormInputSelect
-	},
+    Head,
+    Link,
+    FormInputText,
+    FormInputSelect,
+    AppAdminHead,
+    AppBreadCrumbs
+},
 	props: {
 		department: {
 			type: Object,

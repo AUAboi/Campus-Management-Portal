@@ -29,8 +29,8 @@
 						:href="$route(route, data.slug ? data.slug : data.id)"
 						tabindex="-1"
 					>
-						<i class="fas fa-angle-right text-gray-600"></i
-					></Link>
+						<ChevronRightIcon class="text-gray-600"
+					/></Link>
 				</td>
 			</tr>
 			<tr v-if="table_data.length === 0">
@@ -42,10 +42,12 @@
 
 <script>
 import { Link } from "@inertiajs/inertia-vue";
+import { ChevronRightIcon } from "@vue-hero-icons/outline";
 
 export default {
 	components: {
-		Link
+		Link,
+		ChevronRightIcon
 	},
 	props: {
 		route: {

@@ -60,7 +60,13 @@
 			</nav>
 
 			<main class="md:flex-1 px-4 py-8 md:p-12 md:overflow-y-auto ">
-				<AppFlashMessage />
+				<AppFlashMessage
+					v-if="
+						$page.props.flash.success ||
+							$page.props.flash.error ||
+								Object.keys($page.props.errors).length > 0
+					"
+				/>
 				<portal-target name="maincontent" />
 			</main>
 		</div>
@@ -68,9 +74,18 @@
 </template>
 
 <script>
-import AppFlashMessage from "../ui/AppFlashMessage.vue";
-import AppUserMenu from "../AppUserMenu.vue";
-import AppDropdown from "../ui/AppDropdown.vue";
+const AppUserMenu = () => ({
+	component: import("../AppUserMenu.vue")
+});
+
+const AppFlashMessage = () => ({
+	component: import("../ui/AppFlashMessage.vue")
+});
+
+const AppDropdown = () => ({
+	component: import("../ui/AppDropdown.vue")
+});
+
 import { ChevronDownIcon } from "@vue-hero-icons/outline";
 
 export default {
@@ -82,7 +97,12 @@ export default {
 			return this.$page.props.appName;
 		}
 	},
-	components: { AppFlashMessage, AppUserMenu, AppDropdown, ChevronDownIcon }
+	components: {
+		AppFlashMessage,
+		AppUserMenu,
+		ChevronDownIcon,
+		AppDropdown
+	}
 };
 </script>
 

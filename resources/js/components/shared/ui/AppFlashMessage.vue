@@ -12,10 +12,10 @@
 			</div>
 			<button
 				type="button"
-				class="group mr-2 p-2 text-black hover:text-white"
+				class="group mr-2 p-2 hover:text-black text-white"
 				@click="show = false"
 			>
-				<i class="fas fa-times"></i>
+				<XCircleIcon />
 			</button>
 		</div>
 		<div
@@ -49,18 +49,23 @@
 				class="group mr-2 p-2 text-black hover:text-white"
 				@click="show = false"
 			>
-				<i class="fas fa-times"></i>
+				<XCircleIcon />
 			</button>
 		</div>
 	</div>
 </template>
 
 <script>
+import { XCircleIcon } from "@vue-hero-icons/outline";
+
 export default {
 	data() {
 		return {
 			show: true
 		};
+	},
+	components: {
+		XCircleIcon
 	},
 	watch: {
 		"$page.props.flash": {

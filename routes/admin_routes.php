@@ -27,7 +27,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     //Faculties
     Route::get('/faculties', [FacultyController::class, 'index'])->name('admin.faculties');
     Route::get('/faculties/create', [FacultyController::class, 'create'])->name('admin.faculties.create');
-    Route::get('/faculties/{faculty}/edit', [FacultyController::class, 'edit'])->name('admin.faculties.edit');
+    Route::get('/faculties/{faculty}', [FacultyController::class, 'edit'])->name('admin.faculties.edit');
 
     Route::post('/faculties/create', [FacultyController::class, 'store'])->name('admin.faculties.store');
     Route::put('/faculties/{faculty}/update', [FacultyController::class, 'update'])->name('admin.faculties.update');
@@ -36,7 +36,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     //Departments
     Route::get('/departments', [DepartmentController::class, 'index'])->name('admin.departments');
     Route::get('/departments/create', [DepartmentController::class, 'create'])->name('admin.departments.create');
-    Route::get('/departments/{department}/edit', [DepartmentController::class, 'edit'])->name('admin.departments.edit');
+    Route::get('/departments/{department}', [DepartmentController::class, 'edit'])->name('admin.departments.edit');
 
     Route::post('/departments/create', [DepartmentController::class, 'store'])->name('admin.departments.store');
     Route::put('/departments/{department}/update', [DepartmentController::class, 'update'])->name('admin.departments.update');
@@ -45,7 +45,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     //Programs
     Route::get('/programs', [ProgramController::class, 'index'])->name('admin.programs');
     Route::get('/programs/create', [ProgramController::class, 'create'])->name('admin.programs.create');
-    Route::get('/programs/{program}/edit', [ProgramController::class, 'edit'])->name('admin.programs.edit');
+    Route::get('/programs/{program}', [ProgramController::class, 'edit'])->name('admin.programs.edit');
 
     Route::post('/programs/create', [ProgramController::class, 'store'])->name('admin.programs.store');
     Route::put('/programs/{program}/update', [ProgramController::class, 'update'])->name('admin.programs.update');
@@ -54,7 +54,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     //Courses
     Route::get('/courses', [CourseController::class, 'index'])->name('admin.courses');
     Route::get('/courses/create', [CourseController::class, 'create'])->name('admin.courses.create');
-    Route::get('/courses/{course}/edit', [CourseController::class, 'edit'])->name('admin.courses.edit');
+    Route::get('/courses/{course}t', [CourseController::class, 'edit'])->name('admin.courses.edit');
 
     Route::post('/courses/create', [CourseController::class, 'store'])->name('admin.courses.store');
     Route::put('/courses/{course}/update', [CourseController::class, 'update'])->name('admin.courses.update');

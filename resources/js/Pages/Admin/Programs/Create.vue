@@ -51,10 +51,18 @@
 
 <script>
 import { Link } from "@inertiajs/inertia-vue";
+import AppAdminHead from "../../../components/admin/layouts/AppAdminHead.vue";
+import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
+import FormInputSelect from "../../../components/shared/form/FormInputSelect.vue";
+import FormInputText from "../../../components/shared/form/FormInputText.vue";
 
 export default {
 	components: {
-		Link
+		Link,
+		AppAdminHead,
+		AppBreadCrumbs,
+		FormInputSelect,
+		FormInputText
 	},
 	props: {
 		departments: {

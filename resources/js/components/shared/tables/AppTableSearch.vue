@@ -48,6 +48,8 @@
 </template>
 
 <script>
+const AppDropdown = import("../ui/AppDropdown.vue");
+
 export default {
 	props: {
 		value: String,
@@ -59,6 +61,11 @@ export default {
 			type: Boolean,
 			default: false
 		}
+	},
+	components: {
+		AppDropdown: () => ({
+			component: AppDropdown
+		})
 	}
 };
 </script>

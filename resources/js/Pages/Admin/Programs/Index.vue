@@ -5,7 +5,7 @@
 		<h1 class="mb-8 font-bold text-3xl">Programs</h1>
 		<div class="mb-6 flex justify-between items-center">
 			<AppTableSearch
-				:filterable="true"
+				filterable
 				v-model="form.search"
 				class="w-full max-w-md mr-4"
 				@reset="reset"
@@ -48,6 +48,10 @@ import { Link } from "@inertiajs/inertia-vue";
 import throttle from "lodash/throttle";
 import pickBy from "lodash/pickBy";
 import mapValues from "lodash/mapValues";
+import AppTableSearch from "../../../components/shared/tables/AppTableSearch.vue";
+import AppAdminHead from "../../../components/admin/layouts/AppAdminHead.vue";
+import AppDataTable from "../../../components/shared/tables/AppDataTable.vue";
+import AppTablePagination from "../../../components/shared/tables/AppTablePagination.vue";
 
 export default {
 	data() {
@@ -73,7 +77,11 @@ export default {
 		};
 	},
 	components: {
-		Link
+		Link,
+		AppTableSearch,
+		AppAdminHead,
+		AppDataTable,
+		AppTablePagination
 	},
 	props: {
 		filters: {

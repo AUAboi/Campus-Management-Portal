@@ -87,9 +87,10 @@ export default {
 			deep: true,
 			handler: throttle(function() {
 				this.$inertia.get(this.$route("admin.faculties"), pickBy(this.form), {
-					preserveState: true
+					preserveState: true,
+					replace: true
 				});
-			}, 150)
+			}, 300)
 		}
 	}
 };
