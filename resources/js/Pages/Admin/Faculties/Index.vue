@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<AppAdminHead title="Faculties" />
+		<TheAdminHead title="Faculties" />
 
 		<h1 class="mb-8 font-bold text-3xl">Faculties</h1>
 		<div class="mb-6 flex justify-between items-center">
@@ -39,7 +39,7 @@ import mapValues from "lodash/mapValues";
 import AppDataTable from "../../../components/shared/tables/AppDataTable.vue";
 import AppTablePagination from "../../../components/shared/tables/AppTablePagination.vue";
 import AppTableSearch from "../../../components/shared/tables/AppTableSearch.vue";
-import AppAdminHead from "../../../components/admin/layouts/AppAdminHead.vue";
+import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
 
 export default {
 	data() {
@@ -60,7 +60,7 @@ export default {
 		AppDataTable,
 		AppTablePagination,
 		AppTableSearch,
-		AppAdminHead
+		TheAdminHead
 	},
 	props: {
 		filters: {

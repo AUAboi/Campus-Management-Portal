@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<AppAdminHead :title="form.course_name" />
+		<TheAdminHead :title="form.course_name" />
 		<AppBreadCrumbs :crumbs="crumbs" />
 
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
@@ -81,6 +81,10 @@
 </template>
 
 <script>
+import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
+import FormInputText from "../../../components/shared/form/FormInputText.vue";
+import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
+import sweetAlert from "../../../mixins/sweetAlert";
 export default {
 	props: {
 		course: {
@@ -105,7 +109,6 @@ export default {
 				department_code: this.course.department_code,
 				course_code: this.course.course_code
 			}),
-
 			crumbs: [
 				{
 					text: "Faculties",
@@ -122,17 +125,23 @@ export default {
 			this.crumbs[this.crumbs.length - 1].text = newValue;
 		}
 	},
+	mixins: [sweetAlert],
 	methods: {
 		update() {
 			this.form.put(this.$route("admin.courses.update", this.course.id));
 		},
 		destroy() {
-			if (confirm("Are you sure you want to delete this course?")) {
-				this.$inertia.delete(
-					this.$route("admin.courses.destroy", this.course.id)
-				);
-			}
+			this.confirm(
+				result => {
+					if (result.isConfirmed)
+						this.$inertia.delete(
+							this.$route("admin.courses.destroy", this.course.id)
+						);
+				},
+				{ title: `Deleting ${this.course.course_name}` }
+			);
 		}
-	}
+	},
+	components: { TheAdminHead, FormInputText, AppBreadCrumbs }
 };
 </script>

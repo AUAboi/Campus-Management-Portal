@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<AppAdminHead title="Create department" />
+		<TheAdminHead title="Create department" />
 
 		<AppBreadCrumbs :crumbs="crumbs" />
 
@@ -41,7 +41,7 @@
 <script>
 import { Link } from "@inertiajs/inertia-vue";
 import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
-import AppAdminHead from "../../../components/admin/layouts/AppAdminHead.vue";
+import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
 import FormInputText from "../../../components/shared/form/FormInputText.vue";
 import FormInputSelect from "../../../components/shared/form/FormInputSelect.vue";
 
@@ -49,7 +49,7 @@ export default {
 	components: {
 		Link,
 		AppBreadCrumbs,
-		AppAdminHead,
+		TheAdminHead,
 		FormInputText,
 		FormInputSelect
 	},

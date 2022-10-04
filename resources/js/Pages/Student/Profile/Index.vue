@@ -1,6 +1,6 @@
 <template>
 	<main>
-		<AppAdminHead title="Profile - Student" />
+		<TheAdminHead title="Profile - Student" />
 
 		<StudentProfileCard :user="user" />
 	</main>

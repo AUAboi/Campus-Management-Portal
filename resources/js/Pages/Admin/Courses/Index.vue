@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<AppAdminHead title="Courses" />
+		<TheAdminHead title="Courses" />
 		<h1 class="mb-8 font-bold text-3xl">Courses</h1>
 		<div class="mb-6 flex justify-between items-center">
 			<AppTableSearch
@@ -20,58 +20,11 @@
 			</Link>
 		</div>
 		<div class="bg-white rounded-md shadow overflow-x-auto">
-			<table class="w-full whitespace-nowrap">
-				<tr class="text-left font-bold">
-					<th class="px-6 pt-6 pb-4">Name</th>
-					<th class="px-6 pt-6 pb-4">Course Code</th>
-					<th class="px-6 pt-6 pb-4">Credit Hours</th>
-					<th class="px-6 pt-6 pb-4"></th>
-				</tr>
-				<tr
-					v-for="course in courses.data"
-					:key="course.id"
-					class="hover:bg-gray-100 focus-within:bg-gray-100"
-				>
-					<td class="border-t">
-						<Link
-							class="px-6 py-4 flex items-center focus:text-indigo-500"
-							:href="$route('admin.courses.edit', course.id)"
-						>
-							{{ course.course_name }}
-						</Link>
-					</td>
-					<td class="border-t">
-						<Link
-							class="px-6 py-4 flex items-center focus:text-indigo-500"
-							:href="$route('admin.courses.edit', course.id)"
-						>
-							{{ course.department_code }}-{{ course.course_code }}
-						</Link>
-					</td>
-					<td class="border-t">
-						<Link
-							class="px-6 py-4 flex items-center focus:text-indigo-500"
-							:href="$route('admin.courses.edit', course.id)"
-						>
-							{{ course.credit_hours }}
-						</Link>
-					</td>
-					<td class="border-t w-px">
-						<Link
-							class="px-4 flex items-center"
-							:href="$route('admin.courses.edit', course.id)"
-							tabindex="-1"
-						>
-							<i class="fas fa-angle-right text-gray-600"></i
-						></Link>
-					</td>
-				</tr>
-				<tr v-if="courses.data.length === 0">
-					<td class="border-t px-6 py-4" colspan="4">
-						No courses found.
-					</td>
-				</tr>
-			</table>
+			<AppDataTable
+				:table_data="courses.data"
+				:labels="labels"
+				route="admin.courses.edit"
+			/>
 		</div>
 		<AppTablePagination class="mt-6" :links="courses.links" />
 	</div>
@@ -82,24 +35,40 @@ import { Link } from "@inertiajs/inertia-vue";
 import throttle from "lodash/throttle";
 import pickBy from "lodash/pickBy";
 import mapValues from "lodash/mapValues";
-import AppAdminHead from "../../../components/admin/layouts/AppAdminHead.vue";
+import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
 import AppTableSearch from "../../../components/shared/tables/AppTableSearch.vue";
 import AppTablePagination from "../../../components/shared/tables/AppTablePagination.vue";
+import AppDataTable from "../../../components/shared/tables/AppDataTable.vue";
 
 export default {
 	data() {
 		return {
 			form: {
 				search: this.filters.search
-			}
+			},
+			labels: [
+				{
+					key: "course_name",
+					value: "Name"
+				},
+				{
+					key: "course_code",
+					value: "Course Code"
+				},
+				{
+					key: "credit_hours",
+					value: "Credit Hours"
+				}
+			]
 		};
 	},
 	components: {
-    Link,
-    AppAdminHead,
-    AppTableSearch,
-    AppTablePagination
-},
+		Link,
+		TheAdminHead,
+		AppTableSearch,
+		AppTablePagination,
+		AppDataTable
+	},
 	props: {
 		filters: {
 			type: Object
@@ -125,9 +94,10 @@ export default {
 			deep: true,
 			handler: throttle(function() {
 				this.$inertia.get(this.$route("admin.courses"), pickBy(this.form), {
-					preserveState: true
+					preserveState: true,
+					replace: true
 				});
-			}, 150)
+			}, 300)
 		}
 	}
 };

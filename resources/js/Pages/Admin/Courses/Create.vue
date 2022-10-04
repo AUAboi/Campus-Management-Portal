@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<AppAdminHead title="Create course" />
+		<TheAdminHead title="Create course" />
 		<AppBreadCrumbs :crumbs="crumbs" />
 
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
@@ -54,10 +54,16 @@
 
 <script>
 import { Link } from "@inertiajs/inertia-vue";
+import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
+import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
+import FormInputText from "../../../components/shared/form/FormInputText.vue";
 
 export default {
 	components: {
-		Link
+		Link,
+		TheAdminHead,
+		AppBreadCrumbs,
+		FormInputText
 	},
 	data() {
 		return {

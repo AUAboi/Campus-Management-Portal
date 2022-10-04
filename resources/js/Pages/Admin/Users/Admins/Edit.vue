@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<AppAdminHead :title="form.name" />
+		<TheAdminHead :title="form.name" />
 		<AppBreadCrumbs :crumbs="crumbs" />
 
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">

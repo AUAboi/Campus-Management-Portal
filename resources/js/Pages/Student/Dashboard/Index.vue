@@ -1,6 +1,6 @@
 <template>
 	<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl ">
-		<AppAdminHead title="Dashboard - Student" />
+		<TheAdminHead title="Dashboard - Student" />
 
 		<h1>Welcome, {{ user.name }}</h1>
 		<p>Hello welcome to your first Inertia app!</p>

@@ -24,6 +24,7 @@ class ProgramCourseController extends Controller
         }
 
         $program_courses = $program->courses()->where('semester', $semester)->get();
+
         $courses =  Course::orderBy('course_name')
             ->get()
             ->transform(fn ($course) => [
@@ -39,7 +40,10 @@ class ProgramCourseController extends Controller
 
         return Inertia::render('Admin/Programs/AddCourse', [
             'semester' => $semester,
-            'program' => $program,
+            'program' => [
+                'slug' => $program->slug,
+                'name' => $program->getFullProgramNameAttribute()
+            ],
             'courses' => $courses,
             'program_courses' => $program_courses,
             'permissions' => [

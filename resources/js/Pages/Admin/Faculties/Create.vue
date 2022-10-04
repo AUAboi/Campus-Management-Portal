@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<AppAdminHead title="Create Faculty" />
+		<TheAdminHead title="Create Faculty" />
 		<AppBreadCrumbs :crumbs="crumbs" />
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form class="m-0" @submit.prevent="store">
@@ -27,14 +27,14 @@
 import { Link } from "@inertiajs/inertia-vue";
 import FormInputText from "../../../components/shared/form/FormInputText.vue";
 import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
-import AppAdminHead from "../../../components/admin/layouts/AppAdminHead.vue";
+import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
 
 export default {
 	components: {
 		Link,
 		FormInputText,
 		AppBreadCrumbs,
-		AppAdminHead
+		TheAdminHead
 	},
 	data() {
 		return {

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<AppAdminHead title="Courses" />
+		<TheAdminHead title="Add Courses" />
 
 		<AppBreadCrumbs :crumbs="crumbs" />
 		<h3 class="mb-8 font-bold text-3xl">Semester {{ semester }}</h3>
@@ -79,10 +79,14 @@
 
 <script>
 import { Link } from "@inertiajs/inertia-vue";
+import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
+import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
 
 export default {
 	components: {
-		Link
+		Link,
+		TheAdminHead,
+		AppBreadCrumbs
 	},
 	props: {
 		semester: {
@@ -114,7 +118,7 @@ export default {
 			}),
 			crumbs: [
 				{
-					text: "Program",
+					text: this.program.name,
 					route: this.$route("admin.programs")
 				},
 				{

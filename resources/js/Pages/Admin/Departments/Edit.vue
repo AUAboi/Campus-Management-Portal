@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<AppAdminHead :title="form.department_name" />
+		<TheAdminHead :title="form.department_name" />
 		<AppBreadCrumbs :crumbs="crumbs" />
 
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
@@ -65,18 +65,18 @@ import FormInputText from "../../../components/shared/form/FormInputText.vue";
 import FormInputSelect from "../../../components/shared/form/FormInputSelect.vue";
 
 import sweetAlert from "../../../mixins/sweetAlert";
-import AppAdminHead from "../../../components/admin/layouts/AppAdminHead.vue";
+import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
 import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
 
 export default {
 	components: {
-    Head,
-    Link,
-    FormInputText,
-    FormInputSelect,
-    AppAdminHead,
-    AppBreadCrumbs
-},
+		Head,
+		Link,
+		FormInputText,
+		FormInputSelect,
+		TheAdminHead,
+		AppBreadCrumbs
+	},
 	props: {
 		department: {
 			type: Object,

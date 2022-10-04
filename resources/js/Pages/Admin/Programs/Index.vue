@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<AppAdminHead title="Programs" />
+		<TheAdminHead title="Programs" />
 
 		<h1 class="mb-8 font-bold text-3xl">Programs</h1>
 		<div class="mb-6 flex justify-between items-center">
@@ -49,7 +49,7 @@ import throttle from "lodash/throttle";
 import pickBy from "lodash/pickBy";
 import mapValues from "lodash/mapValues";
 import AppTableSearch from "../../../components/shared/tables/AppTableSearch.vue";
-import AppAdminHead from "../../../components/admin/layouts/AppAdminHead.vue";
+import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
 import AppDataTable from "../../../components/shared/tables/AppDataTable.vue";
 import AppTablePagination from "../../../components/shared/tables/AppTablePagination.vue";
 
@@ -79,7 +79,7 @@ export default {
 	components: {
 		Link,
 		AppTableSearch,
-		AppAdminHead,
+		TheAdminHead,
 		AppDataTable,
 		AppTablePagination
 	},

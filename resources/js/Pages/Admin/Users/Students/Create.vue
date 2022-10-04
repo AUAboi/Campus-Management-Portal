@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<AppAdminHead title="Create Student" />
+		<TheAdminHead title="Create Student" />
 		<AppBreadCrumbs :crumbs="crumbs" />
 		<div class="overflow-hidden max-w-3xl bg-white rounded-md shadow">
 			<form class="m-0" id="create-form" @submit.prevent="store">

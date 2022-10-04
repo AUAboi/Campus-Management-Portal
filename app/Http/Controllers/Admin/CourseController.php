@@ -22,8 +22,7 @@ class CourseController extends Controller
                 fn ($course) => [
                     'id' => $course->id,
                     'course_name' => $course->course_name,
-                    'course_code' => $course->course_code,
-                    'department_code' => $course->department_code,
+                    'course_code' => $course->full_course_code,
                     'credit_hours' => $course->credit_hours,
                 ]
             );

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<AppAdminHead title="Create Admin" />
+		<TheAdminHead title="Create Admin" />
 		<AppBreadCrumbs :crumbs="crumbs" />
 
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">

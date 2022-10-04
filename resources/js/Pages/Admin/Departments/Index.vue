@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<AppAdminHead title="Departments" />
+		<TheAdminHead title="Departments" />
 
 		<h1 class="mb-8 font-bold text-3xl">Departments</h1>
 		<div class="mb-6 flex justify-between items-center">
@@ -33,7 +33,7 @@
 
 <script>
 import { Link } from "@inertiajs/inertia-vue";
-import AppAdminHead from "../../../components/admin/layouts/AppAdminHead.vue";
+import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
 import AppTableSearch from "../../../components/shared/tables/AppTableSearch.vue";
 import AppTablePagination from "../../../components/shared/tables/AppTablePagination.vue";
 import AppDataTable from "../../../components/shared/tables/AppDataTable.vue";
@@ -62,7 +62,7 @@ export default {
 	},
 	components: {
 		Link,
-		AppAdminHead,
+		TheAdminHead,
 		AppTableSearch,
 		AppTablePagination,
 		AppDataTable

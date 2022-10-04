@@ -17,6 +17,11 @@ class Course extends Model
         'department_code'
     ];
 
+    public function getFullCourseCodeAttribute()
+    {
+        return $this->department_code . "-" . $this->course_code;
+    }
+
     public function getCreditHoursAttribute()
     {
         $totalHours = $this->theory_credit_hours + $this->practical_credit_hours;

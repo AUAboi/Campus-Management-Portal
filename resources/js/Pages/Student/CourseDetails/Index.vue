@@ -1,6 +1,6 @@
 <template>
 	<main>
-		<AppAdminHead title="Course Details - Student" />
+		<TheAdminHead title="Course Details - Student" />
 
 		<section>
 			<div v-if="student.program">

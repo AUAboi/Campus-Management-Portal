@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<AppAdminHead :title="`${program.program_name}`" />
+		<TheAdminHead :title="`${program.program_name}`" />
 		<AppModal modalWidth="w-3xl" @close="show = false" v-if="show">
 			<div class="my-6 p-4 grid grid-cols-3 mx-4">
 				<Link
@@ -105,7 +105,7 @@
 
 <script>
 import { Link } from "@inertiajs/inertia-vue";
-import AppAdminHead from "../../../components/admin/layouts/AppAdminHead.vue";
+import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
 import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
 import FormInputSelect from "../../../components/shared/form/FormInputSelect.vue";
 import AppDataTable from "../../../components/shared/tables/AppDataTable.vue";
@@ -120,7 +120,7 @@ const AppModal = () => ({
 export default {
 	components: {
 		Link,
-		AppAdminHead,
+		TheAdminHead,
 		AppModal,
 		AppBreadCrumbs,
 		FormInputSelect,

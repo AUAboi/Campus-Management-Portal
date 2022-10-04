@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<AppAdminHead :title="form.faculty_name" />
+		<TheAdminHead :title="form.faculty_name" />
 		<AppBreadCrumbs :crumbs="crumbs" />
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form @submit.prevent="update" id="update-form" class="m-0">
@@ -61,7 +61,7 @@ import { Head, Link } from "@inertiajs/inertia-vue";
 import FormInputText from "../../../components/shared/form/FormInputText.vue";
 import AppDataTable from "../../../components/shared/tables/AppDataTable.vue";
 import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
-import AppAdminHead from "../../../components/admin/layouts/AppAdminHead.vue";
+import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
 import sweetAlert from "../../../mixins/sweetAlert";
 
 export default {
@@ -71,7 +71,7 @@ export default {
 		FormInputText,
 		AppDataTable,
 		AppBreadCrumbs,
-		AppAdminHead
+		TheAdminHead
 	},
 	mixins: [sweetAlert],
 	props: {
