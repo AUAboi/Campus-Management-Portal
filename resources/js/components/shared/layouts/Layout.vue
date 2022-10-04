@@ -38,9 +38,9 @@
 								<span>{{ user.name }}</span>
 							</div>
 
-							<i
-								class="fas fa-chevron-down w-5 h-5 group-hover:text-indigo-600 text-gray-700 focus:text-indigo-600 flex align-middle mt-1"
-							></i>
+							<ChevronDownIcon
+								class="w-5 h-5 group-hover:text-indigo-600 text-gray-700 focus:text-indigo-600 flex align-middle mt-1"
+							/>
 						</div>
 						<div
 							slot="dropdown"
@@ -71,6 +71,7 @@
 import AppFlashMessage from "../ui/AppFlashMessage.vue";
 import AppUserMenu from "../AppUserMenu.vue";
 import AppDropdown from "../ui/AppDropdown.vue";
+import { ChevronDownIcon } from "@vue-hero-icons/outline";
 
 export default {
 	computed: {
@@ -81,7 +82,7 @@ export default {
 			return this.$page.props.appName;
 		}
 	},
-	components: { AppFlashMessage, AppUserMenu, AppDropdown }
+	components: { AppFlashMessage, AppUserMenu, AppDropdown, ChevronDownIcon }
 };
 </script>
 

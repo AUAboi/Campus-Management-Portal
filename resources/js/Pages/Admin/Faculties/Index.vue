@@ -39,6 +39,7 @@ import mapValues from "lodash/mapValues";
 import AppDataTable from "../../../components/shared/tables/AppDataTable.vue";
 import AppTablePagination from "../../../components/shared/tables/AppTablePagination.vue";
 import AppTableSearch from "../../../components/shared/tables/AppTableSearch.vue";
+import AppAdminHead from "../../../components/admin/layouts/AppAdminHead.vue";
 
 export default {
 	data() {
@@ -58,7 +59,8 @@ export default {
 		Link,
 		AppDataTable,
 		AppTablePagination,
-		AppTableSearch
+		AppTableSearch,
+		AppAdminHead
 	},
 	props: {
 		filters: {

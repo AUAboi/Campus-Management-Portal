@@ -7,12 +7,15 @@
 </template>
 
 <script>
+import AdminProfileCard from '../../../components/admin/AdminProfileCard.vue';
+import AppAdminHead from '../../../components/admin/layouts/AppAdminHead.vue';
 export default {
-	props: {
-		user: {
-			required: true,
-			type: Object
-		}
-	}
+    props: {
+        user: {
+            required: true,
+            type: Object
+        }
+    },
+    components: { AdminProfileCard, AppAdminHead }
 };
 </script>

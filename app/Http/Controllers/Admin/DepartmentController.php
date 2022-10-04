@@ -33,9 +33,16 @@ class DepartmentController extends Controller
             ]);
 
 
-        return Inertia::render("Admin/Departments/Index", ['departments' => $departments, 'filters' => $filters, 'permissions' => [
-            'create' => auth()->user()->can('create', Faculty::class),
-        ]]);
+        return Inertia::render(
+            "Admin/Departments/Index",
+            [
+                'departments' => $departments,
+                'filters' => $filters,
+                'permissions' => [
+                    'create' => auth()->user()->can('create', Faculty::class),
+                ]
+            ]
+        );
     }
 
     public function create()

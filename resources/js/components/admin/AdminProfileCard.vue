@@ -17,11 +17,13 @@
 </template>
 
 <script>
+import AppUserAvatar from "../shared/AppUserAvatar.vue";
 export default {
 	props: {
 		user: {
 			required: true
 		}
-	}
+	},
+	components: { AppUserAvatar }
 };
 </script>

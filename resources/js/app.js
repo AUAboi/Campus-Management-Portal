@@ -40,7 +40,6 @@ import { createInertiaApp } from "@inertiajs/inertia-vue";
 import Layout from "./components/shared/layouts/Layout";
 import TheAdminMenu from "./components/admin/layouts/TheAdminMenu";
 import AppStudentMenu from "./components/student/layouts/AppStudentMenu";
-import AppAdminHead from "./components/admin/layouts/AppAdminHead";
 
 import PortalVue from "portal-vue";
 
@@ -52,14 +51,11 @@ import "sweetalert2/dist/sweetalert2.min.css";
 Vue.use(VueSweetalert2);
 Vue.use(PortalVue);
 
-//Global components
-Vue.component(AppAdminHead);
-
 InertiaProgress.init();
 
 createInertiaApp({
-    resolve: name => {
-        const page = require(`./Pages/${name}`).default;
+    resolve: async name => {
+        const page = await (await import(`./Pages/${name}`)).default;
         if (page.layout === undefined) {
             if (name.startsWith("Admin")) {
                 page.layout = [Layout, TheAdminMenu];

@@ -25,10 +25,16 @@
 
 <script>
 import { Link } from "@inertiajs/inertia-vue";
+import FormInputText from "../../../components/shared/form/FormInputText.vue";
+import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
+import AppAdminHead from "../../../components/admin/layouts/AppAdminHead.vue";
 
 export default {
 	components: {
-		Link
+		Link,
+		FormInputText,
+		AppBreadCrumbs,
+		AppAdminHead
 	},
 	data() {
 		return {

@@ -58,12 +58,22 @@
 
 <script>
 import { Head, Link } from "@inertiajs/inertia-vue";
+import FormInputText from "../../../components/shared/form/FormInputText.vue";
+import AppDataTable from "../../../components/shared/tables/AppDataTable.vue";
+import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
+import AppAdminHead from "../../../components/admin/layouts/AppAdminHead.vue";
+import sweetAlert from "../../../mixins/sweetAlert";
 
 export default {
 	components: {
 		Head,
-		Link
+		Link,
+		FormInputText,
+		AppDataTable,
+		AppBreadCrumbs,
+		AppAdminHead
 	},
+	mixins: [sweetAlert],
 	props: {
 		faculty: {
 			type: Object,
@@ -116,11 +126,16 @@ export default {
 			this.form.put(this.$route("admin.faculties.update", this.faculty.slug));
 		},
 		destroy() {
-			if (confirm("Are you sure you want to delete this faculty?")) {
-				this.$inertia.delete(
-					this.$route("admin.faculties.destroy", this.faculty.slug)
-				);
-			}
+			this.confirm(
+				result => {
+					if (result.isConfirmed) {
+						this.$inertia.delete(
+							this.$route("admin.faculties.destroy", this.faculty.slug)
+						);
+					}
+				},
+				{ title: `Deleting ${this.faculty.faculty_name}` }
+			);
 		}
 	}
 };
