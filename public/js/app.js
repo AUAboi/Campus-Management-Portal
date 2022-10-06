@@ -287,11 +287,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_shared_layouts_Layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/shared/layouts/Layout */ "./resources/js/components/shared/layouts/Layout.vue");
 /* harmony import */ var _components_admin_layouts_TheAdminMenu__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/admin/layouts/TheAdminMenu */ "./resources/js/components/admin/layouts/TheAdminMenu.vue");
 /* harmony import */ var _components_student_layouts_AppStudentMenu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/student/layouts/AppStudentMenu */ "./resources/js/components/student/layouts/AppStudentMenu.vue");
-/* harmony import */ var portal_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! portal-vue */ "./node_modules/portal-vue/dist/portal-vue.common.js");
+/* harmony import */ var sweetalert2_dist_sweetalert2_min_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.min.css */ "./node_modules/sweetalert2/dist/sweetalert2.min.css");
 /* harmony import */ var _inertiajs_progress__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @inertiajs/progress */ "./node_modules/@inertiajs/progress/dist/index.js");
 /* harmony import */ var vue_sweetalert2__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-sweetalert2 */ "./node_modules/vue-sweetalert2/dist/vue-sweetalert.umd.js");
 /* harmony import */ var vue_sweetalert2__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(vue_sweetalert2__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var sweetalert2_dist_sweetalert2_min_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.min.css */ "./node_modules/sweetalert2/dist/sweetalert2.min.css");
+/* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-the-mask */ "./node_modules/vue-the-mask/dist/vue-the-mask.js");
+/* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(vue_the_mask__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var portal_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! portal-vue */ "./node_modules/portal-vue/dist/portal-vue.common.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -340,8 +342,10 @@ Vue.prototype.$route = route;
 
 
 
+
 Vue.use((vue_sweetalert2__WEBPACK_IMPORTED_MODULE_7___default()));
-Vue.use(portal_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
+Vue.use((vue_the_mask__WEBPACK_IMPORTED_MODULE_8___default()));
+Vue.use(portal_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
 _inertiajs_progress__WEBPACK_IMPORTED_MODULE_6__.InertiaProgress.init();
 (0,_inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_1__.createInertiaApp)({
   resolve: function () {

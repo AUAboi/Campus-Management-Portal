@@ -1,18 +1,18 @@
 <template>
 	<main>
 		<Head :title="`Register your account | ${$page.props.appName}`"></Head>
-
-		<div class="bg-grey-lighter min-h-screen flex flex-col">
+		<div class="min-h-screen flex flex-col">
 			<div
-				class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2"
+				class="container max-w-sm mx-auto flex-1 flex flex-col items-center "
 			>
-				<form class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
+				<form>
 					<h1 class="mb-8 text-3xl text-center">Sign up</h1>
-					<div v-for="(formStep, step) in steps" :key="step">
-						<div v-if="currentStep === step" class="">
+					<div class="px-6" v-for="(formStep, step) in steps" :key="step">
+						<div v-if="currentStep === step">
 							<div v-for="(field, i) in formStep" :key="i">
 								<FormInputSelect
 									v-if="field.type === 'select'"
+									class="lg:w-full "
 									:label="field.label"
 									v-model="form[field.key]"
 									:error="form.errors[field.key]"
@@ -25,6 +25,14 @@
 										>{{ option.label }}</option
 									>
 								</FormInputSelect>
+
+								<FormInputCnic
+									v-else-if="field.type === 'cnic'"
+									:label="field.label"
+									class="lg:w-full"
+									:error="form.errors[field.key]"
+									v-model="form[field.key]"
+								/>
 								<FormInputText
 									v-else
 									:label="field.label"
@@ -36,38 +44,48 @@
 							</div>
 						</div>
 					</div>
-					<button v-if="isLastStep" class="btn-main">Create Account</button>
-					<div class="flex flex-row-reverse gap-2 justify-start mt-5">
-						<button
-							v-if="!isLastStep"
-							class="btn btn-primary"
-							@click.prevent="nextStep"
-						>
-							Next
-						</button>
-						<button
-							v-if="!isFirstStep"
-							class="btn"
-							@click.prevent="previousStep"
-						>
-							Previous
-						</button>
+					<div class="flex gap-2 justify-between mt-5 p-6 items-center">
+						<div>
+							<button v-if="isLastStep" class="btn-main">
+								Create Account
+							</button>
+						</div>
+						<div>
+							<button
+								v-if="!isFirstStep"
+								class="btn"
+								@click.prevent="previousStep"
+							>
+								Previous
+							</button>
+							<button
+								v-if="!isLastStep"
+								class="btn btn-primary"
+								@click.prevent="nextStep"
+							>
+								Next
+							</button>
+						</div>
 					</div>
-					<div class="text-center text-sm text-grey-dark mt-4">
-						By signing up, you agree to the
-						<a
-							class="no-underline border-b border-grey-dark text-grey-dark"
-							href="#"
-						>
-							Terms of Service
-						</a>
-						and
-						<a
-							class="no-underline border-b border-grey-dark text-grey-dark"
-							href="#"
-						>
-							Privacy Policy
-						</a>
+					<div
+						class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center"
+					>
+						<div class="text-center text-sm text-grey-dark mt-4">
+							By signing up, you agree to the
+							<a
+								class="no-underline border-b border-grey-dark text-grey-dark"
+								href="#"
+							>
+								Terms of Service
+							</a>
+							and
+							<a
+								class="no-underline border-b border-grey-dark text-grey-dark"
+								href="#"
+							>
+								Privacy Policy
+							</a>
+						</div>
 					</div>
 				</form>
 
@@ -90,10 +108,11 @@ import { Head } from "@inertiajs/inertia-vue";
 
 import FormInputText from "../../../components/shared/form/FormInputText.vue";
 import FormInputSelect from "../../../components/shared/form/FormInputSelect.vue";
+import FormInputCnic from "../../../components/shared/form/FormInputCnic.vue";
 
 export default {
 	name: "StudentRegister",
-	components: { FormInputText, Head, FormInputSelect },
+	components: { FormInputText, Head, FormInputSelect, FormInputCnic },
 	data() {
 		return {
 			form: this.$inertia.form({
@@ -149,6 +168,11 @@ export default {
 							}
 						]
 					}
+				],
+				[
+					{ label: "Date of birth", key: "date_of_birth", type: "date" },
+					{ label: "Phone Number", key: "phone" },
+					{ label: "CNIC", key: "cnic", type: "cnic" }
 				]
 			],
 			currentStep: 0
@@ -177,3 +201,9 @@ export default {
 	}
 };
 </script>
+
+<style scoped>
+form {
+	@apply mt-4 bg-white pt-8 rounded shadow-md text-black w-full;
+}
+</style>

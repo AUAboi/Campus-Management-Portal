@@ -31,6 +31,7 @@
 
 <script>
 import { Inertia } from "@inertiajs/inertia";
+import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
 export default {
 	data() {
 		return {
@@ -57,7 +58,8 @@ export default {
 				});
 			Inertia.reload({ only: ["student"] });
 		}
-	}
+	},
+	components: { TheAdminHead }
 };
 </script>
 

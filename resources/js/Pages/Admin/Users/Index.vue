@@ -78,12 +78,15 @@ import mapValues from "lodash/mapValues";
 
 import AppTableSearch from "../../../components/shared/tables/AppTableSearch.vue";
 import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
-import AppDropdown from "../../../components/shared/ui/AppDropdown.vue";
 import AppDataTable from "../../../components/shared/tables/AppDataTable.vue";
 import AppTablePagination from "../../../components/shared/tables/AppTablePagination.vue";
 import FormInputSelect from "../../../components/shared/form/FormInputSelect.vue";
 
 import { ChevronDownIcon } from "@vue-hero-icons/outline";
+
+const AppDropdown = () => ({
+	component: import("../../../components/shared/ui/AppDropdown.vue")
+});
 
 export default {
 	components: {

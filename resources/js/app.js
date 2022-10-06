@@ -41,13 +41,15 @@ import Layout from "./components/shared/layouts/Layout";
 import TheAdminMenu from "./components/admin/layouts/TheAdminMenu";
 import AppStudentMenu from "./components/student/layouts/AppStudentMenu";
 
-import PortalVue from "portal-vue";
+import "sweetalert2/dist/sweetalert2.min.css";
 
 import { InertiaProgress } from "@inertiajs/progress";
 import VueSweetalert2 from "vue-sweetalert2";
-import "sweetalert2/dist/sweetalert2.min.css";
+import VueTheMask from "vue-the-mask";
+import PortalVue from "portal-vue";
 
 Vue.use(VueSweetalert2);
+Vue.use(VueTheMask);
 Vue.use(PortalVue);
 
 InertiaProgress.init();
