@@ -16,7 +16,7 @@
 				:href="$route('admin.courses.create')"
 			>
 				<span>Create</span>
-				<span class="hidden md:inline">course</span>
+				<span class="hidden md:inline">Course</span>
 			</Link>
 		</div>
 		<div class="bg-white rounded-md shadow overflow-x-auto">

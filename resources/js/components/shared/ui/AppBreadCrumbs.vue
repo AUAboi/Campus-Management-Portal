@@ -1,12 +1,8 @@
 <template>
-	<h1 class="mb-8 font-bold text-3xl">
+	<h1 class="wrapper">
 		<span v-for="(crumb, index) in crumbs" :key="index">
 			<span v-if="!isLast(index)">
-				<Link
-					class="text-indigo-400 hover:text-indigo-600"
-					:href="crumb.route"
-					>{{ crumb.text }}</Link
-				>
+				<Link class="crumb" :href="crumb.route">{{ crumb.text }}</Link>
 				<span class="text-indigo-400 font-medium"> / </span>
 			</span>
 			<span v-else>{{ crumb.text }}</span>
@@ -35,3 +31,13 @@ export default {
 	}
 };
 </script>
+
+<style scoped>
+.wrapper {
+	@apply mb-8 font-bold text-3xl;
+}
+
+.crumb {
+	@apply text-indigo-400 hover:text-indigo-600;
+}
+</style>

@@ -139,11 +139,18 @@
 
 <script>
 import { Head, Link } from "@inertiajs/inertia-vue";
+import TheAdminHead from "../../../../components/admin/meta/TheAdminHead.vue";
+import AppBreadCrumbs from "../../../../components/shared/ui/AppBreadCrumbs.vue";
+import FormInputText from "../../../../components/shared/form/FormInputText.vue";
+import sweetAlert from "../../../../mixins/sweetAlert";
 
 export default {
 	components: {
 		Head,
-		Link
+		Link,
+		TheAdminHead,
+		AppBreadCrumbs,
+		FormInputText
 	},
 	props: {
 		user: {
@@ -180,14 +187,24 @@ export default {
 			this.crumbs[this.crumbs.length - 1].text = newValue;
 		}
 	},
+	mixins: [sweetAlert],
 	methods: {
 		update() {
 			this.form.put(this.$route("admin.users.admin.update", this.user.id));
 		},
 		destroy() {
-			if (confirm("Are you sure you want to delete this user?")) {
-				this.$inertia.delete(this.$route("admin.users.destroy", this.user.id));
-			}
+			this.confirm(
+				result => {
+					if (result.isConfirmed) {
+						this.$inertia.delete(
+							this.$route("admin.users.destroy", this.user.id)
+						);
+					}
+				},
+				{
+					title: `Deleting user ${this.user.name}`
+				}
+			);
 		}
 	}
 };

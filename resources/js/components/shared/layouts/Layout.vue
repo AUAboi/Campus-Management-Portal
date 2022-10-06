@@ -2,10 +2,8 @@
 	<div class="md:h-screen md:flex md:flex-col">
 		<portal-target name="dropdown" slim />
 		<header>
-			<nav class="md:flex md:flex-shrink-0">
-				<div
-					class="bg-indigo-900 text-white md:flex-shrink-0 md:w-56 px-6 py-4 flex items-center justify-between md:justify-center"
-				>
+			<nav>
+				<div class="nav-title ">
 					<a href="./dashboard" class="mt-1 text-2xl">RL Academia</a>
 					<AppDropdown
 						class="md:hidden fill-current text-white"
@@ -26,9 +24,7 @@
 						</div>
 					</AppDropdown>
 				</div>
-				<div
-					class="bg-white border-b w-full p-4 md:py-0 md:px-12 text-sm md:text-md flex justify-between items-center"
-				>
+				<div class="nav-header">
 					<div class="mt-1 mr-4">{{ appName }}</div>
 					<AppDropdown class="mt-1" placement="bottom-end">
 						<div class="flex items-center cursor-pointer select-none group">
@@ -39,7 +35,7 @@
 							</div>
 
 							<ChevronDownIcon
-								class="w-5 h-5 group-hover:text-indigo-600 text-gray-700 focus:text-indigo-600 flex align-middle mt-1"
+								class="w-5 h-5 group-hover:text-indigo-600 text-gray-700 focus:text-indigo-600 flex align-middle"
 							/>
 						</div>
 						<div
@@ -64,7 +60,7 @@
 					v-if="
 						$page.props.flash.success ||
 							$page.props.flash.error ||
-								Object.keys($page.props.errors).length > 0
+							Object.keys($page.props.errors).length > 0
 					"
 				/>
 				<portal-target name="maincontent" />
@@ -106,8 +102,14 @@ export default {
 };
 </script>
 
-<style>
-.nav-item {
-	@apply my-2;
+<style scoped>
+nav {
+	@apply md:flex md:flex-shrink-0;
+}
+.nav-title {
+	@apply bg-indigo-900 text-white md:flex-shrink-0 md:w-56 px-6 py-4 flex items-center justify-between md:justify-center;
+}
+.nav-header {
+	@apply bg-white border-b w-full p-4 md:py-0 md:px-12 text-sm md:text-base flex justify-between items-center;
 }
 </style>

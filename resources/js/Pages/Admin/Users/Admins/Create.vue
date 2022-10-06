@@ -4,7 +4,7 @@
 		<AppBreadCrumbs :crumbs="crumbs" />
 
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
-			<form id="create-form" @submit.prevent="store">
+			<form class="m-0" id="create-form" @submit.prevent="store">
 				<div class="form-row">
 					<FormInputText
 						label="Name"
@@ -36,8 +36,8 @@
 				<div class="form-row">
 					<FormInputText
 						label="Phone Number"
-						v-model="form.phone_number"
-						:error="form.errors.phone_number"
+						v-model="form.phone"
+						:error="form.errors.phone"
 					/>
 					<FormInputText
 						label="CNIC"
@@ -78,10 +78,18 @@
 
 <script>
 import { Link } from "@inertiajs/inertia-vue";
+import AppBreadCrumbs from "../../../../components/shared/ui/AppBreadCrumbs.vue";
+import FormInputText from "../../../../components/shared/form/FormInputText.vue";
+import FormInputSelect from "../../../../components/shared/form/FormInputSelect.vue";
+import TheAdminHead from "../../../../components/admin/meta/TheAdminHead.vue";
 
 export default {
 	components: {
-		Link
+		Link,
+		AppBreadCrumbs,
+		FormInputText,
+		FormInputSelect,
+		TheAdminHead
 	},
 	data() {
 		return {

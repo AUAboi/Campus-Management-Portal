@@ -75,3 +75,9 @@ export default {
 	}
 };
 </script>
+
+<style scoped>
+.nav-item {
+	@apply my-2;
+}
+</style>

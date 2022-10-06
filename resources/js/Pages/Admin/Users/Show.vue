@@ -19,9 +19,11 @@
 
 <script>
 import { Link } from "@inertiajs/inertia-vue";
+import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
 export default {
 	components: {
-		Link
+		Link,
+		TheAdminHead
 	},
 	props: {
 		user: {

@@ -29,7 +29,7 @@ class StoreUserRequest extends FormRequest
             'father_name' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
             'cnic' => 'required|numeric|digits:13|unique:users',
-            'phone' => 'phone:PK',
+            'phone' => 'required|phone:PK',
             'password' => 'required|string|min:8|confirmed',
             'gender' => 'required|string',
             'date_of_birth' => 'required|date'

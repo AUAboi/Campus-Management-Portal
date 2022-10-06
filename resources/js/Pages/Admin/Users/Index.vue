@@ -4,7 +4,7 @@
 		<h1 class="mb-8 font-bold text-3xl">Users</h1>
 		<div class="mb-6 flex justify-between items-center">
 			<AppTableSearch
-				:filterable="true"
+				filterable
 				v-model="form.search"
 				class="w-full max-w-md mr-4"
 				@reset="reset"
@@ -26,10 +26,11 @@
 				<div class="flex items-center cursor-pointer select-none group">
 					<button class="btn-main">
 						<span>Create</span>
-						<span class="hidden md:inline">User</span>
-						<i
-							class="fas fa-chevron-down w-5 h-5 text-white flex align-middle mt-1"
-						></i>
+						<span class="hidden md:inline">User </span>
+
+						<ChevronDownIcon
+							class="w-5 h-5 text-white inline-flex align-middle"
+						/>
 					</button>
 				</div>
 				<div
@@ -75,9 +76,25 @@ import pickBy from "lodash/pickBy";
 import throttle from "lodash/throttle";
 import mapValues from "lodash/mapValues";
 
+import AppTableSearch from "../../../components/shared/tables/AppTableSearch.vue";
+import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
+import AppDropdown from "../../../components/shared/ui/AppDropdown.vue";
+import AppDataTable from "../../../components/shared/tables/AppDataTable.vue";
+import AppTablePagination from "../../../components/shared/tables/AppTablePagination.vue";
+import FormInputSelect from "../../../components/shared/form/FormInputSelect.vue";
+
+import { ChevronDownIcon } from "@vue-hero-icons/outline";
+
 export default {
 	components: {
-		Link
+		Link,
+		AppTableSearch,
+		TheAdminHead,
+		AppDropdown,
+		AppDataTable,
+		AppTablePagination,
+		FormInputSelect,
+		ChevronDownIcon
 	},
 	props: {
 		filters: Object,
@@ -112,7 +129,8 @@ export default {
 			deep: true,
 			handler: throttle(function() {
 				this.$inertia.get(this.$route("admin.users"), pickBy(this.form), {
-					preserveState: true
+					preserveState: true,
+					replace: true
 				});
 			}, 150)
 		}
