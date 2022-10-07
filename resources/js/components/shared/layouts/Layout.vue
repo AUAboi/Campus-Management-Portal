@@ -42,7 +42,7 @@
 							slot="dropdown"
 							class="mt-2 py-2 shadow-xl bg-white rounded text-sm"
 						>
-							<AppUserMenu />
+							<portal-target name="dropdownmenu" slim />
 						</div>
 					</AppDropdown>
 				</div>
@@ -63,7 +63,7 @@
 							Object.keys($page.props.errors).length > 0
 					"
 				/>
-				<portal-target name="maincontent" />
+				<portal-target name="maincontent" slim />
 			</main>
 		</div>
 	</div>

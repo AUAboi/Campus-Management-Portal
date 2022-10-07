@@ -5,7 +5,7 @@
 			<div
 				class="container max-w-sm mx-auto flex-1 flex flex-col items-center "
 			>
-				<form>
+				<form id="create-form" @submit.prevent="store">
 					<h1 class="mb-8 text-3xl text-center">Sign up</h1>
 					<div class="px-6" v-for="(formStep, step) in steps" :key="step">
 						<div v-if="currentStep === step">
@@ -46,7 +46,13 @@
 					</div>
 					<div class="flex gap-2 justify-between mt-5 p-6 items-center">
 						<div>
-							<button v-if="isLastStep" class="btn-main">
+							<button
+								v-if="isLastStep"
+								class="btn-main"
+								:disabled="form.processing"
+								type="submit"
+								form="create-form"
+							>
 								Create Account
 							</button>
 						</div>

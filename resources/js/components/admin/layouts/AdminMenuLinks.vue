@@ -48,54 +48,13 @@
 				>Courses</Link
 			>
 		</div>
-		<!-- Sending to dropdown menu through portal -->
-		<portal to="dropdownmenu">
-			<AppUserMenu />
-		</portal>
-		<!-- Sending sloted main content through portal -->
-		<portal to="maincontent">
-			<slot />
-		</portal>
 	</div>
 </template>
 
 <script>
-import { Link } from "@inertiajs/inertia-vue";
-import AppUserMenu from "../../shared/AppUserMenu.vue";
-import AppDropdown from "../../shared/ui/AppDropdown.vue";
-
-import { ChevronDownIcon } from "@vue-hero-icons/outline";
-
-export default {
-	components: {
-		Link,
-		AppUserMenu,
-		AppDropdown,
-		ChevronDownIcon
-	},
-	beforeMount() {
-		console.log("test");
-	},
-	methods: {
-		isUrl(...urls) {
-			let currentUrl = this.$page.url.substr(1);
-			currentUrl = currentUrl.replace("admin/", "");
-			if (urls[0] === "") {
-				return currentUrl === "";
-			}
-			return urls.filter(url => currentUrl.startsWith(url)).length;
-		}
-	},
-	computed: {
-		user() {
-			return this.$page.props.auth.user;
-		},
-		appName() {
-			return this.$page.props.appName;
-		}
-	}
-};
+export default {};
 </script>
+
 
 <style scoped>
 .nav-item {

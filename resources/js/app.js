@@ -37,9 +37,16 @@ Vue.prototype.$route = route;
 import { createInertiaApp } from "@inertiajs/inertia-vue";
 
 //Layouts
-import Layout from "./components/shared/layouts/Layout";
-import TheAdminMenu from "./components/admin/layouts/TheAdminMenu";
-import AppStudentMenu from "./components/student/layouts/AppStudentMenu";
+//We are loading these lazily so only required routes load these
+const Layout = () => ({
+    component: import("./components/shared/layouts/Layout")
+});
+const TheAdminMenu = () => ({
+    component: import("./components/admin/layouts/TheAdminMenu")
+});
+const AppStudentMenu = () => ({
+    component: import("./components/student/layouts/AppStudentMenu")
+});
 
 import "sweetalert2/dist/sweetalert2.min.css";
 
@@ -62,6 +69,8 @@ createInertiaApp({
                 page.layout = [Layout, TheAdminMenu];
             } else if (name.startsWith("Student")) {
                 page.layout = [Layout, AppStudentMenu];
+            } else if (name.startsWith("User/Applicant")) {
+                page.layout = [Layout, TheAdminMenu];
             }
         }
 

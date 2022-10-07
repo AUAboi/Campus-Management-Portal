@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TestController;
 
 use App\Http\Controllers\Student\CourseDetailsController;
+use App\Http\Controllers\User\ApplicantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,8 +32,14 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/programs', [TestController::class, 'page']);
 
 
-//auth routes
-Route::inertia('/applicant/register', 'User/Applicant/Register')->name('applicant.register');
+//applicant routes
+Route::inertia('/applicant/register', [ApplicantController::class, 'registerView'])->name('applicant.register')->middleware(['guest']);
+
+Route::group(['middleware' => ['role:admin']], function () {
+  Route::prefix('applicant')->group(function () {
+    Route::get('/dashboard', [ApplicantController::class, 'dashboard'])->name('applicant.dashboard');
+  });
+});
 
 Route::group(['middleware' => ['role:teacher']], function () {
   Route::prefix('teacher')->group(function () {

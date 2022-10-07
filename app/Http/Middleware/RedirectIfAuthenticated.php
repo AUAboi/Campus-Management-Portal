@@ -23,10 +23,27 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                return redirect($this->getDashboardRoute());
             }
         }
 
         return $next($request);
+    }
+
+    private function getDashboardRoute()
+    {
+        $user = auth()->user();
+
+        if ($user->hasRole('admin')) {
+            return '/admin/dashboard';
+        } else if ($user->hasRole('student')) {
+            return '/student/dashboard';
+        } else if ($user->hasRole('teacher')) {
+            return '/teacher/dashboard';
+        } else if ($user->hasRole('applicant')) {
+            return '/applicant/dashboard';
+        } else {
+            return RouteServiceProvider::HOME;
+        }
     }
 }

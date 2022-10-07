@@ -1,4 +1,4 @@
-<template>
+<template >
 	<div>
 		<Link
 			class="block px-6 py-2 hover:bg-indigo-500 hover:text-white"
