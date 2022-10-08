@@ -44,6 +44,9 @@ const Layout = () => ({
 const TheAdminMenu = () => ({
     component: import("./components/admin/layouts/TheAdminMenu")
 });
+const TheApplicantMenu = () => ({
+    component: import("./components/applicant/layouts/TheApplicantMenu")
+});
 const AppStudentMenu = () => ({
     component: import("./components/student/layouts/AppStudentMenu")
 });
@@ -70,10 +73,9 @@ createInertiaApp({
             } else if (name.startsWith("Student")) {
                 page.layout = [Layout, AppStudentMenu];
             } else if (name.startsWith("User/Applicant")) {
-                page.layout = [Layout, TheAdminMenu];
+                page.layout = [Layout, TheApplicantMenu];
             }
         }
-
         return page;
     },
     setup({ el, App, props }) {

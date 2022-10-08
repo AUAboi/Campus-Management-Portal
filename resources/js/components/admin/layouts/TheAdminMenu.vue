@@ -50,7 +50,7 @@
 		</div>
 		<!-- Sending to dropdown menu through portal -->
 		<portal to="dropdownmenu">
-			<AppUserMenu />
+			<TheDropdownMenu />
 		</portal>
 		<!-- Sending sloted main content through portal -->
 		<portal to="maincontent">
@@ -61,7 +61,7 @@
 
 <script>
 import { Link } from "@inertiajs/inertia-vue";
-import AppUserMenu from "../../shared/AppUserMenu.vue";
+import TheDropdownMenu from "../../admin/layouts/TheDropdownMenu.vue";
 import AppDropdown from "../../shared/ui/AppDropdown.vue";
 
 import { ChevronDownIcon } from "@vue-hero-icons/outline";
@@ -69,13 +69,11 @@ import { ChevronDownIcon } from "@vue-hero-icons/outline";
 export default {
 	components: {
 		Link,
-		AppUserMenu,
+		TheDropdownMenu,
 		AppDropdown,
 		ChevronDownIcon
 	},
-	beforeMount() {
-		console.log("test");
-	},
+
 	methods: {
 		isUrl(...urls) {
 			let currentUrl = this.$page.url.substr(1);

@@ -72,6 +72,12 @@ var TheAdminMenu = function TheAdminMenu() {
   };
 };
 
+var TheApplicantMenu = function TheApplicantMenu() {
+  return {
+    component: Promise.all(/*! import() */[__webpack_require__.e("/js/vendor"), __webpack_require__.e("resources_js_components_applicant_layouts_TheApplicantMenu_vue")]).then(__webpack_require__.bind(__webpack_require__, /*! ./components/applicant/layouts/TheApplicantMenu */ "./resources/js/components/applicant/layouts/TheApplicantMenu.vue"))
+  };
+};
+
 var AppStudentMenu = function AppStudentMenu() {
   return {
     component: Promise.all(/*! import() */[__webpack_require__.e("/js/vendor"), __webpack_require__.e("resources_js_components_student_layouts_AppStudentMenu_vue")]).then(__webpack_require__.bind(__webpack_require__, /*! ./components/student/layouts/AppStudentMenu */ "./resources/js/components/student/layouts/AppStudentMenu.vue"))
@@ -111,7 +117,7 @@ _inertiajs_progress__WEBPACK_IMPORTED_MODULE_3__.InertiaProgress.init();
                 } else if (name.startsWith("Student")) {
                   page.layout = [Layout, AppStudentMenu];
                 } else if (name.startsWith("User/Applicant")) {
-                  page.layout = [Layout, TheAdminMenu];
+                  page.layout = [Layout, TheApplicantMenu];
                 }
               }
 
@@ -475,16 +481,6 @@ var map = {
 		"/js/vendor",
 		"resources_js_Pages_User_Applicant_Dashboard_vue"
 	],
-	"./User/Applicant/Register": [
-		"./resources/js/Pages/User/Applicant/Register.vue",
-		"/js/vendor",
-		"resources_js_Pages_User_Applicant_Register_vue"
-	],
-	"./User/Applicant/Register.vue": [
-		"./resources/js/Pages/User/Applicant/Register.vue",
-		"/js/vendor",
-		"resources_js_Pages_User_Applicant_Register_vue"
-	],
 	"./User/LoginPage": [
 		"./resources/js/Pages/User/LoginPage.vue",
 		"/js/vendor",
@@ -494,6 +490,16 @@ var map = {
 		"./resources/js/Pages/User/LoginPage.vue",
 		"/js/vendor",
 		"resources_js_Pages_User_LoginPage_vue"
+	],
+	"./User/RegisterPage": [
+		"./resources/js/Pages/User/RegisterPage.vue",
+		"/js/vendor",
+		"resources_js_Pages_User_RegisterPage_vue"
+	],
+	"./User/RegisterPage.vue": [
+		"./resources/js/Pages/User/RegisterPage.vue",
+		"/js/vendor",
+		"resources_js_Pages_User_RegisterPage_vue"
 	]
 };
 function webpackAsyncContext(req) {

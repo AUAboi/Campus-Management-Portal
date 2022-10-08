@@ -5,7 +5,7 @@
 			<div
 				class="container max-w-sm mx-auto flex-1 flex flex-col items-center "
 			>
-				<form id="create-form" @submit.prevent="store">
+				<form id="create-form" @submit.prevent="register">
 					<h1 class="mb-8 text-3xl text-center">Sign up</h1>
 					<div class="px-6" v-for="(formStep, step) in steps" :key="step">
 						<div v-if="currentStep === step">
@@ -112,12 +112,11 @@
 <script>
 import { Head } from "@inertiajs/inertia-vue";
 
-import FormInputText from "../../../components/shared/form/FormInputText.vue";
-import FormInputSelect from "../../../components/shared/form/FormInputSelect.vue";
-import FormInputCnic from "../../../components/shared/form/FormInputCnic.vue";
+import FormInputText from "../../components/shared/form/FormInputText.vue";
+import FormInputSelect from "../../components/shared/form/FormInputSelect.vue";
+import FormInputCnic from "../../components/shared/form/FormInputCnic.vue";
 
 export default {
-	name: "StudentRegister",
 	components: { FormInputText, Head, FormInputSelect, FormInputCnic },
 	data() {
 		return {
@@ -192,6 +191,9 @@ export default {
 		previousStep() {
 			if (this.isFirstStep) return;
 			this.currentStep--;
+		},
+		register() {
+			this.form.post(this.$route("register"));
 		}
 	},
 	computed: {

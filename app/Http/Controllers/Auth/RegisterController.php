@@ -6,15 +6,16 @@ use Carbon\Carbon;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
 use App\Traits\UserStudentTrait;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Inertia\Inertia;
 
 class RegisterController extends Controller
 {
-    use UserStudentTrait;
 
     /*
     |--------------------------------------------------------------------------
@@ -38,12 +39,20 @@ class RegisterController extends Controller
 
 
 
+    /**
+     * 
+     * Decides user dashboard based on role
+     * 
+     */
     protected function redirectTo()
     {
-        if (auth()->user()->hasRole('student')) {
+        if (auth()->user()->hasRole('applicant')) {
+            return '/applicant/dashboard';
+        } else if (auth()->user()->hasRole('admin')) {
+            return '/admin/dashboard';
+        } else if (auth()->user()->hasRole('student')) {
             return '/student/dashboard';
         }
-        return '/home';
     }
 
     /**
@@ -64,12 +73,10 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'role' => ['required', 'string'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+
+        //using the store user form request validator rules
+        $request = new StoreUserRequest;
+        return Validator::make($data, $request->rules());
     }
 
     /**
@@ -92,6 +99,12 @@ class RegisterController extends Controller
             'date_of_birth' => $data['date_of_birth']
         ]);
 
+        $user->assignRole('applicant');
         return $user;
+    }
+
+    public function showRegistrationForm()
+    {
+        return Inertia::render('User/RegisterPage');
     }
 }

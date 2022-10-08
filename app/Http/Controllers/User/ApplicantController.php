@@ -14,7 +14,7 @@ class ApplicantController extends Controller
 {
     public function registerView()
     {
-        return Inertia::render("User/Applicant/Register");
+        return Inertia::render("User/Register");
     }
 
     public function register(StoreUserRequest $request)

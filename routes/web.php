@@ -33,9 +33,8 @@ Route::get('/programs', [TestController::class, 'page']);
 
 
 //applicant routes
-Route::inertia('/applicant/register', [ApplicantController::class, 'registerView'])->name('applicant.register')->middleware(['guest']);
 
-Route::group(['middleware' => ['role:admin']], function () {
+Route::group(['middleware' => ['role:applicant']], function () {
   Route::prefix('applicant')->group(function () {
     Route::get('/dashboard', [ApplicantController::class, 'dashboard'])->name('applicant.dashboard');
   });
