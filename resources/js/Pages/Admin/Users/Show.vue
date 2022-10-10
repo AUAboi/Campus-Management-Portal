@@ -20,10 +20,12 @@
 <script>
 import { Link } from "@inertiajs/inertia-vue";
 import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
+import AdminProfileCard from "../../../components/admin/AdminProfileCard.vue";
 export default {
 	components: {
 		Link,
-		TheAdminHead
+		TheAdminHead,
+		AdminProfileCard
 	},
 	props: {
 		user: {

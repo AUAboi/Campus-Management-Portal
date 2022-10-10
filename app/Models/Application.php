@@ -11,11 +11,11 @@ class Application extends Model
 
     public function applicant()
     {
-        $this->belongsTo(Applicant::class);
+        return $this->belongsTo(Applicant::class);
     }
 
     public function program()
     {
-        $this->belongsTo(Program::class);
+        return  $this->belongsTo(Program::class);
     }
 }

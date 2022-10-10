@@ -116,7 +116,7 @@ _inertiajs_progress__WEBPACK_IMPORTED_MODULE_3__.InertiaProgress.init();
                   page.layout = [Layout, TheAdminMenu];
                 } else if (name.startsWith("Student")) {
                   page.layout = [Layout, AppStudentMenu];
-                } else if (name.startsWith("User/Applicant")) {
+                } else if (name.startsWith("Applicant")) {
                   page.layout = [Layout, TheApplicantMenu];
                 }
               }
@@ -430,6 +430,16 @@ var map = {
 		"./resources/js/Pages/Admin/Users/Students/Show.vue",
 		"/js/vendor",
 		"resources_js_Pages_Admin_Users_Students_Show_vue"
+	],
+	"./Applicant/Applications/Index": [
+		"./resources/js/Pages/Applicant/Applications/Index.vue",
+		"/js/vendor",
+		"resources_js_Pages_Applicant_Applications_Index_vue"
+	],
+	"./Applicant/Applications/Index.vue": [
+		"./resources/js/Pages/Applicant/Applications/Index.vue",
+		"/js/vendor",
+		"resources_js_Pages_Applicant_Applications_Index_vue"
 	],
 	"./Applicant/Dashboard": [
 		"./resources/js/Pages/Applicant/Dashboard.vue",

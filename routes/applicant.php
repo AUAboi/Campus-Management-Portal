@@ -11,6 +11,6 @@ Route::group(['middleware' => ['role:applicant']], function () {
     Route::get('/dashboard', [ApplicantController::class, 'dashboard'])->name('applicant.dashboard');
 
     //Applications for applicant
-    Route::get('/applications', [ApplicationController::class, 'index'])->name('applicant.application');
+    Route::get('/applications', [ApplicationController::class, 'index'])->name('applicant.applications');
   });
 });

@@ -72,7 +72,7 @@ createInertiaApp({
                 page.layout = [Layout, TheAdminMenu];
             } else if (name.startsWith("Student")) {
                 page.layout = [Layout, AppStudentMenu];
-            } else if (name.startsWith("User/Applicant")) {
+            } else if (name.startsWith("Applicant")) {
                 page.layout = [Layout, TheApplicantMenu];
             }
         }

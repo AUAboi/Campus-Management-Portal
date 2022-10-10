@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import TheApplicantHead from "../../../components/applicant/meta/TheApplicantHead.vue";
+import TheApplicantHead from "../../components/applicant/meta/TheApplicantHead.vue";
 
 const AppNotificationCard = () => ({
 	component: import("../../ components/shared/cards/AppNotificationCard.vue")

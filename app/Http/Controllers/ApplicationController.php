@@ -12,14 +12,14 @@ class ApplicationController extends Controller
         //add middlewares
     }
 
-    public function index(Request $user)
+    public function index(Request $request)
     {
-        $applications = $user->applicant->applications->through(
-            fn ($application) => [
-                'program' => $application->program->get_full_program_name,
-            ]
-        );
+        $applications = $request->user()->applicant->applications()->with(['program', 'program.department', 'program.degree'])->get()->transform(fn ($application) => [
+            'program' => $application->program->full_program_name,
+        ]);
 
-        return Inertia::render('Applicants/Applications/Index');
+        return Inertia::render('Applicant/Applications/Index', [
+            'applications' => $applications,
+        ]);
     }
 }

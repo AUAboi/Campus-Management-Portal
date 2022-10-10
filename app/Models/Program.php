@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use App\Models\Degree;
+use App\Models\Application;
+use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Spatie\Sluggable\HasSlug;
 
 class Program extends Model
 {
@@ -47,6 +48,11 @@ class Program extends Model
     public function degree()
     {
         return $this->belongsTo(Degree::class);
+    }
+
+    public function application()
+    {
+        return $this->hasMany(Application::class);
     }
 
     public function getFullProgramNameAttribute()
