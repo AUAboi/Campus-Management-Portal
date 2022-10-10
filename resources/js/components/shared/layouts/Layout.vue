@@ -70,10 +70,6 @@
 </template>
 
 <script>
-const AppUserMenu = () => ({
-	component: import("../AppUserMenu.vue")
-});
-
 const AppFlashMessage = () => ({
 	component: import("../ui/AppFlashMessage.vue")
 });
@@ -95,7 +91,6 @@ export default {
 	},
 	components: {
 		AppFlashMessage,
-		AppUserMenu,
 		ChevronDownIcon,
 		AppDropdown
 	}

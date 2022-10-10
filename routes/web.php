@@ -6,7 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TestController;
 
 use App\Http\Controllers\Student\CourseDetailsController;
-use App\Http\Controllers\User\ApplicantController;
+use App\Http\Controllers\Applicant\ApplicantController;
+use App\Models\Application;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,14 +33,6 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/programs', [TestController::class, 'page']);
 
 
-//applicant routes
-
-Route::group(['middleware' => ['role:applicant']], function () {
-  Route::prefix('applicant')->group(function () {
-    Route::get('/dashboard', [ApplicantController::class, 'dashboard'])->name('applicant.dashboard');
-  });
-});
-
 Route::group(['middleware' => ['role:teacher']], function () {
   Route::prefix('teacher')->group(function () {
     Route::inertia('/dashboard', 'Teacher/DashboardPage');
@@ -54,5 +47,5 @@ Route::group(['middleware' => ['role:student']], function () {
   });
 });
 
-
-require_once "admin_routes.php";
+require_once "applicant.php";
+require_once "admin.php";

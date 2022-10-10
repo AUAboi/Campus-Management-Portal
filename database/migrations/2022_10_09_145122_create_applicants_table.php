@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAcademicDetailsTable extends Migration
+class CreateApplicantsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,8 @@ class CreateAcademicDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('academic_details', function (Blueprint $table) {
+        Schema::create('applicants', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
-            $table->string('title');
-            $table->string('exam_type');
-            $table->string('reg_no');
-            $table->year('passing_year');
-            $table->string('oraganization');
-            $table->unsignedSmallInteger('obtained_marks');
-            $table->unsignedSmallInteger('total_marks');
             $table->foreignId('user_id')->references('id')->on('users')->constrained()->onDelete('cascade');
 
             $table->timestamps();
@@ -36,6 +28,6 @@ class CreateAcademicDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('academic_details');
+        Schema::dropIfExists('applicants');
     }
 }

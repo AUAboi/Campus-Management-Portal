@@ -65,6 +65,11 @@ class User extends Authenticatable
         return $this->hasOne(Admin::class);
     }
 
+    public function applicant()
+    {
+        return $this->hasOne(Applicant::class);
+    }
+
 
     public function scopeFilter($query, array $filters)
     {

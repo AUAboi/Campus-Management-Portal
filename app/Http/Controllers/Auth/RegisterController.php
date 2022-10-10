@@ -46,13 +46,8 @@ class RegisterController extends Controller
      */
     protected function redirectTo()
     {
-        if (auth()->user()->hasRole('applicant')) {
-            return '/applicant/dashboard';
-        } else if (auth()->user()->hasRole('admin')) {
-            return '/admin/dashboard';
-        } else if (auth()->user()->hasRole('student')) {
-            return '/student/dashboard';
-        }
+
+        return '/applicant/dashboard?status=registered';
     }
 
     /**
@@ -99,7 +94,11 @@ class RegisterController extends Controller
             'date_of_birth' => $data['date_of_birth']
         ]);
 
+
+        //We are assiging applicant role to standard signup form
         $user->assignRole('applicant');
+        $user->applicant()->create([]);
+
         return $user;
     }
 

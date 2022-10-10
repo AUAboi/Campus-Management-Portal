@@ -431,6 +431,16 @@ var map = {
 		"/js/vendor",
 		"resources_js_Pages_Admin_Users_Students_Show_vue"
 	],
+	"./Applicant/Dashboard": [
+		"./resources/js/Pages/Applicant/Dashboard.vue",
+		"/js/vendor",
+		"resources_js_Pages_Applicant_Dashboard_vue"
+	],
+	"./Applicant/Dashboard.vue": [
+		"./resources/js/Pages/Applicant/Dashboard.vue",
+		"/js/vendor",
+		"resources_js_Pages_Applicant_Dashboard_vue"
+	],
 	"./Student/CourseDetails/Index": [
 		"./resources/js/Pages/Student/CourseDetails/Index.vue",
 		"/js/vendor",
@@ -470,16 +480,6 @@ var map = {
 		"./resources/js/Pages/Test.vue",
 		"/js/vendor",
 		"resources_js_Pages_Test_vue"
-	],
-	"./User/Applicant/Dashboard": [
-		"./resources/js/Pages/User/Applicant/Dashboard.vue",
-		"/js/vendor",
-		"resources_js_Pages_User_Applicant_Dashboard_vue"
-	],
-	"./User/Applicant/Dashboard.vue": [
-		"./resources/js/Pages/User/Applicant/Dashboard.vue",
-		"/js/vendor",
-		"resources_js_Pages_User_Applicant_Dashboard_vue"
 	],
 	"./User/LoginPage": [
 		"./resources/js/Pages/User/LoginPage.vue",
