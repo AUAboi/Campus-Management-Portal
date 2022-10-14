@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreUserStudentRequest;
+use App\Services\Admin\StudentService;
 use Exception;
 
 class StudentController extends Controller
@@ -33,37 +34,11 @@ class StudentController extends Controller
         ]);
     }
 
-    public function store(StoreUserStudentRequest $request)
+    public function store(StoreUserStudentRequest $request, StudentService $studentService)
     {
         $this->authorize('create', User::class);
-        DB::transaction(function () use ($request) {
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'father_name' => $request->father_name,
-                'cnic' => $request->cnic,
-                'date_of_birth' => $request->date_of_birth,
-                'phone' => $request->phone,
-                'gender' => $request->gender
-            ]);
 
-
-
-            $student = $user->student()->create([
-                'session_type' => $request->session_type,
-                'registration_number' => $this->generateRegNumber(),
-                'roll_no' => $request->roll_no ?? $user->id + 1,
-                'admission_year' => now()->year,
-            ]);
-
-            $user->assignRole('student');
-
-            if ($request->program) {
-                $student->enroll($request->program);
-            }
-        });
-
+        $studentService->createUserStudent($request->validated());
 
 
         return redirect()->route('admin.users')->with('success', 'Student created successfully');

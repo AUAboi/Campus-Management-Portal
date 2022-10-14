@@ -7,6 +7,8 @@ use App\Models\Course;
 use App\Models\Faculty;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCourseRequest;
+use App\Http\Requests\UpdateCourseRequest;
 
 class CourseController extends Controller
 {
@@ -41,23 +43,10 @@ class CourseController extends Controller
         return Inertia::render('Admin/Courses/Create');
     }
 
-    public function store(Request $request)
+    public function store(StoreCourseRequest $request)
     {
-        $this->validate($request, [
-            'course_name' => 'required|unique:courses,course_name',
-            'course_code' => 'required|numeric|max:999|min:100',
-            'practical_credit_hours' => 'required|numeric',
-            'theory_credit_hours' => 'required|numeric',
-            'department_code' => 'required',
-        ]);
-
-        $course = Course::create($request->only([
-            'course_name',
-            'course_code',
-            'practical_credit_hours',
-            'theory_credit_hours',
-            'department_code',
-        ]));
+        $this->authorize('create', Course::class);
+        Course::create($request->validated());
 
         return redirect()->route('admin.courses')->with('success', 'Course created successfully.');
     }
@@ -74,25 +63,11 @@ class CourseController extends Controller
         ]);
     }
 
-    public function update(Request $request, Course $course)
+    public function update(UpdateCourseRequest $request, Course $course)
     {
         $this->authorize('update', $course);
 
-        $this->validate($request, [
-            'course_name' => 'required|unique:courses,course_name,' . $course->id,
-            'course_code' => 'required|numeric|max:999|min:100',
-            'practical_credit_hours' => 'required|numeric',
-            'theory_credit_hours' => 'required|numeric',
-            'department_code' => 'required',
-        ]);
-
-        $course->update($request->only([
-            'course_name',
-            'course_code',
-            'practical_credit_hours',
-            'theory_credit_hours',
-            'department_code',
-        ]));
+        $course->update($request->validated());
 
         return redirect()->route('admin.courses')->with('success', 'Course updated successfully.');
     }

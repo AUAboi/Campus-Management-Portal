@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<TheApplicantHead title="Applications" />
-		{{ applications }}
+		{{ programs }}
 	</div>
 </template> 
 
@@ -9,7 +9,7 @@
 import TheApplicantHead from "../../../components/applicant/meta/TheApplicantHead.vue";
 export default {
 	props: {
-		applications: {
+		programs: {
 			type: Array
 		}
 	},

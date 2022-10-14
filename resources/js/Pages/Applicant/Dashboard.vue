@@ -15,7 +15,7 @@
 import TheApplicantHead from "../../components/applicant/meta/TheApplicantHead.vue";
 
 const AppNotificationCard = () => ({
-	component: import("../../ components/shared/cards/AppNotificationCard.vue")
+	component: import("../../components/shared/cards/AppNotificationCard.vue")
 });
 
 export default {

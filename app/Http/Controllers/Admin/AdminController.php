@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Exception;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Faculty;
 use Illuminate\Http\Request;
+use App\Services\Admin\UserService;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreUserRequest;
+use App\Services\Admin\AdminService;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\StoreUserRequest;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\UpdateUserAdminRequest;
 
 class AdminController extends Controller
 {
@@ -20,28 +24,20 @@ class AdminController extends Controller
         return Inertia::render('Admin/Users/Admins/Create');
     }
 
-    public function store(StoreUserRequest $request)
+    public function store(StoreUserRequest $request, AdminService $adminService)
     {
         $this->authorize('create', User::class);
 
-
-        $validated = $request->validated();
-        $validated['password'] = Hash::make($validated['password']);
-
-        $user = User::create($validated);
-
-        $user->assignRole('admin');
-        $user->admin()->create();
+        try {
+            $adminService->createUserAdmin($request->validated());
+        } catch (Exception $e) {
+            return redirect()->route('admin.users')->with('error', $e->getMessage());
+        }
 
         return redirect()->route('admin.users')->with('success', 'Admin created successfully');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(User $user)
     {
         $this->authorize('update', $user);
@@ -71,49 +67,11 @@ class AdminController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, User $user)
+
+    public function update(UpdateUserAdminRequest $request, User $user, AdminService $adminService)
     {
         $this->authorize('update', $user);
-
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'faculties' => 'array',
-        ]);
-
-        //Grab all permissions from the request and store in $permissions
-        $selected_permissions = $request->only('permissions');
-
-        $permissions = array_keys(array_filter($selected_permissions['permissions']));
-
-        //delete all permissions from the user and set the new permissions
-        $user->syncPermissions($permissions);
-
-        //Grab all faculties for admin from the request and store in admin_faculties
-        $faculties =  $request->only('faculties');
-
-        $faculties = $faculties['faculties'];
-
-        $faculties_id = array_filter($faculties, function ($faculty) {
-            return $faculty['owns_faculty'] == true;
-        });
-
-        $faculties_id = array_map(function ($faculty) {
-            return $faculty['id'];
-        }, $faculties_id);
-
-
-        $user->admin->faculties()->sync($faculties_id);
-
-
-        $user->update($request->only('name'));
-
+        $adminService->updateUserAdmin($request->validated(), $user);
         return Redirect::route('admin.users')->with('success', 'User updated.');
     }
 }

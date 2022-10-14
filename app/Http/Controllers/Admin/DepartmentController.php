@@ -7,6 +7,8 @@ use App\Models\Faculty;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreDepartmentRequest;
+use App\Http\Requests\UpdateDepartmentRequest;
 use Illuminate\Support\Facades\Redirect;
 
 class DepartmentController extends Controller
@@ -80,39 +82,22 @@ class DepartmentController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreDepartmentRequest $request)
     {
         $this->authorize('create', Faculty::class);
 
-        $request->validate([
-            'department_name' => 'required|unique:departments,department_name',
-            'faculty_id' => 'required|exists:faculties,id'
-        ]);
-
         $faculty = Faculty::find($request->faculty_id);
 
-        $faculty->departments()->create([
-            'department_name' => $request->department_name,
-        ]);
+        $faculty->departments()->create($request->validated());
 
 
         return Redirect::route('admin.departments')->with('success', 'Department created.');
     }
 
-    public function update(Request $request, Department $department)
+    public function update(UpdateDepartmentRequest $request, Department $department)
     {
         $this->authorize('update', $department);
-
-        $request->validate([
-            'department_name' => 'required|unique:departments,department_name,' . $department->id,
-            'faculty_id' => 'required|exists:faculties,id'
-        ]);
-
-
-        $department->update([
-            'department_name' => $request->department_name,
-            'faculty_id' => $request->faculty_id,
-        ]);
+        $department->update($request->validated());
         return Redirect::route('admin.departments')->with('success', 'Department updated.');
     }
 

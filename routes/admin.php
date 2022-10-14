@@ -12,7 +12,7 @@ use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\ProgramCourseController;
 
-Route::group(['middleware' => ['role:admin']], function () {
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
   Route::prefix('admin')->group(function () {
     Route::get('/', function () {
       return redirect('admin/dashboard');

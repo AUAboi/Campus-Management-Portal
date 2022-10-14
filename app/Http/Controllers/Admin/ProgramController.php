@@ -9,6 +9,8 @@ use App\Models\Program;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProgramRequest;
+use App\Http\Requests\UpdateProgramRequest;
 
 class ProgramController extends Controller
 {
@@ -34,7 +36,7 @@ class ProgramController extends Controller
       'degrees' => Degree::select('id', 'degree_name')->get(),
       'filters' => $filters,
       'permissions' => [
-        'create' => auth()->user()->can('create', Faculty::class),
+        'create' => auth()->user()->can('create', Program::class),
       ]
     ]);
   }
@@ -42,8 +44,7 @@ class ProgramController extends Controller
 
   public function create()
   {
-    $this->authorize('create', Faculty::class);
-
+    $this->authorize('create', Program::class);
     $departments = Department::select('department_name', 'id')->get();
     $degrees = Degree::select('degree_name', 'id')->get();
 
@@ -54,27 +55,15 @@ class ProgramController extends Controller
   }
 
 
-  public function store(Request $request)
+  public function store(StoreProgramRequest $request)
   {
     $this->authorize('create', Faculty::class);
-
-    $request->validate([
-      'department_id' => 'required|integer|exists:departments,id',
-      'degree_id' => 'required|integer|exists:degrees,id',
-      'credit_hours' => 'required|integer|max:999',
-    ]);
 
     if (Program::where('department_id', $request->department_id)->where('degree_id', $request->degree_id)->exists()) {
       return redirect()->back()->with('error', 'Program already exists');
     }
 
-
-    Program::create([
-      'department_id' => $request->department_id,
-
-      'degree_id' => $request->degree_id,
-      'credit_hours' => $request->credit_hours,
-    ]);
+    Program::create($request->validated());
 
     return redirect()->route('admin.programs')->with('success', 'Program created successfully.');
   }
@@ -111,27 +100,16 @@ class ProgramController extends Controller
       'departments' => Department::select('department_name', 'id')->get(),
       'degrees' => Degree::select('degree_name', 'id')->get(),
       'permissions' => [
-        'delete' => auth()->user()->can('delete_faculties'),
+        'delete' => auth()->user()->can('delete', Program::class),
       ],
     ]);
   }
 
-  public function update(Request $request, Program $program)
+  public function update(UpdateProgramRequest $request, Program $program)
   {
     $this->authorize('update', $program);
 
-
-    $request->validate([
-      'department_id' => 'required|integer|exists:departments,id',
-      'degree_id' => 'required|integer|exists:degrees,id',
-      'credit_hours' => 'required|integer|max:999',
-    ]);
-
-    $program->update([
-      'department_id' => $request->department_id,
-      'degree_id' => $request->degree_id,
-      'credit_hours' => $request->credit_hours,
-    ]);
+    $program->update($request->validate());
 
     return redirect()->route('admin.programs')->with('success', 'Program updated successfully.');
   }

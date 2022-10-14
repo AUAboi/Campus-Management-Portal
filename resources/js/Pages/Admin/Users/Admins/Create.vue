@@ -59,6 +59,14 @@
 						:error="form.errors.password_confirmation"
 					/>
 				</div>
+				<div class="form-row">
+					<FormInputText
+						label="Date of birth"
+						v-model="form.date_of_birth"
+						:error="form.errors.date_of_birth"
+						type="date"
+					/>
+				</div>
 				<div
 					class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center"
 				>
@@ -101,7 +109,8 @@ export default {
 				password: "",
 				password_confirmation: "",
 				cnic: "",
-				phone: ""
+				phone: "",
+				date_of_birth: ""
 			}),
 			crumbs: [
 				{
