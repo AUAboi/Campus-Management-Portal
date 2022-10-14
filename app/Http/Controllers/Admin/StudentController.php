@@ -18,7 +18,6 @@ use Exception;
 
 class StudentController extends Controller
 {
-    use UserStudentTrait;
 
     public function create()
     {
@@ -69,23 +68,9 @@ class StudentController extends Controller
     public function update(Request $request, User $user)
     {
         $this->authorize('update', $user);
+        //add student info validation
 
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'father_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
-            'cnic' => 'required|string|min:13|max:13|unique:users,cnic,' . $user->id,
-            'phone' => 'required|string|max:11',
-            //add student info validation
-        ]);
-
-        $user->update([
-            'name' => $request->name,
-            'father_name' => $request->father_name,
-            'email' => $request->email,
-            'cnic' => $request->cnic,
-            'phone' => $request->phone,
-        ]);
+        $user->update($request->validated());
 
         return redirect()->route('admin.users')->with('success', 'Student updated successfully');
     }

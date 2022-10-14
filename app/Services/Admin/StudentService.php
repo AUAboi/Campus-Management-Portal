@@ -17,7 +17,7 @@ class StudentService
 
       $created = $userService->createUser($data);
 
-      $created->student()->create([
+      $student = $created->student()->create([
         'session_type' => $data['session_type'],
         'registration_number' => $this->generateRegNumber(),
         'roll_no' => $data['roll_no'] ?? $created->id + 1,
@@ -26,6 +26,9 @@ class StudentService
 
       $created->assignRole('student');
 
+      if ($data['program']) {
+        $student->enroll($data['program']);
+      }
 
       return $created;
     });
