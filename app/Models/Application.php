@@ -18,4 +18,9 @@ class Application extends Model
     {
         return  $this->belongsTo(Program::class);
     }
+
+    public function status()
+    {
+        return $this->belongsTo(ApplicationStatus::class);
+    }
 }

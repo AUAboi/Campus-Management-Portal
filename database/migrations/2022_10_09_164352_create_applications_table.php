@@ -17,6 +17,7 @@ class CreateApplicationsTable extends Migration
             $table->id();
             $table->foreignId('applicant_id')->references('id')->on('applicants')->constrained()->onDelete('cascade');
             $table->foreignId('program_id')->references('id')->on('programs')->constrained()->onDelete('cascade');
+            $table->foreignId('status_id')->references('id')->on('application_statuses')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

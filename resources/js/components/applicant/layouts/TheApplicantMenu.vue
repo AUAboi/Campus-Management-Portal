@@ -7,7 +7,6 @@
 				:href="$route('applicant.dashboard')"
 				>Dashboard</Link
 			>
-			
 		</div>
 		<div class="nav-item">
 			<Link
@@ -15,6 +14,14 @@
 				class="m-2"
 				:href="$route('applicant.applications')"
 				>Applications</Link
+			>
+		</div>
+		<div class="nav-item">
+			<Link
+				:class="{ 'text-white': isUrl('academic_details') }"
+				class="m-2"
+				:href="$route('applicant.applications')"
+				>Academic Details</Link
 			>
 		</div>
 		<!-- Sending to dropdown menu through portal -->

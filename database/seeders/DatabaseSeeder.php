@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ApplicationStatus;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\AdminSeeder;
@@ -20,6 +21,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            ApplicationStatusSeeder::class,
             FacultySeeder::class,
             ProgramSeeder::class,
             CourseSeeder::class,
