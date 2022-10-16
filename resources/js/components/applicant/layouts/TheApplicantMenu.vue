@@ -3,7 +3,7 @@
 		<div class="nav-item">
 			<Link
 				:class="{ 'text-white': isUrl('dashboard') }"
-				class="m-2"
+				class="m-2 "
 				:href="$route('applicant.dashboard')"
 				>Dashboard</Link
 			>
@@ -11,7 +11,7 @@
 		<div class="nav-item">
 			<Link
 				:class="{ 'text-white': isUrl('applications') }"
-				class="m-2"
+				class="m-2 "
 				:href="$route('applicant.applications')"
 				>Applications</Link
 			>
@@ -19,7 +19,7 @@
 		<div class="nav-item">
 			<Link
 				:class="{ 'text-white': isUrl('academic_details') }"
-				class="m-2"
+				class="mx-2 block"
 				:href="$route('applicant.applications')"
 				>Academic Details</Link
 			>
