@@ -431,6 +431,26 @@ var map = {
 		"/js/vendor",
 		"resources_js_Pages_Admin_Users_Students_Show_vue"
 	],
+	"./Applicant/AcademicDetails/Create": [
+		"./resources/js/Pages/Applicant/AcademicDetails/Create.vue",
+		"/js/vendor",
+		"resources_js_Pages_Applicant_AcademicDetails_Create_vue"
+	],
+	"./Applicant/AcademicDetails/Create.vue": [
+		"./resources/js/Pages/Applicant/AcademicDetails/Create.vue",
+		"/js/vendor",
+		"resources_js_Pages_Applicant_AcademicDetails_Create_vue"
+	],
+	"./Applicant/AcademicDetails/Index": [
+		"./resources/js/Pages/Applicant/AcademicDetails/Index.vue",
+		"/js/vendor",
+		"resources_js_Pages_Applicant_AcademicDetails_Index_vue"
+	],
+	"./Applicant/AcademicDetails/Index.vue": [
+		"./resources/js/Pages/Applicant/AcademicDetails/Index.vue",
+		"/js/vendor",
+		"resources_js_Pages_Applicant_AcademicDetails_Index_vue"
+	],
 	"./Applicant/Applications/Index": [
 		"./resources/js/Pages/Applicant/Applications/Index.vue",
 		"/js/vendor",

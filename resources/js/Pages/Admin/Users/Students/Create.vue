@@ -38,12 +38,10 @@
 						v-model="form.phone"
 						:error="form.errors.phone"
 					/>
-					<FormInputText
+					<FormInputCnic
 						label="CNIC"
 						v-model="form.cnic"
 						:error="form.errors.cnic"
-						placeholder="XXXXX-XXXXXXX-X"
-						maxLength="13"
 					/>
 				</div>
 				<div class="form-row">
@@ -118,6 +116,7 @@ import FormInputText from "../../../../components/shared/form/FormInputText.vue"
 import AppBreadCrumbs from "../../../../components/shared/ui/AppBreadCrumbs.vue";
 import FormInputSelect from "../../../../components/shared/form/FormInputSelect.vue";
 import TheAdminHead from "../../../../components/admin/meta/TheAdminHead.vue";
+import FormInputCnic from "../../../../components/shared/form/FormInputCnic.vue";
 
 export default {
 	components: {
@@ -125,7 +124,8 @@ export default {
 		FormInputText,
 		AppBreadCrumbs,
 		FormInputSelect,
-		TheAdminHead
+		TheAdminHead,
+		FormInputCnic
 	},
 	props: {
 		programs: {

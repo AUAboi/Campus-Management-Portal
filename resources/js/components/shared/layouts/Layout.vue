@@ -1,5 +1,5 @@
 <template>
-	<div class="md:h-screen md:flex md:flex-col">
+	<div class="md:h-screen md:flex md:flex-col overflow-y-hidden">
 		<portal-target name="dropdown" slim />
 		<header>
 			<nav>
@@ -81,6 +81,12 @@ const AppDropdown = () => ({
 import { ChevronDownIcon } from "@vue-hero-icons/outline";
 
 export default {
+	beforeCreate() {
+		document.body.classList.add("overflow-y-hidden");
+	},
+	destroyed() {
+		document.body.classList.remove("overflow-y-hidden");
+	},
 	computed: {
 		user() {
 			return this.$page.props.auth.user;

@@ -15,6 +15,31 @@ use Illuminate\Support\Facades\View;
 class TestController extends Controller
 {
 
+    public function boards()
+    {
+        $body = View::make('boards')->render();
+
+
+        $dom = new DOMDocument();
+        @$dom->loadHTML($body);
+
+
+        $xpath = new DOMXPath($dom);
+        $options = $xpath->evaluate("/html/body//option");
+
+        for ($i = 0; $i < $options->length; $i++) {
+            $orgranziations_item = $options->item($i);
+            $orgranziations_item_text = $orgranziations_item->nodeValue;
+            $orgranziations[$i]['organization_name'] = $orgranziations_item_text;
+        }
+        array_shift($orgranziations);
+        return $orgranziations;
+    }
+
+    public function fillBoards()
+    {
+    }
+
     // get database data here
 
     public function index(Request $request)

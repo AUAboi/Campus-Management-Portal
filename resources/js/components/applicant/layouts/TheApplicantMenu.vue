@@ -20,7 +20,7 @@
 			<Link
 				:class="{ 'text-white': isUrl('academic_details') }"
 				class="mx-2 block"
-				:href="$route('applicant.applications')"
+				:href="$route('applicant.academic-details')"
 				>Academic Details</Link
 			>
 		</div>
