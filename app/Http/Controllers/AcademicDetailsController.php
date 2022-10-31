@@ -15,9 +15,9 @@ class AcademicDetailsController extends Controller
 
     public function create()
     {
-
         return Inertia::render('Applicant/AcademicDetails/Create', [
             'organizations' => Organization::all(),
+            'degreeTypes' => config('constants.academic_details.degree_types')
         ]);
     }
 }

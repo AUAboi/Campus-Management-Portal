@@ -57,7 +57,9 @@ class ProgramCourseController extends Controller
         if (!$this->hasSemester($semester, $program)) {
             return Redirect::route('admin.programs')->with('error', 'Semester is not available.');
         }
+
         $storeCoursesForProgram->handle($program, $request->courses, $semester);
+
         return Redirect::route('admin.programs.edit', $program->slug)->with('success', 'Courses added successfully');
     }
 

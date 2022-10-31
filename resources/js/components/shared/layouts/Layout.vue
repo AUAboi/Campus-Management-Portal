@@ -55,7 +55,9 @@
 				<slot />
 			</nav>
 
-			<main class="md:flex-1 px-4 py-8 md:p-12 md:overflow-y-auto ">
+			<main
+				class="px-4 py-8 overflow-x-hidden md:flex-1 md:p-12 md:overflow-y-auto "
+			>
 				<AppFlashMessage
 					v-if="
 						$page.props.flash.success ||
@@ -81,12 +83,6 @@ const AppDropdown = () => ({
 import { ChevronDownIcon } from "@vue-hero-icons/outline";
 
 export default {
-	beforeCreate() {
-		document.body.classList.add("overflow-y-hidden");
-	},
-	destroyed() {
-		document.body.classList.remove("overflow-y-hidden");
-	},
 	computed: {
 		user() {
 			return this.$page.props.auth.user;
