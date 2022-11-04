@@ -1,8 +1,8 @@
 <template>
 	<div>
 		<TheAdminHead title="Add Courses" />
-
 		<AppBreadCrumbs :crumbs="crumbs" />
+		
 		<h3 class="mb-8 font-bold text-3xl">Semester {{ semester }}</h3>
 		<div class="flex items-center mb-4">
 			<button

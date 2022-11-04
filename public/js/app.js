@@ -31,7 +31,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"];
+window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]);
 Vue.prototype.$route = route;
 /**
  * The following block of code may be used to automatically register your
@@ -552,7 +552,7 @@ module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ "?4f7e":
+/***/ "?2128":
 /*!********************************!*\
   !*** ./util.inspect (ignored) ***!
   \********************************/

@@ -3,9 +3,9 @@
 		<TheApplicantHead title="Add Academic details" />
 		<!-- <div class="bg-white rounded-md shadow overflow-hidden max-w-3xl"> -->
 		{{ form }}
-		<div class="step-form">
+		<div class="h-4/5">
 			<transition :name="`slide-${transition}`" mode="out-in">
-				<div :key="currentStep" v-if="currentStep === 0">
+				<div class="h-full" :key="currentStep" v-if="currentStep === 1">
 					<h1 class="text-center">Select your qualification type</h1>
 					<div
 						class="flex flex-col justify-center gap-16 mt-8 mx-auto w-max sm:flex-row"
@@ -14,7 +14,10 @@
 							v-for="(degreeType, index) in degreeTypes"
 							:key="index"
 							class="bg-white shadow-lg rounded-lg"
-							:class="form.type === degreeType ? 'tile--selected' : ''"
+							:class="[
+								animateShakeClass,
+								form.type === degreeType ? 'tile--selected' : ''
+							]"
 						>
 							<label
 								class="w-44 h-44 cursor-pointer text-2xl capitalize flex justify-center items-center"
@@ -33,8 +36,8 @@
 					</div>
 				</div>
 				<div
-					v-if="currentStep === 1"
-					class="bg-white rounded-md shadow max-w-3xl"
+					v-if="currentStep === 2"
+					class="bg-white rounded-md shadow max-w-3xl h-full"
 					:key="currentStep"
 				>
 					<div class="form-row">
@@ -67,8 +70,8 @@
 					</div>
 				</div>
 				<div
-					v-if="currentStep === 2"
-					class="bg-white rounded-md shadow max-w-3xl"
+					v-if="currentStep === 3"
+					class="bg-white rounded-md shadow max-w-3xl h-full"
 					:key="currentStep"
 				>
 					<div class="form-row">
@@ -110,7 +113,7 @@
 						/>
 					</div>
 					<div v-if="form.total_marks && form.obtained_marks" class="form-row">
-						<label class="form-label">Percentage: {{ percentage }}%</label>
+						<label class="form-label ">Percentage: {{ percentage }}%</label>
 					</div>
 				</div>
 			</transition>
@@ -145,13 +148,19 @@ export default {
 				obtained_marks: "",
 				total_marks: ""
 			}),
-			currentStep: 2,
+			currentStep: 1,
 			transition: "previous",
-			degreeTitles: []
+			degreeTitles: [],
+			hasSelectedDegree: false,
+			animateShake: false
 		};
 	},
 	methods: {
 		nextStep() {
+			if (!this.hasSelectedDegree) {
+				this.callToAction();
+				return;
+			}
 			if (!this.isLastStep) {
 				this.transition = "next";
 				this.currentStep++;
@@ -177,6 +186,9 @@ export default {
 					"ICS"
 				];
 			}
+		},
+		callToAction() {
+			this.animateShake = true;
 		}
 	},
 	watch: {
@@ -215,6 +227,10 @@ export default {
 			return ((this.form.obtained_marks / this.form.total_marks) * 100).toFixed(
 				2
 			);
+		},
+
+		animateShakeClass() {
+			return this.animateShake ? "animateshake" : "";
 		}
 	}
 };
@@ -243,5 +259,10 @@ export default {
 
 .form-row-full {
 	@apply flex-nowrap;
+}
+
+.animateshake {
+	animation: shakeanimation 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+	transform: translate3d(0, 0, 0);
 }
 </style>
