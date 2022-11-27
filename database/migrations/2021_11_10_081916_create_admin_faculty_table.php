@@ -15,7 +15,7 @@ class CreateAdminFacultyTable extends Migration
     {
         Schema::create('admin_faculty', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('admin_id')->references('id')->on('admins')->constrained()->onDelete('cascade');
+            $table->foreignId('admin_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('faculty_id')->references('id')->on('faculties')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

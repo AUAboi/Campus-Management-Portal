@@ -15,7 +15,7 @@ class CreateApplicationsTable extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('applicant_id')->references('id')->on('applicants')->constrained()->onDelete('cascade');
+            $table->foreignId('applicant_id')->references('id')->on('users')->constrained()->onDelete('cascade');
             $table->foreignId('program_id')->references('id')->on('programs')->constrained()->onDelete('cascade');
             $table->foreignId('status_id')->references('id')->on('application_statuses')->constrained()->onDelete('cascade');
             $table->timestamps();

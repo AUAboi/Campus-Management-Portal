@@ -24,7 +24,7 @@ class AdminFacultySeeder extends Seeder
         })->get();
         $user->each(function ($user) use ($faculties) {
 
-            $user->admin->faculties()->attach(
+            $user->faculties()->attach(
                 $faculties->random(rand(1, 7))->pluck('id')->toArray()
             );
         });

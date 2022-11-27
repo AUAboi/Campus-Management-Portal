@@ -24,7 +24,6 @@ class SuperAdminSeeder extends Seeder
         ]);
 
         $user->assignRole('super-admin');
-        $user->admin()->create();
         $user->assignRole('admin');
     }
 }

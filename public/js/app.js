@@ -92,7 +92,9 @@ var AppStudentMenu = function AppStudentMenu() {
 Vue.use((vue_sweetalert2__WEBPACK_IMPORTED_MODULE_4___default()));
 Vue.use((vue_the_mask__WEBPACK_IMPORTED_MODULE_5___default()));
 Vue.use(portal_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
-_inertiajs_progress__WEBPACK_IMPORTED_MODULE_3__.InertiaProgress.init();
+_inertiajs_progress__WEBPACK_IMPORTED_MODULE_3__.InertiaProgress.init({
+  showSpinner: true
+});
 (0,_inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_1__.createInertiaApp)({
   resolve: function () {
     var _resolve = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(name) {

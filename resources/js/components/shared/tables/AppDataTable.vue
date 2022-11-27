@@ -2,35 +2,21 @@
 	<div>
 		<table class="w-full whitespace-nowrap">
 			<tr class="text-left font-bold">
-				<th
-					v-for="(label, index) in labels"
-					:key="index"
-					class="px-6 pt-6 pb-4"
-				>
+				<th v-for="(label, index) in labels" :key="index" class="px-6 pt-6 pb-4">
 					{{ label.value }}
 				</th>
 			</tr>
-			<tr
-				v-for="(data, index) in table_data"
-				:key="index"
-				class="hover:bg-gray-100 focus-within:bg-gray-100"
-			>
+			<tr v-for="(data, index) in table_data" :key="index" class="hover:bg-gray-100 focus-within:bg-gray-100">
 				<td v-for="(label, index) in labels" :key="index" class="border-t">
-					<Link
-						class="px-6 py-4 flex items-center focus:text-indigo-500"
-						:href="$route(route, data.slug ? data.slug : data.id)"
-					>
-						{{ data[label.key] }}
+					<Link class="px-6 py-4 flex items-center focus:text-indigo-500"
+						:href="$route(route, data.slug ? data.slug : data.id)">
+					{{ data[label.key] }}
 					</Link>
 				</td>
 				<td class="border-t w-px">
-					<Link
-						class="px-4 flex items-center"
-						:href="$route(route, data.slug ? data.slug : data.id)"
-						tabindex="-1"
-					>
-						<ChevronRightIcon class="text-gray-600"
-					/></Link>
+					<Link class="px-4 flex items-center" :href="$route(route, data.slug ? data.slug : data.id)" tabindex="-1">
+					<ChevronRightIcon class="text-gray-600" />
+					</Link>
 				</td>
 			</tr>
 			<tr v-if="table_data.length === 0">

@@ -27,7 +27,7 @@ class UserFactory extends Factory
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'cnic' => 1234567891011,
-            'phone' => 1234567891011,
+            'phone' => 3214522133,
             'father_name' => $this->faker->name(),
             'gender' => $this->faker->randomElement(['male', 'female']),
             'email_verified_at' => now(),
@@ -46,7 +46,7 @@ class UserFactory extends Factory
         return $this->afterMaking(function (User $user) {
             //
         })->afterCreating(function (User $user) {
-            $user->admin()->create();
+
             $user->assignRole('admin');
         });
     }

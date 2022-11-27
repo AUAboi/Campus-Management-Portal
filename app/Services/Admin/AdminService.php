@@ -16,7 +16,6 @@ class AdminService
       $userService = new UserService();
       $created = $userService->createUser($data);
       $created->assignRole('admin');
-      $created->admin()->create();
       return $created;
     });
 
@@ -53,6 +52,6 @@ class AdminService
     }, $faculties_id);
 
 
-    $user->admin->faculties()->sync($faculties_id);
+    $user->faculties()->sync($faculties_id);
   }
 }

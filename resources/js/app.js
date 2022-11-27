@@ -62,7 +62,9 @@ Vue.use(VueSweetalert2);
 Vue.use(VueTheMask);
 Vue.use(PortalVue);
 
-InertiaProgress.init();
+InertiaProgress.init({
+    showSpinner: true
+});
 
 createInertiaApp({
     resolve: async name => {

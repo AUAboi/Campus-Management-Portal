@@ -46,7 +46,7 @@ class AdminController extends Controller
                 'faculties' => Faculty::select('id', 'faculty_name')->get()->transform(fn ($faculty) => [
                     'id' => $faculty->id,
                     'faculty_name' => $faculty->faculty_name,
-                    'owns_faculty' => $user->admin->faculties->contains($faculty->id),
+                    'owns_faculty' => $user->faculties->contains($faculty->id),
                 ]),
                 'permissions' => [
                     'create_faculties' => $user->can('create_faculties'),

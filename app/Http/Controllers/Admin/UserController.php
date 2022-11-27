@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Carbon\Carbon;
 use App\Models\User;
 use Inertia\Inertia;
-use App\Models\Faculty;
-use App\Models\Student;
+
 use Illuminate\Http\Request;
 use App\Traits\UserStudentTrait;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
@@ -58,7 +55,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $user = User::with('student', 'admin', 'roles')->findOrFail($user->id);
+        $user = User::with('roles')->findOrFail($user->id);
         return Inertia::render("Admin/Users/Show", [
             'user' => $user,
             'permissions' =>  [
