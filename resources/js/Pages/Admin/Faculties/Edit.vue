@@ -5,39 +5,18 @@
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form @submit.prevent="update" id="update-form" class="m-0">
 				<div class="form-row">
-					<FormInputText
-						label="Faculty Name"
-						v-model="form.faculty_name"
-						:readonly="!permissions.update"
-						:error="form.errors.faculty_name"
-					/>
+					<FormInputText label="Faculty Name" v-model="form.faculty_name" :readonly="!permissions.update"
+						:error="form.errors.faculty_name" />
 				</div>
-				<div
-					class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center"
-				>
-					<form
-						v-if="permissions.delete"
-						@submit.prevent="destroy"
-						id="delete-from"
-						class="m-0"
-					>
-						<button
-							form="delete-from"
-							:disabled="form.processing"
-							type="submit"
-							class="hover:underline text-red-600 "
-						>
+				<div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center">
+					<form v-if="permissions.delete" @submit.prevent="destroy" id="delete-from" class="m-0">
+						<button form="delete-from" :disabled="form.processing" type="submit" class="hover:underline text-red-600 ">
 							Delete Faculty
 						</button>
 					</form>
 
-					<button
-						v-if="permissions.update"
-						form="update-form"
-						:disabled="form.processing"
-						type="submit"
-						class="btn-main"
-					>
+					<button v-if="permissions.update" form="update-form" :disabled="form.processing" type="submit"
+						class="btn-main">
 						Update Faculty
 					</button>
 				</div>
@@ -47,11 +26,7 @@
 			Departments
 		</h1>
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
-			<AppDataTable
-				route="admin.departments.edit"
-				:table_data="faculty.departments"
-				:labels="labels"
-			/>
+			<AppDataTable route="admin.departments.edit" :table_data="faculty.departments.data" :labels="labels" />
 		</div>
 	</div>
 </template>
@@ -116,7 +91,7 @@ export default {
 
 	//Watching for changes in the form data
 	watch: {
-		"form.faculty_name": function(newValue) {
+		"form.faculty_name": function (newValue) {
 			this.crumbs[this.crumbs.length - 1].text = newValue;
 		}
 	},

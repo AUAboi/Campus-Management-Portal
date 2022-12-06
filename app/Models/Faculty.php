@@ -40,7 +40,7 @@ class Faculty extends Model
 
     public function admins()
     {
-        return $this->belongsToMany(Admin::class);
+        return $this->belongsToMany(User::class, 'admin_faculty', 'faculty_id', 'admin_id', 'id', 'id');
     }
 
 

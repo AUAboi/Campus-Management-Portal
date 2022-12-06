@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreDepartmentRequest;
 use App\Http\Requests\UpdateDepartmentRequest;
+use App\Http\Resources\DepartmentCollection;
+use App\Http\Resources\DepartmentResource;
 use Illuminate\Support\Facades\Redirect;
 
 class DepartmentController extends Controller
@@ -26,19 +28,13 @@ class DepartmentController extends Controller
             $departments->filter($request->only('search'))
             ->with(['faculty'])
             ->paginate(10)
-            ->withQueryString()
-            ->through(fn ($department) => [
-                'id' => $department->id,
-                'department_name' => $department->department_name,
-                'slug' => $department->slug,
-                'faculty_name' => $department->faculty->faculty_name,
-            ]);
+            ->withQueryString();
 
 
         return Inertia::render(
             "Admin/Departments/Index",
             [
-                'departments' => $departments,
+                'departments' => new DepartmentCollection($departments),
                 'filters' => $filters,
                 'permissions' => [
                     'create' => auth()->user()->can('create', Faculty::class),
@@ -89,8 +85,6 @@ class DepartmentController extends Controller
         $faculty = Faculty::find($request->faculty_id);
 
         $faculty->departments()->create($request->validated());
-
-
         return Redirect::route('admin.departments')->with('success', 'Department created.');
     }
 

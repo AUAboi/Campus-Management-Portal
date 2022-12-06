@@ -2,38 +2,44 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Faculty;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Spatie\Permission\Contracts\Role;
 use App\Services\Admin\FacultyService;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\StoreFacultyRequest;
 use App\Http\Requests\UpdateFacultyRequest;
+use App\Http\Resources\FacultyCollection;
+use App\Http\Resources\FacultyResource;
+use App\Http\Resources\PermissionsResource;
 
 //Permissions are for edit, delete, and create only. Every admin can view every faculty. Super admin can access every permission
 class FacultyController extends Controller
 {
     public function index(Request $request, FacultyService $facultyService)
     {
-
         $user = auth()->user();
         $filters = $request->all('search');
 
-        $faculties = $facultyService->getFaculties($user, $filters);
+        $faculties = Faculty::when(auth()->user()->hasRole('super-admin'), function ($query) {
+            return $query;
+        })->when(!auth()->user()->hasRole('super-admin'), function ($query) {
+            return $query->whereHas('admins', function ($query) {
+                return $query->where('admin_id', '=', auth()->id());
+            });
+        })
+            ->orderBy('faculty_name')
+            ->filter($request->only('search'))
+            ->paginate(10)
+            ->withQueryString();
 
         return Inertia::render("Admin/Faculties/Index", [
-            'faculties' => $faculties->paginate(10)->withQueryString(),
-
+            'faculties' => new FacultyCollection($faculties),
             'filters' => $filters,
             'permissions' => [
                 'create' => $user->can('create', Faculty::class),
             ],
-
         ]);
     }
 
@@ -43,21 +49,15 @@ class FacultyController extends Controller
         return Inertia::render("Admin/Faculties/Create");
     }
 
-    public function edit(Faculty $faculty, FacultyService $facultyService)
+    public function edit(Faculty $faculty)
     {
         $this->authorize('view', $faculty);
 
+        $faculty->load('departments');
+
         return Inertia::render("Admin/Faculties/Edit", [
-            'faculty' => [
-                'id' => $faculty->id,
-                'faculty_name' => $faculty->faculty_name,
-                'slug' => $faculty->slug,
-                'departments' => $facultyService->getFacultyDepartments($faculty),
-            ],
-            'permissions' => [
-                'update' => auth()->user()->can('update', $faculty),
-                'delete' => auth()->user()->can('delete', $faculty),
-            ],
+            'faculty' => new FacultyResource($faculty),
+            'permissions' => new PermissionsResource($faculty)
         ]);
     }
 

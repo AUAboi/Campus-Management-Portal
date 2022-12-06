@@ -2,8 +2,7 @@
 
 namespace App\Services\Admin;
 
-
-
+use App\Http\Resources\FacultyCollection;
 use App\Models\User;
 use App\Models\Faculty;
 use Illuminate\Database\Eloquent\Builder;
@@ -14,14 +13,16 @@ class FacultyService
 
 
   //Improve this
-  public function getFaculties(User $user, array $filters)
+  public function getUserFaculties(User $user, array $filters)
   {
 
-    if ($user->hasRole('super-admin')) {
-      $faculties =  Faculty::orderBy('faculty_name')->filter($filters);
-    } else {
-      $faculties = $user->admin->faculties()->orderBy("faculty_name")->filter($filters);
-    }
+    $faculties = Faculty::when(auth()->user()->hasRole('super-admin'), function ($query) {
+      return $query;
+    })->when(!auth()->user()->hasRole('super-admin'), function ($query) {
+      return $query->whereHas('admins', function ($query) {
+        return $query->where('admin_id', '=', auth()->id());
+      });
+    });
 
     return $faculties;
   }

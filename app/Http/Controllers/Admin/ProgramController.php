@@ -16,6 +16,7 @@ class ProgramController extends Controller
 {
   public function index(Request $request)
   {
+    dd($request->user()->roles);
     $filters = $request->all('search', 'degree');
 
     $programs =  Program::orderBy('slug')

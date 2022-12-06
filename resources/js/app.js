@@ -86,3 +86,5 @@ createInertiaApp({
         }).$mount(el);
     }
 });
+
+

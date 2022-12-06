@@ -31,7 +31,7 @@ class FacultyPolicy
      */
     public function view(User $user, Faculty $faculty)
     {
-        return $user->admin->faculties->contains($faculty);
+        return $user->faculties->contains($faculty);
     }
 
     /**

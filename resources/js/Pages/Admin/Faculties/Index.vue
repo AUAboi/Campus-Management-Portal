@@ -4,30 +4,17 @@
 
 		<h1 class="mb-8 font-bold text-3xl">Faculties</h1>
 		<div class="mb-6 flex justify-between items-center">
-			<AppTableSearch
-				v-model="form.search"
-				class="w-full max-w-md mr-4"
-				@reset="reset"
-			/>
+			<AppTableSearch v-model="form.search" class="w-full max-w-md mr-4" @reset="reset" />
 
-			<Link
-				v-if="permissions.create"
-				as="button"
-				class="btn-main"
-				:href="$route('admin.faculties.create')"
-			>
-				<span>Create</span>
-				<span class="hidden md:inline">faculty</span>
+			<Link v-if="permissions.create" as="button" class="btn-main" :href="$route('admin.faculties.create')">
+			<span>Create</span>
+			<span class="hidden md:inline">faculty</span>
 			</Link>
 		</div>
 		<div class="bg-white rounded-md shadow overflow-x-auto">
-			<AppDataTable
-				route="admin.faculties.edit"
-				:labels="labels"
-				:table_data="faculties.data"
-			/>
+			<AppDataTable route="admin.faculties.edit" :labels="labels" :table_data="faculties.data" />
 		</div>
-		<AppTablePagination class="mt-6" :links="faculties.links" />
+		<AppTablePagination class="mt-6" :links="faculties.meta.links" />
 	</div>
 </template>
 
@@ -85,7 +72,7 @@ export default {
 	watch: {
 		form: {
 			deep: true,
-			handler: throttle(function() {
+			handler: throttle(function () {
 				this.$inertia.get(this.$route("admin.faculties"), pickBy(this.form), {
 					preserveState: true,
 					replace: true

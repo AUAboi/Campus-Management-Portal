@@ -10,7 +10,7 @@
 				<td v-for="(label, index) in labels" :key="index" class="border-t">
 					<Link class="px-6 py-4 flex items-center focus:text-indigo-500"
 						:href="$route(route, data.slug ? data.slug : data.id)">
-					{{ data[label.key] }}
+					{{ getValue(data, label.key) }}
 					</Link>
 				</td>
 				<td class="border-t w-px">
@@ -47,6 +47,17 @@ export default {
 		table_data: {
 			type: Array,
 			required: true
+		}
+	},
+	methods: {
+		getValue(obj, prop) {
+			const parts = prop.split('.');
+			let thisObj = obj;
+			let part = 0;
+			while (thisObj = thisObj?.[parts[part++]]) {
+				if (part >= parts.length) break;
+			}
+			return thisObj;
 		}
 	}
 };
