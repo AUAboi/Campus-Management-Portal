@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Admin;
 use App\Models\Department;
+use App\Scopes\AvailableScope;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
@@ -43,13 +44,21 @@ class Faculty extends Model
         return $this->belongsToMany(User::class, 'admin_faculty', 'faculty_id', 'admin_id', 'id', 'id');
     }
 
-
-    //->filter scope
-
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
             $query->where('faculty_name', 'like', '%' . $search . '%');
+        });
+    }
+
+    public function scopeAvailableTo($query, User $user)
+    {
+        $query->when($user->hasRole('super-admin'), function ($query) {
+            return $query;
+        })->when($user->hasRole('admin'), function ($query) {
+            return $query->whereHas('admins', function ($query) {
+                return $query->where('admin_id', '=', auth()->id());
+            });
         });
     }
 }

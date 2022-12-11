@@ -22,14 +22,7 @@ class FacultyController extends Controller
         $user = auth()->user();
         $filters = $request->all('search');
 
-        $faculties = Faculty::when(auth()->user()->hasRole('super-admin'), function ($query) {
-            return $query;
-        })->when(!auth()->user()->hasRole('super-admin'), function ($query) {
-            return $query->whereHas('admins', function ($query) {
-                return $query->where('admin_id', '=', auth()->id());
-            });
-        })
-            ->orderBy('faculty_name')
+        $faculties = Faculty::orderBy('faculty_name')->availableTo(auth()->user())
             ->filter($request->only('search'))
             ->paginate(10)
             ->withQueryString();
@@ -54,7 +47,6 @@ class FacultyController extends Controller
         $this->authorize('view', $faculty);
 
         $faculty->load('departments');
-
         return Inertia::render("Admin/Faculties/Edit", [
             'faculty' => new FacultyResource($faculty),
             'permissions' => new PermissionsResource($faculty)

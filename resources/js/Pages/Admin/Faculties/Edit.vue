@@ -26,7 +26,7 @@
 			Departments
 		</h1>
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
-			<AppDataTable route="admin.departments.edit" :table_data="faculty.departments.data" :labels="labels" />
+			<AppDataTable route="admin.departments.edit" :table_data="faculty.departments" :labels="labels" />
 		</div>
 	</div>
 </template>
