@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use Spatie\Sluggable\HasSlug;
+use App\Scopes\AvailableScope;
 use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Spatie\Sluggable\HasSlug;
 
 class Department extends Model
 {
@@ -16,6 +17,7 @@ class Department extends Model
         'slug',
         'faculty_id'
     ];
+
 
     public function getSlugOptions(): SlugOptions
     {
@@ -45,6 +47,17 @@ class Department extends Model
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
             $query->where('department_name', 'like', '%' . $search . '%');
+        });
+    }
+
+    public function scopeAvailableTo($query, User $user)
+    {
+        $query->when($user->hasRole('super-admin'), function ($query) {
+            return $query;
+        })->when($user->hasRole('admin'), function ($query) {
+            return $query->whereHas('faculty', function ($query) {
+                return $query->;
+            });
         });
     }
 }
