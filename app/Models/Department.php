@@ -43,6 +43,7 @@ class Department extends Model
         return $this->hasMany(Program::class);
     }
 
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
@@ -54,9 +55,11 @@ class Department extends Model
     {
         $query->when($user->hasRole('super-admin'), function ($query) {
             return $query;
-        })->when($user->hasRole('admin'), function ($query) {
-            return $query->whereHas('faculty', function ($query) {
-                return $query->;
+        })->when(($user->hasRole('admin') && !$user->hasRole('super-admin')), function ($query)  use ($user) {
+            return $query->whereHas('faculty', function ($query)  use ($user) {
+                return $query->whereHas('admins', function ($query) use ($user) {
+                    return $query->where('admin_id', $user->id);
+                });
             });
         });
     }

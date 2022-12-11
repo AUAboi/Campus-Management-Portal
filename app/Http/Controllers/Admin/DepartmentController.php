@@ -19,8 +19,12 @@ class DepartmentController extends Controller
     {
         $filters = $request->all('search');
 
-        $departments = Department::orderBy('department_name')->filter($request->only('search'))
-            ->with(['faculty'])
+
+        $departments =
+            Department::with(['faculty'])
+            ->availableTo(auth()->user())
+            ->orderBy('department_name')
+            ->filter($request->only('search'))
             ->paginate(10)
             ->withQueryString();
 

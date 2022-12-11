@@ -21,4 +21,9 @@ class Admin extends Model
     {
         return $this->belongsToMany(Department::class, 'admin_faculty', 'admin_id', 'faculty_id', 'id', 'faculty_id');
     }
+
+    public function admins()
+    {
+        return $this->belongsToMany(User::class, 'admin_faculty', 'faculty_id', 'admin_id', 'id', 'admin_id');
+    }
 }
