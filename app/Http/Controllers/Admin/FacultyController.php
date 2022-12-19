@@ -17,22 +17,20 @@ use App\Http\Resources\PermissionsResource;
 //Permissions are for edit, delete, and create only. Every admin can view every faculty. Super admin can access every permission
 class FacultyController extends Controller
 {
-    public function index(Request $request, FacultyService $facultyService)
+    public function index(Request $request)
     {
-        $user = auth()->user();
         $filters = $request->all('search');
-
-        $faculties = Faculty::orderBy('faculty_name')->availableTo(auth()->user())
+        $faculties = Faculty::orderBy('faculty_name')
+            ->availableTo(auth()->user())
             ->filter($request->only('search'))
             ->paginate(10)
             ->withQueryString();
 
+
         return Inertia::render("Admin/Faculties/Index", [
             'faculties' => new FacultyCollection($faculties),
             'filters' => $filters,
-            'permissions' => [
-                'create' => $user->can('create', Faculty::class),
-            ],
+            'permissions' =>  new PermissionsResource(Faculty::class)
         ]);
     }
 

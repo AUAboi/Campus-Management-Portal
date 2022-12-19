@@ -55,7 +55,7 @@ class Faculty extends Model
     {
         $query->when($user->hasRole('super-admin'), function ($query) {
             return $query;
-        })->when($user->hasRole('admin'), function ($query) {
+        })->when(!$user->hasRole('super-admin'), function ($query) {
             return $query->whereHas('admins', function ($query) {
                 return $query->where('admin_id', '=', auth()->id());
             });

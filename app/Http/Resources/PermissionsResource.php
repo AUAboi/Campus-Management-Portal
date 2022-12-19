@@ -18,8 +18,12 @@ class PermissionsResource extends JsonResource
     {
         return [
             'create' => $request->user()->can('create', $this->resource),
-            'update' => $this->when(isset($this->id), $request->user()->can('update', $this->resource)),
-            'delete' =>  $this->when(isset($this->id), $request->user()->can('delete', $this->resource)),
+            'update' => $this->when(isset($this->id), function () use ($request) {
+                return $request->user()->can('update', $this->resource);
+            }),
+            'delete' => $this->when(isset($this->id), function () use ($request) {
+                return $request->user()->can('delete', $this->resource);
+            }),
         ];
     }
 }

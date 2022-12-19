@@ -11,6 +11,7 @@ use App\Http\Requests\StoreDepartmentRequest;
 use App\Http\Requests\UpdateDepartmentRequest;
 use App\Http\Resources\DepartmentCollection;
 use App\Http\Resources\DepartmentResource;
+use App\Http\Resources\PermissionsResource;
 use Illuminate\Support\Facades\Redirect;
 
 class DepartmentController extends Controller
@@ -34,9 +35,7 @@ class DepartmentController extends Controller
             [
                 'departments' => new DepartmentCollection($departments),
                 'filters' => $filters,
-                'permissions' => [
-                    'create' => auth()->user()->can('create', Faculty::class),
-                ]
+                'permissions' => new PermissionsResource(Department::class)
             ]
         );
     }
