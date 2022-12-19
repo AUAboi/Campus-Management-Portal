@@ -4,42 +4,24 @@
 
 		<h1 class="mb-8 font-bold text-3xl">Programs</h1>
 		<div class="mb-6 flex justify-between items-center">
-			<AppTableSearch
-				filterable
-				v-model="form.search"
-				class="w-full max-w-md mr-4"
-				@reset="reset"
-			>
+			<AppTableSearch filterable v-model="form.search" class="w-full max-w-md mr-4" @reset="reset">
 				<label class="block text-gray-700">Degree:</label>
 				<select v-model="form.degree" class="mt-1 w-full form-select">
 					<option :value="null" />
-					<option
-						v-for="degree in degrees"
-						:key="degree.id"
-						:value="degree.degree_name"
-					>
+					<option v-for="degree in degrees" :key="degree.id" :value="degree.degree_name">
 						{{ degree.degree_name }}
 					</option>
 				</select>
 			</AppTableSearch>
-			<Link
-				v-if="permissions.create"
-				as="button"
-				class="btn-main"
-				:href="$route('admin.programs.create')"
-			>
-				<span>Create</span>
-				<span class="hidden md:inline">Program</span>
+			<Link v-if="permissions.create" as="button" class="btn-main" :href="$route('admin.programs.create')">
+			<span>Create</span>
+			<span class="hidden md:inline">Program</span>
 			</Link>
 		</div>
 		<div class="bg-white rounded-md shadow overflow-x-auto">
-			<AppDataTable
-				:table_data="programs.data"
-				:labels="labels"
-				route="admin.programs.edit"
-			/>
+			<AppDataTable :table_data="programs.data" :labels="labels" route="admin.programs.edit" />
 		</div>
-		<AppTablePagination class="mt-6" :links="programs.links" />
+		<AppTablePagination class="mt-6" :links="programs.meta.links" />
 	</div>
 </template>
 
@@ -66,7 +48,7 @@ export default {
 					value: "Name"
 				},
 				{
-					key: "department_name",
+					key: "department.department_name",
 					value: "Department"
 				},
 				{
@@ -107,7 +89,7 @@ export default {
 	watch: {
 		form: {
 			deep: true,
-			handler: throttle(function() {
+			handler: throttle(function () {
 				this.$inertia.get(this.$route("admin.programs"), pickBy(this.form), {
 					preserveState: true,
 					replace: true

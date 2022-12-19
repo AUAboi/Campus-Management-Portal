@@ -24,9 +24,19 @@ class UpdateProgramRequest extends FormRequest
     public function rules()
     {
         return [
+            'degree_id' => 'required|integer|exists:degrees,id|unique:programs,degree_id,' . $this->route('program')->id . ',id,department_id,' . $this->department_id,
             'department_id' => 'required|integer|exists:departments,id',
-            'degree_id' => 'required|integer|exists:degrees,id',
             'credit_hours' => 'required|integer|max:999',
+        ];
+    }
+
+
+    public function messages()
+    {
+        return [
+            'department_id.required' => 'You need to specify a department',
+            'degree_id.required' => 'You need to specify a degree',
+            'degree_id.unique' => 'This degree already exists'
         ];
     }
 }

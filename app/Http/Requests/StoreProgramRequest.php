@@ -25,8 +25,18 @@ class StoreProgramRequest extends FormRequest
     {
         return [
             'department_id' => 'required|integer|exists:departments,id',
-            'degree_id' => 'required|integer|exists:degrees,id',
+            'degree_id' => 'required|integer|exists:degrees,id|unique:programs,degree_id,NULL,id,department_id,' . $this->department_id,
             'credit_hours' => 'required|integer|max:999',
+        ];
+    }
+
+
+    public function messages()
+    {
+        return [
+            'department_id.required' => 'You need to specify a department',
+            'degree_id.required' => 'You need to specify a degree',
+            'degree_id.unique' => 'This degree already exists'
         ];
     }
 }

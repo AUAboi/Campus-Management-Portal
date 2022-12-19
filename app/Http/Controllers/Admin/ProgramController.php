@@ -11,34 +11,30 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProgramRequest;
 use App\Http\Requests\UpdateProgramRequest;
+use App\Http\Resources\CourseCollection;
+use App\Http\Resources\DegreeCollection;
+use App\Http\Resources\DepartmentCollection;
+use App\Http\Resources\PermissionsResource;
+use App\Http\Resources\ProgramCollection;
+use App\Http\Resources\ProgramResource;
 
 class ProgramController extends Controller
 {
   public function index(Request $request)
   {
-    dd($request->user()->roles);
     $filters = $request->all('search', 'degree');
 
     $programs =  Program::orderBy('slug')
       ->filter($request->only('search', 'degree'))
       ->with(['department', 'degree'])
       ->paginate(10)
-      ->withQueryString()
-      ->through(fn ($program) => [
-        'id' => $program->id,
-        'program_name' => $program->full_program_name,
-        'slug' => $program->slug,
-        'department_name' => $program->department->department_name,
-        'credit_hours' => $program->credit_hours,
-      ]);
+      ->withQueryString();
 
     return Inertia::render("Admin/Programs/Index", [
-      'programs' => $programs,
-      'degrees' => Degree::select('id', 'degree_name')->get(),
+      'programs' =>  new ProgramCollection($programs),
+      'degrees' => new DegreeCollection(Degree::all()),
+      'permissions' => new PermissionsResource(Program::class),
       'filters' => $filters,
-      'permissions' => [
-        'create' => auth()->user()->can('create', Program::class),
-      ]
     ]);
   }
 
@@ -46,12 +42,10 @@ class ProgramController extends Controller
   public function create()
   {
     $this->authorize('create', Program::class);
-    $departments = Department::select('department_name', 'id')->get();
-    $degrees = Degree::select('degree_name', 'id')->get();
 
     return Inertia::render("Admin/Programs/Create", [
-      'departments' => $departments,
-      'degrees' => $degrees
+      'departments' => new DepartmentCollection(Department::all()),
+      'degrees' => new DegreeCollection(Degree::all())
     ]);
   }
 
@@ -59,13 +53,7 @@ class ProgramController extends Controller
   public function store(StoreProgramRequest $request)
   {
     $this->authorize('create', Faculty::class);
-
-    if (Program::where('department_id', $request->department_id)->where('degree_id', $request->degree_id)->exists()) {
-      return redirect()->back()->with('error', 'Program already exists');
-    }
-
     Program::create($request->validated());
-
     return redirect()->route('admin.programs')->with('success', 'Program created successfully.');
   }
 
@@ -75,43 +63,18 @@ class ProgramController extends Controller
 
 
     return Inertia::render("Admin/Programs/Edit", [
-      'program' => [
-        'id' => $program->id,
-        'program_name' => $program->full_program_name,
-        'degree_id' => $program->degree->id,
-        'degree_name' => $program->degree->degree_name,
-        'semesters' => $program->degree->semesters,
-        'department_name' => $program->department->department_name,
-        'department_id' => $program->department->id,
-        'department_slug' => $program->department->slug,
-        'credit_hours' => $program->credit_hours,
-        'slug' => $program->slug
-
-      ],
-
-      'courses' => $program->courses()->orderBy('semester')->get()->transform(fn ($course) => [
-        'id' => $course->id,
-        'course_name' => $course->course_name,
-        'course_code' => $course->course_code,
-        'department_code' => $course->department_code,
-        'credit_hours' => $course->credit_hours,
-        'semester' => $course->pivot->semester,
-      ]),
-
-      'departments' => Department::select('department_name', 'id')->get(),
-      'degrees' => Degree::select('degree_name', 'id')->get(),
-      'permissions' => [
-        'delete' => auth()->user()->can('delete', Program::class),
-      ],
+      'program' => new ProgramResource($program),
+      'courses' => new CourseCollection($program->courses()->orderBy('semester')->get()),
+      'departments' => new DepartmentCollection(Department::all()),
+      'degrees' => new DegreeCollection(Degree::all()),
+      'permissions' => new PermissionsResource($program),
     ]);
   }
 
   public function update(UpdateProgramRequest $request, Program $program)
   {
     $this->authorize('update', $program);
-
-    $program->update($request->validate());
-
+    $program->update($request->validated());
     return redirect()->route('admin.programs')->with('success', 'Program updated successfully.');
   }
 

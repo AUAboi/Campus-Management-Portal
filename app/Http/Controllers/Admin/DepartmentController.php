@@ -20,7 +20,6 @@ class DepartmentController extends Controller
     {
         $filters = $request->all('search');
 
-
         $departments =
             Department::with(['faculty'])
             ->availableTo(auth()->user())
@@ -28,7 +27,6 @@ class DepartmentController extends Controller
             ->filter($request->only('search'))
             ->paginate(10)
             ->withQueryString();
-
 
         return Inertia::render(
             "Admin/Departments/Index",
