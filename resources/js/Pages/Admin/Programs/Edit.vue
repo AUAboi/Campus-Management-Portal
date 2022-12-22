@@ -3,7 +3,7 @@
 		<TheAdminHead :title="`${program.program_name}`" />
 		<AppModal modalWidth="w-3xl" @close="show = false" v-if="show">
 			<div class="my-6 p-4 grid grid-cols-3 mx-4">
-				<Link v-for="(semester, index) in program.semesters" :key="index" class="m-4"
+				<Link v-for="(semester, index) in program.degree.semesters" :key="index" class="m-4"
 					:href="$route('admin.programs.courses', [program.slug, semester])">
 				Semester {{ semester }}
 				</Link>

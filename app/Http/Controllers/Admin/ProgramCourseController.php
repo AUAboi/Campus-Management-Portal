@@ -8,8 +8,9 @@ use App\Models\Course;
 use App\Models\Program;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCourseProgramRequest;
+use App\Http\Resources\PermissionsResource;
+use App\Http\Resources\ProgramResource;
 use Illuminate\Support\Facades\Redirect;
-
 
 class ProgramCourseController extends Controller
 {
@@ -34,20 +35,15 @@ class ProgramCourseController extends Controller
                 'practical_credit_hours' => $course->practical_credit_hours,
                 'department_code' => $course->department_code,
                 'belongs_to_program' => $program_courses->contains($course->id),
-                'total_credit_hours' => $course->credit_hours,
+                'credit_hours' => $course->credit_hours,
             ]);
 
         return Inertia::render('Admin/Programs/AddCourse', [
             'semester' => $semester,
-            'program' => [
-                'slug' => $program->slug,
-                'name' => $program->getFullProgramNameAttribute()
-            ],
+            'program' => new ProgramResource($program),
             'courses' => $courses,
             'program_courses' => $program_courses,
-            'permissions' => [
-                'update' => auth()->user()->can('update', Program::class),
-            ]
+            'permissions' => new PermissionsResource($program)
         ]);
     }
 
