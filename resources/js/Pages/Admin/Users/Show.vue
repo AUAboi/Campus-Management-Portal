@@ -1,17 +1,13 @@
 <template>
 	<main>
-		{{ user }}
 		<TheAdminHead :title="`User ${user.name}`" />
 		<h1 class="mb-8 font-bold text-3xl">{{ user.name }}</h1>
 
 		<component :user="user" :is="`${role}-profile-card`"></component>
 
-		<div v-if="permissions.edit" class="py-4 my-4  max-w-3xl">
-			<Link
-				:href="$route(`admin.users.${role}.edit`, user.id)"
-				class="btn-main"
-			>
-				Edit
+		<div v-if="permissions.update" class="py-4 my-4  max-w-3xl">
+			<Link :href="$route(`admin.users.${role}.edit`, user.id)" class="btn-main">
+			Edit
 			</Link>
 		</div>
 	</main>
@@ -21,11 +17,13 @@
 import { Link } from "@inertiajs/inertia-vue";
 import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
 import AdminProfileCard from "../../../components/admin/AdminProfileCard.vue";
+import StudentProfileCard from "../../../components/student/cards/StudentProfileCard.vue";
 export default {
 	components: {
 		Link,
 		TheAdminHead,
-		AdminProfileCard
+		AdminProfileCard,
+		StudentProfileCard
 	},
 	props: {
 		user: {
@@ -39,7 +37,7 @@ export default {
 	},
 	computed: {
 		role() {
-			return this.user.roles[0].name;
+			return this.user.roles[0];
 		}
 	}
 };

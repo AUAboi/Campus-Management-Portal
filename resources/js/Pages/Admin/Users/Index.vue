@@ -3,21 +3,11 @@
 		<TheAdminHead title="Users" />
 		<h1 class="mb-8 font-bold text-3xl">Users</h1>
 		<div class="mb-6 flex justify-between items-center">
-			<AppTableSearch
-				filterable
-				v-model="form.search"
-				class="w-full max-w-md mr-4"
-				@reset="reset"
-			>
+			<AppTableSearch filterable v-model="form.search" class="w-full max-w-md mr-4" @reset="reset">
 				<label class="block text-gray-700">Role:</label>
 				<select v-model="form.role" class="mt-1 w-full form-select capitalize">
 					<option :value="null" />
-					<option
-						v-for="role in roles"
-						:key="role.id"
-						:value="role.name"
-						class="capitalize"
-					>
+					<option v-for="role in roles" :key="role.id" :value="role.name" class="capitalize">
 						{{ role.name.replace("-", " ") }}
 					</option>
 				</select>
@@ -28,44 +18,26 @@
 						<span>Create</span>
 						<span class="hidden md:inline">User </span>
 
-						<ChevronDownIcon
-							class="w-5 h-5 text-white inline-flex align-middle"
-						/>
+						<ChevronDownIcon class="w-5 h-5 text-white inline-flex align-middle" />
 					</button>
 				</div>
-				<div
-					slot="dropdown"
-					class="mt-2 py-2 shadow-xl bg-white rounded text-sm"
-				>
+				<div slot="dropdown" class="mt-2 py-2 shadow-xl bg-white rounded text-sm">
 					<div>
-						<Link
-							class="block px-6 py-2 hover:bg-indigo-500 hover:text-white"
-							:href="$route('admin.users.admin.create')"
-							>Admin</Link
-						>
-						<Link
-							class="block px-6 py-2 hover:bg-indigo-500 hover:text-white"
-							:href="$route('admin.users.teacher.create')"
-							>Teacher</Link
-						>
+						<Link class="block px-6 py-2 hover:bg-indigo-500 hover:text-white"
+							:href="$route('admin.users.admin.create')">Admin</Link>
+						<Link class="block px-6 py-2 hover:bg-indigo-500 hover:text-white"
+							:href="$route('admin.users.teacher.create')">Teacher</Link>
 
-						<Link
-							class="block px-6 py-2 hover:bg-indigo-500 hover:text-white"
-							:href="$route('admin.users.student.create')"
-							>Student</Link
-						>
+						<Link class="block px-6 py-2 hover:bg-indigo-500 hover:text-white"
+							:href="$route('admin.users.student.create')">Student</Link>
 					</div>
 				</div>
 			</AppDropdown>
 		</div>
 		<div class="bg-white rounded-md shadow overflow-x-auto">
-			<AppDataTable
-				:table_data="users.data"
-				:labels="labels"
-				route="admin.users.show"
-			/>
+			<AppDataTable :table_data="users.data" :labels="labels" route="admin.users.show" />
 		</div>
-		<AppTablePagination class="mt-6" :links="users.links" />
+		<AppTablePagination class="mt-6" :links="users.meta.links" />
 	</div>
 </template>
 
@@ -122,7 +94,7 @@ export default {
 				},
 				{
 					value: "Role",
-					key: "role"
+					key: "roles"
 				}
 			]
 		};
@@ -130,7 +102,7 @@ export default {
 	watch: {
 		form: {
 			deep: true,
-			handler: throttle(function() {
+			handler: throttle(function () {
 				this.$inertia.get(this.$route("admin.users"), pickBy(this.form), {
 					preserveState: true,
 					replace: true
@@ -142,6 +114,9 @@ export default {
 		reset() {
 			this.form = mapValues(this.form, () => null);
 		}
+	},
+	mounted() {
+		this.users.data.map((user) => user.roles = user.roles.join(", "));
 	}
 };
 </script>

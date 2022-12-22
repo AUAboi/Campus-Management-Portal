@@ -13,8 +13,9 @@
 				{{ user.student.registration_number }}
 			</p>
 			<p>
-				<span class="font-bold">Student Session:</span>
-				{{ user.student.session_duration }}
+				<span class="font-bold">Session:</span>
+				{{ session }}
+
 			</p>
 			<p>
 				<span class="font-bold">Session Type:</span>
@@ -22,19 +23,30 @@
 			</p>
 			<p>
 				<span class="font-bold">Admission Year:</span>
-				{{ user.student.admission_year }}
+				{{ user.student.session_start }}
 			</p>
 		</div>
 	</section>
 </template>
 
 <script>
+import AppUserAvatar from '../../shared/AppUserAvatar.vue';
+
+
 export default {
 	props: {
 		user: {
 			required: true
 		}
-	}
+	},
+	computed: {
+		session() {
+			return `
+			${this.user.student.session_start} - ${this.user.student.session_start + (this.user.student.program.degree.semesters / 2)}
+			`
+		}
+	},
+	components: { AppUserAvatar }
 };
 </script>
 

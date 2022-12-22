@@ -1,6 +1,7 @@
 <template>
 	<div>
 		{{ permissions }}
+		{{ user }}
 	</div>
 </template>
 
@@ -20,4 +21,5 @@ export default {
 </script>
 
 <style>
+
 </style>

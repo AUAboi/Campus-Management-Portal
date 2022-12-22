@@ -11,6 +11,7 @@ use App\Services\Admin\AdminService;
 use App\Http\Requests\StoreUserRequest;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\UpdateUserAdminRequest;
+use App\Http\Resources\PermissionsResource;
 
 class AdminController extends Controller
 {
@@ -37,6 +38,7 @@ class AdminController extends Controller
 
     public function edit(User $user)
     {
+
         $this->authorize('update', $user);
         return Inertia::render("Admin/Users/Admins/Edit", [
             'user' => [
@@ -48,7 +50,7 @@ class AdminController extends Controller
                     'faculty_name' => $faculty->faculty_name,
                     'owns_faculty' => $user->faculties->contains($faculty->id),
                 ]),
-                'permissions' => [
+                'permissions' =>  [
                     'create_faculties' => $user->can('create_faculties'),
                     'update_faculties' => $user->can('update_faculties'),
                     'delete_faculties' => $user->can('delete_faculties'),
@@ -57,10 +59,7 @@ class AdminController extends Controller
                     'delete_users' => $user->can('delete_users'),
                 ],
             ],
-            'permissions' => [
-                'delete' => auth()->user()->can('delete', $user),
-            ]
-
+            'permissions' => new PermissionsResource($user)
         ]);
     }
 

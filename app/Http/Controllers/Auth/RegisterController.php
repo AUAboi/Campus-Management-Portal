@@ -97,7 +97,6 @@ class RegisterController extends Controller
 
         //We are assiging applicant role to standard signup form
         $user->assignRole('applicant');
-        $user->applicant()->create([]);
 
         return $user;
     }

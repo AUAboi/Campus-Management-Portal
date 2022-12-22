@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreUserStudentRequest;
+use App\Http\Resources\PermissionsResource;
+use App\Http\Resources\ProgramCollection;
+use App\Http\Resources\UserResource;
 use App\Services\Admin\StudentService;
 use Exception;
 
@@ -26,10 +29,7 @@ class StudentController extends Controller
         $programs = Program::with(['department', 'degree'])->get();
 
         return Inertia::render('Admin/Users/Students/Create', [
-            'programs' => $programs->map(fn ($program) => [
-                'id' => $program->id,
-                'program_name' => $program->full_program_name
-            ])
+            'programs' => new ProgramCollection($programs)
         ]);
     }
 
@@ -39,7 +39,6 @@ class StudentController extends Controller
 
         $studentService->createUserStudent($request->validated());
 
-
         return redirect()->route('admin.users')->with('success', 'Student created successfully');
     }
 
@@ -48,20 +47,8 @@ class StudentController extends Controller
         $this->authorize('update', $user);
 
         return Inertia::render('Admin/Users/Students/Edit', [
-            'user' => [
-                'id' => $user->id,
-                'name' => $user->name,
-                'father_name' => $user->father_name,
-                'email' => $user->email,
-                'cnic' => $user->cnic,
-                'phone' => $user->phone,
-                'student' => $user->student,
-            ],
-
-            'permissions' => [
-                'delete' => auth()->user()->can('delete', $user),
-                'update' => auth()->user()->can('update', $user),
-            ],
+            'user' => new UserResource($user->load(['student', 'student.program'])),
+            'permissions' => new PermissionsResource($user),
         ]);
     }
 
@@ -78,11 +65,8 @@ class StudentController extends Controller
     public function show(User $user)
     {
         return Inertia::render("Admin/Users/Students/Show", [
-            'user' => $user->load('student'),
-            'permissions' =>  [
-                'edit' => auth()->user()->can('update', $user),
-                'delete' => auth()->user()->can('delete', $user),
-            ],
+            'user' => new UserResource($user->load(['student', 'student.program'])),
+            'permissions' => new PermissionsResource($user),
         ]);
     }
 }

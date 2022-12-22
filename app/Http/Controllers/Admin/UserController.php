@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use App\Traits\UserStudentTrait;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PermissionsResource;
+use App\Http\Resources\UserCollection;
+use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
@@ -27,23 +30,14 @@ class UserController extends Controller
         $users = User::with(['roles'])->orderBy('name')
             ->filter($request->only('search', 'role'))
             ->paginate(10)
-            ->withQueryString()
-            ->through(fn ($user) => [
-                'id' => $user->id,
-                'name' => $user->name,
-                'email' => $user->email,
-                'avatar' => $user->avatar,
-                'role' => $user->roles->pluck('name')->implode(', '),
-            ]);
+            ->withQueryString();
 
 
         return Inertia::render("Admin/Users/Index", [
-            'users' => $users,
+            'users' => new UserCollection($users),
             'roles' => Role::select('name', 'id')->get(),
             'filters' => $filters,
-            'permissions' => [
-                'create' => auth()->user()->can('create', User::class),
-            ]
+            'permissions' => new PermissionsResource(User::class)
         ]);
     }
 
@@ -55,13 +49,13 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $user = User::with('roles')->findOrFail($user->id);
+
+        if ($user->hasRole('student')) {
+            $user->load(['student', 'student.program']);
+        }
         return Inertia::render("Admin/Users/Show", [
-            'user' => $user,
-            'permissions' =>  [
-                'edit' => auth()->user()->can('update', $user),
-                'delete' => auth()->user()->can('delete', $user),
-            ],
+            'user' => new UserResource($user),
+            'permissions' =>  new PermissionsResource($user)
         ]);
     }
 

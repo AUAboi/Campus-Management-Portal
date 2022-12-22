@@ -15,7 +15,7 @@ class Student extends Model
         'session_type',
         'registration_number',
         'roll_no',
-        'admission_year',
+        'session_start',
         'program_id',
     ];
 
@@ -30,16 +30,6 @@ class Student extends Model
         return $this->belongsTo(Program::class);
     }
 
-    public function enroll($program)
-    {
-        if ($this->program) {
-            throw new Error('Student is already enrolled');
-        }
-        $this->update([
-            'program_id' => $program,
-            'admission_year' => now()->year
-        ]);
-    }
 
     public function getFullRegistrationNumber()
     {
