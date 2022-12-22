@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
+use App\Http\Resources\CourseCollection;
+use App\Http\Resources\CourseResource;
+use App\Http\Resources\PermissionsResource;
 
 class CourseController extends Controller
 {
@@ -19,22 +22,12 @@ class CourseController extends Controller
         $courses =  Course::orderBy('course_name')
             ->filter($request->only('search'))
             ->paginate(10)
-            ->withQueryString()
-            ->through(
-                fn ($course) => [
-                    'id' => $course->id,
-                    'course_name' => $course->course_name,
-                    'course_code' => $course->full_course_code,
-                    'credit_hours' => $course->credit_hours,
-                ]
-            );
+            ->withQueryString();
 
         return Inertia::render('Admin/Courses/Index', [
-            'courses' => $courses,
+            'courses' => new CourseCollection($courses),
+            'permissions' => new PermissionsResource(Course::class),
             'filters' => $filters,
-            'permissions' => [
-                'create' => auth()->user()->can('create', Faculty::class),
-            ]
         ]);
     }
 
@@ -56,10 +49,8 @@ class CourseController extends Controller
         $this->authorize('update', $course);
 
         return Inertia::render("Admin/Courses/Edit", [
-            'course' => $course,
-            'permissions' => [
-                'delete' => auth()->user()->can('delete_faculties'),
-            ],
+            'course' => new CourseResource($course),
+            'permissions' => new PermissionsResource($course)
         ]);
     }
 

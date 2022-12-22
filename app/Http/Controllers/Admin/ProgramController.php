@@ -61,7 +61,6 @@ class ProgramController extends Controller
   {
     $this->authorize('update', $program);
 
-
     return Inertia::render("Admin/Programs/Edit", [
       'program' => new ProgramResource($program),
       'courses' => new CourseCollection($program->courses()->orderBy('semester')->get()),

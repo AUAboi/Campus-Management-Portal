@@ -6,72 +6,29 @@
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form @submit.prevent="update" id="update-form" class="m-0">
 				<div class="form-row">
-					<FormInputText
-						class="lg:w-full"
-						label="Course Name"
-						v-model="form.course_name"
-						:error="form.errors.course_name"
-					/>
+					<FormInputText class="lg:w-full" label="Course Name" v-model="form.course_name"
+						:error="form.errors.course_name" />
 				</div>
 				<div class="form-row">
-					<FormInputText
-						label="Theory Credit Hours"
-						v-model="form.theory_credit_hours"
-						:error="form.errors.theory_credit_hours"
-						type="number"
-						max="99"
-						min="0"
-					/>
-					<FormInputText
-						label="Practical Credit Hours"
-						v-model="form.practical_credit_hours"
-						:error="form.errors.practical_credit_hours"
-						type="number"
-						max="99"
-						min="0"
-					/>
+					<FormInputText label="Theory Credit Hours" v-model="form.theory_credit_hours"
+						:error="form.errors.theory_credit_hours" type="number" max="99" min="0" />
+					<FormInputText label="Practical Credit Hours" v-model="form.practical_credit_hours"
+						:error="form.errors.practical_credit_hours" type="number" max="99" min="0" />
 				</div>
 				<div class="form-row">
-					<FormInputText
-						label="Department Code"
-						v-model="form.department_code"
-						:error="form.errors.department_code"
-					/>
+					<FormInputText label="Department Code" v-model="form.department_code" :error="form.errors.department_code" />
 
-					<FormInputText
-						label="Course Code"
-						v-model="form.course_code"
-						:error="form.errors.course_code"
-						type="number"
-						max="999"
-						min="0"
-					/>
+					<FormInputText label="Course Code" v-model="form.course_code" :error="form.errors.course_code" type="number"
+						max="999" min="0" />
 				</div>
-				<div
-					class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center"
-				>
-					<form
-						v-if="permissions.delete"
-						@submit.prevent="destroy"
-						id="delete-from"
-						class="m-0"
-					>
-						<button
-							form="delete-from"
-							:disabled="form.processing"
-							type="submit"
-							class="hover:underline text-red-600 "
-						>
+				<div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center">
+					<form v-if="permissions.delete" @submit.prevent="destroy" id="delete-from" class="m-0">
+						<button form="delete-from" :disabled="form.processing" type="submit" class="hover:underline text-red-600 ">
 							Delete course
 						</button>
 					</form>
 
-					<button
-						form="update-form"
-						:disabled="form.processing"
-						type="submit"
-						class="btn-main"
-					>
+					<button form="update-form" :disabled="form.processing" type="submit" class="btn-main">
 						Update course
 					</button>
 				</div>
@@ -111,8 +68,8 @@ export default {
 			}),
 			crumbs: [
 				{
-					text: "Faculties",
-					route: this.$route("admin.faculties")
+					text: "Courses",
+					route: this.$route("admin.courses")
 				},
 				{
 					text: this.course.course_name
@@ -121,7 +78,7 @@ export default {
 		};
 	},
 	watch: {
-		"form.course_name": function(newValue) {
+		"form.course_name": function (newValue) {
 			this.crumbs[this.crumbs.length - 1].text = newValue;
 		}
 	},

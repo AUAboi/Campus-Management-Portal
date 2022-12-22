@@ -20,7 +20,11 @@ class CourseResource extends JsonResource
             'course_code' => $this->course_code,
             'department_code' => $this->department_code,
             'credit_hours' => $this->credit_hours,
-            'semester' => $this->pivot->semester,
+            'theory_credit_hours' => $this->theory_credit_hours,
+            'practical_credit_hours' => $this->practical_credit_hours,
+            'semester' =>   $this->whenPivotLoaded('course_program', function () {
+                return $this->pivot->semester;
+            })
         ];
     }
 }
