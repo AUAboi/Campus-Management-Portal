@@ -52,11 +52,9 @@ class User extends Authenticatable
         'phone' => E164PhoneNumberCast::class . ':PK'
     ];
 
-
-
-    public function student()
+    public function enrollments()
     {
-        return $this->hasOne(Student::class);
+        return $this->hasMany(Enrollment::class);
     }
 
     public function faculties()

@@ -2,6 +2,7 @@
 
 namespace App\Services\Admin;
 
+use App\Models\Enrollment;
 use App\Models\Program;
 use Carbon\Carbon;
 use App\Models\User;
@@ -18,32 +19,20 @@ class StudentService
 
       $created = $userService->createUser($data);
 
-      $student = $created->student()->create([
+      $created->enrollments()->create([
         'session_type' => $data['session_type'],
         'registration_number' => $this->generateRegNumber(),
-        'roll_no' => $data['roll_no'] ?? $created->id + 1,
         'session_start' => now()->year,
+        'program_id' => $data['program'],
+        'current_semester' => 1
       ]);
 
       $created->assignRole('student');
-
-      if ($data['program']) {
-        $this->enroll($student, $data['program']);
-      }
 
       return $created;
     });
 
     return $user;
-  }
-
-
-  public function enroll(Student $student, int $program)
-  {
-    $student->update([
-      'program_id' => $program,
-      'session_start' => now()->year
-    ]);
   }
 
 
@@ -54,7 +43,7 @@ class StudentService
     // branch-year-registration
 
     $reg_number = rand(1, 9)  . rand(1, 9)   . rand(1, 9)  . rand(1, 9) .  rand(1, 9);
-    if (Student::where('registration_number', $reg_number)->where('session_start', Carbon::now()->year)->exists()) {
+    if (Enrollment::where('registration_number', $reg_number)->where('session_start', Carbon::now()->year)->exists()) {
       $reg_number = $this->generateRegNumber();
     }
     return $reg_number;

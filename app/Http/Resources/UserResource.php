@@ -23,10 +23,10 @@ class UserResource extends JsonResource
             'cnic' => $this->cnic,
             'gender' => $this->gender,
             'date_of_birth' => $this->date_of_birth,
+            'enrollments' => new EnrollmentCollection($this->whenLoaded('enrollments')),
             'roles' => $this->whenLoaded('roles', function () {
                 return $this->roles->pluck('name');
             }),
-            'student' => new StudentResource($this->whenLoaded('student'))
         ];
     }
 }

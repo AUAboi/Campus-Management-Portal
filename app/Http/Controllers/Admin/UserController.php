@@ -51,7 +51,7 @@ class UserController extends Controller
     {
 
         if ($user->hasRole('student')) {
-            $user->load(['student', 'student.program']);
+            $user->load(['enrollments', 'enrollments.program']);
         }
         return Inertia::render("Admin/Users/Show", [
             'user' => new UserResource($user),

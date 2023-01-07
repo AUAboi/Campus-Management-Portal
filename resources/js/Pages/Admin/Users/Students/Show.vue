@@ -15,28 +15,25 @@
 				</p>
 				<p>
 					<span class="font-bold">Registration No:</span>
-					{{ user.student.registration_number }}
+					{{ user.enrollments[0].registration_number }}
 				</p>
 				<p>
 					<span class="font-bold">Student Session:</span>
-					{{ user.student.session_duration }}
+					{{ user.enrollments[0].session_duration }}
 				</p>
 				<p>
 					<span class="font-bold">Session Type:</span>
-					{{ user.student.session_type }}
+					{{ user.enrollments[0].session_type }}
 				</p>
 				<p>
 					<span class="font-bold">Admission Year:</span>
-					{{ user.student.admission_year }}
+					{{ user.enrollments[0].admission_year }}
 				</p>
 			</div>
 		</ProfileCard>
 		<div v-if="permissions.edit" class="py-4 my-4  max-w-3xl">
-			<Link
-				:href="$route(`admin.users.student.edit`, user.id)"
-				class="btn-main"
-			>
-				Edit
+			<Link :href="$route(`admin.users.student.edit`, user.id)" class="btn-main">
+			Edit
 			</Link>
 		</div>
 	</main>

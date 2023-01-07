@@ -10,7 +10,7 @@
 			</p>
 			<p>
 				<span class="font-bold">Registration No:</span>
-				{{ user.student.registration_number }}
+				{{ user.enrollments[0].registration_number }}
 			</p>
 			<p>
 				<span class="font-bold">Session:</span>
@@ -19,11 +19,11 @@
 			</p>
 			<p>
 				<span class="font-bold">Session Type:</span>
-				{{ user.student.session_type }}
+				{{ user.enrollments[0].session_type }}
 			</p>
 			<p>
 				<span class="font-bold">Admission Year:</span>
-				{{ user.student.session_start }}
+				{{ user.enrollments[0].session_start }}
 			</p>
 		</div>
 	</section>
@@ -42,7 +42,7 @@ export default {
 	computed: {
 		session() {
 			return `
-			${this.user.student.session_start} - ${this.user.student.session_start + (this.user.student.program.degree.semesters / 2)}
+			${this.user.enrollments[0].session_start} - ${this.user.enrollments[0].session_start + (this.user.enrollments[0].program.degree.semesters / 2)}
 			`
 		}
 	},

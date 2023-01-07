@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class StudentResource extends JsonResource
+class EnrollmentResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,9 +18,8 @@ class StudentResource extends JsonResource
             'id' => $this->id,
             'session_type' => $this->session_type,
             'registration_number' => $this->registration_number,
-            'roll_no' => $this->roll_no,
             'session_start' => $this->session_start,
-            'program' => new ProgramResource($this->whenLoaded('program'))
+            'program' => new ProgramResource($this->whenLoaded('program')),
         ];
     }
 }
