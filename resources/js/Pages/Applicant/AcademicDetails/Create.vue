@@ -1,54 +1,31 @@
 <template>
-	<div>
+	<div class="flex flex-col gap-8 h-full">
 		<TheApplicantHead title="Add Academic details" />
-		<!-- <div class="bg-white rounded-md shadow overflow-hidden max-w-3xl"> -->
-		{{ form }}
-		<div class="h-4/5">
+		<div class="h-full">
 			<transition :name="`slide-${transition}`" mode="out-in">
-				<SelectTypeStep class="h-full" :key="currentStep" v-if="currentStep === 1" :form="form"
-					:degreeTypes="degreeTypes" :animateShake="animateShake" />
-				<div v-if="currentStep === 2" class="bg-white rounded-md shadow max-w-3xl h-full" :key="currentStep">
-					<div class="form-row">
-						<FormInputSelect v-model="form.organization" label="Organization" :error="form.errors.organization">
-							<option v-for="organization in organizations" :key="organization.id" :value="organization.id">{{
-								organization.organization_name
-							}}</option>
-						</FormInputSelect>
-						<FormInputSelect label="Qualification Title" :error="form.errors.title" v-model="form.title">
-							<option value=""></option>
-							<option v-for="(title, index) in degreeTitles" class="capitalize" :key="index" :value="title">{{ title }}
-							</option>
-						</FormInputSelect>
-					</div>
-				</div>
-				<div v-if="currentStep === 3" class="bg-white rounded-md shadow max-w-3xl h-full" :key="currentStep">
-					<div class="form-row">
-						<FormInputSelect label="Exam Type" v-model="form.exam_type" :error="form.errors.exam_type">
-							<option value=""></option>
-							<option value="annual-1st">Annual 1st</option>
-							<option value="annual-2nd">Annual 2nd</option>
-							<option value="supplementary">Supplementary</option>
-						</FormInputSelect>
-						<FormInputText label="Registeration/Roll Number" v-model="form.reg_no" :error="form.errors.reg_no" />
-					</div>
-					<div class="form-row form-row-full">
-						<FormInputText type="number" min="1900" max="2099" step="1" v-model="form.passing_year" label="Passing Year"
-							:error="form.errors.passing_year" />
-						<FormInputText label="Total Marks" v-model="form.total_marks" :error="form.errors.total_marks" />
-						<FormInputText label="Obtained Marks" v-model="form.obtained_marks" :error="form.errors.obtained_marks" />
-					</div>
-					<div v-if="form.total_marks && form.obtained_marks" class="form-row">
-						<label class="form-label ">Percentage: {{ percentage }}%</label>
-					</div>
-				</div>
+				<SelectTypeStep :key="currentStep" v-if="currentStep === 1" :form="form" :degreeTypes="degreeTypes"
+					:animateShake="animateShake" />
+				<SelectQualificationStep v-if="currentStep === 2" :key="currentStep" class="form" :form="form"
+					:organizations="organizations" :degreeTypes="degreeTypes" />
+				<SelectExamStep v-if="currentStep === 3" :key="currentStep" :form="form" class="form" />
 			</transition>
 		</div>
 
-		<div class="mt-4">
-			<button class="btn-main" @click="nextStep">Next -></button>
-			<button class="btn-main" @click="previousStep">&lt;- Back</button>
+		<div class="mt-4 flex justify-between max-w-3xl">
+			<button class="btn-main " v-if="!isFirstStep" @click="previousStep">
+				<span class="flex gap-2 items-center">
+					<ArrowLeftIcon size="18" />
+					Back
+				</span>
+
+			</button>
+			<button class="btn-main ml-auto flex gap-2" v-if="!isLastStep" @click="nextStep">
+				<span class="flex gap-2 items-center">
+					Next
+					<ArrowRightIcon size="18" />
+				</span>
+			</button>
 		</div>
-		<!-- </div> -->
 	</div>
 </template>
 
@@ -60,7 +37,11 @@ import AppButton from "../../../components/shared/ui/AppButton.vue";
 import EducationInfo from "../../../components/applicant/forms/steps/EducationInfo.vue";
 import FormInputText from "../../../components/shared/form/FormInputText.vue";
 import SelectTypeStep from "./Partials/SelectTypeStep.vue";
+import SelectQualificationStep from "./Partials/SelectQualificationStep.vue";
+import SelectExamStep from "./Partials/SelectExamStep.vue";
 
+import { ArrowRightIcon } from "@vue-hero-icons/outline"
+import { ArrowLeftIcon } from "@vue-hero-icons/outline"
 export default {
 	data() {
 		return {
@@ -76,7 +57,6 @@ export default {
 			}),
 			currentStep: 1,
 			transition: "previous",
-			degreeTitles: [],
 			animateShake: false
 		};
 	},
@@ -105,31 +85,9 @@ export default {
 		resetAnimation() {
 			//improve later
 			this.animateShake = false;
-		},
-		setTitles(val) {
-			if (val === "matric") {
-				this.degreeTitles = [
-					"Matriculation (Arts)",
-					"Matriculation (Science)",
-					"O-Levels"
-				];
-			} else if (val === "intermediate") {
-				this.degreeTitles = [
-					"FSC (Pre-Medical)",
-					"FSC (Pre-Engineering)",
-					"ICS"
-				];
-			}
-		},
-
-	},
-	watch: {
-		"form.type": function (newValue) {
-			this.form.title = "";
-			this.setTitles(newValue);
 		}
-	},
 
+	},
 	props: {
 		organizations: {
 			type: Array,
@@ -148,7 +106,11 @@ export default {
 		AppButton,
 		EducationInfo,
 		FormInputText,
-		SelectTypeStep
+		SelectTypeStep,
+		SelectQualificationStep,
+		SelectExamStep,
+		ArrowRightIcon,
+		ArrowLeftIcon
 	},
 	computed: {
 		isFirstStep() {
@@ -156,11 +118,6 @@ export default {
 		},
 		isLastStep() {
 			return this.currentStep === 3;
-		},
-		percentage() {
-			return ((this.form.obtained_marks / this.form.total_marks) * 100).toFixed(
-				2
-			);
 		}
 	}
 };
@@ -186,9 +143,7 @@ export default {
 	transform: translate(-100%, 0);
 }
 
-
-
-.form-row-full {
-	@apply flex-nowrap;
+.form {
+	@apply bg-white rounded-md shadow max-w-3xl;
 }
 </style>

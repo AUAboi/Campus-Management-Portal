@@ -453,6 +453,26 @@ var map = {
 		"/js/vendor",
 		"resources_js_Pages_Applicant_AcademicDetails_Index_vue"
 	],
+	"./Applicant/AcademicDetails/Partials/SelectExamStep": [
+		"./resources/js/Pages/Applicant/AcademicDetails/Partials/SelectExamStep.vue",
+		"/js/vendor",
+		"resources_js_Pages_Applicant_AcademicDetails_Partials_SelectExamStep_vue"
+	],
+	"./Applicant/AcademicDetails/Partials/SelectExamStep.vue": [
+		"./resources/js/Pages/Applicant/AcademicDetails/Partials/SelectExamStep.vue",
+		"/js/vendor",
+		"resources_js_Pages_Applicant_AcademicDetails_Partials_SelectExamStep_vue"
+	],
+	"./Applicant/AcademicDetails/Partials/SelectQualificationStep": [
+		"./resources/js/Pages/Applicant/AcademicDetails/Partials/SelectQualificationStep.vue",
+		"/js/vendor",
+		"resources_js_Pages_Applicant_AcademicDetails_Partials_SelectQualificationStep_vue"
+	],
+	"./Applicant/AcademicDetails/Partials/SelectQualificationStep.vue": [
+		"./resources/js/Pages/Applicant/AcademicDetails/Partials/SelectQualificationStep.vue",
+		"/js/vendor",
+		"resources_js_Pages_Applicant_AcademicDetails_Partials_SelectQualificationStep_vue"
+	],
 	"./Applicant/AcademicDetails/Partials/SelectTypeStep": [
 		"./resources/js/Pages/Applicant/AcademicDetails/Partials/SelectTypeStep.vue",
 		"/js/vendor",
