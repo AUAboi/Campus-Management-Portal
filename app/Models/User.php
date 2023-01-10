@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Admin;
-use App\Models\Student;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -70,6 +68,15 @@ class User extends Authenticatable
         return $this->belongsToMany(Department::class, 'admin_faculty', 'admin_id', 'faculty_id', 'id', 'faculty_id');
     }
 
+    public function applications()
+    {
+        return $this->hasMany(Application::class, 'applicant_id');
+    }
+
+    public function academicDetails()
+    {
+        return $this->hasMany(AcademicDetail::class);
+    }
 
     public function scopeFilter($query, array $filters)
     {

@@ -453,6 +453,16 @@ var map = {
 		"/js/vendor",
 		"resources_js_Pages_Applicant_AcademicDetails_Index_vue"
 	],
+	"./Applicant/AcademicDetails/Partials/SelectTypeStep": [
+		"./resources/js/Pages/Applicant/AcademicDetails/Partials/SelectTypeStep.vue",
+		"/js/vendor",
+		"resources_js_Pages_Applicant_AcademicDetails_Partials_SelectTypeStep_vue"
+	],
+	"./Applicant/AcademicDetails/Partials/SelectTypeStep.vue": [
+		"./resources/js/Pages/Applicant/AcademicDetails/Partials/SelectTypeStep.vue",
+		"/js/vendor",
+		"resources_js_Pages_Applicant_AcademicDetails_Partials_SelectTypeStep_vue"
+	],
 	"./Applicant/Applications/Index": [
 		"./resources/js/Pages/Applicant/Applications/Index.vue",
 		"/js/vendor",

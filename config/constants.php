@@ -6,9 +6,16 @@ return [
   ],
   'academic_details' => [
     'degree_types' => [
-      'matric',
-      'intermediate'
+      'matric' => [
+        "Matriculation (Arts)",
+        "Matriculation (Science)",
+        "O-Levels"
+      ],
+      'intermediate' =>  [
+        "FSC (Pre-Medical)",
+        "FSC (Pre-Engineering)",
+        "ICS"
+      ]
     ],
-
   ]
 ];

@@ -2,36 +2,20 @@
 	<div>
 		<TheApplicantHead title="Applications" />
 		<div class="mb-4">
-			<Link
-				v-if="appliedCount < max_allowed"
-				as="button"
-				class="btn-main"
-				:href="$route('admin.faculties.create')"
-			>
+			<button @click="redirect" v-if="appliedCount < max_allowed" class="btn-main">
 				<span>Apply</span>
-			</Link>
+			</button>
 		</div>
-
 		<div class="bg-white rounded-md shadow overflow-x-auto">
 			<table class="w-full whitespace-nowrap">
 				<tr class="text-left font-bold">
-					<th
-						v-for="(label, index) in labels"
-						:key="index"
-						class="px-6 pt-6 pb-4"
-					>
+					<th v-for="(label, index) in labels" :key="index" class="px-6 pt-6 pb-4">
 						{{ label.value }}
 					</th>
 				</tr>
-				<tr
-					v-for="(data, index) in applications"
-					:key="index"
-					class="hover:bg-gray-100 focus-within:bg-gray-100"
-				>
+				<tr v-for="(data, index) in applications" :key="index" class="hover:bg-gray-100 focus-within:bg-gray-100">
 					<td v-for="(label, index) in labels" :key="index" class="border-t">
-						<span
-							class="px-6 py-4 flex items-center focus:text-indigo-500 capitalize"
-						>
+						<span class="px-6 py-4 flex items-center focus:text-indigo-500 capitalize">
 							{{ data[label.key] }}
 						</span>
 					</td>
@@ -44,7 +28,7 @@
 			</table>
 		</div>
 
-		<div class="bg-white rounded-md shadow p-1 my-4">
+		<div class="bg-white rounded-md shadow px-6 py-4 my-4">
 			<p>
 				You can apply for {{ max_allowed }} different programs at a time. You
 				can apply again if you are rejected.
@@ -83,6 +67,9 @@ export default {
 		};
 	},
 	props: {
+		user: {
+			required: true
+		},
 		applications: {
 			type: Array
 		},
@@ -95,6 +82,16 @@ export default {
 			return this.applications.filter(app => {
 				return app.status !== "rejected";
 			}).length;
+		}
+	},
+	methods: {
+		redirect() {
+			if (!this.user.academicDetails.length) {
+				this.$inertia.get(this.$route('applicant.academic-details.create'))
+			} else {
+				this.$inertia.get(this.$route('applicant.dashboard'))
+
+			}
 		}
 	},
 	components: { TheApplicantHead, AppDataTable }
