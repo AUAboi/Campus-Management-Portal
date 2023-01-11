@@ -8,7 +8,7 @@
     </p>
 
     <div class="mb-6 flex justify-between items-center">
-      <AppTableSearch v-model="form.search" class="w-full max-w-md mr-4" @reset="reset" />
+      <AppTableSearch v-model="searchForm.search" class="w-full max-w-md mr-4" @reset="reset" />
       <div class="flex items-center cursor-pointer select-none group my-4">
         <button @click.prevent="apply" class="btn-main">
           <span>Apply</span>
@@ -43,9 +43,8 @@
           </td>
         </tr>
       </table>
-      <AppTablePagination :links="programs.meta.links" />
-
     </div>
+    <AppTablePagination :links="programs.meta.links" />
   </div>
 
 </template>
@@ -64,13 +63,15 @@ export default {
   data() {
     return {
       form: this.$inertia.form({
-        search: '',
         program_id: ''
+      }),
+      searchForm: this.$inertia.form({
+        search: ''
       }),
       crumbs: [
         {
           text: "Applications",
-          route: this.$route("applicant.applications.store")
+          route: this.$route("applicant.applications")
         },
         {
           text: "Apply"
@@ -89,10 +90,10 @@ export default {
 
   },
   watch: {
-    form: {
+    searchForm: {
       deep: true,
       handler: throttle(function () {
-        this.$inertia.get(this.$route("applicant.applications.create"), pickBy(this.form), {
+        this.$inertia.get(this.$route("applicant.applications.create"), pickBy(this.searchForm), {
           preserveState: true,
           replace: true
         });
@@ -109,7 +110,7 @@ export default {
       this.form.post(this.$route('applicant.applications.create'))
     },
     reset() {
-      this.form = mapValues(this.form, () => null);
+      this.searchForm = mapValues(this.searchForm, () => null);
     }
   }
 }

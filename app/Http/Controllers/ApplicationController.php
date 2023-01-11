@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreApplicationRequest;
 use App\Http\Resources\ProgramCollection;
-use App\Http\Resources\ProgramResource;
 use App\Http\Resources\UserResource;
 use App\Models\ApplicationStatus;
 use App\Models\Program;
-use App\Services\AcademicDetailService;
-use Composer\XdebugHandler\Status;
+use App\Services\Applicant\AcademicDetailService;
+use App\Services\Applicant\ApplicationService;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -60,13 +60,16 @@ class ApplicationController extends Controller
         );
     }
 
-    public function store(StoreApplicationRequest $request)
+    public function store(StoreApplicationRequest $request, ApplicationService $applicationService)
     {
-
         $program = Program::find($request->program_id);
-        if ($request->user()->applications->contains('program_id', $program->id)) {
-            return Redirect::route('applicant.applications')->with('error', 'Already applied to ' . $program->full_program_name);
+
+        try {
+            $applicationService->validate(auth()->user(), $program);
+        } catch (Exception $ex) {
+            return Redirect::route('applicant.applications')->with('error', $ex->getMessage());
         }
+
         $request->user()->applications()->create([
             'program_id' => $request->program_id,
             'status_id' => ApplicationStatus::where('status', 'waiting review')->first()->id

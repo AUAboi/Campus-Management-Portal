@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Organization;
 use Illuminate\Http\Request;
-use App\Services\AcademicDetailService;
+use App\Services\Applicant\AcademicDetailService;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Resources\AcademicDetailsResource;
 use App\Http\Requests\StoreAcademicDetailRequest;
