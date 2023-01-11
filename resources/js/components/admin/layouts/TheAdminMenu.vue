@@ -19,6 +19,10 @@
 		<div class="nav-item">
 			<Link :class="{ 'text-white': isUrl('courses') }" class="m-2" :href="$route('admin.courses')">Courses</Link>
 		</div>
+		<div class="nav-item">
+			<Link :class="{ 'text-white': isUrl('applications') }" class="m-2" :href="$route('admin.applications')">
+			Applications</Link>
+		</div>
 		<!-- Sending to dropdown menu through portal -->
 		<portal to="dropdownmenu">
 			<TheDropdownMenu />
