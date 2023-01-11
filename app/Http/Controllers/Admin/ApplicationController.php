@@ -13,6 +13,7 @@ class ApplicationController extends Controller
 {
   public function index(Request $request)
   {
+    $this->authorize('viewAny', Application::class);
     $filters = $request->all('search', 'status');
 
     $applications = Application::orderBy('created_at', 'DESC')

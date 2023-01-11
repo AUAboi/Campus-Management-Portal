@@ -6,37 +6,16 @@
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form @submit.prevent="update" id="update-form" class="m-0">
 				<div class="form-row">
-					<FormInputText
-						label="User Name"
-						v-model="form.name"
-						:error="form.errors.name"
-					/>
+					<FormInputText label="User Name" v-model="form.name" :error="form.errors.name" />
 				</div>
-				<div
-					class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center"
-				>
-					<form
-						v-if="permissions.delete"
-						@submit.prevent="destroy"
-						id="delete-from"
-						class="m-0"
-					>
-						<button
-							form="delete-from"
-							:disabled="form.processing"
-							type="submit"
-							class="hover:underline text-red-600 "
-						>
+				<div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center">
+					<form v-if="permissions.delete" @submit.prevent="destroy" id="delete-from" class="m-0">
+						<button form="delete-from" :disabled="form.processing" type="submit" class="hover:underline text-red-600 ">
 							Delete user
 						</button>
 					</form>
 
-					<button
-						form="update-form"
-						:disabled="form.processing"
-						type="submit"
-						class="btn-main"
-					>
+					<button form="update-form" :disabled="form.processing" type="submit" class="btn-main">
 						Update user
 					</button>
 				</div>
@@ -50,11 +29,7 @@
 				<tr class="text-left font-bold">
 					<th class="px-6 pt-6 pb-4">Faculty</th>
 				</tr>
-				<tr
-					v-for="faculty in user.faculties"
-					:key="faculty.id"
-					class="hover:bg-gray-100 focus-within:bg-gray-100"
-				>
+				<tr v-for="faculty in user.faculties" :key="faculty.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
 					<td class="border-t">
 						<span class="px-6 py-4 flex items-center" tabindex="-1">
 							{{ faculty.faculty_name }}
@@ -87,26 +62,17 @@
 					</td>
 					<td class="border-t">
 						<span class="px-6 py-4 flex items-center" tabindex="-1">
-							<input
-								type="checkbox"
-								v-model="user.permissions.create_faculties"
-							/>
+							<input type="checkbox" v-model="user.permissions.create_faculties" />
 						</span>
 					</td>
 					<td class="border-t">
 						<span class="px-6 py-4 flex items-center" tabindex="-1">
-							<input
-								type="checkbox"
-								v-model="user.permissions.update_faculties"
-							/>
+							<input type="checkbox" v-model="user.permissions.update_faculties" />
 						</span>
 					</td>
 					<td class="border-t">
 						<span class="px-6 py-4 flex items-center" tabindex="-1">
-							<input
-								type="checkbox"
-								v-model="user.permissions.delete_faculties"
-							/>
+							<input type="checkbox" v-model="user.permissions.delete_faculties" />
 						</span>
 					</td>
 				</tr>
@@ -134,6 +100,10 @@
 				</tr>
 			</table>
 		</div>
+		<h1 class="my-8 font-bold text-3xl">
+			Manage Application
+		</h1>
+		<FormInputSwitch v-model="form.manage_applications" />
 	</div>
 </template>
 
@@ -143,6 +113,7 @@ import TheAdminHead from "../../../../components/admin/meta/TheAdminHead.vue";
 import AppBreadCrumbs from "../../../../components/shared/ui/AppBreadCrumbs.vue";
 import FormInputText from "../../../../components/shared/form/FormInputText.vue";
 import sweetAlert from "../../../../mixins/sweetAlert";
+import FormInputSwitch from "../../../../components/shared/form/FormInputSwitch.vue";
 
 export default {
 	components: {
@@ -150,7 +121,8 @@ export default {
 		Link,
 		TheAdminHead,
 		AppBreadCrumbs,
-		FormInputText
+		FormInputText,
+		FormInputSwitch
 	},
 	props: {
 		user: {
@@ -168,7 +140,8 @@ export default {
 			form: this.$inertia.form({
 				name: this.user.name,
 				permissions: this.user.permissions,
-				faculties: this.user.faculties
+				faculties: this.user.faculties,
+				manage_applications: ""
 			}),
 
 			crumbs: [
@@ -183,7 +156,7 @@ export default {
 		};
 	},
 	watch: {
-		"form.name": function(newValue) {
+		"form.name": function (newValue) {
 			this.crumbs[this.crumbs.length - 1].text = newValue;
 		}
 	},
