@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\AcademicDetailsController;
+use App\Http\Controllers\Applicant\AcademicDetailsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Applicant\ApplicantController;
-use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\Applicant\ApplicationController;
 
 //applicant routes
 

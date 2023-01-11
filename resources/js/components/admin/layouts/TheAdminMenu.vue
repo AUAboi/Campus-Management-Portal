@@ -1,6 +1,5 @@
 <template>
 	<div class="flex flex-col text-indigo-300">
-		{{ user }}
 		<div class="nav-item">
 			<Link :class="{ 'text-white': isUrl('dashboard') }" class="m-2" :href="$route('admin.dashboard')">Dashboard</Link>
 		</div>

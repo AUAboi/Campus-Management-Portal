@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Applicant;
 
 use Inertia\Inertia;
 use App\Models\Organization;
 use Illuminate\Http\Request;
-use App\Services\Applicant\AcademicDetailService;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Resources\AcademicDetailsResource;
 use App\Http\Requests\StoreAcademicDetailRequest;
+use App\Services\Applicant\AcademicDetailService;
 
 class AcademicDetailsController extends Controller
 {

@@ -203,6 +203,16 @@ __webpack_require__.r(__webpack_exports__);
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
+	"./Admin/Applications/Index": [
+		"./resources/js/Pages/Admin/Applications/Index.vue",
+		"/js/vendor",
+		"resources_js_Pages_Admin_Applications_Index_vue"
+	],
+	"./Admin/Applications/Index.vue": [
+		"./resources/js/Pages/Admin/Applications/Index.vue",
+		"/js/vendor",
+		"resources_js_Pages_Admin_Applications_Index_vue"
+	],
 	"./Admin/Courses/Create": [
 		"./resources/js/Pages/Admin/Courses/Create.vue",
 		"/js/vendor",

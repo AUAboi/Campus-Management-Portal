@@ -7,25 +7,8 @@
 			</button>
 		</div>
 		<div class="bg-white rounded-md shadow overflow-x-auto">
-			<table class="w-full whitespace-nowrap">
-				<tr class="text-left font-bold">
-					<th v-for="(label, index) in labels" :key="index" class="px-6 pt-6 pb-4">
-						{{ label.value }}
-					</th>
-				</tr>
-				<tr v-for="(data, index) in applications" :key="index" class="hover:bg-gray-100 focus-within:bg-gray-100">
-					<td v-for="(label, index) in labels" :key="index" class="border-t">
-						<span class="px-6 py-4 flex items-center focus:text-indigo-500 capitalize">
-							{{ data[label.key] }}
-						</span>
-					</td>
-				</tr>
-				<tr v-if="applications.length === 0">
-					<td class="border-t px-6 py-4" colspan="4">
-						You haven't submitted any application.
-					</td>
-				</tr>
-			</table>
+			<AppDataTable :labels="labels" :table_data="applications" />
+
 		</div>
 
 		<div class="bg-white rounded-md shadow px-6 py-4 my-4">
@@ -57,7 +40,7 @@ export default {
 		return {
 			labels: [
 				{
-					key: "program",
+					key: "program.program_name",
 					value: "Program"
 				},
 				{

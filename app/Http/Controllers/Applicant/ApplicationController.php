@@ -1,18 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Applicant;
 
-use App\Http\Requests\StoreApplicationRequest;
-use App\Http\Resources\ProgramCollection;
-use App\Http\Resources\UserResource;
-use App\Models\ApplicationStatus;
-use App\Models\Program;
-use App\Services\Applicant\AcademicDetailService;
-use App\Services\Applicant\ApplicationService;
 use Exception;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use App\Models\Program;
+use Illuminate\Http\Request;
+use App\Models\ApplicationStatus;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Resources\ProgramCollection;
+use App\Http\Requests\StoreApplicationRequest;
+use App\Http\Resources\ApplicationResource;
+use App\Services\Applicant\ApplicationService;
+use App\Services\Applicant\AcademicDetailService;
 
 class ApplicationController extends Controller
 {
@@ -23,15 +25,14 @@ class ApplicationController extends Controller
 
     public function index(Request $request, AcademicDetailService $academicDetailService)
     {
-        $applications = $request->user()->applications()->with(['program', 'program.department', 'program.degree', 'status'])->get()->transform(fn ($application) => [
-            'program' => $application->program->full_program_name,
-            'status' => $application->status->status,
-        ]);
+        $applications = $request->user()
+            ->applications()
+            ->with(['program', 'program.department', 'program.degree', 'status'])->get();
 
 
         return Inertia::render('Applicant/Applications/Index', [
             'user' => new UserResource($request->user()->load('academicDetails')),
-            'applications' =>  $applications,
+            'applications' =>  ApplicationResource::collection($applications),
             'max_allowed' => config('constants.application.max_allowed'),
             'canApply' => empty($academicDetailService->availableAcademicTypes(auth()->user()))
         ]);

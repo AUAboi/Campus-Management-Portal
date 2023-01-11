@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\FacultyController;
 use App\Http\Controllers\Admin\ProgramController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\DepartmentController;
+use App\Http\Controllers\Admin\ApplicationController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\ProgramCourseController;
 
@@ -64,6 +65,10 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::get('/programs/{program}/{semester}/courses', [ProgramCourseController::class, 'index'])->name('admin.programs.courses');
 
     Route::put('/programs/{program}/{semester}/courses/add', [ProgramCourseController::class, 'store'])->name('admin.programs.courses.store');
+
+
+    //Applications
+    Route::get('/applications', [ApplicationController::class, 'index'])->name('admin.applications');
 
 
     //Users
