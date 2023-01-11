@@ -103,7 +103,7 @@ export default {
 					}
 				);
 			} else {
-				this.$inertia.get(this.$route('applicant.application.create'))
+				this.$inertia.get(this.$route('applicant.applications.create'))
 			}
 		}
 	},

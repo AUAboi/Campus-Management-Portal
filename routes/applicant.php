@@ -15,6 +15,8 @@ Route::group(['middleware' => ['role:applicant']], function () {
     Route::get('/applications', [ApplicationController::class, 'index'])->name('applicant.applications');
     Route::get('/apply', [ApplicationController::class, 'create'])->name('applicant.applications.create');
 
+    Route::post('/apply', [ApplicationController::class, 'store'])->name('applicant.applications.store');
+
     //Academic Details
     Route::get('/academic_details', [AcademicDetailsController::class, 'index'])->name('applicant.academic-details');
     Route::get('/academic_details/add', [AcademicDetailsController::class, 'create'])->name('applicant.academic-details.create');
