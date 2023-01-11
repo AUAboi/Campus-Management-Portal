@@ -47,4 +47,17 @@ class Application extends Model
             });
         });
     }
+
+    public function scopeAvailableTo($query, User $user)
+    {
+        $query->when($user->hasRole('super-admin'), function ($query) {
+            return $query;
+        })->when(!$user->hasRole('super-admin'), function ($query)  use ($user) {
+            return $query->whereHas('program.department.faculty', function ($query)  use ($user) {
+                return $query->whereHas('admins', function ($query) use ($user) {
+                    return $query->where('admin_id', $user->id);
+                });
+            });
+        });
+    }
 }

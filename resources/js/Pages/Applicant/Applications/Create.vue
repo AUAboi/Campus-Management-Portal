@@ -65,9 +65,9 @@ export default {
       form: this.$inertia.form({
         program_id: ''
       }),
-      searchForm: this.$inertia.form({
+      searchForm: {
         search: ''
-      }),
+      },
       crumbs: [
         {
           text: "Applications",
