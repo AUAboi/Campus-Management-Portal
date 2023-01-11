@@ -15,13 +15,19 @@ class AcademicDetail extends Model
         'exam_type',
         'reg_no',
         'passing_year',
-        'oraganization',
+        'organization_id',
         'obtained_marks',
+        'total_marks',
         'user_id'
     ];
 
     public function applicant()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function organization()
+    {
+        return $this->belongsTo(Organization::class);
     }
 }

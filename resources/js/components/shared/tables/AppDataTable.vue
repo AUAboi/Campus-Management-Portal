@@ -8,13 +8,17 @@
 			</tr>
 			<tr v-for="(data, index) in table_data" :key="index" class="hover:bg-gray-100 focus-within:bg-gray-100">
 				<td v-for="(label, index) in labels" :key="index" class="border-t">
-					<Link class="px-6 py-4 flex items-center focus:text-indigo-500"
+					<Link v-if="route" class="px-6 py-4 flex items-center capitalize focus:text-indigo-500"
 						:href="$route(route, data.slug ? data.slug : data.id)">
 					{{ getValue(data, label.key) }}
 					</Link>
+					<span v-else class="px-6 py-4 flex items-center capitalize focus:text-indigo-500">
+						{{ getValue(data, label.key) }}
+					</span>
 				</td>
 				<td class="border-t w-px">
-					<Link class="px-4 flex items-center" :href="$route(route, data.slug ? data.slug : data.id)" tabindex="-1">
+					<Link v-if="route" class="px-4 flex items-center" :href="$route(route, data.slug ? data.slug : data.id)"
+						tabindex="-1">
 					<ChevronRightIcon class="text-gray-600" />
 					</Link>
 				</td>
@@ -38,7 +42,7 @@ export default {
 	props: {
 		route: {
 			type: String,
-			required: false
+			required: false,
 		},
 		labels: {
 			type: Array,

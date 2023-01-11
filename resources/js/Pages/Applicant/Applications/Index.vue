@@ -50,6 +50,7 @@
 <script>
 import TheApplicantHead from "../../../components/applicant/meta/TheApplicantHead.vue";
 import AppDataTable from "../../../components/shared/tables/AppDataTable.vue";
+import sweetAlert from '../../../mixins/sweetAlert';
 
 export default {
 	data() {
@@ -75,7 +76,8 @@ export default {
 		},
 		max_allowed: {
 			type: Number
-		}
+		},
+		canApply: Boolean
 	},
 	computed: {
 		appliedCount() {
@@ -84,13 +86,24 @@ export default {
 			}).length;
 		}
 	},
+	mixins: [sweetAlert],
 	methods: {
 		redirect() {
-			if (!this.user.academicDetails.length) {
-				this.$inertia.get(this.$route('applicant.academic-details.create'))
+			if (!this.canApply) {
+				this.confirm(
+					result => {
+						if (result.isConfirmed)
+							this.$inertia.get(this.$route('applicant.academic-details.create'))
+					},
+					{
+						title: `You dont have required academic qualifications added.`,
+						text: "Add now?",
+						confirmButtonText: "Add now",
+						confirmButtonColor: "green"
+					}
+				);
 			} else {
-				this.$inertia.get(this.$route('applicant.dashboard'))
-
+				this.$inertia.get(this.$route('applicant.application.create'))
 			}
 		}
 	},

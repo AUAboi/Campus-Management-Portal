@@ -32,7 +32,7 @@ const sweetAlert = {
                 {
                     title: "Are you sure?",
                     text: "Are you sure you want to do that?",
-                    type: "warning",
+                    icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#DD6B55",
                     confirmButtonText: "Yes",

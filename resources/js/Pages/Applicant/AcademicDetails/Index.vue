@@ -1,11 +1,59 @@
 <template>
 	<div>
 		<TheApplicantHead title="Academic Details" />
-		acad
+		<div class="mb-4">
+			<Link :href="$route('applicant.academic-details.create')" v-if="canAdd" class="btn-main">
+			<span>Add Details</span>
+			</Link>
+		</div>
+
+		<div class="bg-white rounded-md shadow overflow-x-auto ">
+			<AppDataTable :table_data="academic_details" :labels="labels" />
+		</div>
 	</div>
 </template>
 
 <script>
+import { Link } from "@inertiajs/inertia-vue";
 import TheApplicantHead from "../../../components/applicant/meta/TheApplicantHead.vue";
-export default { components: { TheApplicantHead } };
+import AppDataTable from "../../../components/shared/tables/AppDataTable.vue";
+export default {
+	data() {
+		return {
+			labels: [
+				{
+					key: "type",
+					value: "Type"
+				},
+				{
+					key: "title",
+					value: "Title"
+				},
+				{
+					key: "reg_no",
+					value: "Reg/Roll no"
+				},
+				{
+					key: "organization.organization_name",
+					value: "From"
+				},
+				{
+					key: "obtained_marks",
+					value: "Obtained Marks"
+				},
+				{
+					key: "total_marks",
+					value: "Total Marks"
+				},
+			]
+		}
+	},
+	props: {
+		academic_details: {
+			required: true
+		},
+		canAdd: Boolean
+	},
+	components: { TheApplicantHead, AppDataTable, Link }
+};
 </script>

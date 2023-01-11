@@ -25,6 +25,12 @@
 					<ArrowRightIcon size="18" />
 				</span>
 			</button>
+			<button class="btn-main ml-auto flex gap-2" v-if="isLastStep" @click.prevent="store">
+				<span class="flex gap-2 items-center">
+					Store
+				</span>
+			</button>
+
 		</div>
 	</div>
 </template>
@@ -47,7 +53,7 @@ export default {
 		return {
 			form: this.$inertia.form({
 				type: "",
-				organization: "",
+				organization_id: "",
 				title: "",
 				exam_type: "",
 				reg_no: "",
@@ -85,6 +91,9 @@ export default {
 		resetAnimation() {
 			//improve later
 			this.animateShake = false;
+		},
+		store() {
+			this.form.post(this.$route("applicant.academic-details.store"));
 		}
 
 	},

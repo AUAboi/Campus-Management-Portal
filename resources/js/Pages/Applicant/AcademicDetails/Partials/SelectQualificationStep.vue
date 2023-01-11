@@ -1,6 +1,6 @@
 <template>
   <div class="form-row">
-    <FormInputSelect v-model="form.organization" label="Organization" :error="form.errors.organization">
+    <FormInputSelect v-model="form.organization_id" label="Organization" :error="form.errors.organization_id">
       <option v-for="organization in organizations" :key="organization.id" :value="organization.id">{{
         organization.organization_name
       }}</option>
