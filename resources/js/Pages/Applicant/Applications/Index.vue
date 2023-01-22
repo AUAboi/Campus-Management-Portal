@@ -1,6 +1,8 @@
 <template>
 	<div>
 		<TheApplicantHead title="Applications" />
+		<h1 class="mb-8 font-bold text-3xl">Applied Degrees</h1>
+
 		<div class="mb-4">
 			<button @click="redirect" v-if="appliedCount < max_allowed" class="btn-main">
 				<span>Apply</span>
@@ -8,7 +10,6 @@
 		</div>
 		<div class="bg-white rounded-md shadow overflow-x-auto">
 			<AppDataTable :labels="labels" :table_data="applications" />
-
 		</div>
 
 		<div class="bg-white rounded-md shadow px-6 py-4 my-4">

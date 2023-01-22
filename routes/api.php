@@ -20,6 +20,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/enroll', [CourseDetailsController::class, 'enroll']);
+// Route::middleware('auth:sanctum')->group(function () {
+//     Route::post('/enroll', [CourseDetailsController::class, 'enroll']);
+// });
+
+
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
+    Route::get('/can_manage_applications', function () {
+        return auth()->user()->can('manage_applications');
+    })->name('api.admin.manage_applications');
 });

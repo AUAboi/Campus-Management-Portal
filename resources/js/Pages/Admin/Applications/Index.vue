@@ -15,7 +15,7 @@
       </AppTableSearch>
     </div>
     <div class="bg-white rounded-md shadow overflow-x-auto">
-      <AppDataTable :labels="labels" :table_data="applications.data" />
+      <AppDataTable :labels="labels" :table_data="applications.data" route="admin.applications.show" />
     </div>
     <AppTablePagination class="mt-6" :links="applications.meta.links" />
 

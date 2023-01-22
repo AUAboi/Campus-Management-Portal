@@ -24,7 +24,8 @@ class UserResource extends JsonResource
             'gender' => $this->gender,
             'date_of_birth' => $this->date_of_birth,
             'enrollments' => new EnrollmentCollection($this->whenLoaded('enrollments')),
-            'academicDetails' => $this->whenLoaded('academicDetails'),
+            'academicDetails' => AcademicDetailsResource::collection($this->whenLoaded('academicDetails')),
+
             'roles' => $this->whenLoaded('roles', function () {
                 return $this->roles->pluck('name');
             }),

@@ -19,7 +19,7 @@
 		<div class="nav-item">
 			<Link :class="{ 'text-white': isUrl('courses') }" class="m-2" :href="$route('admin.courses')">Courses</Link>
 		</div>
-		<div class="nav-item">
+		<div v-if="manage_applications" class="nav-item">
 			<Link :class="{ 'text-white': isUrl('applications') }" class="m-2" :href="$route('admin.applications')">
 			Applications</Link>
 		</div>
@@ -48,7 +48,11 @@ export default {
 		AppDropdown,
 		ChevronDownIcon
 	},
-
+	data() {
+		return {
+			manage_applications: false
+		}
+	},
 	methods: {
 		isUrl(...urls) {
 			let currentUrl = this.$page.url.substr(1);
@@ -57,6 +61,10 @@ export default {
 				return currentUrl === "";
 			}
 			return urls.filter(url => currentUrl.startsWith(url)).length;
+		},
+		async getPermission() {
+			let res = await axios.get(this.$route('api.admin.manage_applications'))
+			this.manage_applications = res.data
 		}
 	},
 	computed: {
@@ -66,6 +74,9 @@ export default {
 		appName() {
 			return this.$page.props.appName;
 		}
+	},
+	mounted() {
+		this.getPermission()
 	}
 };
 </script>

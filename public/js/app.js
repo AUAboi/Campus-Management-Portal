@@ -213,6 +213,16 @@ var map = {
 		"/js/vendor",
 		"resources_js_Pages_Admin_Applications_Index_vue"
 	],
+	"./Admin/Applications/Show": [
+		"./resources/js/Pages/Admin/Applications/Show.vue",
+		"/js/vendor",
+		"resources_js_Pages_Admin_Applications_Show_vue"
+	],
+	"./Admin/Applications/Show.vue": [
+		"./resources/js/Pages/Admin/Applications/Show.vue",
+		"/js/vendor",
+		"resources_js_Pages_Admin_Applications_Show_vue"
+	],
 	"./Admin/Courses/Create": [
 		"./resources/js/Pages/Admin/Courses/Create.vue",
 		"/js/vendor",

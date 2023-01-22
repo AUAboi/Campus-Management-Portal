@@ -1,6 +1,8 @@
 <template>
 	<div>
 		<TheApplicantHead title="Academic Details" />
+		<h1 class="mb-8 font-bold text-3xl">Academica Details</h1>
+
 		<div class="mb-4">
 			<Link :href="$route('applicant.academic-details.create')" v-if="canAdd" class="btn-main">
 			<span>Add Details</span>

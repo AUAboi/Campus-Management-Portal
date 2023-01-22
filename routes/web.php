@@ -33,8 +33,6 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/programs', [TestController::class, 'page']);
 Route::get('/boards', [TestController::class, 'boards']);
 
-
-
 Route::group(['middleware' => ['role:teacher']], function () {
   Route::prefix('teacher')->group(function () {
     Route::inertia('/dashboard', 'Teacher/DashboardPage');

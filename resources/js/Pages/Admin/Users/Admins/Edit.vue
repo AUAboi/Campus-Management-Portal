@@ -2,7 +2,6 @@
 	<div>
 		<TheAdminHead :title="form.name" />
 		<AppBreadCrumbs :crumbs="crumbs" />
-
 		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
 			<form @submit.prevent="update" id="update-form" class="m-0">
 				<div class="form-row">
@@ -103,7 +102,7 @@
 		<h1 class="my-8 font-bold text-3xl">
 			Manage Application
 		</h1>
-		<FormInputSwitch v-model="form.manage_applications" />
+		<FormInputSwitch v-model="user.permissions.manage_applications" />
 	</div>
 </template>
 
@@ -141,7 +140,6 @@ export default {
 				name: this.user.name,
 				permissions: this.user.permissions,
 				faculties: this.user.faculties,
-				manage_applications: ""
 			}),
 
 			crumbs: [

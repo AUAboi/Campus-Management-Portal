@@ -69,7 +69,9 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
 
     //Applications
     Route::get('/applications', [ApplicationController::class, 'index'])->name('admin.applications');
+    Route::get('/applications/{application}', [ApplicationController::class, 'show'])->name('admin.applications.show');
 
+    Route::put('/applications/{application}', [ApplicationController::class, 'update'])->name('admin.applications.update');
 
     //Users
     Route::get('/users', [UserController::class, 'index'])->name('admin.users');

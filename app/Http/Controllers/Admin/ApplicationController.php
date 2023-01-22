@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ApplicationResource;
 use App\Models\Application;
 use App\Models\ApplicationStatus;
+use Composer\XdebugHandler\Status;
+use Illuminate\Support\Facades\Redirect;
 
 class ApplicationController extends Controller
 {
@@ -28,5 +30,26 @@ class ApplicationController extends Controller
       'applications' =>  ApplicationResource::collection($applications),
       'filters' => $filters,
     ]);
+  }
+
+  public function show(Application $application)
+  {
+    return Inertia::render('Admin/Applications/Show', [
+      'application' => new ApplicationResource($application->load('applicant', 'program', 'applicant.academicDetails', 'applicant.academicDetails.organization'))
+    ]);
+  }
+
+  public function update(Application $application, Request $request)
+  {
+    $request->validate([
+      'status' => 'required|in:accepted,rejected'
+    ]);
+
+    $status = ApplicationStatus::where('status', $request->status)->first();
+    $application->update([
+      'status_id' => $status->id
+    ]);
+
+    return Redirect::route('admin.applications')->with('success', 'Updated to ' . $status->status . ' succcessfully');
   }
 }
