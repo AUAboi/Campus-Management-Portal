@@ -47,7 +47,7 @@ class StudentController extends Controller
         $this->authorize('update', $user);
 
         return Inertia::render('Admin/Users/Students/Edit', [
-            'user' => new UserResource($user->load(['student', 'student.program'])),
+            'user' => new UserResource($user->load(['enrollments', 'enrollments.program'])),
             'permissions' => new PermissionsResource($user),
         ]);
     }

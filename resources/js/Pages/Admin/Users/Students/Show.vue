@@ -31,11 +31,11 @@
 				</p>
 			</div>
 		</ProfileCard>
-		<div v-if="permissions.edit" class="py-4 my-4  max-w-3xl">
+		<!-- <div v-if="permissions.edit" class="py-4 my-4  max-w-3xl">
 			<Link :href="$route(`admin.users.student.edit`, user.id)" class="btn-main">
 			Edit
 			</Link>
-		</div>
+		</div> -->
 	</main>
 </template>
 
