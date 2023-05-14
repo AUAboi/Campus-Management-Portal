@@ -1,22 +1,22 @@
 <template>
-	<main>
-		<TheAdminHead title="Profile - Student" />
+    <main>
+        <TheAdminHead title="Profile - Student" />
 
-		<StudentProfileCard :user="user" />
-	</main>
+        <StudentProfileCard :user="user" />
+    </main>
 </template>
 
 <script>
-import { Head } from "@inertiajs/inertia-vue";
+import { Head } from "@inertiajs/vue3";
 export default {
-	components: {
-		Head
-	},
-	props: {
-		user: {
-			required: true,
-			type: Object
-		}
-	}
+    components: {
+        Head
+    },
+    props: {
+        user: {
+            required: true,
+            type: Object
+        }
+    }
 };
 </script>

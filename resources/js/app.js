@@ -1,90 +1,61 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+import './bootstrap';
+import '../css/app.css';
 
-require("./bootstrap");
+import VueTheMask from "vue-the-mask";
 
-window.Vue = require("vue").default;
-
-Vue.prototype.$route = route;
-
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-
-// const files = require.context("./", true, /\.vue$/i);
-// files.keys().map(key =>
-//     Vue.component(
-//         key
-//             .split("/")
-//             .pop()
-//             .split(".")[0],
-//         files(key).default
-//     )
-// );
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-import { createInertiaApp } from "@inertiajs/inertia-vue";
+import { createApp, h } from 'vue';
+import { createInertiaApp } from '@inertiajs/vue3'
+import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 
 //Layouts
 //We are loading these lazily so only required routes load these
-const Layout = () => ({
-    component: import("./components/shared/layouts/Layout")
-});
-const TheAdminMenu = () => ({
-    component: import("./components/admin/layouts/TheAdminMenu")
-});
-const TheApplicantMenu = () => ({
-    component: import("./components/applicant/layouts/TheApplicantMenu")
-});
-const AppStudentMenu = () => ({
-    component: import("./components/student/layouts/AppStudentMenu")
-});
+// const Layout = () => ({
+//     component: import("./components/shared/layouts/Layout")
+// });
+// const TheAdminMenu = () => ({
+//     component: import("./components/admin/layouts/TheAdminMenu")
+// });
+// const TheApplicantMenu = () => ({
+//     component: import("./components/applicant/layouts/TheApplicantMenu")
+// });
+// const AppStudentMenu = () => ({
+//     component: import("./components/student/layouts/AppStudentMenu")
+// });
 
-import "sweetalert2/dist/sweetalert2.min.css";
+import Layout from "@/components/shared/layouts/Layout.vue"
+import TheAdminMenu from "@/components/admin/layouts/TheAdminMenu.vue"
+import AppStudentMenu from "@/components/student/layouts/AppStudentMenu.vue"
+import TheApplicantMenu from "@/components/applicant/layouts/TheApplicantMenu.vue"
 
-import { InertiaProgress } from "@inertiajs/progress";
-import VueSweetalert2 from "vue-sweetalert2";
-import VueTheMask from "vue-the-mask";
-import PortalVue from "portal-vue";
 
-Vue.use(VueSweetalert2);
-Vue.use(VueTheMask);
-Vue.use(PortalVue);
+const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
-InertiaProgress.init({
-    showSpinner: true
-});
 
 createInertiaApp({
+    title: (title) => `${title} - ${appName}`,
     resolve: async name => {
-        const page = await (await import(`./Pages/${name}`)).default;
-        if (page.layout === undefined) {
+        const page = await resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue'))
+        if (page.default.layout === undefined) {
             if (name.startsWith("Admin")) {
-                page.layout = [Layout, TheAdminMenu];
+                page.default.layout = [Layout, TheAdminMenu];
             } else if (name.startsWith("Student")) {
-                page.layout = [Layout, AppStudentMenu];
+                page.default.layout = [Layout, AppStudentMenu];
             } else if (name.startsWith("Applicant")) {
-                page.layout = [Layout, TheApplicantMenu];
+                page.default.layout = [Layout, TheApplicantMenu];
             }
         }
         return page;
     },
-    setup({ el, App, props }) {
-        new Vue({
-            render: h => h(App, props)
-        }).$mount(el);
-    }
+    progress: {
+        showSpinner: true,
+    },
+    setup({ el, App, props, plugin }) {
+        return createApp({ render: () => h(App, props) })
+            .use(plugin)
+            .use(ZiggyVue, Ziggy)
+            .use(VueTheMask)
+            .mount(el);
+    },
 });
-
 

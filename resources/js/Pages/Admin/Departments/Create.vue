@@ -1,85 +1,90 @@
 <template>
-	<div>
-		<TheAdminHead title="Create department" />
+    <div>
+        <TheAdminHead title="Create department" />
 
-		<AppBreadCrumbs :crumbs="crumbs" />
+        <AppBreadCrumbs :crumbs="crumbs" />
 
-		<div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
-			<form class="m-0" @submit.prevent="store">
-				<div class="form-row">
-					<FormInputText
-						label="Department Name"
-						v-model="form.department_name"
-						:error="form.errors.department_name"
-					/>
+        <div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
+            <form class="m-0" @submit.prevent="store">
+                <div class="form-row">
+                    <FormInputText
+                        label="Department Name"
+                        v-model="form.department_name"
+                        :error="form.errors.department_name"
+                    />
 
-					<FormInputSelect
-						label="Faculty"
-						v-model="form.faculty_id"
-						:error="form.errors.faculty_id"
-					>
-						<option
-							v-for="faculty in faculties"
-							:key="faculty.id"
-							:value="faculty.id"
-							>{{ faculty.faculty_name }}</option
-						>
-					</FormInputSelect>
-				</div>
-				<div
-					class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center"
-				>
-					<button :disabled="form.processing" type="submit" class="btn-main">
-						Create department
-					</button>
-				</div>
-			</form>
-		</div>
-	</div>
+                    <FormInputSelect
+                        label="Faculty"
+                        v-model="form.faculty_id"
+                        :error="form.errors.faculty_id"
+                    >
+                        <option
+                            v-for="faculty in faculties"
+                            :key="faculty.id"
+                            :value="faculty.id"
+                            >{{ faculty.faculty_name }}</option
+                        >
+                    </FormInputSelect>
+                </div>
+                <div
+                    class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center"
+                >
+                    <button
+                        :disabled="form.processing"
+                        type="submit"
+                        class="btn-main"
+                    >
+                        Create department
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 </template>
 
 <script>
-import { Link } from "@inertiajs/inertia-vue";
+import { Link } from "@inertiajs/vue3";
+
 import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
 import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
 import FormInputText from "../../../components/shared/form/FormInputText.vue";
 import FormInputSelect from "../../../components/shared/form/FormInputSelect.vue";
 
 export default {
-	components: {
-		Link,
-		AppBreadCrumbs,
-		TheAdminHead,
-		FormInputText,
-		FormInputSelect
-	},
-	props: {
-		faculties: {
-			required: true
-		}
-	},
-	data() {
-		return {
-			form: this.$inertia.form({
-				department_name: "",
-				faculty_id: ""
-			}),
+    components: {
+        Link,
+        AppBreadCrumbs,
+        TheAdminHead,
+        FormInputText,
+        FormInputSelect
+    },
+    props: {
+        faculties: {
+            required: true
+        }
+    },
+    data() {
+        return {
+            form: this.$inertia.form({
+                department_name: "",
+                faculty_id: ""
+            }),
 
-			crumbs: [
-				{
-					text: "Department",
-					route: this.$route("admin.departments")
-				},
-				{
-					text: "Create"
-				}
-			]
-		};
-	},
-	methods: {
-		store() {
-			this.form.post(this.$route("admin.departments.store"));
-		}
-	}
+            crumbs: [
+                {
+                    text: "Department",
+                    route: this.route("admin.departments")
+                },
+                {
+                    text: "Create"
+                }
+            ]
+        };
+    },
+    methods: {
+        store() {
+            this.form.post(this.route("admin.departments.store"));
+        }
+    }
 };
 </script>

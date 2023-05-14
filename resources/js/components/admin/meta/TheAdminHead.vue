@@ -1,26 +1,11 @@
+<script setup>
+import { Head } from "@inertiajs/vue3";
+import axios from "axios";
+import { ref } from "vue";
 
-<template>
-
-	<Head :title="title ? `${title} - Admin` : 'CMS - Admin'">
-		<slot />
-	</Head>
-</template>
-
-<script>
-import { Head } from "@inertiajs/inertia-vue";
-import axios from 'axios';
-
-export default {
-	data() {
-		return {
-			manage_applications: false
-		}
-	},
-	components: {
-		Head
-	},
-	props: {
-		title: String
-	}
-};
+const manage_applications = ref(false);
+const props = defineProps({ title: String });
 </script>
+<template>
+    <Head :title="title ? `${title} - Admin` : 'CMS - Admin'" />
+</template>

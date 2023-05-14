@@ -1,18 +1,18 @@
 <template>
-	<div>
-		<Head title="Dashboard - Admin" />
-		<p>
-			This is dashboard admin!
-		</p>
-	</div>
+    <div>
+        <Head title="Dashboard - Admin" />
+        <p>
+            This is dashboard admin!
+        </p>
+    </div>
 </template>
 
 <script>
-import { Head } from "@inertiajs/inertia-vue";
+import { Head } from "@inertiajs/vue3";
 
 export default {
-	components: {
-		Head
-	}
+    components: {
+        Head
+    }
 };
 </script>
