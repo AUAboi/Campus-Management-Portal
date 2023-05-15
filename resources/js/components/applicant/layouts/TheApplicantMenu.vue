@@ -25,13 +25,9 @@
             >
         </div>
         <!-- Sending to dropdown menu through portal -->
-        <portal to="dropdownmenu">
-            <TheDropdownMenu />
-        </portal>
+        <Teleport to=".dropdownmenu"> <TheDropdownMenu /> </Teleport>
         <!-- Sending sloted main content through portal -->
-        <portal to="maincontent">
-            <slot />
-        </portal>
+        <Teleport to=".maincontent"> <slot /> </Teleport>
     </div>
 </template>
 

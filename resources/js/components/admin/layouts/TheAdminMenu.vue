@@ -1,3 +1,27 @@
+<script setup>
+import { onMounted, ref } from "vue";
+import { Link, usePage } from "@inertiajs/vue3";
+
+const manage_applications = ref(false);
+const page = usePage();
+const isUrl = (...urls) => {
+    let currentUrl = page.url.substr(1);
+    currentUrl = currentUrl.replace("admin/", "");
+    if (urls[0] === "") {
+        return currentUrl === "";
+    }
+    return urls.filter(url => currentUrl.startsWith(url)).length;
+};
+
+const getPermission = async () => {
+    let res = await axios.get(route("api.admin.manage_applications"));
+    return res.data;
+};
+
+onMounted(async () => {
+    manage_applications.value = await getPermission();
+});
+</script>
 <template>
     <div class="flex flex-col text-indigo-300">
         <div class="nav-item">
@@ -45,8 +69,8 @@
                 :class="{ 'text-white': isUrl('courses') }"
                 class="m-2"
                 :href="route('admin.courses')"
-                >Courses</Link
-            >
+                >Courses
+            </Link>
         </div>
         <div v-if="manage_applications" class="nav-item">
             <Link
@@ -57,66 +81,8 @@
                 Applications</Link
             >
         </div>
-        <!-- Sending to dropdown menu through portal -->
-        <portal to="dropdownmenu">
-            <TheDropdownMenu />
-        </portal>
-        <!-- Sending sloted main content through portal -->
-        <portal to="maincontent">
-            <slot />
-        </portal>
     </div>
 </template>
-
-<script>
-import { Link } from "@inertiajs/vue3";
-
-import TheDropdownMenu from "../../admin/layouts/TheDropdownMenu.vue";
-import AppDropdown from "../../shared/ui/AppDropdown.vue";
-
-import IconChevronDown from "~icons/mdi/chevron-down";
-
-export default {
-    components: {
-        Link,
-        TheDropdownMenu,
-        AppDropdown,
-        IconChevronDown
-    },
-    data() {
-        return {
-            manage_applications: false
-        };
-    },
-    methods: {
-        isUrl(...urls) {
-            let currentUrl = this.$page.url.substr(1);
-            currentUrl = currentUrl.replace("admin/", "");
-            if (urls[0] === "") {
-                return currentUrl === "";
-            }
-            return urls.filter(url => currentUrl.startsWith(url)).length;
-        },
-        async getPermission() {
-            let res = await axios.get(
-                this.route("api.admin.manage_applications")
-            );
-            this.manage_applications = res.data;
-        }
-    },
-    computed: {
-        user() {
-            return this.$page.props.auth.user;
-        },
-        appName() {
-            return this.$page.props.appName;
-        }
-    },
-    mounted() {
-        this.getPermission();
-    }
-};
-</script>
 
 <style scoped>
 .nav-item {

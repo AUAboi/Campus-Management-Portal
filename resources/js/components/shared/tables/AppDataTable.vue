@@ -26,8 +26,6 @@ const getValue = (obj, prop) => {
     }
     return thisObj;
 };
-
-console.log(props.tableData);
 </script>
 <template>
     <div>
