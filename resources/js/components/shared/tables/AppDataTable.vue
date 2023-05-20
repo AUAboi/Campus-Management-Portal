@@ -84,9 +84,9 @@ const getValue = (obj, prop) => {
                     </Link>
                 </td>
             </tr>
-            <!-- <tr v-if="tableData.length === 0">
+            <tr v-if="tableData.length === 0">
                 <td class="border-t px-6 py-4" colspan="4">No entry found.</td>
-            </tr> -->
+            </tr>
         </table>
     </div>
 </template>

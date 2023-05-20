@@ -1,3 +1,97 @@
+<script setup>
+import FormInputText from "@/components/shared/form/FormInputText.vue";
+import AppDataTable from "@/components/shared/tables/AppDataTable.vue";
+import AppBreadCrumbs from "@/components/shared/ui/AppBreadCrumbs.vue";
+import TheAdminHead from "@/components/admin/meta/TheAdminHead.vue";
+import useSweetAlert from "@/composables/useSweetAlert.js";
+import { Link, useForm } from "@inertiajs/vue3";
+import { reactive, ref, watch } from "vue";
+import FormInputSelect from "../../../components/shared/form/FormInputSelect.vue";
+import AppModal from "../../../components/shared/modals/AppModal.vue";
+
+const props = defineProps({
+    program: {
+        type: Object,
+        required: true
+    },
+    departments: {
+        type: Array,
+        required: true
+    },
+    degrees: {
+        type: Array,
+        required: true
+    },
+    permissions: {
+        type: Object,
+        default: () => {
+            return {
+                delete: false
+            };
+        }
+    },
+    courses: Array
+});
+
+const form = useForm({
+    degree_id: props.program.degree.id,
+    department_id: props.program.department.id,
+    credit_hours: props.program.credit_hours
+});
+
+const show = ref(false);
+
+const labels = [
+    {
+        key: "course_name",
+        value: "Name"
+    },
+    {
+        key: "course_code",
+        value: "Course Code"
+    },
+    {
+        key: "credit_hours",
+        value: "Credit Hours"
+    },
+    {
+        key: "semester",
+        value: "Semester"
+    }
+];
+
+const crumbs = reactive([
+    {
+        text: props.program.department.department_name,
+        route: route("admin.departments.edit", props.program.department.slug)
+    },
+    {
+        text: "Program",
+        route: route("admin.programs")
+    },
+    {
+        text: props.program.program_name
+    }
+]);
+
+const { alertConfirm } = useSweetAlert();
+
+const destroy = () => {
+    alertConfirm(
+        result => {
+            if (result.isConfirmed) {
+                form.delete(route("admin.programs.destroy", this.program.slug));
+            }
+        },
+        { title: `Deleting ${props.program.program_name}` }
+    );
+};
+
+const update = () => {
+    form.put(route("admin.programs.update", props.program.slug));
+};
+</script>
+
 <template>
     <div>
         <TheAdminHead :title="`${program.program_name}`" />
@@ -101,127 +195,9 @@
             />
         </div>
         <div class="mt-4">
-            <Link class="btn-main " @click.prevent="show = true">
+            <a class="btn-main " @click.prevent="show = true">
                 Add Course
-            </Link>
+            </a>
         </div>
     </div>
 </template>
-
-<script>
-import { Link } from "@inertiajs/vue3";
-
-import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
-import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
-import FormInputSelect from "../../../components/shared/form/FormInputSelect.vue";
-import AppDataTable from "../../../components/shared/tables/AppDataTable.vue";
-import FormInputText from "../../../components/shared/form/FormInputText.vue";
-
-import sweetAlert from "../../../mixins/sweetAlert";
-
-const AppModal = () => ({
-    component: import("../../../components/shared/modals/AppModal.vue")
-});
-
-export default {
-    components: {
-        Link,
-        TheAdminHead,
-        AppModal,
-        AppBreadCrumbs,
-        FormInputSelect,
-        AppDataTable,
-        FormInputText
-    },
-    props: {
-        program: {
-            type: Object,
-            required: true
-        },
-        departments: {
-            type: Array,
-            required: true
-        },
-        degrees: {
-            type: Array,
-            required: true
-        },
-        permissions: {
-            type: Object,
-            default: () => {
-                return {
-                    delete: false
-                };
-            }
-        },
-        courses: Array
-    },
-    mixins: [sweetAlert],
-    data() {
-        return {
-            form: this.$inertia.form({
-                degree_id: this.program.degree.id,
-                department_id: this.program.department.id,
-                credit_hours: this.program.credit_hours
-            }),
-            show: false,
-            labels: [
-                {
-                    key: "course_name",
-                    value: "Name"
-                },
-                {
-                    key: "course_code",
-                    value: "Course Code"
-                },
-                {
-                    key: "credit_hours",
-                    value: "Credit Hours"
-                },
-                {
-                    key: "semester",
-                    value: "Semester"
-                }
-            ],
-            crumbs: [
-                {
-                    text: this.program.department.department_name,
-                    route: this.route(
-                        "admin.departments.edit",
-                        this.program.department.slug
-                    )
-                },
-                {
-                    text: "Program",
-                    route: this.route("admin.programs")
-                },
-                {
-                    text: this.program.program_name
-                }
-            ]
-        };
-    },
-    methods: {
-        update() {
-            this.form.put(
-                this.route("admin.programs.update", this.program.slug)
-            );
-        },
-        destroy() {
-            this.confirm(
-                result => {
-                    if (result.isConfirmed) {
-                        this.$inertia.delete(
-                            this.route(
-                                "admin.programs.destroy",
-                                this.program.slug
-                            )
-                        );
-                    }
-                },
-                { title: `Deleting ${this.program.program_name}` }
-            );
-        }
-    }
-};
-</script>

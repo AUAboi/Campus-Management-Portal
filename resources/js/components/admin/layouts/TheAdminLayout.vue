@@ -12,6 +12,7 @@ import AppFlashMessage from "../../shared/ui/AppFlashMessage.vue";
                 <div class="nav-title ">
                     <a href="./dashboard" class="mt-1 text-2xl">RL Academia</a>
                     <AppDropdown
+                        class="md:hidden"
                         :contentClasses="[
                             'mt-1',
                             'mt-2 px-8 py-4 shadow-lg bg-indigo-800 rounded'

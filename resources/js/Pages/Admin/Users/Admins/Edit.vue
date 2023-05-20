@@ -153,7 +153,7 @@
 </template>
 
 <script>
-import { Head, Link } from "@inertiajs/inertia-vue";
+import { Head, Link } from "@inertiajs/vue3";
 import TheAdminHead from "../../../../components/admin/meta/TheAdminHead.vue";
 import AppBreadCrumbs from "../../../../components/shared/ui/AppBreadCrumbs.vue";
 import FormInputText from "../../../../components/shared/form/FormInputText.vue";

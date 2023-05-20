@@ -10,6 +10,10 @@ const props = defineProps({
     },
     contentClasses: {
         default: () => ["py-1"]
+    },
+    closeOnClick: {
+        type: Boolean,
+        default: true
     }
 });
 
@@ -33,6 +37,8 @@ const alignmentClasses = computed(() => {
         return "origin-top-left left-0";
     } else if (props.align === "right") {
         return "origin-top-right right-0";
+    } else if (props.align === "bottom-center") {
+        return "left-0 top-10";
     } else {
         return "origin-top";
     }
@@ -43,7 +49,7 @@ const open = ref(false);
 
 <template>
     <div class="relative">
-        <div @click="open = !open">
+        <div class="h-full w-full cursor-pointer" @click="open = !open">
             <slot name="trigger" />
         </div>
 
@@ -67,7 +73,7 @@ const open = ref(false);
                 class="absolute z-50 mt-2 rounded-md shadow-lg"
                 :class="[widthClass, alignmentClasses]"
                 style="display: none"
-                @click="open = false"
+                @click="open = !closeOnClick"
             >
                 <div
                     class="rounded-md ring-1 ring-black ring-opacity-5"

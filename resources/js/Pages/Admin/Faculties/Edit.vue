@@ -1,3 +1,72 @@
+<script setup>
+import FormInputText from "@/components/shared/form/FormInputText.vue";
+import AppDataTable from "@/components/shared/tables/AppDataTable.vue";
+import AppBreadCrumbs from "@/components/shared/ui/AppBreadCrumbs.vue";
+import TheAdminHead from "@/components/admin/meta/TheAdminHead.vue";
+import useSweetAlert from "@/composables/useSweetAlert.js";
+import { useForm } from "@inertiajs/vue3";
+import { reactive, ref, watch } from "vue";
+
+const props = defineProps({
+    faculty: {
+        type: Object,
+        required: true
+    },
+    permissions: {
+        type: Object,
+        default: () => {
+            return {
+                update: false,
+                delete: false
+            };
+        }
+    }
+});
+
+const form = useForm({
+    faculty_name: props.faculty.faculty_name
+});
+
+const labels = [
+    {
+        key: "department_name",
+        value: "Name"
+    }
+];
+
+const crumbs = reactive([
+    {
+        text: "Faculties",
+        route: route("admin.faculties")
+    },
+    {
+        text: props.faculty.faculty_name
+    }
+]);
+
+const { alertConfirm } = useSweetAlert();
+
+const destroy = () => {
+    alertConfirm(
+        result => {
+            if (result.isConfirmed) {
+                form.delete(
+                    route("admin.faculties.destroy", props.faculty.slug)
+                );
+            }
+        },
+        { title: `Deleting ${props.faculty.faculty_name}` }
+    );
+};
+
+const update = () => {
+    form.put(route("admin.faculties.update", props.faculty.slug));
+};
+
+watch(form, newValue => {
+    crumbs[crumbs.length - 1].text = newValue.faculty_name;
+});
+</script>
 <template>
     <div>
         <TheAdminHead :title="form.faculty_name" />
@@ -55,92 +124,3 @@
         </div>
     </div>
 </template>
-
-<script>
-import { Head, Link } from "@inertiajs/inertia-vue";
-import FormInputText from "../../../components/shared/form/FormInputText.vue";
-import AppDataTable from "../../../components/shared/tables/AppDataTable.vue";
-import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
-import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
-import { alertConfirm } from "@/composables/useSweetAlert.js";
-
-export default {
-    components: {
-        Head,
-        Link,
-        FormInputText,
-        AppDataTable,
-        AppBreadCrumbs,
-        TheAdminHead
-    },
-    props: {
-        faculty: {
-            type: Object,
-            required: true
-        },
-        permissions: {
-            type: Object,
-            default: () => {
-                return {
-                    update: false,
-                    delete: false
-                };
-            }
-        }
-    },
-    data() {
-        return {
-            form: this.$inertia.form({
-                faculty_name: this.faculty.faculty_name
-            }),
-
-            labels: [
-                {
-                    key: "department_name",
-                    value: "Name"
-                }
-            ],
-
-            crumbs: [
-                {
-                    text: "Faculties",
-                    route: this.route("admin.faculties")
-                },
-                {
-                    text: this.faculty.faculty_name
-                }
-            ]
-        };
-    },
-
-    //Watching for changes in the form data
-    watch: {
-        "form.faculty_name": function(newValue) {
-            this.crumbs[this.crumbs.length - 1].text = newValue;
-        }
-    },
-
-    methods: {
-        update() {
-            this.form.put(
-                this.route("admin.faculties.update", this.faculty.slug)
-            );
-        },
-        destroy() {
-            this.alertConfirm(
-                result => {
-                    if (result.isConfirmed) {
-                        this.$inertia.delete(
-                            this.route(
-                                "admin.faculties.destroy",
-                                this.faculty.slug
-                            )
-                        );
-                    }
-                },
-                { title: `Deleting ${this.faculty.faculty_name}` }
-            );
-        }
-    }
-};
-</script>

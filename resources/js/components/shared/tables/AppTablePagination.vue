@@ -1,3 +1,9 @@
+<script setup>
+import { Link } from "@inertiajs/vue3";
+
+defineProps({ links: Array });
+</script>
+
 <template>
     <div v-if="links.length > 3">
         <div class="flex flex-wrap my-2 mx-4 items-center">
@@ -20,16 +26,3 @@
         </div>
     </div>
 </template>
-
-<script>
-import { Link } from "@inertiajs/vue3";
-
-export default {
-    props: {
-        links: Array
-    },
-    components: {
-        Link
-    }
-};
-</script>
