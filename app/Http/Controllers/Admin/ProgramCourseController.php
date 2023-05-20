@@ -34,10 +34,9 @@ class ProgramCourseController extends Controller
                 'theory_credit_hours' => $course->theory_credit_hours,
                 'practical_credit_hours' => $course->practical_credit_hours,
                 'department_code' => $course->department_code,
-                'belongs_to_program' => $program_courses->contains('course_id', $course->id),
+                'belongs_to_program' => $program_courses->contains('id', $course->id),
                 'credit_hours' => $course->credit_hours,
             ]);
-
         return Inertia::render('Admin/Programs/AddCourse', [
             'semester' => $semester,
             'program' => new ProgramResource($program),

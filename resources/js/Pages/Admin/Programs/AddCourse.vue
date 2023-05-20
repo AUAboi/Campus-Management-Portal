@@ -1,8 +1,71 @@
+<script setup>
+import { Link } from "@inertiajs/vue3";
+
+import TheAdminHead from "@/components/admin/meta/TheAdminHead.vue";
+import AppBreadCrumbs from "@/components/shared/ui/AppBreadCrumbs.vue";
+import { useForm } from "@inertiajs/vue3";
+
+const props = defineProps({
+    semester: {
+        required: true
+    },
+    program: {
+        required: true,
+        type: Object
+    },
+    courses: {
+        required: false
+    },
+    program_courses: {
+        type: Array,
+        required: false
+    },
+    permissions: {
+        type: Object,
+        required: false,
+        default: () => ({
+            update: false
+        })
+    }
+});
+
+const form = useForm({
+    courses: props.courses
+});
+
+const crumbs = [
+    {
+        text: props.program.program_name,
+        route: route("admin.programs.edit", [props.program.slug])
+    },
+    {
+        text: "Courses",
+        route: route("admin.courses")
+    },
+    {
+        text: "Add"
+    }
+];
+
+const update = () => {
+    form.put(
+        route("admin.programs.courses.store", [
+            props.program.slug,
+            props.semester
+        ])
+    );
+};
+const deselectAll = () => {
+    form.courses.forEach(course => {
+        course.belongs_to_program = 0;
+    });
+};
+</script>
+
 <template>
     <div>
         <TheAdminHead title="Add Courses" />
         <AppBreadCrumbs :crumbs="crumbs" />
-
         <h3 class="mb-8 font-bold text-3xl">Semester {{ semester }}</h3>
         <div class="flex items-center mb-4">
             <button
@@ -29,7 +92,7 @@
                     <th class="px-6 pt-6 pb-4"></th>
                 </tr>
                 <tr
-                    v-for="course in courses"
+                    v-for="course in form.courses"
                     :key="course.id"
                     @click="
                         course.belongs_to_program = !course.belongs_to_program
@@ -84,78 +147,3 @@
         </div>
     </div>
 </template>
-
-<script>
-import { Link } from "@inertiajs/vue3";
-
-import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
-import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
-
-export default {
-    components: {
-        Link,
-        TheAdminHead,
-        AppBreadCrumbs
-    },
-    props: {
-        semester: {
-            required: true
-        },
-        program: {
-            required: true,
-            type: Object
-        },
-        courses: {
-            required: false
-        },
-        program_courses: {
-            type: Array,
-            required: false
-        },
-        permissions: {
-            type: Object,
-            required: false,
-            default: () => ({
-                update: false
-            })
-        }
-    },
-    data() {
-        return {
-            updateForm: this.$inertia.form({
-                courses: this.courses
-            }),
-            crumbs: [
-                {
-                    text: this.program.program_name,
-                    route: this.route("admin.programs.edit", [
-                        this.program.slug
-                    ])
-                },
-                {
-                    text: "Courses",
-                    route: this.route("admin.courses")
-                },
-                {
-                    text: "Add"
-                }
-            ]
-        };
-    },
-    methods: {
-        update() {
-            this.updateForm.put(
-                this.route("admin.programs.courses.store", [
-                    this.program.slug,
-                    this.semester
-                ])
-            );
-        },
-        deselectAll() {
-            this.courses.forEach(course => {
-                course.belongs_to_program = 0;
-            });
-        }
-    }
-};
-</script>
