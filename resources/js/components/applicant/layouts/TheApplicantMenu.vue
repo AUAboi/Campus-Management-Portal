@@ -1,3 +1,17 @@
+<script setup>
+import { onMounted, ref } from "vue";
+import { Link, usePage } from "@inertiajs/vue3";
+
+const page = usePage();
+const isUrl = (...urls) => {
+    let currentUrl = page.url.substr(1);
+    currentUrl = currentUrl.replace("admin/", "");
+    if (urls[0] === "") {
+        return currentUrl === "";
+    }
+    return urls.filter(url => currentUrl.startsWith(url)).length;
+};
+</script>
 <template>
     <div class="flex flex-col text-indigo-300">
         <div class="nav-item">
@@ -24,48 +38,8 @@
                 >Academic Details</Link
             >
         </div>
-        <!-- Sending to dropdown menu through portal -->
-        <Teleport to=".dropdownmenu"> <TheDropdownMenu /> </Teleport>
-        <!-- Sending sloted main content through portal -->
-        <Teleport to=".maincontent"> <slot /> </Teleport>
     </div>
 </template>
-
-<script>
-import { Link } from "@inertiajs/vue3";
-
-import TheDropdownMenu from "../../applicant/layouts/TheDropdownMenu.vue";
-import AppDropdown from "../../shared/ui/AppDropdown.vue";
-
-import IconChevronDown from "~icons/mdi/chevron-down";
-
-export default {
-    components: {
-        Link,
-        TheDropdownMenu,
-        AppDropdown,
-        IconChevronDown
-    },
-    methods: {
-        isUrl(...urls) {
-            let currentUrl = this.$page.url.substr(1);
-            currentUrl = currentUrl.replace("applicant/", "");
-            if (urls[0] === "") {
-                return currentUrl === "";
-            }
-            return urls.filter(url => currentUrl.startsWith(url)).length;
-        }
-    },
-    computed: {
-        user() {
-            return this.$page.props.auth.user;
-        },
-        appName() {
-            return this.$page.props.appName;
-        }
-    }
-};
-</script>
 
 <style scoped>
 .nav-item {

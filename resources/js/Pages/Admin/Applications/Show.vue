@@ -115,7 +115,7 @@ export default {
     },
     methods: {
         approve() {
-            Inertia.put(
+            router.put(
                 this.route("admin.applications.update", {
                     application: this.application.id,
                     status: "accepted"
@@ -123,7 +123,7 @@ export default {
             );
         },
         reject() {
-            Inertia.put(
+            router.put(
                 this.route("admin.applications.update", {
                     application: this.application.id,
                     status: "rejected"

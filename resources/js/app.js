@@ -10,6 +10,7 @@ import Layout from "@/components/shared/layouts/Layout.vue"
 import TheAdminLayout from "@/components/admin/layouts/TheAdminLayout.vue"
 import AppStudentMenu from "@/components/student/layouts/AppStudentMenu.vue"
 import TheApplicantMenu from "@/components/applicant/layouts/TheApplicantMenu.vue"
+import TheApplicantLayout from "@/components/applicant/layouts/TheApplicantLayout.vue"
 
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
@@ -23,9 +24,10 @@ createInertiaApp({
             if (name.startsWith("Admin")) {
                 page.default.layout = TheAdminLayout;
             } else if (name.startsWith("Student")) {
-                page.default.layout = [Layout, AppStudentMenu];
+                page.default.layout = TheApplicantLayout;
             } else if (name.startsWith("Applicant")) {
-                page.default.layout = [Layout, TheApplicantMenu];
+                page.default.layout = TheApplicantLayout;
+
             }
         }
         return page;

@@ -1,18 +1,8 @@
-<template>
-    <Head :title="title ? `${title} - Applicant` : 'Apply Today - Applicant'">
-        <slot />
-    </Head>
-</template>
-
-<script>
+<script setup>
 import { Head } from "@inertiajs/vue3";
 
-export default {
-    components: {
-        Head
-    },
-    props: {
-        title: { type: String, required: false }
-    }
-};
+const props = defineProps({ title: String });
 </script>
+<template>
+    <Head :title="title ? `${title} - Applicant` : 'Apply Today - Applicant'" />
+</template>

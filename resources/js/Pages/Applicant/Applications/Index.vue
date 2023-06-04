@@ -1,3 +1,61 @@
+<script setup>
+import { computed } from "vue";
+import TheApplicantHead from "../../../components/applicant/meta/TheApplicantHead.vue";
+import AppDataTable from "../../../components/shared/tables/AppDataTable.vue";
+import useSweetAlert from "@/composables/useSweetAlert.js";
+import { router } from "@inertiajs/vue3";
+
+const labels = [
+    {
+        key: "program.program_name",
+        value: "Program"
+    },
+    {
+        key: "status",
+        value: "Status"
+    }
+];
+
+const props = defineProps({
+    user: {
+        required: true
+    },
+    applications: {
+        type: Array
+    },
+    max_allowed: {
+        type: Number
+    },
+    canApply: Boolean
+});
+
+const appliedCount = computed(() => {
+    return props.applications.filter(app => {
+        return app.status !== "rejected";
+    }).length;
+});
+
+const { alertConfirm } = useSweetAlert();
+
+const redirect = () => {
+    if (!props.canApply) {
+        alertConfirm(
+            result => {
+                if (result.isConfirmed)
+                    router.get(route("applicant.academic-details.create"));
+            },
+            {
+                title: `You dont have required academic qualifications added.`,
+                text: "Add now?",
+                confirmButtonText: "Add now",
+                confirmButtonColor: "green"
+            }
+        );
+    } else {
+        router.get(route("applicant.applications.create"));
+    }
+};
+</script>
 <template>
     <div>
         <TheApplicantHead title="Applications" />
@@ -34,69 +92,3 @@
         </div>
     </div>
 </template>
-
-<script>
-import TheApplicantHead from "../../../components/applicant/meta/TheApplicantHead.vue";
-import AppDataTable from "../../../components/shared/tables/AppDataTable.vue";
-import sweetAlert from "../../../mixins/sweetAlert";
-
-export default {
-    data() {
-        return {
-            labels: [
-                {
-                    key: "program.program_name",
-                    value: "Program"
-                },
-                {
-                    key: "status",
-                    value: "Status"
-                }
-            ]
-        };
-    },
-    props: {
-        user: {
-            required: true
-        },
-        applications: {
-            type: Array
-        },
-        max_allowed: {
-            type: Number
-        },
-        canApply: Boolean
-    },
-    computed: {
-        appliedCount() {
-            return this.applications.filter(app => {
-                return app.status !== "rejected";
-            }).length;
-        }
-    },
-    mixins: [sweetAlert],
-    methods: {
-        redirect() {
-            if (!this.canApply) {
-                this.confirm(
-                    result => {
-                        if (result.isConfirmed)
-                            this.$inertia.get(
-                                this.route("applicant.academic-details.create")
-                            );
-                    },
-                    {
-                        title: `You dont have required academic qualifications added.`,
-                        text: "Add now?",
-                        confirmButtonText: "Add now",
-                        confirmButtonColor: "green"
-                    }
-                );
-            } else {
-                this.$inertia.get(this.route("applicant.applications.create"));
-            }
-        }
-    },
-    components: { TheApplicantHead, AppDataTable }
-};
-</script>

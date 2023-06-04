@@ -3,14 +3,11 @@ import { Link } from "@inertiajs/vue3";
 
 import pickBy from "lodash/pickBy";
 import throttle from "lodash/throttle";
-import mapValues from "lodash/mapValues";
-import cloneDeep from "lodash/cloneDeep";
 
 import AppTableSearch from "../../../components/shared/tables/AppTableSearch.vue";
 import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
 import AppDataTable from "../../../components/shared/tables/AppDataTable.vue";
 import AppTablePagination from "../../../components/shared/tables/AppTablePagination.vue";
-import FormInputSelect from "../../../components/shared/form/FormInputSelect.vue";
 import { router } from "@inertiajs/vue3";
 
 import IconChevronDown from "~icons/mdi/chevron-down";

@@ -1,6 +1,6 @@
 <script setup>
 import IconChevronDown from "~icons/mdi/chevron-down";
-import TheAdminMenu from "./TheAdminMenu.vue";
+import TheApplicantMenu from "./TheApplicantMenu.vue";
 import TheDropdownMenu from "./TheDropdownMenu.vue";
 import AppDropdown from "../../shared/ui/AppDropdown.vue";
 import AppFlashMessage from "../../shared/ui/AppFlashMessage.vue";
@@ -44,7 +44,7 @@ const appName = computed(() => {
 
                         <template v-slot:content>
                             <div>
-                                <TheAdminMenu />
+                                <TheApplicantMenu />
                             </div>
                         </template>
                     </AppDropdown>
@@ -82,7 +82,7 @@ const appName = computed(() => {
             <nav
                 class="hidden md:block bg-indigo-800 text-white flex-shrink-0 w-56 p-12 overflow-y-auto"
             >
-                <TheAdminMenu />
+                <TheApplicantMenu />
             </nav>
 
             <main
