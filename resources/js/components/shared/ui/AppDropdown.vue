@@ -9,7 +9,7 @@ const props = defineProps({
         default: "48"
     },
     contentClasses: {
-        default: () => ["py-1"]
+        default: () => [""]
     },
     closeOnClick: {
         type: Boolean,

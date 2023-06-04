@@ -1,3 +1,33 @@
+<script setup>
+import { useForm } from "@inertiajs/vue3";
+
+import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
+import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
+import FormInputText from "../../../components/shared/form/FormInputText.vue";
+
+const form = useForm({
+    course_name: "",
+    practical_credit_hours: "",
+    theory_credit_hours: "",
+    department_code: "",
+    course_code: ""
+});
+
+const crumbs = [
+    {
+        text: "Course",
+        route: route("admin.courses")
+    },
+    {
+        text: "Create"
+    }
+];
+
+const store = () => {
+    form.post(route("admin.courses.store"));
+};
+</script>
+
 <template>
     <div>
         <TheAdminHead title="Create course" />
@@ -55,46 +85,3 @@
         </div>
     </div>
 </template>
-
-<script>
-import { Link } from "@inertiajs/vue3";
-
-import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
-import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
-import FormInputText from "../../../components/shared/form/FormInputText.vue";
-
-export default {
-    components: {
-        Link,
-        TheAdminHead,
-        AppBreadCrumbs,
-        FormInputText
-    },
-    data() {
-        return {
-            form: this.$inertia.form({
-                course_name: "",
-                practical_credit_hours: "",
-                theory_credit_hours: "",
-                department_code: "",
-                course_code: ""
-            }),
-
-            crumbs: [
-                {
-                    text: "Course",
-                    route: this.route("admin.courses")
-                },
-                {
-                    text: "Create"
-                }
-            ]
-        };
-    },
-    methods: {
-        store() {
-            this.form.post(this.route("admin.courses.store"));
-        }
-    }
-};
-</script>

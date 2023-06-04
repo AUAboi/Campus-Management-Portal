@@ -27,7 +27,7 @@
     },
     "dependencies": {
         "@inertiajs/vue3": "^1.0.6",
-        "sweetalert2": "^11.6.16",
-        "vue-the-mask": "^0.11.1"
+        "maska": "^2.1.9",
+        "sweetalert2": "^11.6.16"
     }
 }

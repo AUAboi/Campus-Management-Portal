@@ -1,3 +1,65 @@
+<script setup>
+import { useForm } from "@inertiajs/vue3";
+import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
+import FormInputText from "../../../components/shared/form/FormInputText.vue";
+import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
+import useSweetAlert from "@/composables/useSweetAlert.js";
+import { reactive, watch } from "vue";
+
+const props = defineProps({
+    course: {
+        type: Object,
+        required: true
+    },
+    permissions: {
+        type: Object,
+        default: () => {
+            return {
+                delete: false
+            };
+        }
+    }
+});
+
+const form = useForm({
+    course_name: props.course.course_name,
+    practical_credit_hours: props.course.practical_credit_hours,
+    theory_credit_hours: props.course.theory_credit_hours,
+    department_code: props.course.department_code,
+    course_code: props.course.course_code
+});
+
+const crumbs = reactive([
+    {
+        text: "Courses",
+        route: route("admin.courses")
+    },
+    {
+        text: props.course.course_name
+    }
+]);
+
+watch(form, newValue => {
+    crumbs[crumbs.length - 1].text = newValue.course_name;
+});
+
+const update = () => {
+    form.put(route("admin.courses.update", props.course.id));
+};
+
+const { alertConfirm } = useSweetAlert();
+
+const destroy = () => {
+    alertConfirm(
+        result => {
+            if (result.isConfirmed)
+                form.delete(route("admin.courses.destroy", props.course.id));
+        },
+        { title: `Deleting ${props.course.course_name}` }
+    );
+};
+</script>
+
 <template>
     <div>
         <TheAdminHead :title="form.course_name" />
@@ -79,71 +141,3 @@
         </div>
     </div>
 </template>
-
-<script>
-import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
-import FormInputText from "../../../components/shared/form/FormInputText.vue";
-import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
-import sweetAlert from "../../../mixins/sweetAlert";
-import { alertConfirm } from "@/composables/sweetAlert.js";
-
-export default {
-    props: {
-        course: {
-            type: Object,
-            required: true
-        },
-        permissions: {
-            type: Object,
-            default: () => {
-                return {
-                    delete: false
-                };
-            }
-        }
-    },
-    data() {
-        return {
-            form: this.$inertia.form({
-                course_name: this.course.course_name,
-                practical_credit_hours: this.course.practical_credit_hours,
-                theory_credit_hours: this.course.theory_credit_hours,
-                department_code: this.course.department_code,
-                course_code: this.course.course_code
-            }),
-            crumbs: [
-                {
-                    text: "Courses",
-                    route: this.route("admin.courses")
-                },
-                {
-                    text: this.course.course_name
-                }
-            ]
-        };
-    },
-    watch: {
-        "form.course_name": function(newValue) {
-            this.crumbs[this.crumbs.length - 1].text = newValue;
-        }
-    },
-    mixins: [sweetAlert],
-    methods: {
-        update() {
-            this.form.put(this.route("admin.courses.update", this.course.id));
-        },
-        destroy() {
-            this.confirm(
-                result => {
-                    if (result.isConfirmed)
-                        this.$inertia.delete(
-                            this.route("admin.courses.destroy", this.course.id)
-                        );
-                },
-                { title: `Deleting ${this.course.course_name}` }
-            );
-        }
-    },
-    components: { TheAdminHead, FormInputText, AppBreadCrumbs }
-};
-</script>

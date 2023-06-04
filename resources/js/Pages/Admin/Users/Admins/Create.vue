@@ -1,3 +1,42 @@
+<script setup>
+import { Link, useForm } from "@inertiajs/vue3";
+
+import AppBreadCrumbs from "../../../../components/shared/ui/AppBreadCrumbs.vue";
+import FormInputText from "../../../../components/shared/form/FormInputText.vue";
+import FormInputSelect from "../../../../components/shared/form/FormInputSelect.vue";
+import TheAdminHead from "../../../../components/admin/meta/TheAdminHead.vue";
+import FormInputCnic from "../../../../components/shared/form/FormInputCnic.vue";
+
+const form = useForm({
+    name: "",
+    father_name: "",
+    gender: "",
+    email: "",
+    password: "",
+    password_confirmation: "",
+    cnic: "",
+    phone: "",
+    date_of_birth: ""
+});
+
+const crumbs = [
+    {
+        text: "Users",
+        route: route("admin.users")
+    },
+    {
+        text: "Admin",
+        route: route("admin.users", { role: "admin" })
+    },
+    {
+        text: "Create"
+    }
+];
+
+const store = () => {
+    form.post(route("admin.users.admin.store"));
+};
+</script>
 <template>
     <div>
         <TheAdminHead title="Create Admin" />
@@ -39,7 +78,6 @@
                         v-model="form.phone"
                         :error="form.errors.phone"
                     />
-
                     <FormInputCnic
                         label="CNIC"
                         v-model="form.cnic"
@@ -82,57 +120,3 @@
         </div>
     </div>
 </template>
-
-<script>
-import { Link } from "@inertiajs/vue3";
-
-import AppBreadCrumbs from "../../../../components/shared/ui/AppBreadCrumbs.vue";
-import FormInputText from "../../../../components/shared/form/FormInputText.vue";
-import FormInputSelect from "../../../../components/shared/form/FormInputSelect.vue";
-import TheAdminHead from "../../../../components/admin/meta/TheAdminHead.vue";
-import FormInputCnic from "../../../../components/shared/form/FormInputCnic.vue";
-
-export default {
-    components: {
-        Link,
-        AppBreadCrumbs,
-        FormInputText,
-        FormInputSelect,
-        TheAdminHead,
-        FormInputCnic
-    },
-    data() {
-        return {
-            form: this.$inertia.form({
-                name: "",
-                father_name: "",
-                gender: "",
-                email: "",
-                password: "",
-                password_confirmation: "",
-                cnic: "",
-                phone: "",
-                date_of_birth: ""
-            }),
-            crumbs: [
-                {
-                    text: "Users",
-                    route: this.route("admin.users")
-                },
-                {
-                    text: "Admin",
-                    route: this.route("admin.users", { role: "admin" })
-                },
-                {
-                    text: "Create"
-                }
-            ]
-        };
-    },
-    methods: {
-        store() {
-            this.form.post(this.route("admin.users.admin.store"));
-        }
-    }
-};
-</script>

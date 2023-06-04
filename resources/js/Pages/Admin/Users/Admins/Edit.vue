@@ -1,3 +1,63 @@
+<script setup>
+import { useForm } from "@inertiajs/vue3";
+import TheAdminHead from "../../../../components/admin/meta/TheAdminHead.vue";
+import AppBreadCrumbs from "../../../../components/shared/ui/AppBreadCrumbs.vue";
+import FormInputText from "../../../../components/shared/form/FormInputText.vue";
+import useSweetAlert from "@/composables/useSweetAlert.js";
+
+import FormInputSwitch from "../../../../components/shared/form/FormInputSwitch.vue";
+import { reactive, watch } from "vue";
+
+const props = defineProps({
+    user: {
+        type: Object,
+        required: true
+    },
+    permissions: {
+        type: Object,
+        required: true
+    },
+    faculties: Array
+});
+
+const { alertConfirm } = useSweetAlert();
+
+const form = useForm({
+    name: props.user.name,
+    permissions: props.user.permissions,
+    faculties: props.user.faculties
+});
+
+const crumbs = reactive([
+    {
+        text: "Users",
+        route: route("admin.users")
+    },
+    {
+        text: props.user.name
+    }
+]);
+
+watch(form, newValue => {
+    crumbs[crumbs.length - 1].text = newValue.name;
+});
+
+const update = () => {
+    form.put(route("admin.users.admin.update", props.user.id));
+};
+const destroy = () => {
+    alertConfirm(
+        result => {
+            if (result.isConfirmed) {
+                form.delete(route("admin.users.destroy", props.user.id));
+            }
+        },
+        {
+            title: `Deleting user ${props.user.name}`
+        }
+    );
+};
+</script>
 <template>
     <div>
         <TheAdminHead :title="form.name" />
@@ -50,9 +110,10 @@
                     <th class="px-6 pt-6 pb-4">Faculty</th>
                 </tr>
                 <tr
-                    v-for="faculty in user.faculties"
+                    v-for="faculty in form.faculties"
                     :key="faculty.id"
                     class="hover:bg-gray-100 focus-within:bg-gray-100"
+                    @click="faculty.owns_faculty = !faculty.owns_faculty"
                 >
                     <td class="border-t">
                         <span class="px-6 py-4 flex items-center" tabindex="-1">
@@ -91,7 +152,7 @@
                         <span class="px-6 py-4 flex items-center" tabindex="-1">
                             <input
                                 type="checkbox"
-                                v-model="user.permissions.create_faculties"
+                                v-model="form.permissions.create_faculties"
                             />
                         </span>
                     </td>
@@ -99,7 +160,7 @@
                         <span class="px-6 py-4 flex items-center" tabindex="-1">
                             <input
                                 type="checkbox"
-                                v-model="user.permissions.update_faculties"
+                                v-model="form.permissions.update_faculties"
                             />
                         </span>
                     </td>
@@ -107,7 +168,7 @@
                         <span class="px-6 py-4 flex items-center" tabindex="-1">
                             <input
                                 type="checkbox"
-                                v-model="user.permissions.delete_faculties"
+                                v-model="form.permissions.delete_faculties"
                             />
                         </span>
                     </td>
@@ -122,7 +183,7 @@
                         <span class="px-6 py-4 flex items-center" tabindex="-1">
                             <input
                                 type="checkbox"
-                                v-model="user.permissions.create_users"
+                                v-model="form.permissions.create_users"
                             />
                         </span>
                     </td>
@@ -130,7 +191,7 @@
                         <span class="px-6 py-4 flex items-center" tabindex="-1">
                             <input
                                 type="checkbox"
-                                v-model="user.permissions.update_users"
+                                v-model="form.permissions.update_users"
                             />
                         </span>
                     </td>
@@ -138,7 +199,7 @@
                         <span class="px-6 py-4 flex items-center" tabindex="-1">
                             <input
                                 type="checkbox"
-                                v-model="user.permissions.delete_users"
+                                v-model="form.permissions.delete_users"
                             />
                         </span>
                     </td>
@@ -148,81 +209,6 @@
         <h1 class="my-8 font-bold text-3xl">
             Manage Application
         </h1>
-        <FormInputSwitch v-model="user.permissions.manage_applications" />
+        <FormInputSwitch v-model="form.permissions.manage_applications" />
     </div>
 </template>
-
-<script>
-import { Head, Link } from "@inertiajs/vue3";
-import TheAdminHead from "../../../../components/admin/meta/TheAdminHead.vue";
-import AppBreadCrumbs from "../../../../components/shared/ui/AppBreadCrumbs.vue";
-import FormInputText from "../../../../components/shared/form/FormInputText.vue";
-import sweetAlert from "../../../../mixins/sweetAlert";
-import FormInputSwitch from "../../../../components/shared/form/FormInputSwitch.vue";
-
-export default {
-    components: {
-        Head,
-        Link,
-        TheAdminHead,
-        AppBreadCrumbs,
-        FormInputText,
-        FormInputSwitch
-    },
-    props: {
-        user: {
-            type: Object,
-            required: true
-        },
-        permissions: {
-            type: Object,
-            required: true
-        },
-        faculties: Array
-    },
-    data() {
-        return {
-            form: this.$inertia.form({
-                name: this.user.name,
-                permissions: this.user.permissions,
-                faculties: this.user.faculties
-            }),
-
-            crumbs: [
-                {
-                    text: "Users",
-                    route: this.route("admin.users")
-                },
-                {
-                    text: this.user.name
-                }
-            ]
-        };
-    },
-    watch: {
-        "form.name": function(newValue) {
-            this.crumbs[this.crumbs.length - 1].text = newValue;
-        }
-    },
-    mixins: [sweetAlert],
-    methods: {
-        update() {
-            this.form.put(this.route("admin.users.admin.update", this.user.id));
-        },
-        destroy() {
-            this.confirm(
-                result => {
-                    if (result.isConfirmed) {
-                        this.$inertia.delete(
-                            this.route("admin.users.destroy", this.user.id)
-                        );
-                    }
-                },
-                {
-                    title: `Deleting user ${this.user.name}`
-                }
-            );
-        }
-    }
-};
-</script>
