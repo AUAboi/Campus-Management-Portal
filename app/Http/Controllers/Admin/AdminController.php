@@ -67,6 +67,7 @@ class AdminController extends Controller
 
     public function update(UpdateUserAdminRequest $request, User $user, AdminService $adminService)
     {
+
         $this->authorize('update', $user);
         $adminService->updateUserAdmin($request->validated(), $user);
         return Redirect::route('admin.users')->with('success', 'User updated.');

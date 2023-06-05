@@ -1,70 +1,87 @@
-<template>
-	<button type="button" @click="show = true">
-		<slot />
-		<portal v-if="show" to="dropdown">
-			<div>
-				<div
-					style="position: fixed; top: 0; right: 0; left: 0; bottom: 0; z-index: 99998; background: black; opacity: .2"
-					@click="show = false"
-				/>
-				<div
-					ref="dropdown"
-					style="position: absolute; z-index: 99999;"
-					@click.stop="show = autoClose ? false : true"
-				>
-					<slot name="dropdown" />
-				</div>
-			</div>
-		</portal>
-	</button>
-</template>
+<script setup>
+import { computed, onMounted, onUnmounted, ref } from "vue";
 
-<script>
-import Popper from "popper.js";
+const props = defineProps({
+    align: {
+        default: "right"
+    },
+    width: {
+        default: "48"
+    },
+    contentClasses: {
+        default: () => [""]
+    },
+    closeOnClick: {
+        type: Boolean,
+        default: true
+    }
+});
 
-export default {
-	props: {
-		placement: {
-			type: String,
-			default: "bottom-end"
-		},
-		boundary: {
-			type: String,
-			default: "scrollParent"
-		},
-		autoClose: {
-			type: Boolean,
-			default: true
-		}
-	},
-	data() {
-		return {
-			show: false
-		};
-	},
-	watch: {
-		show(show) {
-			//set dropdown location dynamically
-			if (show) {
-				this.$nextTick(() => {
-					this.popper = new Popper(this.$el, this.$refs.dropdown, {
-						placement: this.placement,
-						modifiers: {
-							preventOverflow: { boundariesElement: this.boundary }
-						}
-					});
-				});
-			} else if (this.popper) {
-				setTimeout(() => this.popper.destroy(), 100);
-			}
-		}
-	},
-	mounted() {
-		document.addEventListener("keydown", e => {
-			if (e.key === 27) {
-				this.show = false;
-			}
-		});
-	}
+const closeOnEscape = e => {
+    if (open.value && e.key === "Escape") {
+        open.value = false;
+    }
 };
+
+onMounted(() => document.addEventListener("keydown", closeOnEscape));
+onUnmounted(() => document.removeEventListener("keydown", closeOnEscape));
+
+const widthClass = computed(() => {
+    return {
+        48: "w-48"
+    }[props.width.toString()];
+});
+
+const alignmentClasses = computed(() => {
+    if (props.align === "left") {
+        return "origin-top-left left-0";
+    } else if (props.align === "right") {
+        return "origin-top-right right-0";
+    } else if (props.align === "bottom-center") {
+        return "left-0 top-10";
+    } else {
+        return "origin-top";
+    }
+});
+
+const open = ref(false);
 </script>
+
+<template>
+    <div class="relative">
+        <div class="h-full w-full cursor-pointer" @click="open = !open">
+            <slot name="trigger" />
+        </div>
+
+        <!-- Full Screen Dropdown Overlay -->
+        <div
+            v-show="open"
+            class="fixed inset-0 z-40"
+            @click="open = false"
+        ></div>
+
+        <transition
+            enter-active-class="transition ease-out duration-200"
+            enter-from-class="transform opacity-0 scale-95"
+            enter-to-class="transform opacity-100 scale-100"
+            leave-active-class="transition ease-in duration-75"
+            leave-from-class="transform opacity-100 scale-100"
+            leave-to-class="transform opacity-0 scale-95"
+        >
+            <div
+                v-show="open"
+                class="absolute z-50 mt-2 rounded-md shadow-lg"
+                :class="[widthClass, alignmentClasses]"
+                style="display: none"
+                @click="open = !closeOnClick"
+            >
+                <div
+                    class="rounded-md ring-1 ring-black ring-opacity-5"
+                    :class="contentClasses"
+                >
+                    <slot name="content" />
+                </div>
+            </div>
+        </transition>
+    </div>
+</template>

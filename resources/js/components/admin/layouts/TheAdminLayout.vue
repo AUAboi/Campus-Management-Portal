@@ -1,16 +1,35 @@
 <script setup>
 import IconChevronDown from "~icons/mdi/chevron-down";
-import AppDropdown from "../ui/AppDropdown.vue";
-import AppFlashMessage from "../ui/AppFlashMessage.vue";
+import TheAdminMenu from "./TheAdminMenu.vue";
+import TheDropdownMenu from "./TheDropdownMenu.vue";
+import AppDropdown from "../../shared/ui/AppDropdown.vue";
+import AppFlashMessage from "../../shared/ui/AppFlashMessage.vue";
+import { Link, usePage } from "@inertiajs/vue3";
+import { computed } from "vue";
+
+const user = computed(() => {
+    return usePage().props.auth.user;
+});
+
+const appName = computed(() => {
+    return usePage().props.appName;
+});
 </script>
 <template>
-    <div class="md:h-screen md:flex md:flex-col overflow-y-hidden">
-        <div class="dropdown"></div>
+    <div class="md:h-screen md:flex md:flex-col ">
         <header>
             <nav>
                 <div class="nav-title ">
-                    <a href="./dashboard" class="mt-1 text-2xl">RL Academia</a>
-                    <AppDropdown class="md:hidden fill-current text-white">
+                    <Link :href="route('admin.dashboard')" class="mt-1 text-2xl"
+                        >RL Academia</Link
+                    >
+                    <AppDropdown
+                        class="md:hidden"
+                        :contentClasses="[
+                            'mt-1',
+                            'mt-2 px-8 py-4 shadow-lg bg-indigo-800 rounded'
+                        ]"
+                    >
                         <template v-slot:trigger>
                             <svg
                                 class="fill-white w-6 h-6"
@@ -24,17 +43,15 @@ import AppFlashMessage from "../ui/AppFlashMessage.vue";
                         </template>
 
                         <template v-slot:content>
-                            <div
-                                class="mt-2 px-8 py-4 shadow-lg bg-indigo-800 rounded"
-                            >
-                                <slot />
+                            <div>
+                                <TheAdminMenu />
                             </div>
                         </template>
                     </AppDropdown>
                 </div>
                 <div class="nav-header">
                     <div class="mt-1 mr-4">{{ appName }}</div>
-                    <AppDropdown class="mt-1">
+                    <AppDropdown :contentClasses="['mt-1', 'bg-white']">
                         <template v-slot:trigger>
                             <div
                                 class="flex items-center cursor-pointer select-none group"
@@ -54,7 +71,7 @@ import AppFlashMessage from "../ui/AppFlashMessage.vue";
                             <div
                                 class="mt-2 py-2 shadow-xl bg-white rounded text-sm"
                             >
-                                <div class="dropdownmenu"></div>
+                                <TheDropdownMenu />
                             </div>
                         </template>
                     </AppDropdown>
@@ -65,7 +82,7 @@ import AppFlashMessage from "../ui/AppFlashMessage.vue";
             <nav
                 class="hidden md:block bg-indigo-800 text-white flex-shrink-0 w-56 p-12 overflow-y-auto"
             >
-                <slot />
+                <TheAdminMenu />
             </nav>
 
             <main
@@ -78,31 +95,11 @@ import AppFlashMessage from "../ui/AppFlashMessage.vue";
                             Object.keys($page.props.errors).length > 0
                     "
                 />
-                <div class="maincontent"></div>
+                <slot />
             </main>
         </div>
     </div>
 </template>
-
-<script>
-export default {
-    computed: {
-        user() {
-            return this.$page.props.auth.user;
-        },
-        appName() {
-            return this.$page.props.appName;
-        }
-    },
-    components: {
-        AppFlashMessage,
-        IconChevronDown,
-        AppDropdown,
-        AppDropdown,
-        AppFlashMessage
-    }
-};
-</script>
 
 <style scoped>
 nav {
