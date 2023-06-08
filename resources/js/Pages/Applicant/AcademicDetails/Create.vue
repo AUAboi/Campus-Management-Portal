@@ -1,10 +1,5 @@
 <script setup>
 import TheApplicantHead from "../../../components/applicant/meta/TheApplicantHead.vue";
-import FormInputSelect from "../../../components/shared/form/FormInputSelect.vue";
-import ChooseDegreeType from "../../../components/applicant/forms/steps/ChooseDegreeType.vue";
-import AppButton from "../../../components/shared/ui/AppButton.vue";
-import EducationInfo from "../../../components/applicant/forms/steps/EducationInfo.vue";
-import FormInputText from "../../../components/shared/form/FormInputText.vue";
 import SelectTypeStep from "./Partials/SelectTypeStep.vue";
 import SelectQualificationStep from "./Partials/SelectQualificationStep.vue";
 import SelectExamStep from "./Partials/SelectExamStep.vue";
@@ -35,6 +30,7 @@ const form = useForm({
     obtained_marks: "",
     total_marks: ""
 });
+
 const currentStep = ref(1);
 const transition = ref("previous");
 const animateShake = ref(false);
@@ -84,7 +80,7 @@ const isLastStep = computed(() => {
                 <SelectTypeStep
                     :key="currentStep"
                     v-if="currentStep === 1"
-                    :form="form"
+                    v-model="form"
                     :degreeTypes="degreeTypes"
                     :animateShake="animateShake"
                 />
@@ -92,14 +88,14 @@ const isLastStep = computed(() => {
                     v-if="currentStep === 2"
                     :key="currentStep"
                     class="form"
-                    :form="form"
+                    v-model="form"
                     :organizations="organizations"
                     :degreeTypes="degreeTypes"
                 />
                 <SelectExamStep
                     v-if="currentStep === 3"
                     :key="currentStep"
-                    :form="form"
+                    v-model="form"
                     class="form"
                 />
             </transition-group>

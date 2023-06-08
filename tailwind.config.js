@@ -1,17 +1,14 @@
 const colors = require("tailwindcss/colors");
 
 module.exports = {
-    purge: {
-        enabled: false,
-        content: [
-            "./resources/**/*.blade.php",
-            "./resources/**/*.js",
-            "./resources/**/*.vue",
-            "./resources/**/*.css"
-        ]
-    },
 
-    darkMode: false, // or 'media' or 'class'
+    content: [
+        "./resources/**/*.blade.php",
+        "./resources/**/*.js",
+        "./resources/**/*.vue",
+        "./resources/**/*.css"
+    ],
+
     theme: {
         colors: {
             transparent: "transparent",
@@ -22,7 +19,7 @@ module.exports = {
             orange: colors.orange,
             yellow: colors.yellow,
             green: colors.green,
-            gray: colors.blueGray,
+            gray: colors.slate,
             indigo: {
                 100: "#e6e8ff",
                 300: "#b2b7ff",
