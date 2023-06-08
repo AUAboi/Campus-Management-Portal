@@ -1,10 +1,10 @@
 <script setup>
 import { computed } from "vue";
+import { useAcademicDetailsForm } from "@/stores/academicDetailsForm";
+
+const form = useAcademicDetailsForm().form;
 
 const props = defineProps({
-    modelValue: {
-        required: true
-    },
     degreeTypes: {
         required: true
     },
@@ -13,17 +13,6 @@ const props = defineProps({
 
 const animateShakeClass = computed(() => {
     return props.animateShake ? "animateshake" : "";
-});
-
-const emits = defineEmits(["update:modelValue"]);
-
-const form = computed({
-    get() {
-        return props.modelValue;
-    },
-    set(val) {
-        emits("update:modelValue", val);
-    }
 });
 </script>
 

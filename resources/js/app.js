@@ -6,12 +6,11 @@ import { createInertiaApp } from '@inertiajs/vue3'
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 
-import Layout from "@/components/shared/layouts/Layout.vue"
 import TheAdminLayout from "@/components/admin/layouts/TheAdminLayout.vue"
-import AppStudentMenu from "@/components/student/layouts/AppStudentMenu.vue"
-import TheApplicantMenu from "@/components/applicant/layouts/TheApplicantMenu.vue"
 import TheApplicantLayout from "@/components/applicant/layouts/TheApplicantLayout.vue"
 
+import { createPinia } from 'pinia'
+const pinia = createPinia()
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
@@ -38,6 +37,7 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         return createApp({ render: () => h(App, props) })
             .use(plugin)
+            .use(pinia)
             .use(ZiggyVue, Ziggy)
             .mount(el);
     },

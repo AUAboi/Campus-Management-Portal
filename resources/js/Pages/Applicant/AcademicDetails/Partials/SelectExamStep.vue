@@ -2,6 +2,9 @@
 import { computed } from "vue";
 import FormInputSelect from "../../../../components/shared/form/FormInputSelect.vue";
 import FormInputText from "../../../../components/shared/form/FormInputText.vue";
+import { useAcademicDetailsForm } from "@/stores/academicDetailsForm";
+
+const form = useAcademicDetailsForm().form;
 
 const props = defineProps({
     modelValue: {
@@ -10,15 +13,6 @@ const props = defineProps({
 });
 
 const emits = defineEmits(["update:modelValue"]);
-
-const form = computed({
-    get() {
-        return props.modelValue;
-    },
-    set(val) {
-        emits("update:modelValue", val);
-    }
-});
 
 const percentage = computed(() => {
     return ((form.value.obtained_marks / form.value.total_marks) * 100).toFixed(

@@ -1,26 +1,15 @@
 <script setup>
 import FormInputSelect from "@/components/shared/form/FormInputSelect.vue";
-import { computed } from "vue";
+
+import { useAcademicDetailsForm } from "@/stores/academicDetailsForm";
+
+const form = useAcademicDetailsForm().form;
 const props = defineProps({
-    modelValue: {
-        required: true
-    },
     organizations: {
         required: true
     },
     degreeTypes: {
         required: true
-    }
-});
-
-const emits = defineEmits(["update:modelValue"]);
-
-const form = computed({
-    get() {
-        return props.modelValue;
-    },
-    set(val) {
-        emits("update:modelValue", val);
     }
 });
 </script>
