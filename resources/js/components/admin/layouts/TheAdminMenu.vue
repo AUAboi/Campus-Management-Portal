@@ -5,7 +5,7 @@ import { Link, usePage } from "@inertiajs/vue3";
 const manage_applications = ref(false);
 const page = usePage();
 const isUrl = (...urls) => {
-    let currentUrl = page.url.substr(1);
+    let currentUrl = page.url.substring(1);
     currentUrl = currentUrl.replace("admin/", "");
     if (urls[0] === "") {
         return currentUrl === "";

@@ -20,7 +20,9 @@ const appName = computed(() => {
         <header>
             <nav>
                 <div class="nav-title ">
-                    <Link :href="route('admin.dashboard')" class="mt-1 text-2xl"
+                    <Link
+                        :href="route('applicant.dashboard')"
+                        class="mt-1 text-2xl"
                         >RL Academia</Link
                     >
                     <AppDropdown
@@ -80,7 +82,7 @@ const appName = computed(() => {
         </header>
         <div class="md:flex md:flex-grow md:overflow-hidden">
             <nav
-                class="hidden md:block bg-indigo-800 text-white flex-shrink-0 w-56 p-12 overflow-y-auto"
+                class="hidden md:block bg-indigo-800 text-white flex-shrink-0 w-56 px-10 py-12 overflow-y-auto"
             >
                 <TheApplicantMenu />
             </nav>
