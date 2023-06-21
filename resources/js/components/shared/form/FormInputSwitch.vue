@@ -3,8 +3,8 @@ import { ref } from "vue";
 
 const props = defineProps({
     modelValue: {
-        type: [String, Number],
-        default: ""
+        type: [Boolean],
+        default: false
     }
 });
 
@@ -21,7 +21,7 @@ const input = ref(null);
                     :checked="modelValue"
                     type="checkbox"
                     id="toggle"
-                    @input="$emit('update:modelValue', $event.target.checked)"
+                    @change="$emit('update:modelValue', $event.target.checked)"
                     ref="input"
                     class="sr-only"
                 />

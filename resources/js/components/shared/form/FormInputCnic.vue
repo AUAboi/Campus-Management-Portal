@@ -30,7 +30,6 @@ const bindedObject = reactive({});
             v-bind="{ ...$attrs, class: null }"
             class="form-input"
             :class="{ error: error }"
-            :type="type"
             v-maska="bindedObject"
             :value="modelValue"
             @input="$emit('update:modelValue', bindedObject.unmasked)"
