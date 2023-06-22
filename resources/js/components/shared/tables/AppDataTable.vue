@@ -42,7 +42,7 @@ const getValue = (obj, prop) => {
             <tr
                 v-for="(data, index) in tableData"
                 :key="index"
-                class="hover:bg-gray-100 focus-within:bg-gray-100"
+                class="hover:bg-gray-100 focus-within:bg-gray-100 data-row"
             >
                 <td
                     v-for="(label, index) in labels"

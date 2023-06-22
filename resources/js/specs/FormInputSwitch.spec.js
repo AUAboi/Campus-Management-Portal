@@ -1,6 +1,7 @@
 
 import { mount } from "@vue/test-utils";
 import FormInputSwitch from "../components/shared/form/FormInputSwitch.vue";
+import { it } from "vitest";
 
 const wrapper = mount(FormInputSwitch, {
   props: {
