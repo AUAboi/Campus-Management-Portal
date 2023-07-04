@@ -1,19 +1,17 @@
 <script setup>
-import AppDropdown from "@/Components/shared/ui/AppDropdown.vue";
+import AppDropdown from "@/components/shared/ui/AppDropdown.vue";
 
 const props = defineProps({
     modelValue: {
         required: false
-    },
-    maxWidth: {
-        type: Number,
-        default: 300
     },
     filterable: {
         type: Boolean,
         default: false
     }
 });
+
+defineEmits(["update:modelValue", "reset"]);
 </script>
 <template>
     <div class="flex items-center">

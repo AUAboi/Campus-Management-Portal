@@ -9,7 +9,6 @@ const wrapper = mount(FormInputText, {
   },
 });
 
-
 test("test mount FormInputText component", async () => {
   expect(FormInputText).toBeTruthy();
 });

@@ -47,5 +47,5 @@ Route::group(['middleware' => ['role:student']], function () {
   });
 });
 
-require_once "applicant.php";
-require_once "admin.php";
+require "applicant.php";
+require "admin.php";

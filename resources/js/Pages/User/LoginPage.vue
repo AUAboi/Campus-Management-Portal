@@ -1,3 +1,14 @@
+<script setup>
+import { Head, useForm } from "@inertiajs/vue3";
+import FormInputText from "../../components/shared/form/FormInputText.vue";
+
+const form = useForm({
+    email: "admin@mail.com", //For testing purpose, set null later.
+    password: "password",
+    remember: true
+});
+</script>
+
 <template>
     <main
         class="p-6 bg-indigo-800 min-h-screen flex justify-center items-center"
@@ -40,25 +51,3 @@
         </form>
     </main>
 </template>
-
-<script>
-import { Head } from "@inertiajs/vue3";
-import FormInputText from "../../components/shared/form/FormInputText.vue";
-
-export default {
-    layout: null,
-    components: {
-        Head,
-        FormInputText
-    },
-    data() {
-        return {
-            form: this.$inertia.form({
-                email: "admin@mail.com", //For testing purpose, set null later.
-                password: "password",
-                remember: true
-            })
-        };
-    }
-};
-</script>

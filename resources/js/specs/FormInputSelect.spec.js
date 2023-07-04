@@ -10,7 +10,6 @@ const wrapper = mount(FormInputSelect, {
   slots: {
     default: '<option value="first" selected>First</option>',
   }
-
 });
 
 test("test mount FormInputSelect component", async () => {
