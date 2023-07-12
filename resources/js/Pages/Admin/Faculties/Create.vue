@@ -1,3 +1,30 @@
+<script setup>
+import { Link } from "@inertiajs/vue3";
+import { useForm } from "@inertiajs/vue3";
+
+import FormInputText from "../../../components/shared/form/FormInputText.vue";
+import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
+import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
+import { TWFormInputText } from "tw-vue";
+
+const form = useForm({
+    faculty_name: ""
+});
+
+const crumbs = [
+    {
+        text: "Faculty",
+        route: route("admin.faculties")
+    },
+    {
+        text: "Create"
+    }
+];
+
+const store = () => {
+    form.post(route("admin.faculties.store"));
+};
+</script>
 <template>
     <div>
         <TheAdminHead title="Create Faculty" />
@@ -5,7 +32,7 @@
         <div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
             <form class="m-0" @submit.prevent="store">
                 <div class="form-row">
-                    <FormInputText
+                    <TWFormInputText
                         v-model="form.faculty_name"
                         label="Create Faculty"
                         :error="form.errors.faculty_name"
@@ -26,42 +53,3 @@
         </div>
     </div>
 </template>
-
-<script>
-import { Link } from "@inertiajs/vue3";
-
-import FormInputText from "../../../components/shared/form/FormInputText.vue";
-import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
-import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
-
-export default {
-    components: {
-        Link,
-        FormInputText,
-        AppBreadCrumbs,
-        TheAdminHead
-    },
-    data() {
-        return {
-            form: this.$inertia.form({
-                faculty_name: ""
-            }),
-
-            crumbs: [
-                {
-                    text: "Faculty",
-                    route: this.route("admin.faculties")
-                },
-                {
-                    text: "Create"
-                }
-            ]
-        };
-    },
-    methods: {
-        store() {
-            this.form.post(this.route("admin.faculties.store"));
-        }
-    }
-};
-</script>
