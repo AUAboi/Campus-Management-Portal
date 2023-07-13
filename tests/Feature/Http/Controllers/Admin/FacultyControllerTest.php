@@ -4,6 +4,7 @@ namespace Tests\Feature\Http\Controllers\Admin;
 
 use App\Models\Faculty;
 use App\Models\User;
+use Carbon\Factory;
 use Database\Seeders\PermissionSeeder;
 use Database\Seeders\RoleSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -26,26 +27,25 @@ class FacultyControllerTest extends TestCase
         $this->seed(PermissionSeeder::class);
 
         $this->user = User::factory()->create();
+        $this->user->assignRole('super-admin');
+        Faculty::factory()->times(10)->create();
     }
 
 
     /** @test */
     public function faculty_page_loads()
     {
-        Faculty::factory()->times(10)->create();
-
         $this->actingAs($this->user)
             ->get('/admin/faculties')
             ->assertInertia(
                 fn (AssertableInertia $page) => $page
                     ->component('Admin/Faculties/Index')
-                    ->has('faculties.data', 0)
+                    ->has('faculties.data', 10)
                     ->has('filters')
-                    //default admin has no permissions allowed
                     ->has(
                         'permissions',
                         fn (AssertableInertia $page) => $page
-                            ->where('create', false)
+                            ->where('create', true)
                     )
             );
     }
