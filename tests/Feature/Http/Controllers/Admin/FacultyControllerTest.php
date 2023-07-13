@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Http\Controllers\Admin;
 
+use App\Models\Faculty;
 use App\Models\User;
 use Database\Seeders\PermissionSeeder;
 use Database\Seeders\RoleSeeder;
@@ -23,6 +24,7 @@ class FacultyControllerTest extends TestCase
         //Seed roles
         $this->seed(RoleSeeder::class);
         $this->seed(PermissionSeeder::class);
+
         $this->user = User::factory()->create();
     }
 
@@ -30,6 +32,8 @@ class FacultyControllerTest extends TestCase
     /** @test */
     public function faculty_page_loads()
     {
+        Faculty::factory()->times(10)->create();
+
         $this->actingAs($this->user)
             ->get('/admin/faculties')
             ->assertInertia(
