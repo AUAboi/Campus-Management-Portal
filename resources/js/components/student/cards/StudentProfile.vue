@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from "vue";
 import ProfileCard from "../../shared/cards/ProfileCard.vue";
+import { Link } from "@inertiajs/vue3";
 
 const props = defineProps({
     user: {

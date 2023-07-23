@@ -75,7 +75,13 @@
                     <span class="font-semibold"> {{ application.date }} </span>
                 </li>
             </ul>
-            <div class="flex gap-2 mt-4">
+            <div
+                v-if="
+                    application.status !== 'accepted' &&
+                        application.status !== 'rejected'
+                "
+                class="flex gap-2 mt-4"
+            >
                 <form @submit.prevent="approve">
                     <AppButton class="bg-green-600" text="Approve" />
                 </form>
