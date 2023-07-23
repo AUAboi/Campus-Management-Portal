@@ -1,3 +1,44 @@
+<script setup>
+import { router } from "@inertiajs/vue3";
+import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
+import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
+import AppButton from "../../../components/shared/ui/AppButton.vue";
+
+const props = defineProps({
+    application: {
+        required: true
+    }
+});
+
+const crumbs = [
+    {
+        text: "Applications",
+        route: route("admin.applications")
+    },
+    {
+        text: `${props.application.user.name}'s application`
+    }
+];
+
+const approve = () => {
+    router.put(
+        this.route("admin.applications.update", {
+            application: props.application.id,
+            status: "accepted"
+        })
+    );
+};
+
+const reject = () => {
+    router.put(
+        this.route("admin.applications.update", {
+            application: props.application.id,
+            status: "rejected"
+        })
+    );
+};
+</script>
+
 <template>
     <div>
         <TheAdminHead :title="`${application.user.name}'s application`" />
@@ -14,12 +55,7 @@
                 <li>Gender: {{ application.user.gender }}</li>
                 <li>
                     Age:
-                    {{
-                        new Date().getFullYear() -
-                            new Date(
-                                application.user.date_of_birth
-                            ).getFullYear()
-                    }}
+                    {{ application.user.age }}
                 </li>
             </ul>
         </div>
@@ -92,52 +128,3 @@
         </div>
     </div>
 </template>
-
-<script>
-import { router } from "@inertiajs/vue3";
-import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
-import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
-import AppButton from "../../../components/shared/ui/AppButton.vue";
-
-export default {
-    components: { TheAdminHead, AppBreadCrumbs, AppButton },
-    data() {
-        return {
-            crumbs: [
-                {
-                    text: "Applications",
-                    route: this.route("admin.applications")
-                },
-                {
-                    text: `${this.application.user.name}'s application`
-                }
-            ]
-        };
-    },
-    props: {
-        application: {
-            required: true
-        }
-    },
-    methods: {
-        approve() {
-            router.put(
-                this.route("admin.applications.update", {
-                    application: this.application.id,
-                    status: "accepted"
-                })
-            );
-        },
-        reject() {
-            router.put(
-                this.route("admin.applications.update", {
-                    application: this.application.id,
-                    status: "rejected"
-                })
-            );
-        }
-    }
-};
-</script>
-
-<style></style>

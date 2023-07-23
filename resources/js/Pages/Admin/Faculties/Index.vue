@@ -1,3 +1,58 @@
+<script setup>
+import { Link, router } from "@inertiajs/vue3";
+import { reactive } from "vue";
+import pickBy from "lodash/pickBy";
+import AppDataTable from "@/components/shared/tables/AppDataTable.vue";
+import AppTablePagination from "@/components/shared/tables/AppTablePagination.vue";
+import AppTableSearch from "@/components/shared/tables/AppTableSearch.vue";
+import TheAdminHead from "@/components/admin/meta/TheAdminHead.vue";
+import { watchThrottled } from "@vueuse/core";
+
+const props = defineProps({
+    filters: {
+        type: Object
+    },
+    faculties: {
+        required: false
+    },
+    permissions: {
+        type: Object,
+        required: false,
+        default: () => ({
+            create: false
+        })
+    }
+});
+
+const labels = [
+    {
+        key: "faculty_name",
+        value: "Name"
+    }
+];
+
+const form = reactive({
+    search: props.filters.search
+});
+
+const reset = () => {
+    form.search = null;
+};
+
+watchThrottled(
+    form,
+    () => {
+        router.get(route("admin.faculties"), pickBy(form), {
+            preserveState: true,
+            replace: true
+        });
+    },
+    {
+        throttle: 500
+    }
+);
+</script>
+
 <template>
     <div>
         <TheAdminHead title="Faculties" />
@@ -17,7 +72,7 @@
                 :href="route('admin.faculties.create')"
             >
                 <span>Create</span>
-                <span class="hidden md:inline">faculty</span>
+                <span class="hidden md:inline"> faculty</span>
             </Link>
         </div>
         <div class="bg-white rounded-md shadow overflow-x-auto">
@@ -30,73 +85,3 @@
         <AppTablePagination class="mt-6" :links="faculties.meta.links" />
     </div>
 </template>
-
-<script>
-import { Link } from "@inertiajs/vue3";
-
-import throttle from "lodash/throttle";
-import pickBy from "lodash/pickBy";
-import mapValues from "lodash/mapValues";
-import AppDataTable from "@/components/shared/tables/AppDataTable.vue";
-import AppTablePagination from "@/components/shared/tables/AppTablePagination.vue";
-import AppTableSearch from "@/components/shared/tables/AppTableSearch.vue";
-import TheAdminHead from "@/components/admin/meta/TheAdminHead.vue";
-
-export default {
-    data() {
-        return {
-            labels: [
-                {
-                    key: "faculty_name",
-                    value: "Name"
-                }
-            ],
-            form: {
-                search: this.filters.search
-            }
-        };
-    },
-    components: {
-        Link,
-        AppDataTable,
-        AppTablePagination,
-        AppTableSearch,
-        TheAdminHead
-    },
-    props: {
-        filters: {
-            type: Object
-        },
-        faculties: {
-            required: false
-        },
-        permissions: {
-            type: Object,
-            required: false,
-            default: () => ({
-                create: false
-            })
-        }
-    },
-    methods: {
-        reset() {
-            this.form = mapValues(this.form, () => null);
-        }
-    },
-    watch: {
-        form: {
-            deep: true,
-            handler: throttle(function() {
-                this.$inertia.get(
-                    this.route("admin.faculties"),
-                    pickBy(this.form),
-                    {
-                        preserveState: true,
-                        replace: true
-                    }
-                );
-            }, 300)
-        }
-    }
-};
-</script>

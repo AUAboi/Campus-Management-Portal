@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
@@ -23,6 +24,7 @@ class UserResource extends JsonResource
             'cnic' => $this->cnic,
             'gender' => $this->gender,
             'date_of_birth' => $this->date_of_birth,
+            'age' => Carbon::parse($this->date_of_birth)->age,
             'enrollments' => new EnrollmentCollection($this->whenLoaded('enrollments')),
             'academicDetails' => AcademicDetailsResource::collection($this->whenLoaded('academicDetails')),
 

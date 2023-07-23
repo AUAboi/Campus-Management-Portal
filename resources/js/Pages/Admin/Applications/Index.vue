@@ -1,7 +1,65 @@
+<script setup>
+import pickBy from "lodash/pickBy";
+import TheAdminHead from "@/components/admin/meta/TheAdminHead.vue";
+import AppDataTable from "@/components/shared/tables/AppDataTable.vue";
+import AppTablePagination from "@/components/shared/tables/AppTablePagination.vue";
+import AppTableSearch from "@/components/shared/tables/AppTableSearch.vue";
+import { watchThrottled } from "@vueuse/core";
+import { router } from "@inertiajs/vue3";
+import { reactive, computed } from "vue";
+
+const form = reactive({
+    search: "",
+    status: ""
+});
+
+const labels = [
+    {
+        key: "user.name",
+        value: "Name"
+    },
+    {
+        key: "program.program_name",
+        value: "Program"
+    },
+    {
+        key: "status",
+        value: "Status"
+    }
+];
+const props = defineProps({
+    statuses: Array,
+    applications: {
+        type: Object
+    }
+});
+
+const appliedCount = computed(() => {
+    return props.applications.length;
+});
+
+const reset = () => {
+    form.search = null;
+    form.status = null;
+};
+
+watchThrottled(
+    form,
+    () => {
+        router.get(route("admin.applications"), pickBy(form), {
+            preserveState: true,
+            replace: true
+        });
+    },
+    { throttle: 500 }
+);
+</script>
+
 <template>
     <div>
         <TheAdminHead title="Applications" />
         <h1 class="mb-8 font-bold text-3xl">Application</h1>
+
         <div class="mb-6 flex justify-between items-center">
             <AppTableSearch
                 v-model="form.search"
@@ -35,75 +93,3 @@
         <AppTablePagination class="mt-6" :links="applications.meta.links" />
     </div>
 </template>
-
-<script>
-import mapValues from "lodash/mapValues";
-import pickBy from "lodash/pickBy";
-import throttle from "lodash/throttle";
-import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
-import AppDataTable from "../../../components/shared/tables/AppDataTable.vue";
-import AppTablePagination from "../../../components/shared/tables/AppTablePagination.vue";
-import AppTableSearch from "../../../components/shared/tables/AppTableSearch.vue";
-
-export default {
-    data() {
-        return {
-            form: {
-                search: "",
-                status: ""
-            },
-            labels: [
-                {
-                    key: "user.name",
-                    value: "Name"
-                },
-                {
-                    key: "program.program_name",
-                    value: "Program"
-                },
-                {
-                    key: "status",
-                    value: "Status"
-                }
-            ]
-        };
-    },
-    props: {
-        statuses: Array,
-        applications: {
-            type: Object
-        }
-    },
-    computed: {
-        appliedCount() {
-            return this.applications.length;
-        }
-    },
-    methods: {
-        reset() {
-            this.form = mapValues(this.form, () => null);
-        }
-    },
-    watch: {
-        form: {
-            deep: true,
-            handler: throttle(function() {
-                this.$inertia.get(
-                    this.route("admin.applications"),
-                    pickBy(this.form),
-                    {
-                        preserveState: true,
-                        replace: true
-                    }
-                );
-            }, 300)
-        }
-    },
-    components: {
-        AppDataTable,
-        TheAdminHead,
-        AppTablePagination,
-        AppTableSearch
-    }
-};
-</script>
