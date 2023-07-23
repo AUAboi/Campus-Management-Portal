@@ -80,7 +80,9 @@ const destroy = () => {
     alertConfirm(
         result => {
             if (result.isConfirmed) {
-                form.delete(route("admin.programs.destroy", this.program.slug));
+                form.delete(
+                    route("admin.programs.destroy", props.program.slug)
+                );
             }
         },
         { title: `Deleting ${props.program.program_name}` }
