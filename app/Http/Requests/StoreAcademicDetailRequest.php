@@ -37,6 +37,7 @@ class StoreAcademicDetailRequest extends FormRequest
             'organization_id' => 'required|exists:organizations,id',
             'total_marks' => 'required|numeric',
             'obtained_marks' => 'required|numeric|lte:total_marks',
+            'image' => 'required|file|mimes:png,jpg,webp|max:3000'
         ];
     }
 }

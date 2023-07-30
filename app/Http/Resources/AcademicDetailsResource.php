@@ -24,6 +24,7 @@ class AcademicDetailsResource extends JsonResource
             'organization' => $this->whenLoaded('organization'),
             'obtained_marks' => $this->obtained_marks,
             'total_marks' => $this->total_marks,
+            'image' =>  $this->media ? $this->media->baseMedia->getUrl() : null,
         ];
     }
 }

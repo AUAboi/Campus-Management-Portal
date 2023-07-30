@@ -30,4 +30,9 @@ class AcademicDetail extends Model
     {
         return $this->belongsTo(Organization::class);
     }
+
+    public function media()
+    {
+        return $this->hasOne(AcademicDetailMedia::class);
+    }
 }

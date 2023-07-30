@@ -30,9 +30,11 @@ const callToAction = () => {
     animateShake.value = true;
     setTimeout(resetAnimation, 1000);
 };
+
 const resetAnimation = () => {
     animateShake.value = false;
 };
+
 const store = () => {
     form.post(route("applicant.academic-details.store"), {
         preserveState: false,
@@ -41,9 +43,9 @@ const store = () => {
 };
 </script>
 <template>
-    <div class="flex flex-col gap-8 h-full">
+    <div class="flex flex-col gap-8">
         <TheApplicantHead title="Add Academic details" />
-        <div class="h-full">
+        <div class="h-fit">
             <transition-group :name="`slide-${academicDetailsForm.transition}`">
                 <SelectTypeStep
                     :key="academicDetailsForm.currentStep"
@@ -101,7 +103,7 @@ const store = () => {
                 @click.prevent="store"
             >
                 <span class="flex gap-2 items-center">
-                    Store
+                    Add
                 </span>
             </button>
         </div>

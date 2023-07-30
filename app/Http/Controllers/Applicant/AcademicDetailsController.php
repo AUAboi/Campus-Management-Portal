@@ -9,7 +9,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Resources\AcademicDetailsResource;
 use App\Http\Requests\StoreAcademicDetailRequest;
+use App\Models\AcademicDetail;
 use App\Services\Applicant\AcademicDetailService;
+use Illuminate\Support\Facades\DB;
 
 class AcademicDetailsController extends Controller
 {
@@ -39,7 +41,26 @@ class AcademicDetailsController extends Controller
             return Redirect::route('applicant.academic-details')->with('error', 'Already added all details. Delete previous if you want to add again');
         }
 
-        auth()->user()->academicDetails()->create($request->validated());
+        try {
+            DB::transaction(function () use ($request) {
+                $academicDetail = auth()->user()->academicDetails()->create($request->validated());
+                $this->addImage($academicDetail, $request->validated()['image']);
+            });
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Error: ' . $th->getMessage());
+        }
+
         return Redirect::route('applicant.academic-details')->with('success', 'Added successfully!');
+    }
+
+    public function addImage(AcademicDetail $academicDetail, $image)
+    {
+        if ($academicDetail->media) {
+            $academicDetail->media->delete();
+        }
+        $academicDetailMedia = $academicDetail->media()->create([]);
+        $academicDetailMedia->baseMedia()->associate(
+            $academicDetailMedia->addMedia($image)->toMediaCollection()
+        )->save();
     }
 }

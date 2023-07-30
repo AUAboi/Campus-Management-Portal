@@ -15,7 +15,8 @@ export const useAcademicDetailsForm = defineStore('academicDetailsForm', () => {
     reg_no: "",
     passing_year: "",
     obtained_marks: "",
-    total_marks: ""
+    total_marks: "",
+    image: ""
   });
 
   const isFirstStep = computed(() => {

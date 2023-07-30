@@ -87,8 +87,12 @@ const reject = () => {
                         }}
                     </li>
                 </ul>
+                <div>
+                    <img :src="detail.image" alt="" />
+                </div>
             </div>
         </div>
+
         <div
             class="bg-white rounded-md shadow overflow-hidden max-w-3xl px-2 py-4"
         >

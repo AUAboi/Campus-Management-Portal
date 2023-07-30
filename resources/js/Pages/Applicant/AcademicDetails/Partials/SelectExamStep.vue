@@ -3,6 +3,8 @@ import { computed } from "vue";
 import FormInputSelect from "../../../../components/shared/form/FormInputSelect.vue";
 import FormInputText from "../../../../components/shared/form/FormInputText.vue";
 import { useAcademicDetailsForm } from "@/stores/academicDetailsForm";
+import FormInputImage from "../../../../components/shared/form/FormInputImage.vue";
+import AppImagePreview from "../../../../components/shared/ui/AppImagePreview.vue";
 
 const form = useAcademicDetailsForm().form;
 
@@ -17,9 +19,17 @@ const emits = defineEmits(["update:modelValue"]);
 const percentage = computed(() => {
     return ((form.obtained_marks / form.total_marks) * 100).toFixed(2);
 });
+
+const handleSelectedMedia = files => {
+    form.image = files;
+};
 </script>
 <template>
     <div>
+        <h2 class="p-6 pb-0 text-xl font-semibold">
+            Result Information
+        </h2>
+        <AppImagePreview class="mx-auto max-w-lg mt-4" :src="form.image" />
         <div class="form-row">
             <FormInputSelect
                 label="Exam Type"
@@ -35,6 +45,13 @@ const percentage = computed(() => {
                 label="Registeration/Roll Number"
                 v-model="form.reg_no"
                 :error="form.errors.reg_no"
+            />
+        </div>
+        <div class="form-row">
+            <FormInputImage
+                label="Upload result card"
+                @selected="handleSelectedMedia"
+                :error="form.errors.image"
             />
         </div>
         <div class="form-row form-row-full">
