@@ -4,8 +4,6 @@ import { useForm } from "@inertiajs/vue3";
 
 import AppBreadCrumbs from "../../../components/shared/ui/AppBreadCrumbs.vue";
 import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
-import FormInputText from "../../../components/shared/form/FormInputText.vue";
-import FormInputSelect from "../../../components/shared/form/FormInputSelect.vue";
 import { TWFormInputSelect, TWFormInputText } from "tw-vue";
 
 const props = defineProps({

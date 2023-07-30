@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Services\Applicant\AcademicDetailService;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,10 +25,11 @@ class StoreAcademicDetailRequest extends FormRequest
      */
     public function rules()
     {
+        $academicDetailService = new AcademicDetailService();
 
         // [$this->input('degree_type')]);
         return [
-            'type' => ['required', Rule::in(array_keys(config('constants.academic_details.degree_types')))],
+            'type' => ['required', 'in:' . implode(",", array_keys($academicDetailService->availableAcademicTypes(auth()->user()))), Rule::in(array_keys(config('constants.academic_details.degree_types')))],
             'title' => ['required', Rule::in(config('constants.academic_details.degree_types')[$this->input('type')])],
             'exam_type' => 'required',
             'reg_no' => 'required',

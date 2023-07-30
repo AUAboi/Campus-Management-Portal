@@ -38,8 +38,12 @@ class ApplicationController extends Controller
         ]);
     }
 
-    public function create(Request $request)
+    public function create(Request $request, AcademicDetailService $academicDetailService)
     {
+        if (!empty($academicDetailService->availableAcademicTypes(auth()->user()))) {
+            return redirect()->back()->with('error', 'Add all academic details');
+        }
+
         $applied_programs = auth()->user()->applications->pluck('program_id');
 
         $filters = $request->all('search');
@@ -61,8 +65,13 @@ class ApplicationController extends Controller
         );
     }
 
-    public function store(StoreApplicationRequest $request, ApplicationService $applicationService)
+    public function store(StoreApplicationRequest $request, ApplicationService $applicationService, AcademicDetailService $academicDetailService)
     {
+        if (!empty($academicDetailService->availableAcademicTypes(auth()->user()))) {
+            return redirect()->back()->with('error', 'Add all academic details');
+        }
+
+
         $program = Program::find($request->program_id);
 
         try {

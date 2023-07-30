@@ -15,9 +15,7 @@ const props = defineProps({
 const emits = defineEmits(["update:modelValue"]);
 
 const percentage = computed(() => {
-    return ((form.value.obtained_marks / form.value.total_marks) * 100).toFixed(
-        2
-    );
+    return ((form.obtained_marks / form.total_marks) * 100).toFixed(2);
 });
 </script>
 <template>

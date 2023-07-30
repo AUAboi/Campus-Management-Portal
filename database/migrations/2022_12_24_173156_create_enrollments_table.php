@@ -21,6 +21,7 @@ class CreateEnrollmentsTable extends Migration
             $table->foreignId('program_id')->constrained();
             $table->year('session_start');
             $table->smallInteger('current_semester')->unsigned();
+            $table->foreignId('enrollment_status_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
         });
     }

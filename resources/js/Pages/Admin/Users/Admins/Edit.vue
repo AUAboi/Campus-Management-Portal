@@ -206,9 +206,25 @@ const destroy = () => {
                 </tr>
             </table>
         </div>
-        <h1 class="my-8 font-bold text-3xl">
-            Manage Application
-        </h1>
-        <FormInputSwitch v-model="form.permissions.manage_applications" />
+        <div class="grid sm:grid-cols-2 grid-cols-1 max-w-3xl">
+            <div>
+                <h4 class="mb-5 mt-8 font-bold text-2xl">
+                    Manage Application
+                </h4>
+                <FormInputSwitch
+                    id="applicationSwitch"
+                    v-model="form.permissions.manage_applications"
+                />
+            </div>
+            <div>
+                <h4 class="mb-5 mt-8 font-bold text-2xl">
+                    Manage Enrollments
+                </h4>
+                <FormInputSwitch
+                    id="enrollmentsSwitch"
+                    v-model="form.permissions.manage_enrollments"
+                />
+            </div>
+        </div>
     </div>
 </template>

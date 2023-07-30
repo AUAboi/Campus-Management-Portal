@@ -21,6 +21,8 @@ class ProgramResource extends JsonResource
                 'degree' => new DegreeResource($this->whenLoaded('degree')),
                 'department' => new DepartmentResource($this->whenLoaded('department')),
                 'credit_hours' => $this->credit_hours,
+                'evening_option' => $this->evening_option,
+                'morning_option' =>  $this->morning_option,
                 'slug' => $this->slug
             ];
     }

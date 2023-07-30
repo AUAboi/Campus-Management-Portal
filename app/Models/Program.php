@@ -14,6 +14,8 @@ class Program extends Model
     use HasFactory, HasSlug;
 
     protected $fillable = [
+        'morning_option',
+        'evening_option',
         'department_id',
         'degree_id',
         'credit_hours',

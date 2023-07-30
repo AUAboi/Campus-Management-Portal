@@ -57,7 +57,8 @@ class AdminController extends Controller
                     'create_users' => $user->can('create_users'),
                     'update_users' => $user->can('update_users'),
                     'delete_users' => $user->can('delete_users'),
-                    'manage_applications' => $user->can('manage_applications')
+                    'manage_applications' => $user->can('manage_applications'),
+                    'manage_enrollments' => $user->can('manage_enrollments')
                 ],
             ],
             'permissions' => new PermissionsResource($user)

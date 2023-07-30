@@ -38,7 +38,7 @@ const profileInformation = [
             :profile-information="profileInformation"
         />
     </section>
-    <div v-if="permissions.update" class="py-4 my-4  max-w-3xl">
+    <div v-if="permissions?.update" class="py-4 my-4  max-w-3xl">
         <Link
             :href="route(`admin.users.${user.roles[0]}.edit`, user.id)"
             class="btn-main"

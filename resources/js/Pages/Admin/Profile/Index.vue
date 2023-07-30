@@ -1,3 +1,15 @@
+<script setup>
+import AdminProfile from "../../../components/admin/AdminProfile.vue";
+import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
+
+const props = defineProps({
+    user: {
+        required: true,
+        type: Object
+    }
+});
+</script>
+
 <template>
     <main>
         <TheAdminHead title="Profile" />
@@ -5,17 +17,3 @@
         <AdminProfile :user="user" />
     </main>
 </template>
-
-<script>
-import AdminProfile from "../../../components/admin/AdminProfile.vue";
-import TheAdminHead from "../../../components/admin/meta/TheAdminHead.vue";
-export default {
-    props: {
-        user: {
-            required: true,
-            type: Object
-        }
-    },
-    components: { AdminProfile, TheAdminHead }
-};
-</script>

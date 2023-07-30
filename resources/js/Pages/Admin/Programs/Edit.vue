@@ -8,6 +8,7 @@ import { Link, useForm } from "@inertiajs/vue3";
 import { reactive, ref, watch } from "vue";
 import FormInputSelect from "../../../components/shared/form/FormInputSelect.vue";
 import AppModal from "../../../components/shared/modals/AppModal.vue";
+import FormInputSwitch from "../../../components/shared/form/FormInputSwitch.vue";
 
 const props = defineProps({
     program: {
@@ -36,7 +37,9 @@ const props = defineProps({
 const form = useForm({
     degree_id: props.program.degree.id,
     department_id: props.program.department.id,
-    credit_hours: props.program.credit_hours
+    credit_hours: props.program.credit_hours,
+    morning_option: props.program.morning_option,
+    evening_option: props.program.evening_option
 });
 
 const show = ref(false);
@@ -156,6 +159,22 @@ const update = () => {
                         type="number"
                         min="0"
                     />
+                </div>
+                <div class="form-row flex justify-between !mr-0">
+                    <div>
+                        <p>Morning</p>
+                        <FormInputSwitch
+                            :error="form.errors.morning_option"
+                            v-model="form.morning_option"
+                        />
+                    </div>
+                    <div>
+                        <p>Evening</p>
+                        <FormInputSwitch
+                            :error="form.errors.evening_option"
+                            v-model="form.evening_option"
+                        />
+                    </div>
                 </div>
                 <div
                     class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center"

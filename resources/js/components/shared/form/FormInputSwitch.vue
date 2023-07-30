@@ -10,17 +10,21 @@ const props = defineProps({
 
 defineEmits(["update:modelValue"]);
 
+defineOptions({
+    inheritAttrs: false
+});
+
 const input = ref(null);
 </script>
 
 <template>
     <div class="flex w-full mb-12">
-        <label for="toggle" class="flex items-center cursor-pointer">
+        <label :for="$attrs.id" class="flex items-center cursor-pointer">
             <div class="relative">
                 <input
                     :checked="modelValue"
                     type="checkbox"
-                    id="toggle"
+                    :id="$attrs.id"
                     @change="$emit('update:modelValue', $event.target.checked)"
                     ref="input"
                     class="sr-only"

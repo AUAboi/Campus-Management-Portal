@@ -6,7 +6,6 @@ use Inertia\Inertia;
 use App\Models\Faculty;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\Admin\FacultyService;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\StoreFacultyRequest;
 use App\Http\Requests\UpdateFacultyRequest;

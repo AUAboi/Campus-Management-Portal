@@ -34,7 +34,10 @@ const resetAnimation = () => {
     animateShake.value = false;
 };
 const store = () => {
-    form.post(route("applicant.academic-details.store"));
+    form.post(route("applicant.academic-details.store"), {
+        preserveState: false,
+        onSuccess: () => academicDetailsForm.$reset()
+    });
 };
 </script>
 <template>

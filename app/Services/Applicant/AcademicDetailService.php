@@ -9,6 +9,7 @@ class AcademicDetailService
   /**
    * 
    * Returns possible academic types
+   * @return array
    * 
    */
   public function availableAcademicTypes(User $user)

@@ -1,3 +1,44 @@
+<script setup>
+import { Link } from "@inertiajs/vue3";
+
+import TheApplicantHead from "../../../components/applicant/meta/TheApplicantHead.vue";
+import AppDataTable from "../../../components/shared/tables/AppDataTable.vue";
+
+const props = defineProps({
+    academic_details: {
+        required: true
+    },
+    canAdd: Boolean
+});
+
+const labels = [
+    {
+        key: "type",
+        value: "Type"
+    },
+    {
+        key: "title",
+        value: "Title"
+    },
+    {
+        key: "reg_no",
+        value: "Reg/Roll no"
+    },
+    {
+        key: "organization.organization_name",
+        value: "From"
+    },
+    {
+        key: "obtained_marks",
+        value: "Obtained Marks"
+    },
+    {
+        key: "total_marks",
+        value: "Total Marks"
+    }
+];
+</script>
+
 <template>
     <div>
         <TheApplicantHead title="Academic Details" />
@@ -18,49 +59,3 @@
         </div>
     </div>
 </template>
-
-<script>
-import { Link } from "@inertiajs/vue3";
-
-import TheApplicantHead from "../../../components/applicant/meta/TheApplicantHead.vue";
-import AppDataTable from "../../../components/shared/tables/AppDataTable.vue";
-export default {
-    data() {
-        return {
-            labels: [
-                {
-                    key: "type",
-                    value: "Type"
-                },
-                {
-                    key: "title",
-                    value: "Title"
-                },
-                {
-                    key: "reg_no",
-                    value: "Reg/Roll no"
-                },
-                {
-                    key: "organization.organization_name",
-                    value: "From"
-                },
-                {
-                    key: "obtained_marks",
-                    value: "Obtained Marks"
-                },
-                {
-                    key: "total_marks",
-                    value: "Total Marks"
-                }
-            ]
-        };
-    },
-    props: {
-        academic_details: {
-            required: true
-        },
-        canAdd: Boolean
-    },
-    components: { TheApplicantHead, AppDataTable, Link }
-};
-</script>

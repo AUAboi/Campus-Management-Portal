@@ -22,7 +22,7 @@ const crumbs = [
 
 const approve = () => {
     router.put(
-        this.route("admin.applications.update", {
+        route("admin.applications.update", {
             application: props.application.id,
             status: "accepted"
         })
@@ -31,7 +31,7 @@ const approve = () => {
 
 const reject = () => {
     router.put(
-        this.route("admin.applications.update", {
+        route("admin.applications.update", {
             application: props.application.id,
             status: "rejected"
         })

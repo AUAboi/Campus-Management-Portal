@@ -25,6 +25,8 @@ class UpdateProgramRequest extends FormRequest
     {
         return [
             'degree_id' => 'required|integer|exists:degrees,id|unique:programs,degree_id,' . $this->route('program')->id . ',id,department_id,' . $this->department_id,
+            'evening_option' => 'required|boolean',
+            'morning_option' => 'required|boolean',
             'department_id' => 'required|integer|exists:departments,id',
             'credit_hours' => 'required|integer|max:999',
         ];

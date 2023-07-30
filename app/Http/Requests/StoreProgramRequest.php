@@ -25,6 +25,8 @@ class StoreProgramRequest extends FormRequest
     {
         return [
             'department_id' => 'required|integer|exists:departments,id',
+            'evening_option' => 'required|boolean',
+            'morning_option' => 'required|boolean',
             'degree_id' => 'required|integer|exists:degrees,id|unique:programs,degree_id,NULL,id,department_id,' . $this->department_id,
             'credit_hours' => 'required|integer|max:999',
         ];

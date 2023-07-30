@@ -10,6 +10,7 @@ use Database\Seeders\FacultySeeder;
 use Database\Seeders\ProgramSeeder;
 use Database\Seeders\PermissionSeeder;
 use Database\Seeders\SuperAdminSeeder;
+use Spatie\Permission\Models\Permission;
 
 class DatabaseSeeder extends Seeder
 {

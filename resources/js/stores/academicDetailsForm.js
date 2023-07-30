@@ -39,5 +39,10 @@ export const useAcademicDetailsForm = defineStore('academicDetailsForm', () => {
     }
   };
 
-  return { form, isFirstStep, isLastStep, nextStep, previousStep, currentStep, transition }
+  const $reset = () => {
+    form.reset()
+    currentStep.value = 1
+    transition.value = "previous"
+  }
+  return { form, isFirstStep, isLastStep, nextStep, previousStep, currentStep, transition, $reset }
 })
