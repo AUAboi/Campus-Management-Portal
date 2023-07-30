@@ -1,3 +1,7 @@
+<script setup>
+import { Head } from "@inertiajs/vue3";
+
+</script>
 <template>
     <div>
         <Head title="Dashboard - Admin" />
@@ -7,12 +11,4 @@
     </div>
 </template>
 
-<script>
-import { Head } from "@inertiajs/vue3";
 
-export default {
-    components: {
-        Head
-    }
-};
-</script>
