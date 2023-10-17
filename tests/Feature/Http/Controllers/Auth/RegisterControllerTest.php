@@ -44,9 +44,9 @@ class RegisterControllerTest extends TestCase
         $this->post('register', [
             'name' => 'Ahsan',
             'father_name' => 'Faisal',
-            'email' => 'test@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
+            'email' => 'testuser@mail.com',
+            'password' => 'testpassword',
+            'password_confirmation' => 'testpassword',
             'gender' => 'male',
             'phone' => '03214522363',
             'cnic' => '3310025641429',
@@ -64,7 +64,7 @@ class RegisterControllerTest extends TestCase
         $this->assertDatabaseHas('users',  [
             'name' => 'Ahsan',
             'father_name' => 'Faisal',
-            'email' => 'test@example.com',
+            'email' => 'testuser@mail.com',
             'gender' => 'male',
             'phone' => '+923214522363',
             'cnic' => '3310025641429',
