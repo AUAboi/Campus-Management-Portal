@@ -71,7 +71,7 @@ class RegisterControllerTest extends TestCase
             'date_of_birth' => date(today())
         ]);
 
-        $user = User::where('email', 'test@example.com')->where('name', 'Ahsan')->first();
+        $user = User::where('email', 'testuser@mail.com')->where('name', 'Ahsan')->first();
         $this->assertNotNull($user);
 
         $this->assertAuthenticatedAs($user);
